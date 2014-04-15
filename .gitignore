@@ -1,0 +1,4 @@
+mongodata/*
+cagstore-online/*
+qiniuconf.json
+node_modules
