@@ -5,6 +5,6 @@ cag-h5
 
 build
 ----
-npm install
-jake build
-会在release目录下生成用于发布到各类云存储的静态文件
+  npm install
+  jake build
+  会在release目录下生成用于发布到各类云存储的静态文件
