@@ -1,0 +1,20 @@
+{
+  "name": "中华珍宝馆",
+  "description": "在这里欣赏最精妙入微的中华文化，精细到每一丝墨迹飞舞，传神到每一层墨色变化。这这里体验与真迹直接面对的感觉，学习到画册上从来看不到的细节。",
+  "manifest_version": 2,
+  "version": "1",
+  "app": {
+    "urls": [
+      "http://supperdetailpainter.u.qiniudn.com/"
+    ],
+    "launch": {
+      "web_url": "http://supperdetailpainter.u.qiniudn.com/main.html"
+    }
+  },
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "permissions": [
+    "unlimitedStorage"
+  ]
+}

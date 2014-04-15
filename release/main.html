@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="Aa-Px_e0MlHLJCGspxj9asA8Iue7q21mBh3b62pkl44" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <link rel="shortcut icon" href="/ico/favicon.ico">
+    <title>中华珍宝馆</title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link href="/css/main.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">中华珍宝馆</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a id="selectArt" href="#">历代艺术珍品</a></li>
+            <li class="dropdown">
+              <a href="#" id="suggestion" role="button" class="dropdown-toggle" data-toggle="dropdown">精选推荐<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="suggestion">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/main.html#uuid=5343c5c1f883b828efa79fed&view=paintingview">晋 兰亭集序 纸本</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/main.html#uuid=5343c717f883b828efa7a17c&view=paintingview">宋 欧阳修 行楷书灼艾帖</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/main.html#uuid=5343c5c0f883b828efa79fd7&view=paintingview">明 姜立纲 楷书东铭册</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/main.html#uuid=5343c119f883b828efa79fce&view=paintingview">北宋 黄庭坚 诸上座帖(一) 草书 纸本</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/main.html#uuid=5343c137f883b828efa79fcf&view=paintingview">北宋 黄庭坚 诸上座帖(二) 草书 纸本</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/main.html#uuid=5343c156f883b828efa79fd0&view=paintingview">北宋 黄庭坚 诸上座帖(三) 草书 纸本</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/main.html#uuid=5343c71af883b828efa7a182&view=paintingview">唐 簪花仕女图</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/main.html#uuid=5343c717f883b828efa7a181&view=paintingview">清 郎仕宁 百骏图</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/main.html#uuid=5343c5c8f883b828efa7a07e&view=paintingview">明 唐寅 落花诗 纸本</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="/main.html#uuid=5343c5c2f883b828efa7a008&view=paintingview">元 倪瓒 枯木幽篁图轴</a></li>
+              </ul>
+            </li>
+            <li><a href="#" data-toggle="modal" data-target="#about">关于中华珍宝馆</a></li>
+          </ul>
+          <!-- <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="输入想找的...">
+          </form> -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">关于中华珍宝馆</h4>
+          </div>
+          <div class="modal-body">
+<p>谢谢您对中华珍宝馆的关注，中华珍宝馆的开设完全是为了推广中华传统文化，和方便感兴趣者学习，不以盈利为目的，使用的是免费的互联网资源。</p>
+<p>特别感谢<a href="http://www.qiniu.com/">七牛云存储</a>提供的免费空间和带宽，为假设这个网站提供了很大方便。</p>
+<p>所有图片素材来源于互联网，如果侵犯了您的利益，请到<a href="https://groups.google.com/forum/#!forum/chinaartgallery">论坛</a>和我们联系，我们会处理有问题的资源。</p>
+<p>代码已经开源，发布在：<a href="https://github.com/sanli/supper_HD_painter">https://github.com/sanli/supper_HD_painter</a>，我们还会持续改进功能，并收集更多的高清艺术资源定期发布</p>
+<h4> － 技术让艺术更真实 －</h4>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-container container-fluid">
+      <div style="width: 100%; height: 100%; position: relative;">
+        <div id="paintinglist" class="col-sm-12 col-md-12 sidebar" style="display: none;">
+          <div class="row">
+          <script type="text/html" id="paintinglistTmpl">
+            <@
+            for(i = 0; i<= cagstore.length - 1; i++ ){ 
+                var painting = cagstore[i],
+                    uuid = painting._id;
+                console.log(uuid);
+            @>
+              <div data-uuid="<@=uuid @>" class="col-sm-6 col-md-3">
+                <div class="thumbnail">
+                  <a href="#uuid=<@=uuid @>&view=paintingview"><img src="/cagstore/<@=uuid @>/tb.jpg" alt="<@=painting.filename @>"></a>
+                  <div class="caption">
+                    <h4><@=painting.filename @></h4>
+                    <p></p>
+                    <p><@=painting.desc @></p>
+                  </div>
+                </div>
+              </div>
+            <@ } @>
+          </script> 
+          </div>
+        </div>
+        <div style="width: 100%; height: 100%; position: relative;" class="main">
+            <div style="width: 100%; height: 100%; position: relative;" id="map"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="cagstore/fileinfo_1397489793640.js"></script>
+    <script src="js/cag_1397489793640_min.js"></script>
+</body>
+</html>
+
+

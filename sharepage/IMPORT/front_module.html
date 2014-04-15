@@ -1,0 +1,132 @@
+<% include head.html %>
+
+<body>    
+  <% include navi.html %>
+  <div id="container" class="container-fluid">
+    <div class="row-fluid disable-select">
+      <!--/span-->
+      <div id="mainContent" class="span12 content-area">
+        <!-- 控制面板 -->
+        <div id="serviceCtlBar" class="navbar span12 ctlbar">
+              <div class="navbar-inner">
+                <ul class="nav">
+                  <li><a href="#" class="importbtn" data-type="gsm">导入基站数据(csv)</a></li>
+                  <li><a href="/templ/gsm_tmpl.csv">下载基站数据模板文件</a></li>
+                </ul>
+                <form id="search-form" class="navbar-search pull-right">
+                    <input type="text" name="cellid" class="search-query" placeholder="基站编号查询">
+                </form>
+              </div>
+            </div>
+
+<!-- 分析结果模板 -->
+<!-- 显示模板 -->
+<script type="text/html" id="gsmCellTable">
+<div class="accordion-group">
+  <div class="accordion-heading">
+    <a class="accordion-toggle" data-toggle="collapse" href="#<@=bodyId @>">
+      <i class="icon-folder-open"></i><@=title @></a>
+  </div>
+  <div id="<@=bodyId @>" class="accordion-body collapse in">
+    <div class="accordion-inner">
+  <table class="table table-bordered table-hover"> 
+  <thead> 
+    <tr>
+      <th><a href="#" data-original-title="编号">基站编号</a></th>
+      <th><a href="#" data-original-title="编号">GSM载频数</a></th>
+      <th><a href="#" data-original-title="编号">GSM忙时话音业务量</a></th>
+      <th><a href="#" data-original-title="编号">GSM忙时数据等效业务量</a></th>
+      <th><a href="#" data-original-title="编号">GSM忙时数据流量（MB）</a></th>
+      <th><a href="#" data-original-title="编号">GSM全天话音业务量</a></th>
+      <th><a href="#" data-original-title="编号">GSM全天数据等效业务量</a></th>
+      <th><a href="#" data-original-title="编号">GSM全天数据流量（MB）</a></th>
+    </tr>
+  </thead> 
+  <tbody id="userListTb">
+   <@ 
+    for( i = 0 ; i<= cells.length - 1; i++) { 
+      cell = cells[i];
+   @>
+      <tr><td><@=cell.cellid @></td>
+        <td><@=cell.gsmData1 @></td>
+        <td><@=cell.gsmData2 @></td>
+        <td><@=cell.gsmData3 @></td>
+        <td><@=cell.gsmData4 @></td>
+        <td><@=cell.gsmData5 @></td>
+        <td><@=cell.gsmData6 @></td>
+        <td><@=cell.gsmData7 @></td></tr>
+   <@ } @>
+  </tbody> 
+    </table>
+    </div>
+  </div>
+</div>
+</script>
+<script type="text/html" id="pagebarTpl">
+  <div class="pagination">
+    <ul>
+      <li <@=(currentIdx===0 ? 'class="active"':"" ) @> >
+        <a href="#skipto=0">第一页</a></li>
+      <li <@=(startPage === pre ? 'class="active"':"" ) @> >
+        <a href="#skipto=<@=pre @> ">...</a></li>
+        <@ for( i = startPage ; i<= endPage; i++){ @>
+          <li <@=(currentIdx === i ? 'class="active"':"" ) @> >
+            <a href="#skipto=<@=i@>"><@=i@></a></li>
+        <@ } @>
+        <li <@= (endPage === next ? 'class="active"':"" ) @> >
+          <a href="#skipto=<@=next@>">...</a></li>
+        <li><a href="#skipto=<@=pageCnt-1 @>">最后一页</a></li>
+    </ul>
+  </div>
+</script> <!-- 显示模板 -->
+
+        <!-- 数据查询结果表格 -->
+        <div id="content-body" class="content-body">
+          <div id="cellDiv" class="aggregate tab-pane active">
+              <div id="cellTable"></div>
+              <div id="pagebar"></div>
+          </div>
+        </div>
+      </div><!-- 数据查询结果表格 -->
+    </div>
+  </div>
+  
+  <!-- 确认对话框 -->
+  <div id="confirmDlg" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">再次确认:</h3>
+    </div>
+    <div class="modal-body">
+      <p>是否确认要做这个动作？</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary ok" data-dismiss="modal">确认</button>
+      <button class="btn no" data-dismiss="modal">取消</button>
+    </div>
+  </div> <!-- 确认对话框 -->
+
+  <!-- 导入信息对话框 -->
+  <div id="importDlg" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">导入CELL</h3>
+    </div>
+    <div class="modal-body">
+      <pre id="previewDiv"></pre>
+    </div>
+    <div class="modal-footer">
+      <div id="fileUploader"></div>
+      <button class="btn cancle" data-dismiss="modal" aria-hidden="true">取消</button>
+      <button id="saveBuildingBtn" class="btn btn-primary">确认导入</button>
+    </div>
+  </div> <!-- 导入信息对话框 -->
+
+  <!-- JS文件放在靠近HTML页面尾部的地方可以加快页面显示的速度 -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/sharepage.js"></script>
+  <script src="js/sharepage.ext.js"></script>
+  <script src="js/<M%=module_name %M>.js"></script>
+<% include foot.html %>
+

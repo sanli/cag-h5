@@ -1,0 +1,135 @@
+<% include head.html %>
+
+<body>
+
+	<% include navi.html %>
+
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<!--/span-->
+			<div class="span8 offset2">
+            
+			  <!-- 控制面板 -->
+			  <div id="serviceCtlBar" class="navbar">
+		        <div class="navbar-inner">
+		          <ul class="nav">
+		            <li><a id="createUserBtn">新增</a></li>
+		            <li><a id="updateUserBtn">修改</a></li>
+		            <li><a id="delUserBtn">删除</a></li>
+		          </ul>
+		          <form class="navbar-search pull-right">
+		            <input type="text" id='searchTxt' class="search-query" placeholder="查询用户名">
+		          </form>
+		        </div>
+		      </div>		                
+		      <!-- 服务列表 -->
+			  <table class="table table-bordered table-hover">
+				<thead>
+				  <tr>
+				    <th><a href="#" data-original-title="选中用户进行操作">选中</a></th>
+				    <th><a href="#" data-original-title="用户名">用户名</a></th>
+				    <th><a href="#" data-original-title="类型">类型</a></th>
+				    <th><a href="#" data-original-title="姓名">姓名</a></th>
+				    <th><a href="#" data-original-title="归属部门">归属部门</a></th>
+				    <th><a href="#" data-original-title="联系电话">联系电话</a></th>
+				  </tr>
+				</thead>
+				<tbody id="userListTb"></tbody>
+			  </table>
+
+			    <!-- pagination -->
+			  <div class="pagination">
+			      <ul id="cellPageCtl"></ul>
+			  </div>
+
+			</div>
+			<!--/span-->
+		</div>
+		<!--/row-->
+
+
+		<!-- service config dialog -->
+		<!-- TODO: 对象的管理和更新完全可以做成一个通用模块，只需要很少的代码就可以自动生成对象界面和基础操作 
+		  = 这样的基础设施可以大大提高开发效率
+		  -->
+		<div id="userDlg"  class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-header">
+		    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+		    <h3 id="userDlg.title">新建用户</h3>
+		  </div>
+		  <div class="modal-body">
+		    <form id="userForm" class="form-horizontal">
+			  <div class="control-group">
+			    <label class="control-label" for="name">用户名:</label>
+			    <div class="controls">
+			      <input type="text" id="name" name="name" placeholder="用户名" class="required" minlength="4">
+			    </div>
+			  </div>
+			  <div class="control-group">
+			    <label class="control-label" for="realname">用户名:</label>
+			    <div class="controls">
+			      <input type="text" id="realname" name="realname" placeholder="用户真实姓名" class="required" minlength="6">
+			    </div>
+			  </div>
+			  <div class="control-group">
+			    <label class="control-label" for="password">密码:</label>
+			    <div class="controls">
+			      <input type="password" name="password" id="password" placeholder="密码" class="required" minlength="6">
+			    </div>
+			  </div>
+			  <div class="control-group">
+			    <label class="control-label" for="role">角色:</label>
+			    <div class="controls">
+			    	<select name="role" id="role">
+					  <option value='user'>用户 - 使用定位动能的手机用户</option>
+					  <option value='admin'>管理员 - 系统后台管理员</option>
+					</select>
+			    </div>
+			  </div>
+			  <div class="control-group">
+			    <label class="control-label" for="dept">所属部门:</label>
+			    <div class="controls">
+			      <input type="text" name="dept" id="dept" placeholder="所属部门">
+			    </div>
+			  </div>
+			  <div class="control-group">
+			    <label class="control-label" for="text">联系电话:</label>
+			    <div class="controls">
+			      <input type="text" name="tel" id="tel" placeholder="手机/座机">
+			    </div>
+			  </div>
+			</form>
+		  </div>
+		  <div class="modal-footer">
+		    <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+		    <button id="saveUserBtn" class="btn btn-primary">保存</button>
+		  </div>
+		</div>
+		<hr>
+
+	</div>
+	<!--/.fluid-container-->
+	<!--/.fluid-container-->
+	<div id="confirmDlg" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+	    <h3 id="myModalLabel">再次确认:</h3>
+	  </div>
+	  <div class="modal-body">
+	    <p>是否确认要做这个动作？</p>
+	  </div>
+	  <div class="modal-footer">
+	    <button class="btn btn-primary ok" data-dismiss="modal">确认</button>
+	    <button class="btn no" data-dismiss="modal">取消</button>
+	  </div>
+	</div>
+
+	<!-- Le javascript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/sharepage.js"></script>
+	<script src="js/user.js"></script>
+
+<% include foot.html %>

@@ -1,0 +1,28 @@
+{
+  "name": "application-name",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "underscore" : "*",
+    "express": "3.0.5",
+    "ejs": "*",
+    "mongodb": "*",
+    "lazy": "*",
+    "csv" : "*",
+    "node-uuid": "*",
+    "tracer" : "*",
+    "mongoose" : "*",
+    "node.extend" : "*",
+    "iconv-lite" : "*",
+    "dateformat" : "*",
+    "async" : "*",
+    "gm": "*",
+    "mkdirp" : "*",
+    "uglify-js": "~2.4.13",
+    "jake": "~0.7.9",
+    "jshint": "~2.4.4"
+  }
+}
