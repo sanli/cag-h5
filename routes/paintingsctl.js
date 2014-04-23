@@ -1,16 +1,16 @@
-//#!本文件由share.js自动产生于<M%=new Date() %M>, 产生命令行为: node share.js gen <M%=module_name %M> CRUD ..
+//#!本文件由share.js自动产生于Sun Apr 20 2014 22:13:27 GMT+0800 (CST), 产生命令行为: node share.js gen paintings CRUD ..
 /**
- * <M%=module_name %M>HTTP入口模块, 需要在主文件中添加map
- * var <M%=module_name %M> = require('./routes/<M%=module_name %M>');
- * app.all('/<M%=module_name %M>/list', apiRestrict, <M%=module_name %M>.list);
- * app.all('/<M%=module_name %M>/count', apiRestrict, <M%=module_name %M>.count);
- * app.all('/<M%=module_name %M>/import', apiRestrict, <M%=module_name %M>.import);
- * app.all('/<M%=module_name %M>/retrive', apiRestrict, building.retrive);
- * app.all('/<M%=module_name %M>/update', apiRestrict, gisobj.updateBuilding);
- * app.all('/<M%=module_name %M>/delete', apiRestrict, building.delete);
- * app.all('/<M%=module_name %M>/export', apiRestrict, building.export);
+ * paintingsHTTP入口模块, 需要在主文件中添加map
+ * var paintings = require('./routes/paintings');
+ * app.all('/paintings/list', apiRestrict, paintings.list);
+ * app.all('/paintings/count', apiRestrict, paintings.count);
+ * app.all('/paintings/import', apiRestrict, paintings.import);
+ * app.all('/paintings/retrive', apiRestrict, building.retrive);
+ * app.all('/paintings/update', apiRestrict, gisobj.updateBuilding);
+ * app.all('/paintings/delete', apiRestrict, building.delete);
+ * app.all('/paintings/export', apiRestrict, building.export);
  */
-var <M%=module_name %M>db = require('../data/<M%=module_name %M>db.js')
+var paintingsdb = require('../data/paintingsdb.js')
     , getreq = require('../sharepage').getreq
     , getParam = require('../sharepage').getParam
     , rt = require('../sharepage').rt
@@ -20,9 +20,7 @@ var <M%=module_name %M>db = require('../data/<M%=module_name %M>db.js')
     , searchCondExp = require('../sharepage').searchCondExp
     , inspect = require('util').inspect
     , ObjectID = require('mongodb').ObjectID
-    , upload = require('./upload')
-    , fillUserDept = require('./user.js').fillUserDept
-    , bindurl = require('../sfmis.js').bindurl;
+    , bindurl = require('../sharepage.js').bindurl;
 
 //LIST用到的参数
 var PAGE = {
@@ -47,27 +45,28 @@ var CRUD = {
 
 
 // 注册URL
-exports.bindurl=function(){
-    bindurl('/<M%=module_name %M>.html', { outType : 'page'}, exports.page);
-    bindurl('/<M%=module_name %M>/list', exports.list);
-    bindurl('/<M%=module_name %M>/retrive', exports.retrive);
-    bindurl('/<M%=module_name %M>/update', exports.update);
-    bindurl('/<M%=module_name %M>/delete', exports.delete);
-    bindurl('/<M%=module_name %M>/count', exports.count);
-    bindurl('/<M%=module_name %M>/import', exports.import);
-    bindurl('/<M%=module_name %M>/export', exports.export);
+exports.bindurl=function(app){
+    bindurl(app, '/paintings.html', { outType : 'page'}, exports.page);
+    bindurl(app, '/paintings/list', exports.list);
+    bindurl(app, '/paintings/retrive', exports.retrive);
+    bindurl(app, '/paintings/update', exports.update);
+    bindurl(app, '/paintings/delete', exports.delete);
+    bindurl(app, '/paintings/count', exports.count);
+    bindurl(app, '/paintings/import', exports.import);
+    bindurl(app, '/paintings/export', exports.export);
+    bindurl(app, '/paintings/jump', { method : 'get' }, exports.jump);
 }
 
 // 楼宇页面
 exports.page = function(req, res){
-    res.render('<M%=module_name %M>page.html', {
-        title: "画作管理"
+    res.render('paintingspage.html', {
+        title: "内容管理"
     });
 };
 
 // 查询对象，并返回列表
 exports.list = function(req, res){
-    var arg = getParam("<M%=module_name %M> list", req, res, [PAGE.page, PAGE.cond, PAGE.sort, PAGE.type]);
+    var arg = getParam("paintings list", req, res, [PAGE.page, PAGE.cond, PAGE.sort, PAGE.type]);
     if(!arg.passed)
         return;
 
@@ -80,7 +79,7 @@ exports.list = function(req, res){
     console.log(arg.cond);
     
     fillUserDept(arg.cond, req);
-    <M%=module_name %M>db.list(arg.type, arg.cond, page, arg.sort, function(err, docs){
+    paintingsdb.list(arg.type, arg.cond, page, arg.sort, function(err, docs){
         if(err) return rt(false, err.message, res);
         
         rt(true, {docs: docs}, res);
@@ -89,13 +88,13 @@ exports.list = function(req, res){
 
 // 查询结果集的返回数量
 exports.count = function(req, res){
-    var arg = getParam("<M%=module_name %M> count", req, res, [PAGE.cond, PAGE.type]);
+    var arg = getParam("paintings count", req, res, [PAGE.cond, PAGE.type]);
     if(!arg.passed)
         return;
 
     searchCondExp(arg.cond);
     fillUserDept(arg.cond, req);
-    <M%=module_name %M>db.count(arg.type, arg.cond, function(err, count){
+    paintingsdb.count(arg.type, arg.cond, function(err, count){
         if(err) return rt(false, err.message, res);
         
         rt(true, {count: count}, res);
@@ -104,10 +103,10 @@ exports.count = function(req, res){
 
 // 查询对象详细信息
 exports.retrive = function(req, res){
-    var arg = getParam("retrive <M%=module_name %M>", req, res, [CRUD._id]);
+    var arg = getParam("retrive paintings", req, res, [CRUD._id]);
     if(!arg.passed) return;
 
-    <M%=module_name %M>db.findById(arg._id, function(err, doc){
+    paintingsdb.findById(arg._id, function(err, doc){
         if(err) return rt(false, "查询出错:" + err.message, res);
         if(!doc) return rt(false, "找不到对象：" + _id);
 
@@ -117,10 +116,10 @@ exports.retrive = function(req, res){
 
 // 删除对象
 exports.delete = function(req, res){
-    var arg = getParam("delete <M%=module_name %M>", req, res, [CRUD._id]);
+    var arg = getParam("delete paintings", req, res, [CRUD._id]);
     if(!arg.passed) return;
 
-    <M%=module_name %M>db.delete(arg._id , _ResultByState(res, function(err, doc){
+    paintingsdb.delete(arg._id , _ResultByState(res, function(err, doc){
         if(err) return rt(false, "删除出错:" + err.message, res);
         
         rt(true, { doc : doc }, res);
@@ -132,20 +131,20 @@ exports.update = function(req, res){
 
 }
 
-// 短链跳转
+// 通过短连接跳转到页面
 exports.jump = function(req, res){
-    
+
 }
 
 //确认导入
 exports.import = function(req, res){
-    var arg = getParam("import <M%=module_name %M> file", req, res, [IMP.file, PAGE.type]);
+    var arg = getParam("import paintings file", req, res, [IMP.file, PAGE.type]);
     if(!arg.passed)
         return;
     var file = upload.settings.uploadpath + '/' + arg.file ,
         type = arg.type;
 
-    <M%=module_name %M>db.importCSV(file, type, function(err, cnt){
+    paintingsdb.importCSV(file, type, function(err, cnt){
         if(err) return rt(false, "导入文件出错:" + err.message, res);
 
         rt(true, { count: cnt }, res);
@@ -188,13 +187,13 @@ var exporter = function(){
     }
 }
 exports.export = function(req, res){
-    var arg = getParam("<M%=module_name %M> list", req, res, [PAGE.cond, PAGE.sort, PAGE.type]);
+    var arg = getParam("paintings list", req, res, [PAGE.cond, PAGE.sort, PAGE.type]);
     if(!arg.passed)
         return;
 
     searchCondExp(arg.cond);
     fillUserDept(arg.cond, req);
-    <M%=module_name %M>db.query(arg.type, arg.cond, arg.sort, function(err, docs){
+    paintingsdb.query(arg.type, arg.cond, arg.sort, function(err, docs){
         if(err) return rt(false, err.message, res);
         
         var filename = "export_" + arg.type + "_" + new Date().getTime() + ".csv";

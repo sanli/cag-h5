@@ -519,6 +519,32 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "TempDisabled",
+			"settings":
+			{
+				"buffer_size": 2079,
+				"line_ending": "Unix",
+				"name": "http://localhost:4000/main.html#uuid=5343c0b2f883b"
+			}
+		},
+		{
+			"contents": "[ObjectId('5343c0b2f883b828efa79fc3'),\nObjectId('5343c0b2f883b828efa79fc5'),\nObjectId('5343c0b2f883b828efa79fc5'),\nObjectId('5343c0b3f883b828efa79fc7'),\nObjectId('5343c0b3f883b828efa79fc6'),\nObjectId('5343c5c2f883b828efa7a006'),\nObjectId('5343c5c2f883b828efa7a00c'),\nObjectId('5343c5c6f883b828efa7a05a'),\nObjectId('5343c5d0f883b828efa7a136'),\nObjectId('5343c5c8f883b828efa7a083'),\nObjectId('5343c5c6f883b828efa7a05c'),\nObjectId('5343c5cdf883b828efa7a0f9'),\nObjectId('5343c5cdf883b828efa7a0f8'),\nObjectId('5343c5cff883b828efa7a12f'),\nObjectId('5343c5d0f883b828efa7a135'),\nObjectId('5343c5d0f883b828efa7a137'),\nObjectId('5343c5d0f883b828efa7a147'),\nObjectId('5343c5d1f883b828efa7a160'),\nObjectId('5343c5d1f883b828efa7a161'),\nObjectId('5343c5d2f883b828efa7a162'),\nObjectId('5343c5d2f883b828efa7a163'),\nObjectId('5343c5d2f883b828efa7a164'),\nObjectId('5343c5d2f883b828efa7a165'),\nObjectId('5343c5d2f883b828efa7a166'),\nObjectId('5343c5d2f883b828efa7a167'),\nObjectId('5343c5d2f883b828efa7a168')]",
+			"settings":
+			{
+				"buffer_size": 988,
+				"line_ending": "Unix",
+				"name": "[ObjectId('5343c0b2f883b828efa79fc3'),"
+			}
+		},
+		{
+			"file": "release/main.html",
+			"settings":
+			{
+				"buffer_size": 6190,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -604,50 +630,101 @@
 	},
 	"file_history":
 	[
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/lib/functions/image.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/send/node_modules/mime/mime.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/test/fixtures/includes/menu-item.ejs",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/main.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/jquery.lazyload.js",
+		"/Users/sanli/Documents/workspace/jquery_lazyload/enabled_wide_container.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/mainpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/lazy/lazy.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/node_modules/through/LICENSE.APACHE2",
+		"/Users/sanli/Documents/workspace/backbone/LICENSE",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/release/js/main.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage.js",
+		"/Users/sanli/Documents/workspace/jquery_lazyload/jquery.scrollstop.js",
+		"/Users/sanli/Documents/workspace/cag-h5/Jakefile.js",
 		"/Users/sanli/Documents/workspace/cag-h5/release/main.html",
-		"/Users/sanli/Documents/workspace/cag-h5/release/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/css/sharepage.ext.css",
+		"/Users/sanli/Documents/workspace/cag-h5/data/maindb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/uglify-js/lib/mozilla-ast.js",
+		"/Users/sanli/Documents/workspace/cag-h5/mongo.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/head.html",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/tracer/node_modules/tinytim/test/html.tim",
+		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
+		"/Users/sanli/Downloads/bootstrap-3.1.1/docs/examples/dashboard/index.html",
 		"/Users/sanli/Documents/workspace/cag-h5/data/paintdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/cag.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/navi.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/foot.html",
+		"/Users/sanli/Documents/workspace/cag-h5/data/paintingsdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/paintings.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/back_route.js",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/paintingsctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/back_db.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/lib/nodes/page.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongodb/node_modules/bson/node_modules/nan/include_dirs.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongodb/node_modules/bson/binding.gyp",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/tests/DomUtils/01-by_id.js",
+		"/Users/sanli/Documents/workspace/backbone/backbone.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/htmlparser2/test/Events/10-crazy-attrib.json",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/cli/examples/cat.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/node_modules/sax/test/self-closing-tag.js",
+		"/Users/sanli/Documents/workspace/backbone/CNAME",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/README.md",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/contRun.sh",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/tempout/routes/paintingsctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/node_modules/mpromise/test/promises.Aplus.js",
+		"/Users/sanli/Documents/workspace/cag-h5/package.json",
+		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/index.html",
+		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/views/library.js",
+		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/views/book.js",
+		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/models/book.js",
+		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/collections/library.js",
+		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/server.js",
+		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/modular-mobile-app/app/app.js",
+		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/app.js",
+		"/Users/sanli/Documents/workspace/backbone/examples/todos/index.html",
+		"/Users/sanli/Documents/workspace/backbone/examples/todos/todos.css",
+		"/Users/sanli/Documents/workspace/backbone/examples/todos/todos.js",
+		"/Users/sanli/Documents/workspace/cag-h5/imgtool.js",
+		"/Users/sanli/Documents/workspace/cag-h5/release/js/cag_1397489793640.js",
+		"/Users/sanli/Documents/workspace/cag-h5/release/js/sharepage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/history/scripts/bundled-uncompressed/html4+html5/dojo.history.js",
+		"/Users/sanli/Documents/workspace/backbone/examples/backbone.localStorage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.map.js",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/data/non-ascii-identifier-start.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/node_modules/sax/AUTHORS",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jake/node_modules/utilities/lib/event_buffer.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/iconv-lite/test/main-test.js",
+		"/Users/sanli/Documents/workspace/cag-h5/release/index.html",
 		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/bootstrap.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/leaflet-src.js",
-		"/Users/sanli/Documents/workspace/cag-h5/cag.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/share.js",
-		"/Users/sanli/Documents/workspace/cag-h5/Jakefile.js",
-		"/Users/sanli/Documents/workspace/cag-h5/imgtool.js",
 		"/Users/sanli/Documents/workspace/cag-h5/chromeapp/manifest.json",
 		"/Users/sanli/Documents/workspace/cag-h5/manifest.json",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/lib/functions/image.js",
-		"/Users/sanli/Documents/workspace/cag-h5/package.json",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/Makefile",
 		"/Users/sanli/Documents/workspace/cag-h5/release/cag.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/node_modules/mpromise/test/promises.Aplus.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/main-sample.html",
 		"/Users/sanli/Documents/workspace/cag-h5/public/main.html",
 		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.bak.css",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/jquery.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/main.bak.html",
-		"/Users/sanli/Downloads/bootstrap-3.1.1/docs/examples/dashboard/index.html",
 		"/Users/sanli/Downloads/bootstrap-3.1.1/docs/examples/dashboard/dashboard.css",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.base.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.ext.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/connect/node_modules/formidable/test/unit/test-incoming-form.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/bootstrap.min.js",
 		"/Users/sanli/Documents/workspace/cag-h5/routes/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/data/maindb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/examples/express/connection-sharing/modelA.js",
-		"/Users/sanli/Documents/workspace/cag-h5/mongo.js",
 		"/Users/sanli/Documents/workspace/cag-h5/qiniuconf.json",
 		"/Users/sanli/Documents/workspace/Leaflet/src/dom/PosAnimation.js",
 		"/Users/sanli/Documents/workspace/Leaflet/package.json",
-		"/Users/sanli/Documents/workspace/cag-h5/views/foot.html",
 		"/Users/sanli/Documents/workspace/cag-h5/cagstore/fileinfo.js",
 		"/Users/sanli/Documents/workspace/Leaflet/node_modules/jake/lib/file_list.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/head.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/navi.html",
 		"/Users/sanli/Documents/workspace/Leaflet/FAQ.md",
 		"/Users/sanli/Documents/workspace/Leaflet/node_modules/jshint/data/non-ascii-identifier-start.js",
 		"/Users/sanli/Documents/workspace/Leaflet/build/bower.json",
@@ -680,62 +757,11 @@
 		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma-coverage/node_modules/istanbul/node_modules/async/lib/async.js",
 		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/socket.io/node_modules/socket.io-client/node_modules/uglify-js/tmp/app.js",
 		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/log4js/node_modules/async/lib/async.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/log4js/node_modules/async/dist/async.min.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/log4js/node_modules/async/deps/nodeunit.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/http-proxy/node_modules/utile/node_modules/async/lib/async.js",
-		"/Users/sanli/Documents/workspace/cag-h5/imgtool",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma-coverage/node_modules/istanbul/lib/object-utils.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/graceful-fs/test/readdir-sort.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/copyfiles/node_modules/glob/test/readme-issue.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma-coverage/node_modules/ibrik/node_modules/optimist/example/short.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/iconv-lite/test/turkish-test.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma-coverage/node_modules/istanbul/lib/report/html.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/index.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/log4js/test/multiprocess-test.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/log4js/node_modules/readable-stream/node_modules/string_decoder/index.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/log4js/node_modules/readable-stream/lib/_stream_writable.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/log4js/node_modules/readable-stream/lib/_stream_readable.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/log4js/lib/appenders/multiprocess.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/http-proxy/examples/middleware/modifyResponse-middleware.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/connect/node_modules/multiparty/node_modules/readable-stream/node_modules/string_decoder/index.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/connect/node_modules/multiparty/node_modules/readable-stream/lib/_stream_writable.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/connect/lib/middleware/staticCache.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/connect/lib/middleware/logger.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/connect/lib/middleware/compress.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/lib/reporters/base.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/jshint/node_modules/shelljs/shell.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/node_modules/string_decoder/index.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_writable.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/jshint/node_modules/htmlparser2/node_modules/readable-stream/lib/_stream_readable.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/jshint/node_modules/htmlparser2/lib/Tokenizer.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/jshint/node_modules/htmlparser2/lib/Parser.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/jshint/node_modules/exit/lib/exit.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/copyfiles/node_modules/through2/node_modules/readable-stream/node_modules/string_decoder/index.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/copyfiles/node_modules/through2/node_modules/readable-stream/lib/_stream_writable.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/copyfiles/node_modules/through2/node_modules/readable-stream/lib/_stream_readable.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/copyfiles/node_modules/stream-array/node_modules/readable-stream/node_modules/string_decoder/index.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/copyfiles/node_modules/stream-array/node_modules/readable-stream/lib/_stream_writable.js",
-		"/Users/sanli/Documents/workspace/Leaflet/src/layer/FeatureGroup.js",
-		"/Users/sanli/Documents/workspace/Leaflet/src/layer/Layer.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/uglify-js/lib/mozilla-ast.js",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage.js",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/commons.js",
-		"/Users/sanli/Documents/workspace/cag-h5/data/commonsdb.js",
-		"/Users/sanli/Documents/workspace/uucun/geoservice/geoservice2/views/zonegrab.html",
-		"/Users/sanli/Documents/workspace/uucun/geoservice/geoservice2/public/js/zonegrab.js",
-		"/Users/sanli/Documents/workspace/uucun/geoservice/geoservice2/node_modules/mongodb/lib/mongodb/connection/read_preference.js",
-		"/Users/sanli/Documents/workspace/uucun/geoservice/geoservice2/geoservice.js",
-		"/Users/sanli/Documents/workspace/uucun/geoservice/geoservice2/routes/city.js",
-		"/Users/sanli/Documents/workspace/uucun/geoservice/geoservice2/public/js/sharepage.map.js",
-		"/Users/sanli/Documents/workspace/uucun/geoservice/geoservice2/public/js/sharepage.js",
-		"/Users/sanli/Documents/workspace/uucun/geoservice/geoservice2/views/city.html",
-		"/Users/sanli/Documents/workspace/uucun/geoservice/geoservice2/public/js/city.js",
-		"/Users/sanli/Documents/workspace/uucun/geoservice/geoservice2/public/js/simplify.js",
-		"/Users/sanli/Documents/workspace/uucun/geoservice/geoservice2/package.json"
+		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/log4js/node_modules/async/dist/async.min.js"
 	],
 	"find":
 	{
-		"height": 35.0
+		"height": 46.0
 	},
 	"find_in_files":
 	{
@@ -755,6 +781,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"              \n",
+			"首页",
+			"building",
+			"Building",
+			"building",
+			"Building",
+			"building",
+			"this.fragment",
+			"getFragment",
+			"toggleListView",
 			"纸本",
 			"cagstore\\",
 			"cagstore",
@@ -872,17 +908,7 @@
 			"createPropertyCounter",
 			"propertyCounter",
 			"createPropertyCounter",
-			"createPropertyCalcTask",
-			"cellDataImporter",
-			"refreshPropertyCountState",
-			"updatePropertyCountStateByPropertyId",
-			"createPropertyCalcTask",
-			"triggerPropertyCalc",
-			"getCellCoverState",
-			"console.log(",
-			"console",
-			"getCellCoverState",
-			"createBuildingCalcTask\ncreateBuildingCalcTask"
+			"createPropertyCalcTask"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -926,13 +952,109 @@
 		{
 			"follow_symlinks": true,
 			"path": "/Users/sanli/Documents/workspace/cag-h5"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "/Users/sanli/Documents/workspace/backbone"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2"
 		}
 	],
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "TempDisabled",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2079,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2079,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "http://localhost:4000/main.html#uuid=5343c0b2f883b",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 988,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								988,
+								0
+							]
+						],
+						"settings":
+						{
+							"auto_name": "[ObjectId('5343c0b2f883b828efa79fc3'),",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "release/main.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 6190,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1244.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -1019,6 +1141,62 @@
 		"selected_items":
 		[
 			[
+				"lazyload",
+				"cag-h5/public/js/jquery.lazyload.js"
+			],
+			[
+				"main.js",
+				"cag-h5/public/js/main.js"
+			],
+			[
+				"sharepage.js",
+				"cag-h5/public/js/sharepage.js"
+			],
+			[
+				"sharepage",
+				"cag-h5/public/js/sharepage.js"
+			],
+			[
+				"mainpage",
+				"cag-h5/views/mainpage.html"
+			],
+			[
+				"navi.html",
+				"cag-h5/views/navi.html"
+			],
+			[
+				"paintings.js",
+				"cag-h5/public/js/paintings.js"
+			],
+			[
+				"cag.js",
+				"cag-h5/cag.js"
+			],
+			[
+				"crud/ba",
+				"cag-h5/sharepage/CRUD/back_route.js"
+			],
+			[
+				"paintc",
+				"cag-h5/routes/paintingsctl.js"
+			],
+			[
+				"imgtool",
+				"imgtool.js"
+			],
+			[
+				"mainpage.html",
+				"views/mainpage.html"
+			],
+			[
+				"paintdb.js",
+				"data/paintdb.js"
+			],
+			[
+				"main.html",
+				"release/main.html"
+			],
+			[
 				"img",
 				"imgtool.js"
 			],
@@ -1039,20 +1217,8 @@
 				"imgtool.js"
 			],
 			[
-				"main.html",
-				"release/main.html"
-			],
-			[
-				"imgtool",
-				"imgtool.js"
-			],
-			[
 				"package",
 				"package.json"
-			],
-			[
-				"cag.js",
-				"cag.js"
 			],
 			[
 				"im",
@@ -1061,10 +1227,6 @@
 			[
 				"main.css",
 				"public/css/main.css"
-			],
-			[
-				"main.js",
-				"public/js/main.js"
 			],
 			[
 				"main.cs",
@@ -1085,10 +1247,6 @@
 			[
 				"head",
 				"cag-h5/views/head.html"
-			],
-			[
-				"mainpage.html",
-				"cag-h5/views/mainpage.html"
 			],
 			[
 				"leaf",
@@ -1191,10 +1349,6 @@
 				"public/js/bootstrap.js"
 			],
 			[
-				"sharepage.js",
-				"public/js/sharepage.js"
-			],
-			[
 				"citydata",
 				"public/js/CityData.js"
 			],
@@ -1285,10 +1439,6 @@
 			[
 				"imp",
 				"src/data/imp.js"
-			],
-			[
-				"sharepage",
-				"src/public/js/sharepage.js"
 			],
 			[
 				"celldb",
@@ -1501,34 +1651,6 @@
 			[
 				"pcell.js",
 				"src/public/js/cell.js"
-			],
-			[
-				"pcell",
-				"src/public/js/cell.js"
-			],
-			[
-				"gisobj.",
-				"routes/gisobj.js"
-			],
-			[
-				"pubuilding",
-				"public/js/building.js"
-			],
-			[
-				"buildi",
-				"routes/building.js"
-			],
-			[
-				"buildjs",
-				"public/js/building.js"
-			],
-			[
-				"user.js",
-				"routes/user.js"
-			],
-			[
-				"build",
-				"routes/building.js"
 			]
 		],
 		"width": 0.0
@@ -1547,9 +1669,17 @@
 	},
 	"select_symbol":
 	{
-		"height": 367.0,
+		"height": 147.0,
 		"selected_items":
 		[
+			[
+				"bindurl",
+				"bindurl"
+			],
+			[
+				"pushState",
+				"pushState"
+			],
 			[
 				"dropdow",
 				"Dropdown"
@@ -1589,10 +1719,6 @@
 			[
 				"addLayer",
 				"addLayer"
-			],
-			[
-				"bindurl",
-				"bindurl"
 			],
 			[
 				"pointListToGeoJSON",
@@ -1659,7 +1785,7 @@
 				"getParam"
 			]
 		],
-		"width": 838.0
+		"width": 780.0
 	},
 	"settings":
 	{
@@ -1668,7 +1794,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 222.0,
+	"side_bar_width": 280.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

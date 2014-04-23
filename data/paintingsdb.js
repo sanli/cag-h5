@@ -1,6 +1,6 @@
-//#!本文件由share.js自动产生于<M%=new Date() %M>, 产生命令行为: node share.js gen <M%=module_name %M> CRUD ..
+//#!本文件由share.js自动产生于Sun Apr 20 2014 22:13:27 GMT+0800 (CST), 产生命令行为: node share.js gen paintings CRUD ..
 /**
- * <M%=module_name %M>数据库访问类
+ * paintings数据库访问类
  */
 //基站数据访问
 var inspect = require('util').inspect
@@ -11,22 +11,11 @@ var inspect = require('util').inspect
   , Helper = require('../mongo.js').Helper
   , extend = require('node.extend')
   , csv = require('csv')
-  , gisdb = require('./gisobjdb.js') ;
+  , paintdb = require('./paintdb.js') ;
 
 // === 基本数据结构定义，按照实际需求修改 ===
 // 定义数据访问引用
-var Module = gisdb.<M%=module_name %M>;
-//以下字段不用在位置查询的时候返回
-var defaultProjection = { gpsloc : 0, 
-    gsmCellAmount: 0,
-    gsmData1: 0 , gsmData2: 0 , gsmData3: 0 , gsmData4: 0 , gsmData5: 0 , gsmData6: 0 , gsmData7: 0 , 
-    tdCellAmount: 0, tdData1: 0,tdData2: 0,tdData3: 0,tdData4: 0,tdData5: 0, wlanCellAmount: 0,
-    wlanData1: 0 ,wlanData2: 0 ,wlanData3: 0 ,
-    lteCellAmount: 0 , lteData1: 0 , lteData2: 0 , lteData3: 0, 
-    abis1 : 0, abis2 : 0, abis3 : 0, abis4 : 0, abis5 : 0, abis6 : 0, abis7 : 0, abis8 : 0, abis9 : 0
-};
-
-
+var Module = paintdb.Painting;
 
 // === 基本功能实现函数,一般不用修改 ===
 // 查询数据
@@ -37,7 +26,7 @@ exports.list = function(type, cond, sort, page, fn){
     .skip(page.skip)
     .limit(page.limit)
     .exec(function(err, docs){
-      if(err) console.trace("query <M%=module_name %M> page error:", err);
+      if(err) console.trace("query paintings page error:", err);
 
       fn(err, docs);
     });
@@ -47,7 +36,7 @@ exports.query = function(type, cond, sort, fn){
     Module.find(cond)
     .sort(sort)
     .exec(function(err, docs){
-      if(err) console.trace("query <M%=module_name %M> error:", err);
+      if(err) console.trace("query paintings error:", err);
 
       fn(err, docs);
     });
@@ -57,7 +46,7 @@ exports.query = function(type, cond, sort, fn){
 exports.count = function(type, cond, fn){
   Module.find(cond)
     .count(function(err, count){
-      if(err) console.trace("query <M%=module_name %M> count error:", err);
+      if(err) console.trace("query paintings count error:", err);
 
       fn(err, count);
     });
@@ -103,7 +92,7 @@ exports.importCSV = function(filename, type, fn) {
                 });
         }, {parallel: 1})
         .on("end", function (count) {
-            console.log("importcsvfile success <M%=module_name %M> filename:" + filename);
+            console.log("importcsvfile success paintings filename:" + filename);
             fn(null, count - 1);
         })
         .on('error',function(error){
@@ -145,7 +134,7 @@ if(isme(__filename)){
     for(cmd in tester)
       testcmd.push(cmd);
 
-    console.log('<M%=module_name %M>db.js '+ testcmd.join('|'));
+    console.log('paintingsdb.js '+ testcmd.join('|'));
   }
 }
 

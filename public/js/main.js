@@ -73,6 +73,10 @@ var Module = $.extend(new $M(), {
 			cagstore : cagstore
 		});
 		$('#paintinglist div.row').append(out);
+		$("img.lazy").lazyload({
+			container : "#paintinglist",
+		    effect : "fadeIn"
+		});
 		$('#selectArt').click(function(e){
 			$li = $(e.target).closest('li');
 			Module.toggleListView($li);
@@ -83,18 +87,6 @@ var Module = $.extend(new $M(), {
 	//      功能函数 
 	// ====================================================================================================================================
 	//比较两个查询条件是否完全相等
-	compareCondition : function(cond1, cond2){
-		for(v in cond1){
-			if(cond1[v] != cond2[v])
-				return false;
-		}
-		for(v in cond2){
-			if(cond2[v] != cond1[v])
-				return false;
-		}
-		return true;
-	},
-
 	showListView : function(show){
 		var $li = $('#selectArt').closest('li');
 		if(show){

@@ -66,9 +66,9 @@
           </div>
           <div class="modal-body">
 <p>谢谢您对中华珍宝馆的关注，中华珍宝馆的开设完全是为了推广中华传统文化，和方便感兴趣者学习，不以盈利为目的，使用的是免费的互联网资源。</p>
-<p>特别感谢<a href="http://www.qiniu.com/">七牛云存储</a>提供的免费空间和带宽，为假设这个网站提供了很大方便。</p>
+<p>特别感谢<a href="http://www.qiniu.com/">七牛云存储</a>提供的免费空间和带宽，为架设这个网站提供了很大方便。</p>
 <p>所有图片素材来源于互联网，如果侵犯了您的利益，请到<a href="https://groups.google.com/forum/#!forum/chinaartgallery">论坛</a>和我们联系，我们会处理有问题的资源。</p>
-<p>代码已经开源，发布在：<a href="https://github.com/sanli/supper_HD_painter">https://github.com/sanli/supper_HD_painter</a>，我们还会持续改进功能，并收集更多的高清艺术资源定期发布</p>
+<p>代码已经开源，发布在：<a href="https://github.com/sanli/supper_HD_painter">https://github.com/sanli/cag-h5</a>，我们还会持续改进功能，并收集更多的高清艺术资源定期发布</p>
 <h4> － 技术让艺术更真实 －</h4>
 
           </div>
@@ -88,11 +88,12 @@
             for(i = 0; i<= cagstore.length - 1; i++ ){ 
                 var painting = cagstore[i],
                     uuid = painting._id;
-                console.log(uuid);
             @>
               <div data-uuid="<@=uuid @>" class="col-sm-6 col-md-3">
                 <div class="thumbnail">
-                  <a href="#uuid=<@=uuid @>&view=paintingview"><img src="/cagstore/<@=uuid @>/tb.jpg" alt="<@=painting.filename @>"></a>
+                  <a href="#uuid=<@=uuid @>&view=paintingview">
+                    <img class="lazy" data-original="/cagstore/<@=uuid @>/tb.jpg">
+                  </a>
                   <div class="caption">
                     <h4><@=painting.filename @></h4>
                     <p></p>
@@ -111,10 +112,8 @@
     </div>
 
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="cagstore/fileinfo_1397489793640.js"></script>
-    <script src="js/cag_1397489793640_min.js"></script>
+    <script src="cagstore/fileinfo_1398243298944.js"></script>
+    <script src="js/cag_1398243298944_min.js"></script>
 </body>
 </html>
 

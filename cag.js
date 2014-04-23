@@ -19,6 +19,7 @@ app.configure(function(){
   app.set('port', process.env.PORT || 4000);
   app.engine('.html', require('ejs').__express);
   app.set('views', __dirname + '/views');
+  app.use(express.favicon(__dirname + '/public/favicon.ico'));
   app.use(express.favicon());
   app.use(express.logger('dev'));
   app.use(express.compress());
@@ -37,6 +38,7 @@ app.configure('development', function(){
 
 // load module
 require('./routes/mainctl').bindurl(app);
+require('./routes/paintingsctl').bindurl(app);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
 	logger.log("启动web服务，在以下端口监听：" + app.get('port'));

@@ -38,7 +38,7 @@ var painting = new Schema({
     depth : String,
     res : String,
     filename : String,
-    orientation : String
+    orientation : String,
 
     // 是否有效
     active: Boolean,

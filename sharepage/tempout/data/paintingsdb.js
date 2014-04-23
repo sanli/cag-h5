@@ -1,6 +1,6 @@
-//#!本文件由share.js自动产生于<M%=new Date() %M>, 产生命令行为: node share.js gen <M%=module_name %M> CRUD ..
+//#!本文件由share.js自动产生于Sun Apr 20 2014 22:13:17 GMT+0800 (CST), 产生命令行为: node share.js gen paintings CRUD ..
 /**
- * <M%=module_name %M>数据库访问类
+ * paintings数据库访问类
  */
 //基站数据访问
 var inspect = require('util').inspect
@@ -15,7 +15,7 @@ var inspect = require('util').inspect
 
 // === 基本数据结构定义，按照实际需求修改 ===
 // 定义数据访问引用
-var Module = gisdb.<M%=module_name %M>;
+var Module = gisdb.paintings;
 //以下字段不用在位置查询的时候返回
 var defaultProjection = { gpsloc : 0, 
     gsmCellAmount: 0,
@@ -37,7 +37,7 @@ exports.list = function(type, cond, sort, page, fn){
     .skip(page.skip)
     .limit(page.limit)
     .exec(function(err, docs){
-      if(err) console.trace("query <M%=module_name %M> page error:", err);
+      if(err) console.trace("query paintings page error:", err);
 
       fn(err, docs);
     });
@@ -47,7 +47,7 @@ exports.query = function(type, cond, sort, fn){
     Module.find(cond)
     .sort(sort)
     .exec(function(err, docs){
-      if(err) console.trace("query <M%=module_name %M> error:", err);
+      if(err) console.trace("query paintings error:", err);
 
       fn(err, docs);
     });
@@ -57,7 +57,7 @@ exports.query = function(type, cond, sort, fn){
 exports.count = function(type, cond, fn){
   Module.find(cond)
     .count(function(err, count){
-      if(err) console.trace("query <M%=module_name %M> count error:", err);
+      if(err) console.trace("query paintings count error:", err);
 
       fn(err, count);
     });
@@ -103,7 +103,7 @@ exports.importCSV = function(filename, type, fn) {
                 });
         }, {parallel: 1})
         .on("end", function (count) {
-            console.log("importcsvfile success <M%=module_name %M> filename:" + filename);
+            console.log("importcsvfile success paintings filename:" + filename);
             fn(null, count - 1);
         })
         .on('error',function(error){
@@ -119,7 +119,6 @@ exports.importCSV = function(filename, type, fn) {
 
 
 // ============================= 下面是单元测试用的代码 ================================
-var isme = require('../sharepage.js').isme;
 var tester = {
   testImportCSV: function(){
     exports.importCSV ("../uploads/td_tmpl.csv", 'td', function(err, cnt){
@@ -145,7 +144,7 @@ if(isme(__filename)){
     for(cmd in tester)
       testcmd.push(cmd);
 
-    console.log('<M%=module_name %M>db.js '+ testcmd.join('|'));
+    console.log('paintingsdb.js '+ testcmd.join('|'));
   }
 }
 

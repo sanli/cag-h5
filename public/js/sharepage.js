@@ -155,22 +155,48 @@ var renderPagebar = $M.renderPagebar;
 var $P = function(options) {
   $.extend(this, options);
   //this.state = options.default || {};
-  this.state = $.extend({}, options.default) ;
+  //this.state = $.extend({}, options.default) ;
 };
 !function ($) {
   "use strict";
-  
-  var fn = $P.prototype;
 
+  function equals(cond1, cond2){
+    // for(v in cond1){
+    //     if(cond1[v] != cond2[v])
+    //         return false;
+    // }
+    // for(v in cond2){
+    //     if(cond2[v] != cond1[v])
+    //         return false;
+    // }
+    var v1 = JSON.stringify(cond1),
+      v2 = JSON.stringify(cond2);
+    return v1 === v2;
+  };
+
+  var fn = $P.prototype;
   fn.onhashchange = function(e){
     var state = $.bbq.getState(),
       $this = $(this);
-      
-    this.state = $.extend({}, this.default, state) ;
-    $this.trigger('statechange', state);
+    
+    var newState = $.extend({}, this.default, state) ;
+    // 只在state发生变化时才触发事件
+    if(!equals(newState,this.state)){
+        this.state = newState;
+        $this.trigger('statechange', state);
+    }
   };
 
-  fn.pushState = function(state){
+  // opt.triggerEvent true will trigger stateChange event, false will not 
+  //   trigger event, default is true.
+  fn.pushState = function(state, opt){
+    opt = opt || { triggerEvent : true };
+
+    //如果不需要触发事件，就直接设置state
+    if(!opt.triggerEvent){
+        this.state = $.extend({}, this.default, $.bbq.getState(), state) ;
+    }
+
     if(state){
       $.bbq.pushState(state);     
     }else{

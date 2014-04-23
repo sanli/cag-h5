@@ -65,6 +65,9 @@ function genpage(buildName){
 
 function getFiles() {
 	return [
+		'public/js/jquery.js',
+		'public/js/jquery.lazyload.js',
+		'public/js/bootstrap.js',
 		'public/js/sharepage.base.js',
 		'public/js/sharepage.js',
 		'public/js/leaflet-src.js',
