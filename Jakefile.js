@@ -1,3 +1,5 @@
+var async = require('async');
+
 /*
 jake lint
 jake release
@@ -20,15 +22,23 @@ desc('合并和压缩js文件');
 task('build', {async: true}, function () {
 	console.log(arguments);
 	var buildName = new Date().getTime();
-	genpage(buildName);
+	genpage(buildName, 'views/mainpage.html', 'release/main.html' );
+	genpage(buildName, 'views/imgpage.html', 'release/img.html' );
 
-	jake.mkdirP('release/cagstore');
+	//jake.mkdirP('release/cagstore');
+	//jake.linkP()
 	jake.exec([
-			'rm -frv release/js/cag_139*.js release/cagstore/fileinfo*.js*',
-			'cp cagstore-online/fileinfo.json release/cagstore/fileinfo_'+ buildName+'.json',
-			'cp cagstore-online/fileinfo.js release/cagstore/fileinfo_'+ buildName+'.js',
+			'rm -frv release/js/cag_1*.js release/js/main_1*.js release/js/img_1*.js',
+			//'cp cagstore-online/fileinfo.json release/cagstore/fileinfo_'+ buildName+'.json',
+			//'cp cagstore-online/fileinfo.js release/cagstore/fileinfo_'+ buildName+'.js',
 	],function(){
-		build(complete, buildName);	
+		async.eachSeries(
+			['cag','main','img'],
+			function(category, callback){
+				console.log('开始生成js文件：%s......', category);
+				build(callback, buildName, category);
+			},
+			complete);
 	});
 });
 
@@ -41,9 +51,10 @@ var fs = require('fs'),
     path = require('path'),
     ejs = require('ejs');
 
-function genpage(buildName){
-	var tempfile = "views/mainpage.html",
-        outfile = "release/main.html";
+function genpage(buildName, temp , out){
+	// var tempfile = "views/mainpage.html",
+ //        outfile = "release/main.html";
+ 		var tempfile = temp , outfile = out;
 
         if(!fs.existsSync(tempfile))
             throw new Error("模板文件不存在：" + tempfile);
@@ -64,15 +75,17 @@ function genpage(buildName){
 }
 
 function getFiles() {
-	return [
-		'public/js/jquery.js',
-		'public/js/jquery.lazyload.js',
-		'public/js/bootstrap.js',
-		'public/js/sharepage.base.js',
-		'public/js/sharepage.js',
-		'public/js/leaflet-src.js',
-		'public/js/main.js'
-	];
+	return { cag: [
+				//'public/js/jquery.js',
+				//'public/js/bootstrap.js',
+				//'public/js/leaflet-src.js',
+				'public/js/jquery.lazyload.js',
+				'public/js/sharepage.base.js',
+				'public/js/sharepage.js'
+			], 
+			main : ['public/js/main.js'],
+			img : ['public/js/img.js']
+		};
 }
 
 function getSizeDelta(newContent, oldContent, fixCRLF) {
@@ -111,12 +124,12 @@ function bytesToKB(bytes) {
     return (bytes / 1024).toFixed(2) + ' KB';
 };
 
-function build(callback, buildName) {
-	var files = getFiles();
+function build(callback, buildName, category) {
+	var files = getFiles()[category];
 	console.log('Concatenating and compressing ' + files.length + ' files...');
 
 	var newSrc = combineFiles(files),
-	    pathPart = 'release/js/cag' + (buildName ? '_' + buildName : ''),
+	    pathPart = 'release/js/' + category + (buildName ? '_' + buildName : ''),
 	    srcPath = pathPart + '.js',
 
 	    oldSrc = loadSilently(srcPath),

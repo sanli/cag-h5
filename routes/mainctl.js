@@ -18,6 +18,7 @@ var getreq = require('../sharepage').getreq
 // ===============  定义模块入口文件 ================
 exports.bindurl=function(app){
     bindurl(app, '/main.html', { outType : 'page'}, exports.main);
+    bindurl(app, '/img.html', { outType : 'page'}, exports.img);
     bindurl(app, '/main/list', exports.list);
     bindurl(app, '/main/count', exports.count);
 };
@@ -26,6 +27,16 @@ exports.main = function(req, res){
     res.render('mainpage.html', {
         user: getUserName(req),
         title: getTitle("首页"),
+        page : 'main',
+        target : 'debug',
+        stamp : ''
+    });
+};
+
+exports.img = function(req, res){
+    res.render('imgpage.html', {
+        user: getUserName(req),
+        title: "中华珍宝馆-图片浏览",
         page : 'main',
         target : 'debug',
         stamp : ''

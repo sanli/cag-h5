@@ -4,20 +4,64 @@
 		"selected_items":
 		[
 			[
+				"le",
+				"length"
+			],
+			[
+				"pa",
+				"paintingName"
+			],
+			[
+				"ti",
+				"tilesize"
+			],
+			[
+				"ea",
+				"eachfilecb"
+			],
+			[
+				"resize",
+				"resizeWith"
+			],
+			[
+				"re",
+				"resizefile"
+			],
+			[
+				"calc",
+				"calcScaleLevel"
+			],
+			[
+				"each",
+				"eachSeries"
+			],
+			[
+				"filein",
+				"fileinfo"
+			],
+			[
+				"pai",
+				"painting"
+			],
+			[
+				"str",
+				"stringify"
+			],
+			[
+				"gra",
+				"grapPainting"
+			],
+			[
+				"v",
+				"verbose"
+			],
+			[
 				"bui",
 				"buildName"
 			],
 			[
-				"pa",
-				"padding-right"
-			],
-			[
 				"file",
 				"fileinfo"
-			],
-			[
-				"re",
-				"resizethumb"
 			],
 			[
 				"resi",
@@ -62,10 +106,6 @@
 			[
 				"in",
 				"inspect"
-			],
-			[
-				"le",
-				"length"
 			],
 			[
 				"b",
@@ -474,74 +514,16 @@
 			[
 				"_cu",
 				"_currentFile"
-			],
-			[
-				"end",
-				"endPoint"
-			],
-			[
-				"local",
-				"localdebug"
-			],
-			[
-				"onLi",
-				"onListNodeLog"
-			],
-			[
-				"endp",
-				"endpoints"
-			],
-			[
-				"reg",
-				"regnodes"
-			],
-			[
-				"ha",
-				"hasOwnProperty"
-			],
-			[
-				"De",
-				"DEFAULT_STATE"
-			],
-			[
-				"bin",
-				"bindButton"
-			],
-			[
-				"ag",
-				"agentcli"
-			],
-			[
-				"err",
-				"errorMsg"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "TempDisabled",
+			"file": "Jakefile.js",
 			"settings":
 			{
-				"buffer_size": 2079,
-				"line_ending": "Unix",
-				"name": "http://localhost:4000/main.html#uuid=5343c0b2f883b"
-			}
-		},
-		{
-			"contents": "[ObjectId('5343c0b2f883b828efa79fc3'),\nObjectId('5343c0b2f883b828efa79fc5'),\nObjectId('5343c0b2f883b828efa79fc5'),\nObjectId('5343c0b3f883b828efa79fc7'),\nObjectId('5343c0b3f883b828efa79fc6'),\nObjectId('5343c5c2f883b828efa7a006'),\nObjectId('5343c5c2f883b828efa7a00c'),\nObjectId('5343c5c6f883b828efa7a05a'),\nObjectId('5343c5d0f883b828efa7a136'),\nObjectId('5343c5c8f883b828efa7a083'),\nObjectId('5343c5c6f883b828efa7a05c'),\nObjectId('5343c5cdf883b828efa7a0f9'),\nObjectId('5343c5cdf883b828efa7a0f8'),\nObjectId('5343c5cff883b828efa7a12f'),\nObjectId('5343c5d0f883b828efa7a135'),\nObjectId('5343c5d0f883b828efa7a137'),\nObjectId('5343c5d0f883b828efa7a147'),\nObjectId('5343c5d1f883b828efa7a160'),\nObjectId('5343c5d1f883b828efa7a161'),\nObjectId('5343c5d2f883b828efa7a162'),\nObjectId('5343c5d2f883b828efa7a163'),\nObjectId('5343c5d2f883b828efa7a164'),\nObjectId('5343c5d2f883b828efa7a165'),\nObjectId('5343c5d2f883b828efa7a166'),\nObjectId('5343c5d2f883b828efa7a167'),\nObjectId('5343c5d2f883b828efa7a168')]",
-			"settings":
-			{
-				"buffer_size": 988,
-				"line_ending": "Unix",
-				"name": "[ObjectId('5343c0b2f883b828efa79fc3'),"
-			}
-		},
-		{
-			"file": "release/main.html",
-			"settings":
-			{
-				"buffer_size": 6190,
+				"buffer_size": 4812,
 				"line_ending": "Unix"
 			}
 		}
@@ -630,38 +612,113 @@
 	},
 	"file_history":
 	[
+		"/Users/sanli/Documents/workspace/cag-h5/imgtool.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jake/node_modules/utilities/lib/file.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/mainpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/release/main.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/img.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mkdirp/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/node_modules/express/node_modules/mkdirp/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/node_modules/mkdirp/index.js",
+		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/node_modules/express/node_modules/mkdirp/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/mkdirp/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/front-end/inspector.css",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongodb/node_modules/bson/tools/jasmine-1.1.0/jasmine.css",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jake/package.json",
+		"/Users/sanli/Documents/workspace/cag-h5/Jakefile.js",
+		"/Users/sanli/Documents/workspace/cag-h5/README.md",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/lib/RuntimeAgent.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/lib/NetworkAgent.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/lib/BreakEventHandler.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/imgpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/cagstore/fileinfo.json",
+		"/Users/sanli/Documents/workspace/cag-h5/cagstore/fileinfo.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/front-end/filteredItemSelectionDialog.css",
+		"/Users/sanli/Documents/workspace/cag-h5/views/foot.html",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/front-end/ImageView.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/lib/functions/image.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/send/node_modules/mime/mime.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/test/fixtures/includes/menu-item.ejs",
+		"/Users/sanli/Documents/workspace/cag-h5/release/img.html",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/templates/App._",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/templates/Autostyle._",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/templates/Map._",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/servers/App.bones",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/servers/Core.bones",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/servers/OAuth.bones",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/servers/Route.bones",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/servers/Tile.bones",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/lib/s3.js",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/lib/fsutil.js",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/templates/Preview._",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/views/Plugins.bones",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/views/Project.bones",
+		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/views/Config.bones",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jake/node_modules/utilities/test/core.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/front-end/inspectorSyntaxHighlight.css",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.base.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/main.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/jquery.lazyload.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/node_modules/glob/examples/g.js",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/paintingsctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/data/paintdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/examples/aggregate/aggregate.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/front-end/ApplicationCacheItemsView.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/uglify-js/node_modules/source-map/node_modules/amdefine/intercept.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongodb/lib/mongodb/auth/mongodb_plain.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/async/lib/async.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/lib/args.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/lib/command.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/node_modules/debug/debug.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/debug/debug.component.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/.bin/express",
+		"/Users/sanli/Documents/workspace/cag-h5/qiniuconf.json",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/lib/response.js",
+		"/Users/sanli/Desktop/en_US/HelloWorld.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/connect/node_modules/formidable/test/fixture/js/special-chars-in-filename.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/examples/population/population-across-three-collections.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/data/non-ascii-identifier-part-only.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/node_modules/sax/test/cdata-chunked.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/data/ascii-identifier-data.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/dateformat/lib/dateformat.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/node_modules/sax/test/duplicate-attribute.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/lib/doc.js",
+		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/node_modules/mongoose/node_modules/mongodb/lib/mongodb/collection.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/node_modules/mongodb/lib/mongodb/collection/aggregation.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongodb/lib/mongodb/collection/aggregation.js",
+		"/Users/sanli/Documents/workspace/cag-h5/TempDisabled",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/cli/node_modules/glob/package.json",
+		"/Users/sanli/Documents/workspace/cag-h5/release/index.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/head.html",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jake/node_modules/utilities/lib/async.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/uglify-js/node_modules/source-map/build/assert-shim.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/bin/apply",
+		"/Users/sanli/Documents/workspace/cag-h5/chromeapp/manifest.json",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/iconv-lite/test/main-test.js",
+		"/Users/sanli/Documents/workspace/cag-h5/data/maindb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/main-sample.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
+		"/Users/sanli/Documents/workspace/cag-h5/release/css/main.css",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/send/node_modules/mime/mime.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/test/fixtures/includes/menu-item.ejs",
 		"/Users/sanli/Documents/workspace/jquery_lazyload/enabled_wide_container.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/mainpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/lazy/lazy.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/node_modules/through/LICENSE.APACHE2",
 		"/Users/sanli/Documents/workspace/backbone/LICENSE",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.js",
 		"/Users/sanli/Documents/workspace/cag-h5/release/js/main.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage.js",
 		"/Users/sanli/Documents/workspace/jquery_lazyload/jquery.scrollstop.js",
-		"/Users/sanli/Documents/workspace/cag-h5/Jakefile.js",
-		"/Users/sanli/Documents/workspace/cag-h5/release/main.html",
 		"/Users/sanli/Documents/workspace/cag-h5/public/css/sharepage.ext.css",
-		"/Users/sanli/Documents/workspace/cag-h5/data/maindb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/uglify-js/lib/mozilla-ast.js",
 		"/Users/sanli/Documents/workspace/cag-h5/mongo.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/head.html",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/tracer/node_modules/tinytim/test/html.tim",
 		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
 		"/Users/sanli/Downloads/bootstrap-3.1.1/docs/examples/dashboard/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/data/paintdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/cag.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/navi.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/foot.html",
 		"/Users/sanli/Documents/workspace/cag-h5/data/paintingsdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/paintings.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/back_route.js",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/paintingsctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/back_db.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/lib/nodes/page.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongodb/node_modules/bson/node_modules/nan/include_dirs.js",
@@ -682,86 +739,11 @@
 		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/views/book.js",
 		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/models/book.js",
 		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/collections/library.js",
-		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/server.js",
-		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/modular-mobile-app/app/app.js",
-		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/app.js",
-		"/Users/sanli/Documents/workspace/backbone/examples/todos/index.html",
-		"/Users/sanli/Documents/workspace/backbone/examples/todos/todos.css",
-		"/Users/sanli/Documents/workspace/backbone/examples/todos/todos.js",
-		"/Users/sanli/Documents/workspace/cag-h5/imgtool.js",
-		"/Users/sanli/Documents/workspace/cag-h5/release/js/cag_1397489793640.js",
-		"/Users/sanli/Documents/workspace/cag-h5/release/js/sharepage.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/history/scripts/bundled-uncompressed/html4+html5/dojo.history.js",
-		"/Users/sanli/Documents/workspace/backbone/examples/backbone.localStorage.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.map.js",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/data/non-ascii-identifier-start.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/node_modules/sax/AUTHORS",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jake/node_modules/utilities/lib/event_buffer.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/iconv-lite/test/main-test.js",
-		"/Users/sanli/Documents/workspace/cag-h5/release/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/bootstrap.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/leaflet-src.js",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage/share.js",
-		"/Users/sanli/Documents/workspace/cag-h5/chromeapp/manifest.json",
-		"/Users/sanli/Documents/workspace/cag-h5/manifest.json",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/Makefile",
-		"/Users/sanli/Documents/workspace/cag-h5/release/cag.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/main-sample.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/main.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.bak.css",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/jquery.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/main.bak.html",
-		"/Users/sanli/Downloads/bootstrap-3.1.1/docs/examples/dashboard/dashboard.css",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.base.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.ext.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/connect/node_modules/formidable/test/unit/test-incoming-form.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/bootstrap.min.js",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/examples/express/connection-sharing/modelA.js",
-		"/Users/sanli/Documents/workspace/cag-h5/qiniuconf.json",
-		"/Users/sanli/Documents/workspace/Leaflet/src/dom/PosAnimation.js",
-		"/Users/sanli/Documents/workspace/Leaflet/package.json",
-		"/Users/sanli/Documents/workspace/cag-h5/cagstore/fileinfo.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/jake/lib/file_list.js",
-		"/Users/sanli/Documents/workspace/Leaflet/FAQ.md",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/jshint/data/non-ascii-identifier-start.js",
-		"/Users/sanli/Documents/workspace/Leaflet/build/bower.json",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-uuid/benchmark/benchmark-native.c",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/node_modules/sax/test/trailing-attribute-no-value.js",
-		"/Users/sanli/Documents/workspace/Leaflet/build/hintrc.js",
-		"/Users/sanli/Documents/workspace/Leaflet/spec/after.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma-coverage/node_modules/istanbul/node_modules/js-yaml/node_modules/argparse/node_modules/underscore/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/data/userdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/node_modules/through/test/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/async/lib/async.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/lib/args.js",
-		"/Users/sanli/Documents/workspace/cag-h5/gmtest.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/lib/parser.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/css/leaflet.css",
-		"/Users/sanli/Documents/workspace/Leaflet/dist/leaflet.css",
-		"/Users/sanli/Documents/workspace/Leaflet/dist/leaflet.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/jshint/node_modules/htmlparser2/test/Events/18-legacy_entities.json",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/log4js/lib/appenders/logLevelFilter.js",
-		"/Users/sanli/Documents/workspace/Leaflet/LICENSE",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/http-proxy/node_modules/pkginfo/docs/docco.css",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/underscore/underscore-min.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/copyfiles/node_modules/through2/node_modules/xtend/mutable.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma-coverage/node_modules/ibrik/node_modules/coffee-script-redux/node_modules/esmangle/Gruntfile.js",
-		"/Users/sanli/Documents/workspace/Leaflet/dist/leaflet-src.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/osd/metadata.json",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/uglify-js/node_modules/async/lib/async.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma-coverage/node_modules/istanbul/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/test_underscore/vendor/qunit.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma-coverage/node_modules/istanbul/node_modules/js-yaml/node_modules/argparse/node_modules/underscore.string/test/test_underscore/vendor/jquery.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma-coverage/node_modules/istanbul/node_modules/async/lib/async.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/socket.io/node_modules/socket.io-client/node_modules/uglify-js/tmp/app.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/log4js/node_modules/async/lib/async.js",
-		"/Users/sanli/Documents/workspace/Leaflet/node_modules/karma/node_modules/log4js/node_modules/async/dist/async.min.js"
+		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/server.js"
 	],
 	"find":
 	{
-		"height": 46.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -781,6 +763,63 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"grapfileinfo",
+			"()\n",
+			"options.bounds",
+			"Module.tileLayer.options",
+			"options",
+			"options.bounds",
+			"options",
+			"maxlevel",
+			"load",
+			"关于中华珍宝馆",
+			"calcScaleLevel",
+			"calcSize",
+			"updateFileInfo",
+			"getfileinfo",
+			"完成文件各个缩放级别的切割",
+			"剪切文件完成",
+			"tilesize",
+			"debug",
+			"enable",
+			"debug",
+			"cropfile",
+			"开始分层生成缩略图",
+			"i",
+			"resizelevel",
+			"_calcScaleLevel",
+			"crop",
+			"cropfile",
+			"updatePaintingInfo",
+			"grapPainting",
+			"updateJXInfo",
+			"cropper",
+			"crop",
+			"thumbfile",
+			"updatePaintinginfo",
+			"updatePaintingInfo",
+			"    \n",
+			"updatePaintingInfo",
+			"grapPainting",
+			"getFileInfo",
+			"getFileInfo\n",
+			"parser",
+			"getfileinfo",
+			"updateinfo",
+			"getfileinfo",
+			"verbose",
+			"infoMaper",
+			"L.Map",
+			"grapfileinfo",
+			"16-00",
+			"“",
+			"></",
+			"<p>",
+			"p",
+			".\n",
+			"complete",
+			"build",
+			"genpage",
 			"              \n",
 			"首页",
 			"building",
@@ -851,64 +890,7 @@
 			"$.get",
 			"loadBoardOfArea",
 			"鄂尔多斯",
-			"从百度获取区域",
-			"_formulateCoordinate",
-			"showBoardOfArea",
-			"saveToBackend",
-			"showBoardOfArea",
-			"saveToBackend",
-			"CityFast",
-			"兴安",
-			"海北",
-			"海南",
-			"海西州",
-			"甘孜",
-			"昌都",
-			"林芝",
-			"和田",
-			"吐鲁番",
-			"楚雄",
-			"大理",
-			"德宏",
-			"迪庆",
-			"红河",
-			"毕节",
-			"临高",
-			"怒江州",
-			"塔城",
-			"怒江州",
-			"伊宁",
-			"和田",
-			"毕节",
-			"isme",
-			"type",
-			"String,",
-			" ,",
-			"no overlay",
-			"boundsToGeoJSON",
-			"console.log",
-			"getuser",
-			"getCellCoverState",
-			"amountFieldNames",
-			"vol",
-			"sum",
-			"typeFieldMap",
-			"createBuildingCalcTask",
-			"updatePropertyCountStateByPropertyId",
-			"fields",
-			"typeFieldMap",
-			"typemap",
-			"amountFieldNames",
-			"scheduleUpdatedCellCalc",
-			"scheduleUpdatedCellCalc\nscheduleUpdatedCellCalc",
-			"scheduleUpdatedCellCalc",
-			"condValue",
-			"aggregateCityHistory",
-			"GSM小区,多个小区用逗号隔开",
-			"createPropertyCounter",
-			"propertyCounter",
-			"createPropertyCounter",
-			"createPropertyCalcTask"
+			"从百度获取区域"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -965,91 +947,33 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "TempDisabled",
+					"file": "Jakefile.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2079,
+						"buffer_size": 4812,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2079,
-								0
+								806,
+								806
 							]
 						],
 						"settings":
 						{
-							"auto_name": "http://localhost:4000/main.html#uuid=5343c0b2f883b",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 988,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								988,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_name": "[ObjectId('5343c0b2f883b828efa79fc3'),",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "release/main.html",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 6190,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1244.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1141,24 +1065,96 @@
 		"selected_items":
 		[
 			[
-				"lazyload",
-				"cag-h5/public/js/jquery.lazyload.js"
+				"mainpage.html",
+				"cag-h5/views/mainpage.html"
+			],
+			[
+				"imgtool.js",
+				"cag-h5/imgtool.js"
+			],
+			[
+				"ja",
+				"cag-h5/Jakefile.js"
+			],
+			[
+				"fileinfo.json",
+				"cag-h5/cagstore/fileinfo.json"
+			],
+			[
+				"imgpage",
+				"cag-h5/views/imgpage.html"
+			],
+			[
+				"mainpage",
+				"cag-h5/views/mainpage.html"
+			],
+			[
+				"imgpage.html",
+				"cag-h5/views/imgpage.html"
+			],
+			[
+				"img.html",
+				"cag-h5/release/img.html"
+			],
+			[
+				"img.js",
+				"cag-h5/public/js/img.js"
 			],
 			[
 				"main.js",
 				"cag-h5/public/js/main.js"
 			],
 			[
+				"paintdb.js",
+				"cag-h5/data/paintdb.js"
+			],
+			[
+				"main.h",
+				"cag-h5/views/mainpage.html"
+			],
+			[
+				"async",
+				"cag-h5/node_modules/async/lib/async.js"
+			],
+			[
+				"imgtool",
+				"cag-h5/imgtool.js"
+			],
+			[
+				"sha",
+				"cag-h5/public/js/sharepage.js"
+			],
+			[
 				"sharepage.js",
 				"cag-h5/public/js/sharepage.js"
 			],
 			[
-				"sharepage",
-				"cag-h5/public/js/sharepage.js"
+				"main.html",
+				"cag-h5/release/main.html"
 			],
 			[
-				"mainpage",
-				"cag-h5/views/mainpage.html"
+				"imag",
+				"cag-h5/node_modules/stylus/lib/functions/image.js"
+			],
+			[
+				"mainjs",
+				"cag-h5/routes/mainctl.js"
+			],
+			[
+				"img.sj",
+				"cag-h5/public/js/img.js"
+			],
+			[
+				"mainct",
+				"cag-h5/routes/mainctl.js"
+			],
+			[
+				"lazyload",
+				"cag-h5/public/js/jquery.lazyload.js"
+			],
+			[
+				"sharepage",
+				"cag-h5/public/js/sharepage.js"
 			],
 			[
 				"navi.html",
@@ -1181,22 +1177,6 @@
 				"cag-h5/routes/paintingsctl.js"
 			],
 			[
-				"imgtool",
-				"imgtool.js"
-			],
-			[
-				"mainpage.html",
-				"views/mainpage.html"
-			],
-			[
-				"paintdb.js",
-				"data/paintdb.js"
-			],
-			[
-				"main.html",
-				"release/main.html"
-			],
-			[
 				"img",
 				"imgtool.js"
 			],
@@ -1205,16 +1185,8 @@
 				"data/paintdb.js"
 			],
 			[
-				"mainct",
-				"routes/mainctl.js"
-			],
-			[
 				"mainpa",
 				"views/mainpage.html"
-			],
-			[
-				"imgtool.js",
-				"imgtool.js"
 			],
 			[
 				"package",
@@ -1331,10 +1303,6 @@
 			[
 				"gisobjdb.js",
 				"data/gisobjdb.js"
-			],
-			[
-				"sha",
-				"public/js/sharepage.map.js"
 			],
 			[
 				"geo",
@@ -1607,50 +1575,6 @@
 			[
 				"upload.js",
 				"src/routes/upload.js"
-			],
-			[
-				"deptdb.js",
-				"src/data/deptdb.js"
-			],
-			[
-				"ping",
-				"src/public/js/sharepage.pingyin.js"
-			],
-			[
-				"s",
-				"src/sharepage.js"
-			],
-			[
-				"mong",
-				"src/mongo.js"
-			],
-			[
-				"upload",
-				"src/routes/upload.js"
-			],
-			[
-				"iconv.js",
-				"src/node_modules/iconv-lite/index.js"
-			],
-			[
-				"realtimeana",
-				"src/views/realtimeanalysis.html"
-			],
-			[
-				"aabis.html",
-				"src/views/aabis.html"
-			],
-			[
-				"aabis.js",
-				"src/public/js/aabis.js"
-			],
-			[
-				"shar",
-				"src/sharepage.js"
-			],
-			[
-				"pcell.js",
-				"src/public/js/cell.js"
 			]
 		],
 		"width": 0.0
@@ -1672,6 +1596,54 @@
 		"height": 147.0,
 		"selected_items":
 		[
+			[
+				"mkdirP",
+				"mkdirP"
+			],
+			[
+				"linekP",
+				"webkit-line-gutter-backdrop"
+			],
+			[
+				"isie",
+				"isEmpty, invalid Date (true)"
+			],
+			[
+				"lazyload",
+				"lazyload"
+			],
+			[
+				"spin",
+				"spin"
+			],
+			[
+				"debug",
+				"debug"
+			],
+			[
+				"write",
+				"write"
+			],
+			[
+				"crop",
+				"crop"
+			],
+			[
+				"eachSeries",
+				"eachSeries"
+			],
+			[
+				"queryfile",
+				"queryfile"
+			],
+			[
+				"format",
+				"format"
+			],
+			[
+				"Map",
+				"Map"
+			],
 			[
 				"bindurl",
 				"bindurl"
@@ -1711,10 +1683,6 @@
 			[
 				"queue",
 				"queue"
-			],
-			[
-				"write",
-				"write"
 			],
 			[
 				"addLayer",
@@ -1785,7 +1753,7 @@
 				"getParam"
 			]
 		],
-		"width": 780.0
+		"width": 792.0
 	},
 	"settings":
 	{
