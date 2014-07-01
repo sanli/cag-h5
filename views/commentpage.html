@@ -1,0 +1,155 @@
+<% include head.html %>
+
+<body>    
+  <% include navi.html %>
+
+    <div class="container-fluid">
+      <div class="row">
+          <!-- 控制条 -->
+          <nav class="navbar navbar-default col-md-12" role="navigation">
+            <div class="container-fluid">
+              <!-- Collect the nav links, forms, and other content for toggling -->
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <form id="search-form" class="navbar-form navbar-right" role="search">
+                  <div class="form-group">
+                    <input name="queryword" type="text" class="form-control" placeholder="查询">
+                  </div>
+                </form>
+                
+                <ul class="nav navbar-nav pull-right">
+                  <li class="divider"></li>
+                  <li><a href="#" id="enableEditBtn">编辑<i class="icon-edit"></i></a></li>
+                  <li id="extendBtn"><a><i class="icon-search"></i></a></li>
+                </ul>
+              </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+          </nav><!-- 控制面板 -->
+            <!-- 数据查询结果表格 -->
+          <div class="col-md-12 main">
+            <div id="content-body" class="content-body">
+                <div id="cellTable"></div>
+                <div class="pagebar"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+<!-- 显示模板 -->
+<script type="text/html" id="paintingsCellTable">
+  <table class="table table-bordered table-hover"> 
+  <thead> 
+    <tr>
+    <@ 
+    var titles = [ { field: 'view', title: '区域', canSort: true }
+      , { field: 'paintings',  title: '画作', canSort: true }
+      , { field: 'commentTime', title: '创建时间', canSort: true }
+      , { field: 'updownVote', title: '顶踩数量', canSort: true }
+      , { field: 'content',  title: '赏析内容', canSort: false }];
+
+    for(i = 0 ; i<= titles.length -1 ; i++){
+      var title = titles[i];
+    @>
+      <th>
+        <@ if(title.canSort){ @>
+          <a href="#sortby=<@=title.field @>&sortorder=<@=-(sort.order) @>" class="sortlink"> 
+        <@ } else { @>
+          <a> 
+        <@ } @>
+            <@=title.title @>
+            <@ if ( sort.by === title.field){ @>
+            <i class="<@= sort.order === '-1' ? 'icon-arrow-down' : ' icon-arrow-up' @>"/>
+            <@ } @>
+            </a></th>
+    <@ } @>
+      <th class="action-ctl"><a>操作</a></th>
+    </tr>
+  </thead> 
+  <tbody id="paintingsListTb">
+   <@ 
+    for( i = 0 ; i<= cells.length - 1; i++) { 
+        var cell = cells[i],
+            paintingId = cell.paintingId,
+            imglink = _cdn('/img.html?uuid='+ paintingId  +'&view=paintingview#uuid='+ paintingId +'&view=paintingview'),
+            area = cell.area,
+            zoom = area.zoom,
+            bounds = area.bounds,
+            width = bounds[2] -  bounds[0],
+            height = bounds[3] - bounds[1],
+            x = bounds[0],
+            y = bounds[1],
+            imgsrc = "http://supperdetailpainter.u.qiniudn.com/cagstore/"+ paintingId +"/temp_" 
+              + zoom + "_0.jpg?imageMogr2/crop/!" + width +"x"+ height + "a"+ x +"a"+y;
+   @>
+    <tr data-_id="<@=cell._id @>"> 
+      <td><a href="<@=imglink @>"><img src="<@=imgsrc @>" style="width : 128px;"></a></td>
+      <td><@=cell.paintingId @></td>
+      <td><@=cell.commentTime @></td>
+      <td><@=(cell.upVote ? cell.upVote : '0') + '/' + (cell.downVote ? cell.downVote : '0' ) @></td>
+      <td><@=cell.content ? cell.content.replace('<', '&lt;') : '' @></td>
+      <td class="action-ctl">修改<i class="icon-edit"/>|<a class="action action-remove"><span class="action action-remove">删除<i class="icon-remove"/></span></a></td></tr>
+   <@ } @>
+  </tbody> 
+    </table>
+</script>
+<script type="text/html" id="pagebarTpl">
+  <ul class="pagination">
+      <li><a>共有记录：<@=count @>条</a></li>
+      <li <@=(currentIdx===0 ? 'class="active"':"" ) @> >
+        <a href="#skipto=0">第一页</a></li>
+      <li <@=(startPage === pre ? 'class="active"':"" ) @> >
+        <a href="#skipto=<@=pre @> ">...</a></li>
+        <@ for( i = startPage ; i<= endPage; i++){ @>
+          <li <@=(currentIdx === i ? 'class="active"':"" ) @> >
+            <a href="#skipto=<@=i@>"><@=i@></a></li>
+        <@ } @>
+        <li <@= (endPage === next ? 'class="active"':"" ) @> >
+          <a href="#skipto=<@=next@>">...</a></li>
+        <li><a href="#skipto=<@=pageCnt-1 @>">最后一页</a></li>
+  </ul>
+</script> <!-- 显示模板 -->
+  
+  <!-- 确认对话框 -->
+  <div id="confirmDlg" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">再次确认</h4>
+        </div>
+        <div class="modal-body">
+          <p>是否确认要做这个动作？</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary ok">确认</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- 确认对话框 -->
+
+
+  <!-- JS文件放在靠近HTML页面尾部的地方可以加快页面显示的速度 -->
+   <% if( target === 'release' ){ %>
+      <script type="text/javascript"> function _cdn(res){ return "http://supperdetailpainter.u.qiniudn.com"+ (res|| "") }</script>
+      <script src="http://cdn.staticfile.org/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+      <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+      <script src="http://supperdetailpainter.u.qiniudn.com/js/cag_<%=stamp %>_min.js" type="text/javascript"></script>
+      <script src="http://supperdetailpainter.u.qiniudn.com/js/comment.js"></script></script>
+  <% } else { %>
+  <script type="text/javascript"> function _cdn(res){ return res}</script>
+  <script src="js/jquery.js" type="text/javascript"></script>
+  <script src="js/bootstrap.js" type="text/javascript"></script>
+  <!-- cag_xxx_min.js -->
+  <script src="js/jquery.lazyload.js" type="text/javascript"></script>
+  <script src="js/sharepage.base.js"></script>
+  <script src="js/sharepage.js"></script>
+  <!-- main_xxx_min.js -->
+  <script src="js/comment.js"></script><% 
+     } 
+  %>
+
+
+<% include foot.html %>
+
