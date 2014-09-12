@@ -6,37 +6,48 @@ var Collection = require('mongodb').Collection,
   inspect = require('util').inspect,
   db = require('../mongo.js').db,
   DBOP = require('../mongo.js').DBOP,
-  Dept = require('./deptdb.js').Dept,
   mongoose = require('mongoose'),
   Schema = require('mongoose').Schema;
 
 /**
  * 用户表Module
- * TODO: 目前用户表Module还没有正式使用，需要修改
  */
-var data_painting = new Schema({
+var sys_user = new Schema({
     _id : Schema.Types.ObjectId,
-    dept: String,
-    deptId : String,
-    name: String,
+    userId : String,
+    email : String,
     password: String,
-    realname: String,
+    realName: String,
     role : String,
-    tel: String,
 },  { collection: 'sys_users' });
-sys_users.index({id : 1})
-    .index({pId : 1});
-var Users = mongoose.model('sys_users', sys_users);
-    exports.Users = Users;
+sys_user.index({userId : 1})
+    .index({email : 1});
+var User = mongoose.model('sys_user', sys_user);
+    exports.User = User;
+
+/**
+ * 角色权限
+ */
+var sys_role = new Schema({
+    _id : Schema.Types.ObjectId,
+    role : String,
+    roleName : String,
+    acl : [{ 
+    	item : String,
+    	right : String , // 权限级别, 'write' | 'view' | 'all'
+    }]
+},  { collection: 'sys_role' });
+sys_role.index({role : 1});
+var Role = mongoose.model('sys_role', sys_role);
+    exports.Role = Role;
 
 /**
  * 验证用户登录信息，如果用户登录有效，返回用户对象
  * 如果无效，返回错误
- * @param fn  fn(err, user)
+ * @param 
  */
 exports.authorize = function(username, pass, fn){
-	var userCol = new Collection(db, 'sys_users');
-	userCol.findOne( { name: username } , function(err, user){
+	User.findOne( { name: username } , function(err, user){
 		if(err != null)
 			throw err;
 

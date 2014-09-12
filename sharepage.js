@@ -4,18 +4,19 @@
 var path = require('path'),
 	extend = require('node.extend'),
 	ud = require('underscore'),
-	inspect = require('util').inspect;
+	inspect = require('util').inspect,
+	conf = require('./config.js');
 
 // ====================== 模块功能函数 ========================
 //是否跳过检测用户登录状态
-var skipSignin = true;
+var skipSignin = conf.skipSignin;
 function restrict(req, res, next) {
 	if (req.session.user) {
 		next();
 	} else {
     if(!skipSignin){
       req.session.error = '没有登录，限制访问！';
-      res.redirect('/index.html');  
+      res.redirect('/signin.html');  
     }else{
       //开发模式下不用登录的用户
       req.session.user = {
@@ -31,7 +32,7 @@ function apiRestrict(req, res, next){
 		next();
 	} else {
 		req.session.error = '没有登录，限制访问！';
-    sharepage.rt(false,'没有登录，限制访问！', res);
+    	rt(false,'没有登录，限制访问！', res);
 	}
 }
 
@@ -50,8 +51,12 @@ function bindurl(app, url, opt, fn){
                     needAuth : true,
                     outType : 'api' } , opt);
 
-    var restrictfn = (opt.outType === 'api' ? apiRestrict : restrict );
-    app[opt.method](url, restrictfn, fn);
+  	if(opt.needAuth){
+	  	var restrictfn = (opt.outType === 'api' ? apiRestrict : restrict );
+	    app[opt.method](url, restrictfn, fn);	
+  	}else{
+  		app[opt.method](url, fn);	
+  	}
 }
 exports.bindurl = bindurl;
 

@@ -1,14 +1,14 @@
 {
   "name": "中华珍宝馆",
-  "description": "在这里欣赏最精妙入微的中华文化，精细到每一丝墨迹飞舞，传神到每一层墨色变化。这这里体验与真迹直接面对的感觉，学习到画册上从来看不到的细节。",
+  "description": "收集最能代表中华文化的书画作品，供您深入欣赏和学习。图片清晰度超过实物，最大单个文件超过1G，放到最大可以铺满整个房间。 虽然大却依然快速打开，平滑缩放。",
   "manifest_version": 2,
-  "version": "1",
+  "version": "1.1",
   "app": {
     "urls": [
-      "http://supperdetailpainter.u.qiniudn.com/"
+      "http://zhengbao.duapp.com/"
     ],
     "launch": {
-      "web_url": "http://supperdetailpainter.u.qiniudn.com/main.html"
+      "web_url": "http://zhengbao.duapp.com"
     }
   },
   "icons": {

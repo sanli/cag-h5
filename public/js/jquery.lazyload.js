@@ -34,15 +34,15 @@
 
         function update() {
             var counter = 0;
-
-            elements.each(function() {
+            
+            elements.each(function(){
                 var $this = $(this);
                 if (settings.skip_invisible && !$this.is(":visible")) {
                     return;
                 }
                 if ($.abovethetop(this, settings) ||
                     $.leftofbegin(this, settings)) {
-                        /* Nothing. */
+                    /* Nothing. */
                 } else if (!$.belowthefold(this, settings) &&
                     !$.rightoffold(this, settings)) {
                         $this.trigger("appear");
@@ -54,7 +54,6 @@
                     }
                 }
             });
-
         }
 
         if(options) {
@@ -106,6 +105,7 @@
                         .bind("load", function() {
 
                             var original = $self.attr("data-" + settings.data_attribute);
+
                             $self.hide();
                             if ($self.is("img")) {
                                 $self.attr("src", original);

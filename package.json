@@ -1,28 +1,43 @@
 {
-  "name": "application-name",
+  "name": "cag",
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node cag.js"
   },
   "dependencies": {
-    "underscore" : "*",
+    "underscore": "*",
     "express": "3.0.5",
     "ejs": "*",
-    "mongodb": "*",
+    "mongodb": "1.3.20",
     "lazy": "*",
-    "csv" : "*",
+    "csv": "*",
     "node-uuid": "*",
-    "tracer" : "*",
-    "mongoose" : "*",
-    "node.extend" : "*",
-    "iconv-lite" : "*",
-    "dateformat" : "*",
-    "async" : "*",
+    "tracer": "*",
+    "stylus": "*",
+    "mongoose": "*",
+    "node.extend": "*",
+    "iconv-lite": "*",
+    "dateformat": "*",
+    "async": "*",
     "gm": "*",
-    "mkdirp" : "*",
+    "mkdirp": "*",
     "uglify-js": "~2.4.13",
     "jake": "~0.7.9",
-    "jshint": "~2.4.4"
+    "jshint": "~2.4.4",
+    "redis" : "0.10.3",
+    "memory-cache" : "0.0.5"
+  },
+
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-cli": "~0.1.13",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-nodeunit": "~0.2.0",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-cssmin": "~0.5.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-copy": "~0.4.1"
   }
 }

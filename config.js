@@ -12,7 +12,15 @@ var debug_config = {
 	cdn : '',
 	mongoURL : "mongodb://localhost/cag",
 	// 跳过登录检测
-	skipSignin : true
+	skipSignin : true,
+
+	// Redis服务是否需要登录
+	redisSigin : false,
+	redisUsername : '',          // 用户名（API KEY）
+	redisPassword : '',  // 密码（Secret KEY）
+	redisHost : 'localhost',
+	redisPort : 80,
+	redisName : ''               // 数据库名
 };
 
 /**
@@ -27,7 +35,15 @@ var release_config = {
 	cdn : 'http://supperdetailpainter.u.qiniudn.com',
 	mongoURL : "mongodb://localhost/cag",
 	// 是否跳过登录检测
-	skipSignin : false
+	skipSignin : false ,
+
+	// Redis服务是否需要登录
+	redisSigin : true,
+	redisUsername : 'qk1WZRSnv28vLDyLNQNMPVwQ',          // 用户名（API KEY）
+	redisPassword : 'iY4hPnmUiIC78zcVRLHdaMitOTj0r310',  // 密码（Secret KEY）
+	redisHost : 'localhost',
+	redisPort : 80,
+	redisName : 'hXkZBlmreRzWfYWWKdHP'               // 数据库名
 }
 module.exports = debug_config;
 // module.exports = release_config;

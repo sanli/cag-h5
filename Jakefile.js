@@ -26,11 +26,13 @@ task('build', {async: true}, function () {
 	genpage(buildName, 'views/imgpage.html', 'release/img.html' );
 
 	//jake.mkdirP('release/cagstore');
-	//jake.linkP()
 	jake.exec([
 			'rm -frv release/js/cag_1*.js release/js/main_1*.js release/js/img_1*.js',
 			//'cp cagstore-online/fileinfo.json release/cagstore/fileinfo_'+ buildName+'.json',
 			//'cp cagstore-online/fileinfo.js release/cagstore/fileinfo_'+ buildName+'.js',
+			'if [ -L /Users/sanli/Documents/bae_workspace/clirepo/zhenbao/public/cagstore ] ; then rm /Users/sanli/Documents/bae_workspace/clirepo/zhenbao/public/cagstore ; fi',
+			'if [ -L /Users/sanli/Documents/bae_workspace/clirepo/zhenbao/public/static ] ; then rm /Users/sanli/Documents/bae_workspace/clirepo/zhenbao/public/static ; fi',
+			'cp -R -f -v public routes data views cag.js mongo.js sharepage.js package.json /Users/sanli/Documents/bae_workspace/clirepo/zhenbao'
 	],function(){
 		async.eachSeries(
 			['cag','main','img'],

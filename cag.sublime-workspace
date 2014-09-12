@@ -4,12 +4,112 @@
 		"selected_items":
 		[
 			[
-				"le",
-				"length"
+				"dete",
+				"detectRetina"
+			],
+			[
+				"rend",
+				"renderAuthorList"
+			],
+			[
+				"_re",
+				"_renderAuthorList"
+			],
+			[
+				"is",
+				"isWebview"
+			],
+			[
+				"co",
+				"cropper"
+			],
+			[
+				"grap",
+				"grapPainting"
+			],
+			[
+				"gra",
+				"grapfileinfo"
+			],
+			[
+				"gr",
+				"grapfileinfo"
+			],
+			[
+				"get",
+				"getfileinfo"
+			],
+			[
+				"p",
+				"paintingname"
+			],
+			[
+				"fi",
+				"filename"
+			],
+			[
+				"e",
+				"empty"
+			],
+			[
+				"lea",
+				"leaflet"
+			],
+			[
+				"fu",
+				"fullscreen"
+			],
+			[
+				"comm",
+				"comment"
+			],
+			[
+				"up",
+				"upVote"
+			],
+			[
+				"do",
+				"doquery"
+			],
+			[
+				"side",
+				"sidebar"
 			],
 			[
 				"pa",
-				"paintingName"
+				"paintingId"
+			],
+			[
+				"ma",
+				"maxage"
+			],
+			[
+				"data",
+				"dataarray"
+			],
+			[
+				"row",
+				"rowcnt"
+			],
+			[
+				"sc",
+				"scrollTo"
+			],
+			[
+				"auth",
+				"authorItems"
+			],
+			[
+				"pain",
+				"paintings"
+			],
+			[
+				"re",
+				"require"
+			],
+			[
+				"le",
+				"length"
 			],
 			[
 				"ti",
@@ -22,10 +122,6 @@
 			[
 				"resize",
 				"resizeWith"
-			],
-			[
-				"re",
-				"resizefile"
 			],
 			[
 				"calc",
@@ -46,10 +142,6 @@
 			[
 				"str",
 				"stringify"
-			],
-			[
-				"gra",
-				"grapPainting"
 			],
 			[
 				"v",
@@ -96,10 +188,6 @@
 				"toObject"
 			],
 			[
-				"up",
-				"upsert"
-			],
-			[
 				"Cit",
 				"CityFast"
 			],
@@ -116,19 +204,11 @@
 				"UserHistory"
 			],
 			[
-				"is",
-				"isArray"
-			],
-			[
 				"mer",
 				"mergeField"
 			],
 			[
 				"cond",
-				"condName"
-			],
-			[
-				"co",
 				"condName"
 			],
 			[
@@ -142,14 +222,6 @@
 			[
 				"popu",
 				"populationField"
-			],
-			[
-				"e",
-				"encodeFrom"
-			],
-			[
-				"fi",
-				"field"
 			],
 			[
 				"ca",
@@ -202,10 +274,6 @@
 			[
 				"por",
 				"propertyCounter"
-			],
-			[
-				"p",
-				"property"
 			],
 			[
 				"remo",
@@ -274,10 +342,6 @@
 			[
 				"clear",
 				"clearBeforeAdd"
-			],
-			[
-				"get",
-				"getdata"
 			],
 			[
 				"res",
@@ -424,10 +488,6 @@
 				"ife	if … else"
 			],
 			[
-				"ma",
-				"markerdraged"
-			],
-			[
 				"packet",
 				"packet_classname"
 			],
@@ -454,84 +514,16 @@
 			[
 				"start",
 				"startService"
-			],
-			[
-				"_on",
-				"_onexit"
-			],
-			[
-				"_",
-				"_createCmd"
-			],
-			[
-				"on",
-				"onexit"
-			],
-			[
-				"dep",
-				"deployToNode"
-			],
-			[
-				"servi",
-				"serviceName"
-			],
-			[
-				"move",
-				"movefile"
-			],
-			[
-				"ex",
-				"exists"
-			],
-			[
-				"dest",
-				"destFilePathTmp"
-			],
-			[
-				"service",
-				"service"
-			],
-			[
-				"_get",
-				"_getImg"
-			],
-			[
-				"h",
-				"hour"
-			],
-			[
-				"no",
-				"nodex"
-			],
-			[
-				"cr",
-				"createImg"
-			],
-			[
-				"sta",
-				"status"
-			],
-			[
-				"_cu",
-				"_currentFile"
 			]
 		]
 	},
 	"buffers":
 	[
-		{
-			"file": "Jakefile.js",
-			"settings":
-			{
-				"buffer_size": 4812,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 54.0,
+		"height": 392.0,
 		"selected_items":
 		[
 			[
@@ -591,7 +583,7 @@
 				"About"
 			]
 		],
-		"width": 449.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -610,136 +602,139 @@
 		"side_bar_visible": true,
 		"status_bar_visible": true
 	},
+	"expanded_folders":
+	[
+	],
 	"file_history":
 	[
+		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/img.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/main.js",
 		"/Users/sanli/Documents/workspace/cag-h5/imgtool.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jake/node_modules/utilities/lib/file.js",
+		"/Users/sanli/Documents/workspace/cag-h5/imgtool/graper.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/imgpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/release/js/img_1402281388852_min.js",
+		"/Users/sanli/Documents/workspace/cag-h5/data/paintingsdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/mainpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/release/main.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/img.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mkdirp/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/node_modules/express/node_modules/mkdirp/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/node_modules/mkdirp/index.js",
-		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/node_modules/express/node_modules/mkdirp/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/mkdirp/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/front-end/inspector.css",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongodb/node_modules/bson/tools/jasmine-1.1.0/jasmine.css",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jake/package.json",
-		"/Users/sanli/Documents/workspace/cag-h5/Jakefile.js",
-		"/Users/sanli/Documents/workspace/cag-h5/README.md",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/lib/RuntimeAgent.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/lib/NetworkAgent.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/lib/BreakEventHandler.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/imgpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/cagstore/fileinfo.json",
-		"/Users/sanli/Documents/workspace/cag-h5/cagstore/fileinfo.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/front-end/filteredItemSelectionDialog.css",
-		"/Users/sanli/Documents/workspace/cag-h5/views/foot.html",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/front-end/ImageView.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/lib/functions/image.js",
-		"/Users/sanli/Documents/workspace/cag-h5/release/img.html",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/templates/App._",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/templates/Autostyle._",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/templates/Map._",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/servers/App.bones",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/servers/Core.bones",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/servers/OAuth.bones",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/servers/Route.bones",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/servers/Tile.bones",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/lib/s3.js",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/lib/fsutil.js",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/templates/Preview._",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/views/Plugins.bones",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/views/Project.bones",
-		"/Users/sanli/Downloads/TileMill.app/Contents/Resources/views/Config.bones",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jake/node_modules/utilities/test/core.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/front-end/inspectorSyntaxHighlight.css",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.base.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/main.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/jquery.lazyload.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/node_modules/glob/examples/g.js",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/paintingsctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/mobile.html",
 		"/Users/sanli/Documents/workspace/cag-h5/data/paintdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/examples/aggregate/aggregate.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-inspector/front-end/ApplicationCacheItemsView.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/uglify-js/node_modules/source-map/node_modules/amdefine/intercept.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongodb/lib/mongodb/auth/mongodb_plain.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/async/lib/async.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/lib/args.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/lib/command.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/node_modules/debug/debug.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/debug/debug.component.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/.bin/express",
-		"/Users/sanli/Documents/workspace/cag-h5/qiniuconf.json",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/lib/response.js",
-		"/Users/sanli/Desktop/en_US/HelloWorld.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/connect/node_modules/formidable/test/fixture/js/special-chars-in-filename.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/examples/population/population-across-three-collections.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/data/non-ascii-identifier-part-only.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/node_modules/sax/test/cdata-chunked.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/data/ascii-identifier-data.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/dateformat/lib/dateformat.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/node_modules/sax/test/duplicate-attribute.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/lib/doc.js",
-		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/node_modules/mongoose/node_modules/mongodb/lib/mongodb/collection.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/node_modules/mongodb/lib/mongodb/collection/aggregation.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongodb/lib/mongodb/collection/aggregation.js",
-		"/Users/sanli/Documents/workspace/cag-h5/TempDisabled",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/cli/node_modules/glob/package.json",
-		"/Users/sanli/Documents/workspace/cag-h5/release/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/head.html",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jake/node_modules/utilities/lib/async.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/uglify-js/node_modules/source-map/build/assert-shim.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/bin/apply",
-		"/Users/sanli/Documents/workspace/cag-h5/chromeapp/manifest.json",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/iconv-lite/test/main-test.js",
-		"/Users/sanli/Documents/workspace/cag-h5/data/maindb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/main-sample.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
-		"/Users/sanli/Documents/workspace/cag-h5/release/css/main.css",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/send/node_modules/mime/mime.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/test/fixtures/includes/menu-item.ejs",
-		"/Users/sanli/Documents/workspace/jquery_lazyload/enabled_wide_container.html",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/lazy/lazy.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/node_modules/through/LICENSE.APACHE2",
-		"/Users/sanli/Documents/workspace/backbone/LICENSE",
-		"/Users/sanli/Documents/workspace/cag-h5/release/js/main.js",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage.js",
-		"/Users/sanli/Documents/workspace/jquery_lazyload/jquery.scrollstop.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/css/sharepage.ext.css",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/uglify-js/lib/mozilla-ast.js",
-		"/Users/sanli/Documents/workspace/cag-h5/mongo.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/tracer/node_modules/tinytim/test/html.tim",
-		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
-		"/Users/sanli/Downloads/bootstrap-3.1.1/docs/examples/dashboard/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/cag.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/navi.html",
-		"/Users/sanli/Documents/workspace/cag-h5/data/paintingsdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/paintingsctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/paintings.js",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/back_route.js",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/back_db.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/lib/nodes/page.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongodb/node_modules/bson/node_modules/nan/include_dirs.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongodb/node_modules/bson/binding.gyp",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/htmlparser2/node_modules/domutils/tests/DomUtils/01-by_id.js",
-		"/Users/sanli/Documents/workspace/backbone/backbone.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/htmlparser2/test/Events/10-crazy-attrib.json",
+		"/Users/sanli/Documents/workspace/cag-h5/export/dump/cag/painting_v1.bson",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/CordovaLib/src/com/squareup/okhttp/internal/tls/DistinguishedNameParser.java",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/build/emulator/中华珍宝馆.app/Plugins/com.danielcwilson.plugins.googleanalytics/GAITrackedViewController.h",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/shelljs/test/resources/issue44/main.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/shelljs/test/resources/issue44/main.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/js/main.js",
+		"/Users/sanli/Documents/workspace/cag-h5/release/js/main.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/redis/examples/sort.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/uglify-js/node_modules/source-map/test/source-map/test-base64.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/uglify-js/node_modules/source-map/test/source-map/test-binary-search.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jake/lib/loader.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/uglify-js/node_modules/optimist/example/line_count_options.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/leaflet.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/iconv-lite/test/main-test.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/js/img.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/js/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/bae/routes/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/about.html",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/about.html",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/css/themes/default/images/icons-svg/action-black.svg",
+		"/Users/sanli/Documents/workspace/cag-h5/views/head.html",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/index.html",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/lib/index.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/CordovaLib/Classes/CDVCommandDelegate.h",
+		"/Users/sanli/Documents/workspace/cag-h5/data/message.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/message.html",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/js/jquery.mobile-1.4.3.js",
+		"/Users/sanli/Documents/workspace/cag-h5/cag.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/bae/cag.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/CordovaLib/build/CordovaLib.build/Debug-iphonesimulator/CordovaLib.build/Cordova-all-target-headers.hmap",
+		"/Users/sanli/Documents/workspace/cag-h5/export/dump/cag.tgz",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/cli/examples/cat.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/node_modules/sax/test/self-closing-tag.js",
-		"/Users/sanli/Documents/workspace/backbone/CNAME",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/README.md",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/contRun.sh",
+		"/Users/sanli/Documents/workspace/cag-h5/config.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.pingyin.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/www/js/jquery.mobile-1.4.3.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/build/emulator/中华珍宝馆.app/www/js/jquery.mobile-1.4.3.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/assets/www/js/jquery.mobile-1.4.3.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/jquery.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/www/index.html",
+		"/Users/sanli/Documents/workspace/cag-h5/build/bae/views/message.html",
+		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/about.html",
+		"/Users/sanli/Documents/workspace/cag-h5/.gitignore",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/.bin/express",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/ant-build/CagMobi-debug.apk",
+		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/mobile.html",
+		"/Users/sanli/Documents/workspace/cag-h5/mongo.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/plugins/ios.json",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/.gitignore",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/ant-build/CagMobi.ap_",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/iconv-lite/generation/generate-big5-table.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/redis/diff_multi_bench_output.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/js/jquery.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/CordovaLib/src/org/apache/cordova/NativeToJsMessageQueue.java",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/htmlparser2/test/Documents/Atom_Example.xml",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/index.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/cordova/lib/install-device",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/htmlparser2/test/Events/21-entity_in_attribute.json",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/test/fixtures/includes/menu-item.ejs",
+		"/Users/sanli/Documents/workspace/cag-h5/build/bae/data/paintdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/crawler/imgcrawler.js",
+		"/Users/sanli/Downloads/opencv-2.4.9/include/opencv2/opencv.hpp",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/css/index.css",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt-contrib-uglify/test/fixtures/expected/compress_mangle_except.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/doc/index.md",
+		"/Users/sanli/Documents/workspace/cag-h5/views/navi.html",
+		"/Users/sanli/Documents/workspace/cag-h5/build/bae/routes/paintingsctl.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/js/sharepage-mobile.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/message.json",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/index.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/js/jquery.mobile-1.4.3.min.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/config.xml",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/www/css/index.css",
+		"/Users/sanli/Documents/workspace/cag-h5/release/js/cag_1402281388852.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/htmlparser2/test/Events/18-legacy_entities.json",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/lib/nodes/page.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/assets/www/index.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/jquery.min.js",
+		"/Users/sanli/Documents/workspace/cag-client/cag/www/js/jquery.mobile-1.4.2.js",
+		"/Users/sanli/Documents/workspace/cag-client/cag/www/js/index.js",
+		"/Users/sanli/Documents/workspace/cag-client/cag/www/index.html",
+		"/Users/sanli/Documents/workspace/cag-client/cag/www/js/sharepage-mobile.js",
+		"/Users/sanli/Documents/workspace/cag-client/cag/platforms/ios/中华珍宝馆/Classes/MainViewController.h",
+		"/Users/sanli/Documents/workspace/cag-client/cag/platforms/android/CordovaLib/src/com/squareup/okhttp/internal/tls/DistinguishedNameParser.java",
+		"/Users/sanli/Documents/workspace/cag-client/cag/www/js/jquery.mobile-1.4.2.min.js",
+		"/Users/sanli/Documents/workspace/cag-client/hello/www/index.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/commentpage.html",
+		"/Users/sanli/Documents/workspace/cag-client/cag/www/css/index.css",
+		"/Users/sanli/Documents/workspace/cag-h5/public/message.html",
+		"/Users/sanli/Documents/workspace/cag-h5/data/commentdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt-contrib-copy/test/fixtures/.hidden",
+		"/Users/sanli/Documents/workspace/cag-h5/public/css/sharepage.ext.css",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/tempout/routes/paintingsctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/node_modules/mpromise/test/promises.Aplus.js",
-		"/Users/sanli/Documents/workspace/cag-h5/package.json",
-		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/index.html",
-		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/views/library.js",
-		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/views/book.js",
-		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/models/book.js",
-		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/site/js/collections/library.js",
-		"/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2/server.js"
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/tempout/views/paintingspage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.ext.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/imglitepage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/tracer/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/redis/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node.extend/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongodb/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mkdirp/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/memory-cache/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/iconv-lite/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/bae/sharepage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/js/sharepage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/js/cag.js"
 	],
 	"find":
 	{
@@ -750,6 +745,15 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"/Users/sanli/Documents/workspace/cag-h5",
+			"/Users/sanli/Documents/workspace/cag-client/hello/www",
+			"/Users/sanli/Documents/workspace/cag-h5/public",
+			"/Users/sanli/Documents/workspace/cag-h5",
+			"/Users/sanli/Documents/workspace/cag-h5/node_modules/express",
+			"/Users/sanli/Documents/workspace/cag-h5",
+			"/Users/sanli/Documents/workspace/",
+			"/Users/sanli/Documents/workspace/Ghost",
+			"/Users/sanli/Documents/workspace/cag-h5",
 			"/home/sanli/workroot/sfmis/src/",
 			"/home/sanli/workroot/sfmis/src/public",
 			"/home/sanli/workroot/sfmis/src",
@@ -763,134 +767,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"grapfileinfo",
-			"()\n",
-			"options.bounds",
-			"Module.tileLayer.options",
-			"options",
-			"options.bounds",
-			"options",
-			"maxlevel",
-			"load",
-			"关于中华珍宝馆",
-			"calcScaleLevel",
-			"calcSize",
-			"updateFileInfo",
-			"getfileinfo",
-			"完成文件各个缩放级别的切割",
-			"剪切文件完成",
-			"tilesize",
-			"debug",
-			"enable",
-			"debug",
-			"cropfile",
-			"开始分层生成缩略图",
-			"i",
-			"resizelevel",
-			"_calcScaleLevel",
-			"crop",
-			"cropfile",
-			"updatePaintingInfo",
-			"grapPainting",
-			"updateJXInfo",
-			"cropper",
-			"crop",
-			"thumbfile",
-			"updatePaintinginfo",
-			"updatePaintingInfo",
-			"    \n",
-			"updatePaintingInfo",
-			"grapPainting",
-			"getFileInfo",
-			"getFileInfo\n",
-			"parser",
-			"getfileinfo",
-			"updateinfo",
-			"getfileinfo",
-			"verbose",
-			"infoMaper",
-			"L.Map",
-			"grapfileinfo",
-			"16-00",
-			"“",
-			"></",
-			"<p>",
-			"p",
-			".\n",
-			"complete",
-			"build",
-			"genpage",
-			"              \n",
-			"首页",
-			"building",
-			"Building",
-			"building",
-			"Building",
-			"building",
-			"this.fragment",
-			"getFragment",
-			"toggleListView",
-			"纸本",
-			"cagstore\\",
-			"cagstore",
-			"frv",
-			"mkdir",
-			"makedir",
-			"build",
-			"    User root\n",
-			"61089403",
-			"h3",
-			"holder.js/300x128",
-			"col-md-4",
-			"<div class=\"row\">\n          <div class=\"col-sm-6 col-md-4\">\n            <div class=\"thumbnail\">\n              <a href=\"#uuid=5343c5c0f883b828efa79fdf\">\n              <img data-src=\"holder.js/300x128\" alt=\"太上老君说常清静经\">\n              <div class=\"caption\">\n                <h3>太上老君说常清静经</h3>\n                <p>小楷 明 文徵明</p>\n              </div>\n              </a>\n            </div>\n          </div>\n          <div class=\"col-sm-6 col-md-4\">\n            <div class=\"thumbnail\">\n              <a href=\"#uuid=5343c5c1f883b828efa79fe1\">\n              <img data-src=\"holder.js/300x128\" alt=\"...\">\n              <div class=\"caption\">\n                <h3>桃源问津图</h3>\n                <p>明 文徵明</p>\n              </div>\n              </a>\n            </div>\n          </div>\n          <div class=\"col-sm-6 col-md-4\">\n            <div class=\"thumbnail\">\n              <img data-src=\"holder.js/300x128\" alt=\"...\">\n              <div class=\"caption\">\n                <h3>太上老君说常清静经</h3>\n                <p>小楷 明 文徵明</p>\n              </div>\n            </div>\n          </div>\n          <div class=\"col-sm-6 col-md-4\">\n            <div class=\"thumbnail\">\n              <a href=\"#uuid=5343c717f883b828efa7a16f\">\n              <img data-src=\"holder.js/300x128\" alt=\"...\">\n              <div class=\"caption\">\n                <h3>30184384</h3>\n                <p>小楷 明 文徵明</p>\n              </div>\n              </a>\n            </div>\n          </div>\n        </d",
-			"latLngToPoint",
-			"Simple",
-			"14151",
-			"fn",
-			"crop",
-			"resizefile",
-			"filename",
+			"年代",
+			"list",
+			"\n          ",
+			"wrapLinkEvent",
+			"open",
+			"authorlistTmpl",
+			"$('#authorlistTmpl').text()",
+			"authorlistTmpl",
+			"author",
+			"about",
+			"Tmpl",
+			"renderMessageList",
+			"refreshPaintingList",
+			"getJSON",
+			"loadEssense",
+			"loadPaintings",
+			"jqmState",
+			"allowSamePageTransition",
+			"53c89d01f9725cbf5ec9c8c7",
+			"53c89d01f9725cbf5ec9c8c9",
+			"53c89d01f9725cbf5ec9c8c5",
+			"53c89d01f9725cbf5ec9c8c4",
+			"53c89d01f9725cbf5ec9c8c1",
+			"53c89d01f9725cbf5ec9c8bd",
+			"53c89d01f9725cbf5ec9c8bc",
+			"53c89d01f9725cbf5ec9c8b9",
+			"53c89d01f9725cbf5ec9c8b8",
+			"[2014",
+			"2014",
+			"书画学习者：珍宝馆的画面精细到纤毫毕现，远高于各种常规的字帖和画册，并且临习方便，最大程度帮助您学习技艺",
+			">\n",
+			"console.log",
+			"obj.absUrl",
+			"console.log",
+			"trackView",
+			"loadMessage",
 			"queryfile",
-			"makedirp",
-			"fn",
-			"updateZGCSinfo",
-			"filesize",
-			");\n",
-			"L.Transformation",
-			"CRS.Simple",
-			"L.Projection.LonLat",
-			"CRS.Simple",
-			"		}).",
-			"  ",
-			"pointToLatLng",
-			"CRS.Simple",
-			"attributionControl",
-			"attribution",
-			"createTile",
-			"onPageStateChange",
-			"sharepage",
-			"csv",
-			"csc",
-			"c v s",
-			"id=\"grabAllBtn\"",
-			"addBoundAsOverlay",
-			"showBoardOfArea",
-			"山西",
-			"赤壁",
-			"saveToBackend",
-			"浙江",
-			"zhe j",
-			"香港",
-			"createCityList",
-			"\" ",
-			"Type \"it\" for more\n> it",
-			"other",
-			".y",
-			".x",
-			"$.get",
-			"loadBoardOfArea",
-			"鄂尔多斯",
-			"从百度获取区域"
+			"message",
+			"right",
+			"left",
+			"position: absolute;top: -3px;left: 5px;",
+			"supperdetailpainter.u.qiniudn.com",
+			"cdn",
+			"updateStatusBar",
+			"updateStatusBar`",
+			"updateStatusBar",
+			"allowSamePageTransition",
+			"新藏品公告",
+			"系统消息",
+			"请稍",
+			"type=\"text/x-dot-template\"",
+			"refreshPaintingList",
+			"$.mobile.loading",
+			"$.mobile.loading(\"show\"",
+			"transition",
+			"phonegapNavigationEnabled",
+			"></",
+			"北宋 张择端",
+			"').",
+			"renderAuthorList",
+			"年代列表是静态内容",
+			"<a href=\"#add-form\" data-icon=\"gear\" data-iconpos=\"notext\">标注</a>",
+			"data-transition=\"flow\"",
+			"1.4.2",
+			"painting-list",
+			"url",
+			"#painting-list?",
+			"#panel-painting-list",
+			"painting-list",
+			"mobile",
+			"it.painting",
+			"_id",
+			"pageLoadErrorMessage",
+			"pageLoadErrorMessageTheme",
+			"_showLoading",
+			"pageLoadErrorMessage",
+			"isWebview",
+			"templateSettings",
+			"encodeHTMLSource",
+			"isWebview",
+			"$.bbq",
+			"$.bbs",
+			"transform",
+			"MyControl",
+			"mo bi le",
+			"cordova",
+			"img",
+			"ui-li-has-thumb",
+			"li.ui-li-has-thumb",
+			"li.ui-li-has-thumb ",
+			".ui-li-has-thumb",
+			"line-height",
+			".my-page .ui-listview li",
+			".my-page .ui-listview h2",
+			".my-page .ui-listview h2, .my-page .ui-listview p",
+			".my-page .ui-listview h2",
+			"ui-li-has-thumb",
+			" ui-btn-icon-right",
+			".label",
+			"ui-icon-carat-r",
+			"font-family",
+			"h4",
+			".ui-btn",
+			"a.ui-btn",
+			".ui-listview > li > a.ui-btn",
+			"ui-btn-icon-right",
+			"500ms",
+			".ui-listview .ui-li-has-thumb h2, .ui-listview .ui-li-has-thumb p",
+			"ui-li-has-thumb",
+			"panel-fixed-page2",
+			"/_search/",
+			"/_assets/",
+			"../",
+			"demo/",
+			"Out:",
+			"resizethumb",
+			"$.evalFile(\"/Users/sanli/Documents/workspace/cag-h5/cagstore/",
+			"queryfile",
+			"};\n",
+			"        \n",
+			"detectRetina",
+			"getpaintinginfo",
+			"MakeTileName",
+			"calcScaleLevel",
+			"activeDocument",
+			"calcSize",
+			"calcScaleLevel",
+			"calcSize"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -898,6 +902,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"dn-cagh5.qbox.me",
+			"/search/",
+			"/assets/",
+			";\\n",
 			"[1]",
 			"[0]",
 			"    ",
@@ -937,48 +945,14 @@
 		},
 		{
 			"follow_symlinks": true,
-			"path": "/Users/sanli/Documents/workspace/backbone"
-		},
-		{
-			"follow_symlinks": true,
-			"path": "/Users/sanli/Documents/workspace/backbone-fundamentals/practicals/exercise-2"
+			"path": "/Users/sanli/Documents/workspace/cag-client/cagmobi"
 		}
 	],
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "Jakefile.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4812,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								806,
-								806
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1056,7 +1030,7 @@
 	"project": "",
 	"replace":
 	{
-		"height": 42.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1065,11 +1039,487 @@
 		"selected_items":
 		[
 			[
+				"imgtool.js",
+				"cag-h5/imgtool.js"
+			],
+			[
+				"main.js",
+				"cag-h5/routes/mainctl.js"
+			],
+			[
+				"painting",
+				"cag-h5/data/paintingsdb.js"
+			],
+			[
+				"paintingspage.html",
+				"cag-h5/views/paintingspage.html"
+			],
+			[
+				"paintdb.js",
+				"cag-h5/data/paintdb.js"
+			],
+			[
+				"img.js",
+				"cag-h5/public/js/img.js"
+			],
+			[
+				"index.js",
+				"cagmobi/www/js/index.js"
+			],
+			[
+				"about.html",
+				"cag-h5/public/about.html"
+			],
+			[
 				"mainpage.html",
 				"cag-h5/views/mainpage.html"
 			],
 			[
-				"imgtool.js",
+				"head.html",
+				"cag-h5/views/head.html"
+			],
+			[
+				"message.html",
+				"cag-h5/views/message.html"
+			],
+			[
+				"cag.js",
+				"cag-h5/cag.js"
+			],
+			[
+				"mainct",
+				"cag-h5/routes/mainctl.js"
+			],
+			[
+				"index.html",
+				"cagmobi/www/index.html"
+			],
+			[
+				"message",
+				"cag-h5/views/message.html"
+			],
+			[
+				"cag-h5/about.html",
+				"cag-h5/public/about.html"
+			],
+			[
+				"mobi",
+				"cag-h5/public/mobile.html"
+			],
+			[
+				"cagmobi/index",
+				"cagmobi/www/js/index.js"
+			],
+			[
+				"cagmobi",
+				"cagmobi/www/about.html"
+			],
+			[
+				"cagmobiabout.",
+				"cagmobi/www/about.html"
+			],
+			[
+				"cagmobiindex.js",
+				"cagmobi/www/js/index.js"
+			],
+			[
+				"mianpage.html",
+				"cag-h5/views/mainpage.html"
+			],
+			[
+				"mobile.html",
+				"cag-h5/public/mobile.html"
+			],
+			[
+				"mainctl.js",
+				"cag-h5/routes/mainctl.js"
+			],
+			[
+				"jquery.mobile",
+				"cagmobi/www/js/jquery.mobile-1.4.3.js"
+			],
+			[
+				"sharepage-mobile",
+				"cagmobi/www/js/sharepage-mobile.js"
+			],
+			[
+				"index.css",
+				"cagmobi/www/css/index.css"
+			],
+			[
+				"sharepage-mo",
+				"cagmobi/www/js/sharepage-mobile.js"
+			],
+			[
+				"jquerymo",
+				"cagmobi/www/js/jquery.mobile-1.4.3.js"
+			],
+			[
+				"paintingsdb",
+				"cag-h5/data/paintingsdb.js"
+			],
+			[
+				"jquery.mo",
+				"cag-client/cag/www/js/jquery.mobile-1.4.2.js"
+			],
+			[
+				"commentpage",
+				"cag-h5/views/commentpage.html"
+			],
+			[
+				"sharepage-mobile.js",
+				"cag-client/cag/www/js/sharepage-mobile.js"
+			],
+			[
+				"main.html",
+				"cag-h5/release/main.html"
+			],
+			[
+				"sharepage",
+				"cag-h5/public/js/sharepage.js"
+			],
+			[
+				"sharepage.js",
+				"cag-h5/public/js/sharepage.js"
+			],
+			[
+				"imgpage.html",
+				"cag-h5/views/imgpage.html"
+			],
+			[
+				"imglitepage.html",
+				"cag-h5/views/imglitepage.html"
+			],
+			[
+				"css/index.css",
+				"cag-client/cag/www/css/index.css"
+			],
+			[
+				"demo/index",
+				"cag-client/hello/www/demos/intro/index.html"
+			],
+			[
+				"leaflet-src.js",
+				"cag-h5/public/js/leaflet-src.js"
+			],
+			[
+				"imglite.js",
+				"cag-h5/public/js/imglite.js"
+			],
+			[
+				"",
+				"cag-h5/views/paintingspage.html"
+			],
+			[
+				"paintings.js",
+				"cag-h5/public/js/paintings.js"
+			],
+			[
+				"paintingsctl.js",
+				"cag-h5/routes/paintingsctl.js"
+			],
+			[
+				"imglite",
+				"cag-h5/public/js/imglite.js"
+			],
+			[
+				"imglitepage",
+				"cag-h5/views/imglitepage.html"
+			],
+			[
+				"img.html",
+				"cag-h5/release/img.html"
+			],
+			[
+				"leaflet-sr",
+				"cag-h5/public/js/leaflet-src.js"
+			],
+			[
+				"imgtoo",
+				"cag-h5/imgtool.js"
+			],
+			[
+				"naiv",
+				"cag-h5/views/navi.html"
+			],
+			[
+				"image.js",
+				"cag-h5/node_modules/stylus/lib/functions/image.js"
+			],
+			[
+				"backend.css",
+				"cag-h5/public/css/backend.css"
+			],
+			[
+				"commentctl",
+				"cag-h5/routes/commentctl.js"
+			],
+			[
+				"comment.js",
+				"cag-h5/public/js/comment.js"
+			],
+			[
+				"paintingsctl",
+				"cag-h5/routes/paintingsctl.js"
+			],
+			[
+				"paintingpage.",
+				"cag-h5/views/paintingspage.html"
+			],
+			[
+				"commentdb",
+				"cag-h5/data/commentdb.js"
+			],
+			[
+				"commentdb.js",
+				"cag-h5/data/commentdb.js"
+			],
+			[
+				"jquery",
+				"cag-h5/public/js/jquery.js"
+			],
+			[
+				"gru",
+				"cag-h5/Gruntfile.js"
+			],
+			[
+				"commentctl.js",
+				"cag-h5/routes/commentctl.js"
+			],
+			[
+				"config.js",
+				"cag-h5/config.js"
+			],
+			[
+				"gruntfile.js",
+				"cag-h5/Gruntfile.js"
+			],
+			[
+				"bootstrap.js",
+				"cag-h5/public/js/bootstrap.js"
+			],
+			[
+				"leaflet-src",
+				"cag-h5/public/js/leaflet-src.js"
+			],
+			[
+				"jquery.js",
+				"cag-h5/public/js/jquery.js"
+			],
+			[
+				"imgli",
+				"cag-h5/public/js/imglite.js"
+			],
+			[
+				"main.css",
+				"cag-h5/public/css/main.css"
+			],
+			[
+				"draw",
+				"cag-h5/public/js/leaflet.draw-src.js"
+			],
+			[
+				"leflet.js",
+				"cag-h5/public/js/leaflet.js"
+			],
+			[
+				"sha",
+				"cag-h5/sharepage.js"
+			],
+			[
+				"draw.",
+				"cag-h5/public/js/leaflet.draw-src.js"
+			],
+			[
+				"painting.js",
+				"cag-h5/public/js/paintings.js"
+			],
+			[
+				"sidebar.css",
+				"cag-h5/public/css/L.Control.Sidebar.css"
+			],
+			[
+				"sidebar",
+				"cag-h5/public/js/L.Control.Sidebar.js"
+			],
+			[
+				"paintingsdb.js",
+				"cag-h5/data/paintingsdb.js"
+			],
+			[
+				"package",
+				"cag-h5/package.json"
+			],
+			[
+				"conf",
+				"cag-h5/config.js"
+			],
+			[
+				"sidebar.js",
+				"cag-h5/public/js/L.Control.Sidebar.js"
+			],
+			[
+				"imgpage",
+				"cag-h5/views/imgpage.html"
+			],
+			[
+				"static.js",
+				"cag-h5/node_modules/mongoose/static.js"
+			],
+			[
+				"about",
+				"cag-h5/public/about.html"
+			],
+			[
+				"main",
+				"cag-h5/release/main.html"
+			],
+			[
+				"paintings",
+				"cag-h5/public/js/paintings.js"
+			],
+			[
+				"query",
+				"cag-h5/node_modules/mongoose/lib/query.js"
+			],
+			[
+				"paintingsdb.",
+				"cag-h5/data/paintingsdb.js"
+			],
+			[
+				"paintct",
+				"cag-h5/routes/paintingsctl.js"
+			],
+			[
+				"backend",
+				"cag-h5/public/css/backend.css"
+			],
+			[
+				"img",
+				"cag-h5/views/imgpage.html"
+			],
+			[
+				"grunt",
+				"cag-h5/Gruntfile.js"
+			],
+			[
+				"grun",
+				"cag-h5/Gruntfile.js"
+			],
+			[
+				"package.json",
+				"cag-h5/package.json"
+			],
+			[
+				"g",
+				"cag-h5/Gruntfile.js"
+			],
+			[
+				"send.js",
+				"cag-h5/node_modules/express/node_modules/send/lib/send.js"
+			],
+			[
+				"confi",
+				"cag-h5/config.js"
+			],
+			[
+				"paintingdb",
+				"cag-h5/data/paintingsdb.js"
+			],
+			[
+				"painti",
+				"cag-h5/views/paintingspage.html"
+			],
+			[
+				"grup",
+				"Ghost/node_modules/grunt-mocha-cli/test/fixture/grunt-pass-gruntfile.js"
+			],
+			[
+				"paintingsct",
+				"cag-h5/routes/paintingsctl.js"
+			],
+			[
+				"foot.html",
+				"cag-h5/views/foot.html"
+			],
+			[
+				"paintingspage",
+				"cag-h5/views/paintingspage.html"
+			],
+			[
+				"jake",
+				"cag-h5/Jakefile.js"
+			],
+			[
+				"paintdb",
+				"cag-h5/data/paintdb.js"
+			],
+			[
+				"paintingsc",
+				"cag-h5/routes/paintingsctl.js"
+			],
+			[
+				"bootstarp.css",
+				"cag-h5/public/css/bootstrap.css"
+			],
+			[
+				"back",
+				"cag-h5/public/css/backend.css"
+			],
+			[
+				"paintpage",
+				"cag-h5/views/paintingspage.html"
+			],
+			[
+				"mainc",
+				"cag-h5/routes/mainctl.js"
+			],
+			[
+				"userdb.js",
+				"cag-h5/data/userdb.js"
+			],
+			[
+				"singinpage.html",
+				"cag-h5/views/signinpage.html"
+			],
+			[
+				"bootstrap",
+				"cag-h5/public/js/bootstrap.js"
+			],
+			[
+				"lazyload",
+				"cag-h5/public/js/jquery.lazyload.js"
+			],
+			[
+				"pain",
+				"cag-h5/data/paintdb.js"
+			],
+			[
+				"jq",
+				"cag-h5/public/js/jquery.js"
+			],
+			[
+				"lazyloa",
+				"cag-h5/public/js/jquery.lazyload.js"
+			],
+			[
+				"bootstra",
+				"cag-h5/public/css/bootstrap.css"
+			],
+			[
+				"gruntfile",
+				"cag-h5/Gruntfile.js"
+			],
+			[
+				"mongo.js",
+				"cag-h5/mongo.js"
+			],
+			[
+				"mainctl",
+				"cag-h5/routes/mainctl.js"
+			],
+			[
+				"imgtool",
 				"cag-h5/imgtool.js"
 			],
 			[
@@ -1081,32 +1531,8 @@
 				"cag-h5/cagstore/fileinfo.json"
 			],
 			[
-				"imgpage",
-				"cag-h5/views/imgpage.html"
-			],
-			[
 				"mainpage",
 				"cag-h5/views/mainpage.html"
-			],
-			[
-				"imgpage.html",
-				"cag-h5/views/imgpage.html"
-			],
-			[
-				"img.html",
-				"cag-h5/release/img.html"
-			],
-			[
-				"img.js",
-				"cag-h5/public/js/img.js"
-			],
-			[
-				"main.js",
-				"cag-h5/public/js/main.js"
-			],
-			[
-				"paintdb.js",
-				"cag-h5/data/paintdb.js"
 			],
 			[
 				"main.h",
@@ -1117,464 +1543,12 @@
 				"cag-h5/node_modules/async/lib/async.js"
 			],
 			[
-				"imgtool",
-				"cag-h5/imgtool.js"
-			],
-			[
-				"sha",
-				"cag-h5/public/js/sharepage.js"
-			],
-			[
-				"sharepage.js",
-				"cag-h5/public/js/sharepage.js"
-			],
-			[
-				"main.html",
-				"cag-h5/release/main.html"
-			],
-			[
 				"imag",
 				"cag-h5/node_modules/stylus/lib/functions/image.js"
 			],
 			[
 				"mainjs",
 				"cag-h5/routes/mainctl.js"
-			],
-			[
-				"img.sj",
-				"cag-h5/public/js/img.js"
-			],
-			[
-				"mainct",
-				"cag-h5/routes/mainctl.js"
-			],
-			[
-				"lazyload",
-				"cag-h5/public/js/jquery.lazyload.js"
-			],
-			[
-				"sharepage",
-				"cag-h5/public/js/sharepage.js"
-			],
-			[
-				"navi.html",
-				"cag-h5/views/navi.html"
-			],
-			[
-				"paintings.js",
-				"cag-h5/public/js/paintings.js"
-			],
-			[
-				"cag.js",
-				"cag-h5/cag.js"
-			],
-			[
-				"crud/ba",
-				"cag-h5/sharepage/CRUD/back_route.js"
-			],
-			[
-				"paintc",
-				"cag-h5/routes/paintingsctl.js"
-			],
-			[
-				"img",
-				"imgtool.js"
-			],
-			[
-				"pai",
-				"data/paintdb.js"
-			],
-			[
-				"mainpa",
-				"views/mainpage.html"
-			],
-			[
-				"package",
-				"package.json"
-			],
-			[
-				"im",
-				"imgtool.js"
-			],
-			[
-				"main.css",
-				"public/css/main.css"
-			],
-			[
-				"main.cs",
-				"public/css/main.bak.css"
-			],
-			[
-				"i",
-				"cag-h5/imgtool.js"
-			],
-			[
-				"foot.html",
-				"cag-h5/views/foot.html"
-			],
-			[
-				"navi",
-				"cag-h5/views/navi.html"
-			],
-			[
-				"head",
-				"cag-h5/views/head.html"
-			],
-			[
-				"leaf",
-				"Leaflet/dist/leaflet.css"
-			],
-			[
-				"zo",
-				"public/js/zonegrab.js"
-			],
-			[
-				"grab.html",
-				"views/zonegrab.html"
-			],
-			[
-				"city.html",
-				"views/city.html"
-			],
-			[
-				"zon",
-				"views/zonegrab.html"
-			],
-			[
-				"gra",
-				"public/js/zonegrab.js"
-			],
-			[
-				"city.js",
-				"public/js/city.js"
-			],
-			[
-				"grab",
-				"public/js/zonegrab.js"
-			],
-			[
-				"geoserivce",
-				"geoservice.js"
-			],
-			[
-				"sfmis.js",
-				"node_modules/express/node_modules/connect/node_modules/formidable/test/integration/test-fixtures.js"
-			],
-			[
-				"citydb.js",
-				"data/citydb.js"
-			],
-			[
-				"ciyt.js",
-				"public/js/city.js"
-			],
-			[
-				"zonegrab.js",
-				"public/js/zonegrab.js"
-			],
-			[
-				"citydb.",
-				"data/citydb.js"
-			],
-			[
-				"geoservice",
-				"geoservice.js"
-			],
-			[
-				"building.js",
-				"public/js/building.js"
-			],
-			[
-				"route",
-				"node_modules/express/lib/router/route.js"
-			],
-			[
-				"index.js",
-				"routes/index.js"
-			],
-			[
-				"geoser",
-				"geoservice.js"
-			],
-			[
-				"citydb",
-				"data/citydb.js"
-			],
-			[
-				"gisobjdb.js",
-				"data/gisobjdb.js"
-			],
-			[
-				"geo",
-				"geoservice.js"
-			],
-			[
-				"city",
-				"routes/city.js"
-			],
-			[
-				"bootstrap.js",
-				"public/js/bootstrap.js"
-			],
-			[
-				"citydata",
-				"public/js/CityData.js"
-			],
-			[
-				"zonegrab.html",
-				"views/zonegrab.html"
-			],
-			[
-				"geoservice.js",
-				"geoservice.js"
-			],
-			[
-				"ge",
-				"geoservice.js"
-			],
-			[
-				"index",
-				"routes/index.js"
-			],
-			[
-				"sf",
-				"src/sfmis.js"
-			],
-			[
-				"gisobj.js",
-				"src/routes/gisobj.js"
-			],
-			[
-				"celldb.js",
-				"src/data/celldb.js"
-			],
-			[
-				"aabis",
-				"src/data/aabisdb.js"
-			],
-			[
-				"aabisdb.js",
-				"src/data/aabisdb.js"
-			],
-			[
-				"calc.js",
-				"src/data/calc.js"
-			],
-			[
-				"realtime",
-				"src/views/realtimeanalysis.html"
-			],
-			[
-				"realtimejs",
-				"src/public/js/realtimeanalysis.js"
-			],
-			[
-				"au",
-				"src/data/auditeanalysisdb.js"
-			],
-			[
-				"anal",
-				"src/data/analysisdb.js"
-			],
-			[
-				"a",
-				"src/data/auditeanalysisdb.js"
-			],
-			[
-				"gisobjdb",
-				"src/data/gisobjdb.js"
-			],
-			[
-				"audi",
-				"src/routes/auditeanalysis.js"
-			],
-			[
-				"opt",
-				"src/routes/optianalysis.js"
-			],
-			[
-				"main",
-				"src/public/js/main.js"
-			],
-			[
-				"home.css",
-				"src/public/css/home.css"
-			],
-			[
-				"gisdb",
-				"src/data/gisobjdb.js"
-			],
-			[
-				"imp",
-				"src/data/imp.js"
-			],
-			[
-				"celldb",
-				"src/data/celldb.js"
-			],
-			[
-				"cell.js",
-				"src/routes/cell.js"
-			],
-			[
-				"analy",
-				"src/data/analysisdb.js"
-			],
-			[
-				"calc",
-				"src/data/calc.js"
-			],
-			[
-				"dataco",
-				"src/data/datacorrection.js"
-			],
-			[
-				"publicpro",
-				"src/public/js/property.js"
-			],
-			[
-				"property.js",
-				"src/routes/property.js"
-			],
-			[
-				"property.html",
-				"src/views/property.html"
-			],
-			[
-				"gisobj",
-				"src/data/gisobjdb.js"
-			],
-			[
-				"buil",
-				"src/routes/building.js"
-			],
-			[
-				"bui",
-				"src/data/buildingdb.js"
-			],
-			[
-				"buildingdb.js",
-				"src/data/buildingdb.js"
-			],
-			[
-				"propertydb",
-				"src/data/propertydb.js"
-			],
-			[
-				"property",
-				"src/routes/property.js"
-			],
-			[
-				"publicpropery",
-				"src/public/js/property.js"
-			],
-			[
-				"publicprop",
-				"src/public/js/property.js"
-			],
-			[
-				"pro",
-				"src/routes/property.js"
-			],
-			[
-				"front",
-				"src/sharepage/CRUD/front_module.js"
-			],
-			[
-				"fm",
-				"src/sharepage/CRUD/front_module.js"
-			],
-			[
-				"bu",
-				"src/public/js/building.js"
-			],
-			[
-				"ppt.js",
-				"src/public/js/property.js"
-			],
-			[
-				"propett",
-				"src/views/property.html"
-			],
-			[
-				"building",
-				"src/public/js/building.js"
-			],
-			[
-				"sfmis",
-				"src/sfmis.js"
-			],
-			[
-				"propertydb.js",
-				"src/data/propertydb.js"
-			],
-			[
-				"sharpage",
-				"src/public/js/sharepage.js"
-			],
-			[
-				"cell.html",
-				"src/views/cell.html"
-			],
-			[
-				"buildingdb",
-				"src/data/buildingdb.js"
-			],
-			[
-				"pbu",
-				"src/public/js/building.js"
-			],
-			[
-				"building.html",
-				"src/views/building.html"
-			],
-			[
-				"ana",
-				"src/views/analysis.html"
-			],
-			[
-				"puana",
-				"src/public/js/analysis.js"
-			],
-			[
-				"sfmi",
-				"src/sfmis.js"
-			],
-			[
-				"analysis",
-				"src/routes/analysis.js"
-			],
-			[
-				"gi",
-				"src/data/gisobjdb.js"
-			],
-			[
-				"datac",
-				"src/data/datacorrection.js"
-			],
-			[
-				"datacor",
-				"src/data/datacorrection.js"
-			],
-			[
-				"da",
-				"src/data/datacorrection.js"
-			],
-			[
-				"",
-				"src/data/gisobjdb.js"
-			],
-			[
-				"gis",
-				"src/data/gisobjdb.js"
-			],
-			[
-				"imp.js",
-				"src/data/imp.js"
-			],
-			[
-				"upload.js",
-				"src/routes/upload.js"
 			]
 		],
 		"width": 0.0
@@ -1593,9 +1567,177 @@
 	},
 	"select_symbol":
 	{
-		"height": 147.0,
+		"height": 47.0,
 		"selected_items":
 		[
+			[
+				"getpaintinginfo",
+				"getpaintinginfo"
+			],
+			[
+				"grapPainting",
+				"grapPainting"
+			],
+			[
+				"jqm",
+				"jqmData"
+			],
+			[
+				"parents",
+				"parents"
+			],
+			[
+				"updatePaintingInfo",
+				"updatePaintinginfo"
+			],
+			[
+				"grapfileinfo",
+				"grapfileinfo"
+			],
+			[
+				"getfileinfo",
+				"getfileinfo"
+			],
+			[
+				"updateFileInfo",
+				"updateFileInfo"
+			],
+			[
+				"getFileInfo",
+				"getFileInfo"
+			],
+			[
+				"deparam",
+				"jq_deparam"
+			],
+			[
+				"calcSize",
+				"calcSize"
+			],
+			[
+				"detectRetina",
+				"includes exact expected arguments in error message"
+			],
+			[
+				"calcScaleLevel",
+				"calcScaleLevel"
+			],
+			[
+				"dodelete",
+				"dodelete"
+			],
+			[
+				"ask",
+				"ask"
+			],
+			[
+				"scrollTop",
+				"resolveScrollToPos"
+			],
+			[
+				"clearLayers",
+				"clearLayers"
+			],
+			[
+				"latLngToPoint",
+				"latLngToPoint"
+			],
+			[
+				"toggle",
+				"toggle"
+			],
+			[
+				"getJSON",
+				"getJSON"
+			],
+			[
+				"setHeader",
+				"setHeader"
+			],
+			[
+				"maxage",
+				"maxage"
+			],
+			[
+				"send",
+				"send"
+			],
+			[
+				"static",
+				"static"
+			],
+			[
+				"json",
+				"json"
+			],
+			[
+				"outline",
+				"outline"
+			],
+			[
+				"autofill",
+				"autofill"
+			],
+			[
+				"eachSe",
+				"eachSeries"
+			],
+			[
+				"doquery",
+				"doquery"
+			],
+			[
+				"showmodal",
+				"showmodal"
+			],
+			[
+				"bindurl",
+				"bindurl"
+			],
+			[
+				"pushstate",
+				"pushState"
+			],
+			[
+				"extend",
+				"extend"
+			],
+			[
+				"fadeIn",
+				"fade-in"
+			],
+			[
+				"scrollspy",
+				"ScrollSpy"
+			],
+			[
+				"alert",
+				"Alert"
+			],
+			[
+				"_rt",
+				"_readTag"
+			],
+			[
+				"rt",
+				"RULE_TYPES"
+			],
+			[
+				"queryfile",
+				"queryfile"
+			],
+			[
+				"input-lg",
+				"input-lg"
+			],
+			[
+				"copy",
+				"copy"
+			],
+			[
+				"bindur",
+				"bindurl"
+			],
 			[
 				"mkdirP",
 				"mkdirP"
@@ -1633,20 +1775,12 @@
 				"eachSeries"
 			],
 			[
-				"queryfile",
-				"queryfile"
-			],
-			[
 				"format",
 				"format"
 			],
 			[
 				"Map",
 				"Map"
-			],
-			[
-				"bindurl",
-				"bindurl"
 			],
 			[
 				"pushState",
@@ -1677,10 +1811,6 @@
 				"extent"
 			],
 			[
-				"extend",
-				"extend"
-			],
-			[
 				"queue",
 				"queue"
 			],
@@ -1691,10 +1821,6 @@
 			[
 				"pointListToGeoJSON",
 				"pointListToGeoJSON"
-			],
-			[
-				"doquery",
-				"doquery"
 			],
 			[
 				"update",
@@ -1725,10 +1851,6 @@
 				"loadCity"
 			],
 			[
-				"autofill",
-				"autofill"
-			],
-			[
 				"getdata",
 				"getdata"
 			],
@@ -1753,8 +1875,9 @@
 				"getParam"
 			]
 		],
-		"width": 792.0
+		"width": 787.0
 	},
+	"selected_group": 0,
 	"settings":
 	{
 	},
@@ -1762,7 +1885,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 280.0,
+	"side_bar_width": 286.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

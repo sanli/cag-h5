@@ -12,12 +12,13 @@ var Db = require('mongodb').Db,
   inspect = require('util').inspect
   lazy = require('lazy'), 
   fs = require('fs'),
-  http = require('http');
+  http = require('http'),
+  conf = require('./config.js');
 
 //使用mongoose访问MongoDB
 var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost/cag',{
+mongoose.connect(conf.mongoURL ,{
   db: { native_parser: true, safe:true },
 });
 var mdb = mongoose.connection;

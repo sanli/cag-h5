@@ -54,7 +54,7 @@ var painting = new Schema({
     maxlevel: Number, 
     minlevel: Number,
     size : { width : Number, height : Number },
-    snapsize : { width : Number, height : Number },
+    snapSize : { width : Number, height : Number },
     // 展示的时候排序字段
     order : String,
     
@@ -74,11 +74,13 @@ var painting = new Schema({
     }],
 
     // 是否有效
-    active: Boolean
-
+    active: Boolean,
+    // 是否列在首页推荐
+    essence: Boolean
 },  { collection: 'painting' });
 painting.index({id : 1})
-    .index({paintingName : 1});
+    .index({paintingName : 1})
+    .index({author : 1});
 var Painting = mongoose.model('painting', painting);
     exports.Painting = Painting;
 
@@ -100,7 +102,7 @@ var PaintingFile = mongoose.model('painting_file', paintingFile);
 
 exports.updatePaintinginfo = function(info, fn){
     Painting.update(
-		{ paintingName : info.paintingName},
+		{ author: info.author, paintingName : info.paintingName},
 		{ $set : info },
 		{ upsert : true },
 		function(err){
@@ -145,6 +147,7 @@ exports.updateFileInfo = function(info, fn){
         });
 }
 
+// 查询某个艺术品详细信息
 exports.queryfile = function(query, project, sort, fn){
     if(typeof(project) === 'function'){
         fn = project;
@@ -158,6 +161,22 @@ exports.queryfile = function(query, project, sort, fn){
     		fn(err, fileinfos);
     	});
 }
+
+// 返回所有作品大纲
+//    { 年代 : { 作者 : ['xxxx', 'xxxx'] } } 
+exports.outline = function(query, fn){
+    Painting.collection.aggregate( 
+        { $match : query }
+        , { $sort : { author : 1, paintingName : 1 } }
+        , { $group : { _id: '$author' , paintings : { $push : '$paintingName'} , age : { $first : '$age'} }  }
+        , { $project : {  "author.name" : "$_id", "author.paintings" : '$paintings' , age: 1 } }
+        , { $group : { _id : '$age' , authors : { $push : '$author'}} }
+        , function(err, outline){
+            if(err) console.trace(err);
+            fn(err, outline);
+        });
+}
+
 // ============================= 下面是单元测试用的代码 ================================
 var isme = require('../sharepage.js').isme;
 var tester = {

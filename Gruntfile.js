@@ -33,7 +33,15 @@ module.exports = function(grunt) {
                     'public/js/sharepage.base.js',
                     'public/js/sharepage.js'
                 ]
-            }
+            },  
+        },
+        leafletplugin : {
+            files: {
+                'build/cdn/js/leaflet-plugin.js': [
+                    'public/js/L.Control.Sidebar.js',
+                    'public/js/leaflet.draw-src.js'
+                ]
+            }  
         }
     },
 
@@ -47,17 +55,32 @@ module.exports = function(grunt) {
                 'build/cdn/js/cag_<%= buildName %>_min.js' : 'build/cdn/js/cag.js',
                 'build/cdn/js/main_<%= buildName %>_min.js': 'public/js/main.js',
                 'build/cdn/js/img_<%= buildName %>_min.js': 'public/js/img.js',
+                'build/cdn/js/imglite_<%= buildName %>_min.js': 'public/js/imglite.js',
                 'build/cdn/js/paintings_<%= buildName %>_min.js': 'public/js/paintings.js'
             }    
+        },
+        leafletplugin : {
+            files: {
+                'build/cdn/js/leaflet-plugin_min.js' : 'build/cdn/js/leaflet-plugin.js'
+            }
         }
     },
 
     cssmin: {
-         cdn :{
+        cdn :{
             files: {
                 'build/cdn/css/main_<%= buildName %>_min.css': 'public/css/main.css'
-             }
-         }
+            }
+        },
+         leafletplugin : {
+            files:{
+                'build/cdn/css/leaflet-plugin_min.css': [
+                    'public/css/L.Control.Sidebar.css',
+                    'public/css/leaflet.draw.css',
+                    'public/css/leaflet.fullscreen.css'
+                ]    
+            }
+        }
      },
 
     // ### grunt-contrib-copy
@@ -72,7 +95,6 @@ module.exports = function(grunt) {
                 expand: true
             }]
         },
-        // 发布到AppEngine的动态内容，js, html
         bae: {
             noProcess : 'public',
             files: [{
@@ -83,12 +105,12 @@ module.exports = function(grunt) {
                 expand: true
             }]
         },
-
+        // 发布到AppEngine的动态内容，js, html
         svn : {
             files: [{
                 src: ['public/css/**', 'public/favicon.ico', 'public/*.html', 'public/fonts/**', 'public/ico/**', 'public/images/**' , 'data/**'
                     , 'routes/**', 'views/**', 'mongo.js' , 'sharepage.js'
-                    , 'cag.js', 'package.json'],
+                    , 'cag.js', 'package.json', 'cagstore.js' ],
                 dest: '/Users/sanli/Documents/bae_workspace/clirepo/zhenbao',
                 expand: true
             }]  
@@ -106,6 +128,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // 默认被执行的任务列表。
-  grunt.registerTask('default', ['concat:cdn', 'uglify:cdn', 'cssmin:cdn' , 'copy:cdn', 'copy:bae', 'copy:svn']);
-
+  grunt.registerTask('default', [
+    'concat:cdn', 'uglify:cdn', 'cssmin:cdn' , 
+    'copy:cdn', 'copy:bae', 'copy:svn'
+    ]);
+  grunt.registerTask('leafletplugin', ['concat:leafletplugin', 'uglify:leafletplugin', 'cssmin:leafletplugin']);
 };

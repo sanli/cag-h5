@@ -7,7 +7,7 @@ var PG = new $P({
         cond : {},
         type : 'tag1',
         // 翻页条件
-        page : { skip: 0, limit: 20 },
+        page : { skip: 0, limit: 10 },
         // 排序字段
         sort : { cellid : 1 },
     },
@@ -54,8 +54,15 @@ var Module = $.extend(new $M(), {
         sortarg[sort.by] = sort.order;
 
         // 处理需要做正则表达式查询的条件
-        if(cond.buildingId)
-            cond.buildingId = 'Reg(' + cond.buildingId + ')';
+        if(cond.queryword){
+            var reg = 'Reg(' + cond.queryword + ')';
+            cond.$or = [ { paintingName : reg } , { author : reg }, { age : reg } ];
+            delete cond.queryword;
+        }
+        // 处理未激活状态的查询
+        if(cond.active && cond.active === 'false'){
+            cond.active = { $ne : true };
+        }
 
         Module.listPage(type, cond, sortarg, page
             , function(module){
@@ -64,24 +71,24 @@ var Module = $.extend(new $M(), {
                     columns : Module.columns ,
                     cells : module.docs,
                     title : type.toUpperCase() + "数据",
-                    bodyId: paintings + 'cellTbody',
-                    tempId : paintings + 'CellTable',
+                    bodyId: 'paintingsCellTbody',
+                    tempId: 'paintingsCellTable',
                     sort: sort,
                 });
                 $('#cellTable').spin(false);
                 
                 if(editing === 'true'){
-                    $('.action-ctl').addClass('show');
+                    $('.action-ctl').addClass('show-action-ctl').removeClass('action-ctl');
                     $('#enableEditBtn').closest('li').addClass('active');
                 }else{
-                    $('.action-ctl').removeClass('show');
+                    $('.action-ctl').addClass('action-ctl').removeClass('show-action-ctl');;
                     $('#enableEditBtn').closest('li').removeClass('active');
                 }
             });
 
         Module.showPagebar(type, cond, page
             , function(html){
-                var $pagebar = $('#pagebar');
+                var $pagebar = $('.pagebar');
                 $pagebar.empty().append(html);
             });
     },
@@ -90,8 +97,7 @@ var Module = $.extend(new $M(), {
     // 页面载入的时候绑定各个事件
     bind : function(){
         $('a.importbtn').on('click', function(e){
-            var type = PG.state.type;
-            Module.onImportFile(type);
+            Module.onImportFile();
         });
 
         $('#search-form').keypress(function(e){
@@ -118,7 +124,7 @@ var Module = $.extend(new $M(), {
             Module._querycell(cond, Module.showPageHander(cond.type));
         });
 
-        $('#pagebar').on('click','div.pagination a', function(e){
+        $('.pagebar').on('click','ul.pagination a', function(e){
             e.preventDefault();
             var $a = $(e.target);
             var tgt = $a.attr('href'),
@@ -132,7 +138,7 @@ var Module = $.extend(new $M(), {
 
         $('#enableEditBtn').click(function(e){
             e.preventDefault();
-            var state = PG.state;
+            var state = $.extend({}, PG.state);
             state.editing = state.editing === 'true' ? 'false' : 'true' ;
             PG.pushState(state);
         });
@@ -146,9 +152,7 @@ var Module = $.extend(new $M(), {
             console.log('delete, _id:' + _id);
             Module.deleteModule(_id);
         });
-        $('#exportBtn').click(Module.onExport);
         $('div.aggregate').on('click', 'a.sortlink', $M.createSortHander(PG));
-        $('#extendBtn').click($.expandContent);
     },
         
     //====================================================================================================================
@@ -165,27 +169,11 @@ var Module = $.extend(new $M(), {
         });
     },
 
-    // 编辑Building信息
+    // 编辑作品信息
     updateModule: function(_id, options){
-        // 查询并楼宇相关室分信息
-        var queryBuildingSFData = function(_id){
-            $('#paintingsSFDataTB').spin();
-            $M.doquery('/sfdata'
-                , { _id : _id, type : 'paintings' }
-                , { 
-                    alertPosition : '#buildingNavtab',
-                    successfn : function(data){
-                        var sftable = tmpl('sfdataTpl', {
-                            sfdatas : data.docs
-                        });
-                        $('#buildingSFDataTB').empty().append(sftable);
-                        $('#buildingSFDataTB').spin(false);
-                    }
-                });     
-        },
         // 更新楼宇信息
         updateModule = function(condition, fn, fail){
-            $M.doupdate('/paintings/u', condition, { successfn : fn , failfn: fail});
+            $M.doupdate('/paintings/update', condition, { successfn : fn , failfn: fail});
         },
         // 查询楼宇详细信息
         loadDataDetail = function(_id, fn){
@@ -197,23 +185,13 @@ var Module = $.extend(new $M(), {
         $('#module-form').clearall();
         loadDataDetail(_id, function(module){
             var data = module.doc;
-            $('#module-form').clearall().autofill(data);
-            $("#module-form-loc").val(data.loc.coordinates[0] + ',' + data.loc.coordinates[1]);
-            $("#module-form-cityarea").val(data.address);
-        });
-        
-        //绑定Tab切换事件，在切换时载入历史记录
-        $('#moduleDlg a[data-toggle="tab"]').on('shown', function(e){
-            console.log("tab shown", e);
-            if($(e.target).attr('href') === '#b3'){
-                querySFData(_id);
-            }
+            $('#module-form').clearall().autofill(data, {checkboxAsBoolean : true});
         });
 
         $.showmodal('#moduleDlg', function(){
             if ($('#module-form').validate().form()){
                 // save change
-                var data = $('#module-form').getdata();
+                var data = $('#module-form').getdata({checkboxAsBoolean : true});
                     
                 updateModule($.param({ 
                     _id: _id,
@@ -229,28 +207,18 @@ var Module = $.extend(new $M(), {
         });
     },
 
-    //文件上传完成,预览并准备导入
-    onFileUploadSuccess: function(id, filename){
-        var dlg = $('#importDlg');
-        dlg.data('filename', filename).data('fileid', id);
-        //TODO:需要处理同时上传同名文件的情况
-        Module.previewImportFile(filename, function(content){
-            $("#previewDiv").empty().html(content.data);
-        }, function(errmsg){
-            $.alert('#previewDiv', '预览文件错误：' + errmsg);
-        });
-    },
+    
     //处理导入数据
-    onImportFile : function(type){
+    onImportFile : function(){
         $.showmodal('#importDlg', function(dlg){
-            var filename = dlg.data('filename');
-            $("previewDiv").spin();
-            Module.confirmImport(filename, type, function(data){
-                $("previewDiv").spin("false");
-                $.alert('#content-body', '成功导入基站数据 [' + data.count + "] 条");   
+            var idlist = $('#idListArea').val().split(',');
+            $('#importDlg').spin();
+            Module.importPaintings(idlist, function(data){
+
+                $.alert('#content-body', '成功导入资源 [' + data.count + "] 条");   
                 dlg.modal('hide');
             }, function(errmsg){
-                $.alert('#importDlg div.modal-body', '导入基站数据出错:' + errmsg);
+                $.alert('#importDlg div.modal-body', '导入资源数据出错:' + errmsg);
                 dlg.modal('hide');
             });
             return false;
@@ -258,20 +226,11 @@ var Module = $.extend(new $M(), {
     },
 
     //导出当前的查询结果
-    onExport : function(e){
-        e.preventDefault();
-        var type = PG.state.type,
-            sort = PG.state.sort,
-            cond = PG.state.cond,
-            sortarg = {}
-            $e = $(e.target);
-        sortarg[sort.by] = sort.order;
-        $e.spin();
-        $M.doquery('/paintings/export'
-            , { type: type, cond : cond , sort: sortarg } 
+    importPaintings : function(idlist, fn){
+        $M.doupdate('/paintings/import'
+            , { idlist: idlist } 
             , { successfn : function(data){
-                window.location.href = '/download?'+ $.param(data);
-                $e.spin(false);
+                fn(data);
             } , alertPosition : '#cellDiv' });
     },
 

@@ -4,7 +4,6 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , commons = require('./routes/commons')
   , extend = require('node.extend')
   , http = require('http')
   , path = require('path')
@@ -16,7 +15,8 @@ var express = require('express')
 var app = express();
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 4000);
+  // 百度引擎使用18080为webapp端口
+  app.set('port', process.env.PORT || 18080);
   app.engine('.html', require('ejs').__express);
   app.set('views', __dirname + '/views');
   app.use(express.favicon(__dirname + '/public/favicon.ico'));
@@ -29,7 +29,7 @@ app.configure(function(){
   app.use(express.session());
   app.use(app.router);
   app.use(require('stylus').middleware(__dirname + '/public'));
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(path.join(__dirname, 'public'), { maxAge : 86400000 }));
 });
 
 app.configure('development', function(){
@@ -38,7 +38,9 @@ app.configure('development', function(){
 
 // load module
 require('./routes/mainctl').bindurl(app);
+require('./routes/userctl').bindurl(app);
 require('./routes/paintingsctl').bindurl(app);
+require('./routes/commentctl').bindurl(app);
 
 var server = http.createServer(app).listen(app.get('port'), function(){
 	logger.log("启动web服务，在以下端口监听：" + app.get('port'));

@@ -134,8 +134,9 @@ function grapPainting(dir, fn){
         var painting = getpaintinginfo(basename);
         if(!painting) return;
 
-        //当前是是多端作品中的一段
-        var paintingName = painting.paintingName
+        // 已经不再有多切片文件的情况，所以不再需要聚合同名文件
+        // TODO: 这里的逻辑已经可以简化了
+        var paintingName = painting.author + '-' + painting.paintingName
         if(!paintings[paintingName]){
             paintings[paintingName] = painting;
         }
@@ -147,7 +148,6 @@ function grapPainting(dir, fn){
             }
 
             var thePainting = paintings[paintingName];
-            //console.log("info:%s thePainting:%s", inspect(info), inspect(thePainting));
             if(painting.isMultifile){
                 info.multiIndex  = painting.multiIndex;
             }
@@ -159,7 +159,6 @@ function grapPainting(dir, fn){
             });
 
             thePainting.files = files;
-
             callback(err);
         });
     }, function(err){
@@ -175,16 +174,30 @@ function grapPainting(dir, fn){
         //
         var cnt = 0 ;
         async.eachSeries(paintingsToSave, function(painting, callback){
+            // 判断同作家的同名画作是否已经存在，如果存在就跳过
+            queryfile({ author: painting.author, 
+                        paintingName : painting.paintingName }
+                ,function(err, fileinfos){
+                    if(err){
+                        console.log('查询艺术品:%s - %s，出错:%s', painting.author, painting.paintingName, err.message);
+                        return callback(err);
+                    } 
 
-            updatePaintingInfo(painting, function(err){
-                if(err){
-                    console.log('保存艺术品:%s，出错:%s', painting.paintingName, err.message);
-                    return callback(err);
-                }
+                    if(fileinfos.length == 0){
+                        updatePaintingInfo(painting, function(err){
+                            if(err){
+                                console.log('保存艺术品:%s，出错:%s', painting.paintingName, err.message);
+                                return callback(err);
+                            }
 
-                console.log('保存艺术品:%s', painting.paintingName);
-                callback();
-            });
+                            console.log('保存艺术品:%s - %s',  painting.author, painting.paintingName);
+                            callback();
+                        });                       
+                    }else{
+                        console.log('艺术品已经存在：%s - %s', painting.author, painting.paintingName);
+                        callback();
+                    }
+                });
         },function(err){
             console.log('保存作品信息完成，一共：%d个文件', paintingsToSave.length);
             fn(err);

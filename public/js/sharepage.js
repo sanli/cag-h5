@@ -230,7 +230,10 @@ var $P = function(options) {
     ask : function(title, message, ok){
       $('#confirmDlg').find('div.modal-header h3').text(title) ; 
       $('#confirmDlg').find('div.modal-body p').text(message);
-      $('#confirmDlg').modal().find("button.ok").one('click', ok);
+      $('#confirmDlg').modal().find("button.ok").one('click', function(){
+        $('#confirmDlg').modal('hide');
+        ok();
+      });
     },
 
     /**
@@ -257,7 +260,7 @@ var $P = function(options) {
     alert : function(selector, message, closetime){
       $('.alert').alert('close');
       $('.alert').remove();
-      $(selector).before('<div class="alert fade in"><button type="button" class="close" data-dismiss="alert">×</button>'+ message +'</div>');
+      $(selector).before('<div class="alert alert-info col-md-9 col-md-offset-1 fade in"><button type="button" class="close" data-dismiss="alert">×</button>'+ message +'</div>');
       if(closetime)
         setTimeout(function(){
           $('.alert').alert('close');
@@ -336,13 +339,12 @@ var $P = function(options) {
     autofill: function(data, options) {
       var settings = {
           findbyname: true,
-          restrict: true
+          restrict: true,
+          checkboxAsBoolean : false
         },
         self = this;
 
-      if ( options ) {
-        $.extend( settings, options );
-      }
+      options = $.extend( settings, options );
 
       return this.each(function() {
         $.each( data, function(k, v) {
@@ -357,7 +359,16 @@ var $P = function(options) {
             elt = ( settings.restrict ) ? self.find( selector ) : $( selector );
 
             if ( elt.length == 1 ) {
-              elt.val( ( elt.attr("type") == "checkbox" ) ? [v] : v );
+              if(elt.attr("type") == "checkbox"){
+                if(options.checkboxAsBoolean){
+                  elt.prop('checked', v); 
+                }else{
+                  elt.val( [v] );
+                }
+              }else{
+                elt.val( v ); 
+              }
+              
             } else if ( elt.length > 1 ) {
               // radio
               elt.val([v]);

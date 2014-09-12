@@ -55,16 +55,16 @@ var Module = $.extend(new $M(), {
 				Module.map.remove();
 			}
 			var map = Module.map = L.map('map',{
-				maxZoom: fileinfo.maxlevel,
-			    minZoom: fileinfo.minlevel,
+				minZoom: fileinfo.minlevel,
 			    maxBounds: bounds,
-			    crs: L.CRS.Simple,
-			    fullscreenControl: true
-			}).setView( [0, 0], fileinfo.minlevel);	
+			    crs: L.CRS.Simple
+			}).fitBounds( bounds );	//打开图片时，页面处于图片中间
 
 			var la = state.layer || '';
 			Module.tileLayer = L.tileLayer( _cdn('/cagstore/'+ state.uuid +'/{z}' + la + '/{x}_{y}.jpg'), {	
-			   bounds: bounds
+			   bounds: bounds,
+			   maxZoom: fileinfo.maxlevel,
+			   detectRetina: true
 			}).addTo(map);
 
 			if(Module.isWebview(state)){
@@ -314,10 +314,12 @@ var Module = $.extend(new $M(), {
 			bounds = comment.area.bounds,
 			width = bounds[2] -  bounds[0],
 			height = bounds[3] - bounds[1],
-			x = bounds[0],
-			y = bounds[1],
+			x = Math.min( Math.max(bounds[0], 0), fileinfo.size.width - width),
+			y = Math.min( Math.max(bounds[1], 0), fileinfo.size.height - height),
 			paintingId = fileinfo._id,
-			url = "http://supperdetailpainter.u.qiniudn.com/cagstore/"+ paintingId +"/temp_" + zoom + "_0.jpg?imageMogr2/crop/!"
+			snapindex = Math.floor(x / 30000),
+			x = x - snapindex * 30000,
+			url = "http://supperdetailpainter.u.qiniudn.com/cagstore/"+ paintingId +"/temp_" + zoom + "_" + snapindex + ".jpg?imageMogr2/crop/!"
 				+ width +"x"+ height + "a"+ x +"a"+y;
 
 		return tmpl('commentTmpl', {

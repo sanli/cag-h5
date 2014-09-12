@@ -10,7 +10,7 @@ body {
 	color: #454545;
 	font-size: 13px;
 	text-decoration: none;
-	padding-top: 100px;
+	padding-top: 50px;
 }
 
 html,body {
@@ -400,7 +400,7 @@ img.weibo_logo {
 	display: none;
 }
 
-.action-ctl.show {
+.action-ctl.showctl {
 	display: block;
 }
 
@@ -414,7 +414,7 @@ a.add-cellitem, a.save-cellitem{
 }
 
 .table th, .table td{
-	white-space: nowrap
+	/*white-space: nowrap*/
 }
 
 .table .active{
