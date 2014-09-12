@@ -2,15 +2,82 @@
 var userdb = require('../data/userdb.js')
 	, getreq = require('../sharepage').getreq
 	, rt = require('../sharepage').rt
-	, _ResultByState = require('../sharepage')._ResultByState;
+	, _ResultByState = require('../sharepage')._ResultByState
+	, inspect = require('util').inspect
+    , bindurl = require('../sharepage.js').bindurl
+    , getTitle = require('../sharepage.js').getTitle
+    , getUserName = require('../sharepage.js').getUserName
+    , conf = require('../config.js');
 
-USERPAGE = {
-	pageStart : {name:'pageStart', key:'s', optional: true, default:0},
-	pageLength : {name:'pageLength', key:'l', optional: true, default:50},
-	searchKey : {name:'searchKey', key:'k', optional: true},
-	deleteUsers : {name:'deleteUsers', key:'D', optional: false},
-	user : {name: 'user', key:'user', optional: false}
+//LIST用到的参数
+var PAGE = {
+    // 列表页条件,包括页的开始记录数skip，和页面长度limit 
+    page : {name:'page', key:'page', optional: true, default: { skip: 0, limit: 50 }},
+    // 查询条件
+    cond : {name: 'cond', key: 'cond', optional: true, default: {} },
+    // 排序条件
+    sort : {name: 'sort', key: 'sort', optional: true, default: { _id :1 } },
+    // 类型
+    type : {name: 'type', key: 'type', optional: false},
 }
+//导入文件用到的参数
+var IMP = {
+    file : {name: 'file', key: 'file', optional: false},
+}
+//CRUP参数
+var CRUD = {
+    data : {name: 'data', key: 'data', optional: false},
+    _id : {name:'_id', key:'_id', optional: false},
+}
+
+// 注册URL
+exports.bindurl=function(app){
+	// app
+    bindurl(app, '/signin.html', { outType : 'page', needAuth : false }, exports.singinpage);
+    bindurl(app, '/user/signin', exports.signin);
+    bindurl(app, '/user/signout', exports.signout);
+
+    // regular function
+    // bindurl(app, '/user/list', exports.list);
+    // bindurl(app, '/user/retrive', exports.retrive);
+    // bindurl(app, '/user/update', exports.update);
+    // bindurl(app, '/user/delete', exports.delete);
+    // bindurl(app, '/user/count', exports.count);
+    // bindurl(app, '/user/import', exports.import);
+    // bindurl(app, '/user/export', exports.export);
+}
+
+exports.singinpage = function(req, res){
+	console.log(req.body);
+
+	if(req.body.email){
+		//authByData(req.body.email, req.body.password, function(err, user){
+		authenticate(req.body.email, req.body.password, function(err, user){
+			if(user){
+				req.session.user = user;
+				res.redirect('/paintings.html');
+			}else{
+				res.render('signinpage.html', {
+			    	user: getUserName(req),
+			        title: getTitle("登录"),
+			        page : 'signin',
+			        target : conf.target,
+			        stamp : conf.stamp,
+			        err : "登录失败：" + err
+			    });
+			}
+		});
+	}else{
+		res.render('signinpage.html', {
+	    	user: getUserName(req),
+	        title: getTitle("登录"),
+	        page : 'signin',
+	        target : conf.target,
+	        stamp : conf.stamp,
+	        err : ""
+	    });
+	}
+};
 
 exports.signout = function(req, res){
     req.session.destroy(function(){
@@ -61,15 +128,13 @@ exports.fillUserDept = function(condition, req){
 };
 
 var userRole = {
-	lowAdmin : '分公司网优项目管理员', 
-	lowCheck : '分公司网优项目审核人',
-	admin : '省公司网优项目管理员',
-	topCheck : '省公司网优项目审核人'
+	author : '作者',
+	audite : '编辑',
+	admin : '系统管理员',
 }
-var isLowAdmin = exports.isLowAdmin = _RoleChecker('lowAdmin');
-var isLowCheck = exports.isLowCheck = _RoleChecker('lowCheck');
+var isAuthor = exports.isLowAdmin = _RoleChecker('author');
+var isAudite = exports.isLowCheck = _RoleChecker('audite');
 var isAdmin = exports.isAdmin = _RoleChecker('admin');
-var isTopCheck = exports.isTopCheck = _RoleChecker('topCheck');
 function _RoleChecker(role){
 	return function(req){
 		var user = req.session.user ;
@@ -79,7 +144,6 @@ function _RoleChecker(role){
 		return false;
 	}
 }
-
 function ok(msg){ return JSON.stringify({ S:true, M:msg }); }
 function fail(msg){ return JSON.stringify({ S:false, M:msg }); }
 
@@ -98,13 +162,13 @@ function authByData(name, pass, fn){
 
 
 /**
- * 验证用户登录
+ * 使用固定密码，验证用户登录
  */
-function authenticate(name, pass, fn) {
-  console.log('验证用户 %s:%s', name, pass);
+function authenticate(email, pass, fn) {
+  console.log('验证用户 %s:%s', email, pass);
   
   //TODO：查询数据库，得到用户的验证信息
-  var user = users[name];
+  var user = users[email];
   if (!user) return fn(new Error('用户不存在！'));
   
   //TODO: 验证密码,肯能要做Hash
@@ -115,8 +179,7 @@ function authenticate(name, pass, fn) {
 }
 
 var users = { 
-    test : { username : 'test', password: 'test'},
-    sanli: { username : 'sanli', password: 'pass'}
+    'santal.li@gmail.com' : { email : 'santal.li@gmail.com',  username : 'admin', password: 'Learn@Art', role: 'admin' }
 }
 
 

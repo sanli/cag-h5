@@ -13,34 +13,27 @@ var getreq = require('../sharepage').getreq
     , inspect = require('util').inspect
     , bindurl = require('../sharepage.js').bindurl
     , getTitle = require('../sharepage.js').getTitle
-    , getUserName = require('../sharepage.js').getUserName;
+    , getUserName = require('../sharepage.js').getUserName
+    , conf = require('../config.js')
+    // 正常的情况下使用mongodb存储数据
+    , paintdb = require('../data/paintingsdb.js')
+    // 如果mongodb实效，需要放开下面语句，使用基于文件的数据列表
+    //, paintdb = require('../data/cagstore_paintingsdb.js')
+    , extend = require('node.extend');
 
 // ===============  定义模块入口文件 ================
 exports.bindurl=function(app){
-    bindurl(app, '/main.html', { outType : 'page'}, exports.main);
-    bindurl(app, '/img.html', { outType : 'page'}, exports.img);
-    bindurl(app, '/main/list', exports.list);
-    bindurl(app, '/main/count', exports.count);
-};
-
-exports.main = function(req, res){
-    res.render('mainpage.html', {
-        user: getUserName(req),
-        title: getTitle("首页"),
-        page : 'main',
-        target : 'debug',
-        stamp : ''
-    });
-};
-
-exports.img = function(req, res){
-    res.render('imgpage.html', {
-        user: getUserName(req),
-        title: "中华珍宝馆-图片浏览",
-        page : 'main',
-        target : 'debug',
-        stamp : ''
-    });
+    bindurl(app, '/', { outType : 'page', needAuth : false } , exports.main);
+    bindurl(app, '/main.html', { outType : 'page', needAuth : false }, exports.main);
+    bindurl(app, '/img.html', { outType : 'page', needAuth : false }, exports.img);
+    // imglite.html 是精简版本的图片浏览器，只支持部分功能，用于手持设备浏览器，Android, IOS
+    bindurl(app, '/imglite.html', { outType : 'page', needAuth : false }, exports.imglite);
+    bindurl(app, '/message.html', { outType : 'page', needAuth : false }, exports.message);
+    bindurl(app, '/message.json', { outType : 'page', needAuth : false }, exports.messagejson);
+    bindurl(app, '/cagstore/essence.json', { needAuth : false }, exports.essence);
+    bindurl(app, '/cagstore/search.json', { needAuth : false }, exports.search);
+    bindurl(app, '/cagstore/fileinfo.json', { needAuth : false }, exports.fileinfo);
+    bindurl(app, '/cagstore/outline.json', { needAuth : false }, exports.outline);
 };
 
 var PAGE = {
@@ -49,68 +42,136 @@ var PAGE = {
     // 查询条件
     cond : {name: 'cond', key: 'cond', optional: true, default: {} },
     // 排序条件
-    sort : {name: 'sort', key: 'sort', optional: true, default: { wyData1 :1 } }
+    sort : {name: 'sort', key: 'sort', optional: true, default: { wyData1 :1 } },
+    // 图片浏览的UUID
+    uuid : {name: 'uuid', key: 'uuid', optional: true, default: '538054ebab18e5515c68a7eb'},
+    // 视图类型
+    view : {name: 'view', key: 'view', optional: true, default: 'pageview' }
 }
 
-exports.marketnanalysis = function(req, res){
-    getSysconf(function(err, sysconf){
-        console.log(sysconf);
-
-        res.render('marketanalysis.html', {
-            user: getUserName(req),
-            title: getTitle("统计分析-市场营销"),
-            page : 'main',
-            sysconf : sysconf
-        });
+exports.main = function(req, res){
+    res.render('mainpage.html', {
+        user: getUserName(req),
+        title: getTitle("首页"),
+        page : 'main',
+        target : conf.target,
+        stamp : conf.stamp
     });
 };
 
-// 查询对象，并返回列表
-exports.list = function(req, res){
-    var arg = getParam("analysis", req, res, [PAGE.page, PAGE.cond, PAGE.sort]);
+exports.message = function(req, res){
+    res.render('message.html', {
+        user: getUserName(req),
+        title: getTitle("系统消息"),
+        page : 'message',
+        target : conf.target,
+        stamp : conf.stamp
+    });
+};
+
+var message = require('../data/message.js');
+exports.messagejson = function(req, res){
+    writejson(res, message.getMessages());
+};
+
+exports.img = function(req, res){
+    renderImg(req, res, 'imgpage.html');
+};
+
+exports.imglite = function(req, res){
+    renderImg(req, res, 'imglitepage.html');
+};
+
+function renderImg(req, res, templ){
+    var arg = getParam("img", req, res, [ PAGE.uuid, PAGE.view ]);
     if(!arg.passed)
         return;
-    var page = {
-        skip : parseInt(arg.page.skip),
-        limit : parseInt(arg.page.limit),
-    };
-    
-    searchCondExp(arg.cond);
-    // 如果有需要在聚合结果上做的查询,
-    // 需要放到聚合完成后加入到查询条件中
-    var afterCond = {};
-    if(arg.cond.wyData2){
-        afterCond.wyData2 = arg.cond.wyData2;
-        delete arg.cond.wyData2;
-    }
 
-    fillUserDept(arg.cond, req);
-    marketanalysisdb.list(arg.cond, page, arg.sort, function(err, docs){
-        if(err) return rt(false, err.message, res);
-        
-        rt(true, {docs: docs}, res);
-    }, afterCond);
+    res.render(templ, {
+        user: getUserName(req),
+        title: "中华珍宝馆-图片浏览",
+        page : 'main',
+        target : conf.target,
+        stamp : conf.stamp,
+        arg: arg
+    });
+    
+    // 记录访问次数
+    paintdb.incViewCount(arg.uuid, function(err){
+        if(err) console.log(err);
+    })
 }
 
-// 查询对象，并返回列表
-exports.count = function(req, res){
-    var arg = getParam("analysis", req, res, [PAGE.cond]);
+function writejson(res, json){
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader('Cache-Control', 'public, max-age=86400');
+    res.json(json);
+};
+
+// 返回系统推荐的图片，首页初次打开时返回
+exports.essence = function(req, res){
+    //paintdb.queryfile({ active : { $ne : false} , essence : true }
+    // paintdb.queryfile({ active : { $ne : false} }
+    paintdb.queryfile({ active : true , essence : true }
+        , { files : false }
+        , { essenceSort : -1, author : 1 }
+        , function(err, fileinfos){
+            if(err) return rt(false, err.message, res);
+            writejson(res, fileinfos);
+        });
+}
+
+// 查询文件信息列表
+exports.search = function(req, res){
+    var arg = getParam("outline", req, res, [ PAGE.cond ]);
     if(!arg.passed)
         return;
 
     searchCondExp(arg.cond);
-    var afterCond = {};
-    if(arg.cond.wyData2){
-        afterCond.wyData2 = arg.cond.wyData2;
-        delete arg.cond.wyData2;
-    }
+    //var cond = extend({ active : { $ne : false} }, arg.cond );
+    var cond = extend({ active : true }, arg.cond );
+    paintdb.queryfile(cond
+        , { files : false }
+        , { author : 1, commonSort : -1 }
+        , function(err, fileinfos){
+            if(err) return rt(false, err.message, res);
 
-    fillUserDept(arg.cond, req);
-    marketanalysisdb.count(arg.cond, function(err, count){
+           writejson(res, fileinfos);
+        }, true);
+}
+
+// 查询文件信息列表
+exports.fileinfo = function(req, res){
+    var arg = getParam("outline", req, res, [ PAGE.cond ]);
+    if(!arg.passed)
+        return;
+
+    searchCondExp(arg.cond);
+    //var cond = extend({ active : { $ne : false} }, arg.cond );
+    var cond = extend({ active : true }, arg.cond );
+    paintdb.queryfile(cond
+        , { files : false }
+        , { author : 1 }
+        , function(err, fileinfos){
+            if(err) return rt(false, err.message, res);
+
+           writejson(res, fileinfos);
+        });
+}
+
+// 返回作品列表
+exports.outline = function(req, res){
+    var arg = getParam("outline", req, res, [ PAGE.cond ]);
+    if(!arg.passed)
+        return;
+
+    // 查询outline
+    var cond = extend({ active : true }, arg.cond );
+    paintdb.outline( cond , function(err, outline){
         if(err) return rt(false, err.message, res);
-        
-        rt(true, {count: count}, res);
-    },afterCond);
+
+        writejson(res, outline);
+    });
 }
 
 // === 扩展的代码请加在这一行下面，方便以后升级模板的时候合并 ===

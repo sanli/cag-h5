@@ -20,7 +20,9 @@ var paintingsdb = require('../data/paintingsdb.js')
     , searchCondExp = require('../sharepage').searchCondExp
     , inspect = require('util').inspect
     , ObjectID = require('mongodb').ObjectID
-    , bindurl = require('../sharepage.js').bindurl;
+    , bindurl = require('../sharepage.js').bindurl
+    , async = require('async')
+    , conf = require('../config.js');
 
 //LIST用到的参数
 var PAGE = {
@@ -29,18 +31,19 @@ var PAGE = {
     // 查询条件
     cond : {name: 'cond', key: 'cond', optional: true, default: {} },
     // 排序条件
-    sort : {name: 'sort', key: 'sort', optional: true, default: { _id :1 } },
+    sort : {name: 'sort', key: 'sort', optional: true, default: { _id : -1 } },
     // 类型
     type : {name: 'type', key: 'type', optional: false},
 }
 //导入文件用到的参数
 var IMP = {
     file : {name: 'file', key: 'file', optional: false},
+    idlist :{name:'idlist', key: 'idlist', optional: false}
 }
 //CRUP参数
 var CRUD = {
     data : {name: 'data', key: 'data', optional: false},
-    _id : {name:'_id', key:'_id', optional: false},
+    _id : {name:'_id', key:'_id', optional: false}
 }
 
 
@@ -54,15 +57,30 @@ exports.bindurl=function(app){
     bindurl(app, '/paintings/count', exports.count);
     bindurl(app, '/paintings/import', exports.import);
     bindurl(app, '/paintings/export', exports.export);
+    bindurl(app, '/paintings/_activeall', exports.activeall);
     bindurl(app, '/paintings/jump', { method : 'get' }, exports.jump);
 }
 
-// 楼宇页面
 exports.page = function(req, res){
     res.render('paintingspage.html', {
-        title: "内容管理"
+        title: "内容管理",
+        target : conf.target,
+        stamp : conf.stamp
     });
 };
+
+// 一个私有API，用于一次激活所有的paintings
+exports.activeall = function(req, res){
+    paintingsdb.PaintingView.update(
+        {}
+        , { $set: { active : true } }
+        , {multi: true}
+        , function(err, cnt){
+            if(err) return rt(false, err.message, res);
+
+            rt(true, {msg: "激活成功", cnt: cnt}, res);
+        });
+}
 
 // 查询对象，并返回列表
 exports.list = function(req, res){
@@ -78,13 +96,13 @@ exports.list = function(req, res){
     searchCondExp(arg.cond);
     console.log(arg.cond);
     
-    fillUserDept(arg.cond, req);
     paintingsdb.list(arg.type, arg.cond, page, arg.sort, function(err, docs){
         if(err) return rt(false, err.message, res);
         
         rt(true, {docs: docs}, res);
     });
 };
+
 
 // 查询结果集的返回数量
 exports.count = function(req, res){
@@ -93,7 +111,6 @@ exports.count = function(req, res){
         return;
 
     searchCondExp(arg.cond);
-    fillUserDept(arg.cond, req);
     paintingsdb.count(arg.type, arg.cond, function(err, count){
         if(err) return rt(false, err.message, res);
         
@@ -128,7 +145,21 @@ exports.delete = function(req, res){
 
 // 更新对象
 exports.update = function(req, res){
+    var arg = getParam("update paintings", req, res, [CRUD._id, CRUD.data]);
+    if(!arg.passed) return;
 
+    console.log(arg._id);
+
+    var data = arg.data;
+    delete data._id;
+    paintingsdb.update( arg._id , data , function(err, cnt){
+        if(err) {
+            console.log(err);
+            return rt(false, "更新出错:" + err.message, res);
+        }
+        
+        rt(true, { cnt : cnt }, res);
+    });
 }
 
 // 通过短连接跳转到页面
@@ -137,18 +168,49 @@ exports.jump = function(req, res){
 }
 
 //确认导入
+var http = require('http')
 exports.import = function(req, res){
-    var arg = getParam("import paintings file", req, res, [IMP.file, PAGE.type]);
+    var arg = getParam("import paintings file", req, res, [IMP.idlist]);
     if(!arg.passed)
         return;
-    var file = upload.settings.uploadpath + '/' + arg.file ,
-        type = arg.type;
+    
+    var cnt = 0, errcnt = 0;
+    async.eachSeries(arg.idlist, function(id, callback){
+        var target = 'http://supperdetailpainter.u.qiniudn.com' + '/cagstore/' + id + "/meta.json";
+        console.log("get info:%s", target);
+        http.get(target, function(res) {
+            console.log("Got response: " + res.statusCode);
+            var dataarray = [];
+            res.on('data', function (chunk) {
+                dataarray.push(chunk.toString());
+            }).on('end', function(){
+                var json = dataarray.join('');
+                console.log('BODY: ' + json);
 
-    paintingsdb.importCSV(file, type, function(err, cnt){
-        if(err) return rt(false, "导入文件出错:" + err.message, res);
+                var obj = JSON.parse(json);
+                delete obj._id;
+                paintingsdb.update(id, obj, function(err){
+                    if(err) {
+                        console.log("[WRAN]" + err.message);
+                    }else{
+                        console.log("更新成功:" + id);
+                    }
 
-        rt(true, { count: cnt }, res);
-    })
+                    cnt ++ ;
+                    callback();
+                });
+            });
+        }).on('error', function(e) {
+          console.log("Got error: " + e.message);
+          errcnt ++ ;
+          callback(e);
+        });
+    }, function(err){
+        if(err) return rt(false, "导入出错:" + err.message, res);
+        
+        rt(true, { count : cnt , errCount : errcnt }, res);
+    });
+    
 };
 
 //导出楼宇信息
@@ -192,7 +254,6 @@ exports.export = function(req, res){
         return;
 
     searchCondExp(arg.cond);
-    fillUserDept(arg.cond, req);
     paintingsdb.query(arg.type, arg.cond, arg.sort, function(err, docs){
         if(err) return rt(false, err.message, res);
         
