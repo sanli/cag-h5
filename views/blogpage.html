@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="airpub" ng-controller="global">
+  <head ng-controller="meta">
+    <base href="/" />
+    <meta charset="UTF-8">
+    <title ng-bind="title"></title>
+    <meta name="fragment" content="!" />
+    <meta name="description" content="{{description}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- dependencies stylesheets and scripts -->
+    <link rel="stylesheet" href="<%=conf.cdn_url %>/blog/airpub-dependencies.min.css">
+    <script src="<%=conf.cdn_url %>/blog/airpub-dependencies.min.js"></script>
+    <!-- default theme: chill -->
+    <link rel="stylesheet" href="<%=conf.cdn_url %>/bower_components/chill/css/chill.min.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body ng-controller="base" ng-class="state.current.controller">
+    <div ui-view="layout"></div>
+    <script type="text/javascript">
+    var airpubConfigs = {
+      // blog name
+      name: '中华珍宝馆博客',
+      // just a little description
+      description: '为视觉艺术家插上技术的翅膀',
+      // blog uri
+      url: 'http://zhenbao.duapp.com',
+      // blog theme
+      themePath: '<%=conf.cdn_url %>/bower_components',
+      // for images upload
+      upyun: {
+        bucket: 'cagblog',
+        uri: 'http://cagblog.b0.upaiyun.com',
+        endpoint: 'http://v0.api.upyun.com/cagblog/',
+        form_api_secret: 'qWwaoRb11z5EGYOajGNhYlHJoEM='
+      }
+    }
+
+    // for backend service
+    var duoshuoQuery = {
+      short_name: 'zhenbaoblog'
+    };
+    </script>
+    <!-- duoshuo embed js -->
+    <script src="http://static.duoshuo.com/embed.unstable.js"></script> 
+    <!-- airpub angular app -->
+    <script src="<%=conf.cdn_url %>/blog/airpub.min.js"></script>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-50311706-2', 'auto');
+      ga('require', 'displayfeatures');
+      ga('send', 'pageview');
+      
+    </script>
+
+  </body>
+</html>
