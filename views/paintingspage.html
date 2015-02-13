@@ -27,6 +27,11 @@
                       <option value="true">精选</option>
                       <option value="false">非精选</option>
                     </select>
+                    删除
+                    <select name="deleted" class="form-control">
+                      <option value="Ne(true)">未删除</option>
+                      <option value="true">已删除</option>
+                    </select>
                     <input name="queryword" type="text" class="form-control" placeholder="作品，作者名或年代">
                   </div>
                 </form>
@@ -57,14 +62,17 @@
   <thead> 
     <tr>
     <@ 
-    var titles = [ { field: 'view', title: '预览', canSort: true }
-      , { field: 'author',  title: '作者', canSort: false }
-      , { field: 'paintingName', title: '作品名称', canSort: false }
-      , { field: 'age',  title: '年代', canSort: false }
-      , { field: 'updateTime',  title: '修改日期', canSort: false }
-      , { field: 'active',  title: '发布状态', canSort: false }
-      , { field: 'essence',  title: '精选推荐', canSort: false }
-      , { field: 'essence',  title: '赏析页面', canSort: false }];
+    var titles = [ { field: 'view', title: '预览', canSort: false }
+      , { field: 'author',  title: '作者', canSort: true }
+      , { field: 'paintingName', title: '作品名称', canSort: true }
+      , { field: 'age',  title: '年代', canSort: true }
+      , { field: 'updateTime',  title: '修改日期', canSort: true }
+      , { field: 'essenceSort',  title: '精选顺序', canSort: true }
+      , { field: 'fileSize',  title: '文件大小', canSort: true }
+      , { field: 'active',  title: '发布状态', canSort: true }
+      , { field: 'essence',  title: '精选推荐', canSort: true }
+      , { field: 'essence',  title: '赏析页面', canSort: true }
+      , { field: 'viewCnt',  title: '浏览量', canSort: true }];
 
     for(i = 0 ; i<= titles.length -1 ; i++){
       var title = titles[i];
@@ -96,10 +104,13 @@
       <td><a href="<@=link @>" target="mapwindow"><@=cell.paintingName @><i class="icon-share-alt"/></a></td>
       <td><@=cell.age @></td>
       <td><@=cell.updateTime.replace('T', '<br>') @></td>
+      <td><@=cell.essenceSort @></td>
+      <td><@=cell.fileSize @></td>
       <td><@=cell.active ? '<span class="label label-info">是</span>' : '<span class="label label-warning">否</span>' @></td>
       <td><@=cell.essence ? '<span class="label label-info">是</span>' : '<span class="label label-warning">否</span>' @></td>
       <td><@=cell.descUrl ? '<a href="'+ cell.descUrl +'">跳转</a>' : '<span class="label label-warning">无</span>'   @></td>
-      <td class="action-ctl"><a class="action action-edit">修改<i class="icon-edit"/></a>|<span class="action action-remove">删除<i class="icon-remove"/></span></td></tr>
+      <td><@=cell.viewCnt @></td>
+      <td class="action-ctl"><a class="action action-edit">修改<i class="icon-edit"/></a>|<a class="action action-remove">删除<i class="icon-remove"/></span></td></tr>
    <@ } @>
   </tbody> 
     </table>
@@ -160,11 +171,41 @@
     </div><!-- /.modal-dialog -->
   </div><!-- 导入信息对话框 -->
 
+  <!-- 删除对话框 -->
+  <div id="deleteDlg" class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">删除这张图</h4>
+        </div>
+        <div class="modal-body">
+          <form id="module-delete-form" class="form-horizontal" role="form">
+            <div class="form-group col-sm-12">
+              <label class="col-sm-2 control-label">删除原因</label>
+              <div class="col-sm-10">
+                <select name="deleteReason" class="form-control" required>
+                  <option value=""></option>
+                  <option value="已经有更高质量的图片">已经有更高质量的图片</option>
+                  <option value="图片质量差">图片质量差</option>
+                  <option value="低质量伪作">低质量伪作</option>
+                </select>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary">确认删除</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- 导入信息对话框 -->
 
   <!-- 珍宝编辑修改对话框 -->
   <div id="moduleDlg" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     
-    <div class="modal-dialog">
+    <div class="modal-dialog" style="width: 960px;">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -174,86 +215,123 @@
         <ul class="nav nav-tabs" id="buildingNavtab">
             <li class="active"><a href="#b1" data-toggle="tab">基本信息</a></li>
         </ul>
-      <div style="padding: 10px;">
+      <div class="container-fluid" style="padding: 10px;">
         <form id="module-form" class="form-horizontal" role="form">
-          <div class="form-group">
-            <label class="col-sm-2 control-label">作品名称</label>
-            <div class="col-sm-10">
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label">作品名称</label>
+            <div class="col-sm-8">
               <input type="text" name="paintingName" class="form-control col-sm-6">
             </div>
           </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">描述</label>
-            <div class="col-sm-10">
-              <input type="text" name="desc" class="form-control col-sm-6">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">赏析页面</label>
-            <div class="col-sm-10">
-              <input type="text" name="descUrl" class="form-control col-sm-6">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">发布状态</label>
-            <div class="col-sm-10">
-              <label class="checkbox"><input name="active" type="checkbox" value="是">发布</label>
-              <label class="checkbox"><input name="essence" type="checkbox" value="是">精选</label>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label">精选顺序(大的在前)</label>
-            <div class="col-sm-8">
-              <input type="text" name="essenceSort" class="form-control col-sm-6">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label">普通顺序（大的在前）</label>
-            <div class="col-sm-8">
-              <input type="text" name="commonSort" class="form-control col-sm-6">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label">推荐词</label>
-            <div class="col-sm-10">
-              <input type="text" name="essenceComment" class="form-control col-sm-6">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label">作者</label>
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label">作者</label>
             <div class="col-sm-8">
               <input type="text" name="author" class="form-control col-sm-6">
             </div>
           </div>
-
-          <div class="form-group">
-            <label class="col-sm-2 control-label">年代</label>
+          <div class="form-group col-sm-12">
+            <label class="col-sm-2 control-label" data-toggle="popover" title="描述" data-trigger="click" data-content="图片的基本描述，200字以内，显示在图片缩略图的下方">描述 <span class="glyphicon glyphicon-info-sign"></span></label>
+            <div class="col-sm-10">
+              <textarea name="desc" class="form-control col-sm-6"></textarea>
+            </div>
+          </div>
+          <div class="form-group col-sm-12">
+            <label class="col-sm-2 control-label" data-toggle="popover" title="推荐词" data-trigger="click"  data-content="当图片位于精选推荐区的时候，显示这段文字">推荐词 <span class="glyphicon glyphicon-info-sign"></span></label>
+            <div class="col-sm-10">
+              <textarea name="essenceComment" class="form-control col-sm-6"></textarea>
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label" data-toggle="popover" title="图片资源级别" data-trigger="click"  data-content="图片资源的质量，不是画作的艺术质量，请根据图片实际情况选择">图片资源级别<span class="glyphicon glyphicon-info-sign"></span></label>
+            <div class="col-sm-8">
+              <select name="resourceLevel" class="form-control" required>
+                <option value="高清原拍">高清原拍</option>
+                <option value="高清转扫">高清转扫</option>
+                <option value="中清原拍">中清原拍</option>
+                <option value="中清转扫">中清转扫</option>
+                <option value="聊胜于无">聊胜于无</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label" data-toggle="popover" title="精选顺序" data-trigger="click"  data-content="图片在精选区中的排序位置">精选顺序<br>(大的在前) <span class="glyphicon glyphicon-info-sign"></span></label>
+            <div class="col-sm-8">
+              <input type="text" name="essenceSort" class="form-control col-sm-6">
+            </div>
+          </div>
+          <!-- <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label">普通顺序<br>(大的在前) <span class="glyphicon glyphicon-info-sign"></span></label>
+            <div class="col-sm-8">
+              <input type="text" name="commonSort" class="form-control col-sm-6">
+            </div>
+          </div> -->
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label" data-toggle="popover" title="发布状态" data-trigger="click"  data-content="当前图片是否发布，是否归入精选馆">发布状态 <span class="glyphicon glyphicon-info-sign"></span></label>
+            <div class="col-sm-8">
+              <label class="checkbox"><input name="active" type="checkbox" value="是">发布</label>
+              <label class="checkbox"><input name="essence" type="checkbox" value="是">精选</label>
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label">年代</label>
             <div class="col-sm-8">
               <input type="text" name="age" class="form-control col-sm-6">
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="col-sm-2 control-label">文件大小</label>
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label">文件大小</label>
             <div class="col-sm-8">
               <input type="text" name="fileSize" class="form-control col-sm-6">
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="col-sm-2 control-label">像素数量</label>
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label">像素数量</label>
             <div class="col-sm-8">
               <input type="text" name="pixels" class="form-control col-sm-6">
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="col-sm-2 control-label">尺寸</label>
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label">尺寸</label>
             <div class="col-sm-8">
               <input type="text" name="areaSize" class="form-control col-sm-6">
+            </div>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label">浏览量</label>
+            <div class="col-sm-8">
+              <input type="text" name="viewCnt" class="form-control col-sm-6">
+            </div>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label">离线包下载链接</label>
+            <div class="col-sm-8">
+              <input type="text" name="offlineUrl" class="form-control col-sm-6">
+            </div>
+          </div>
+
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label">原始图片下载链接</label>
+            <div class="col-sm-8">
+              <input type="text" name="originalUrl" class="form-control col-sm-6">
+            </div>
+          </div>
+
+          <div class="form-group col-sm-12">
+            <label class="col-sm-2 control-label" data-toggle="popover" title="赏析页面" data-trigger="click"  data-content="跳转到外部的赏析页面，一般是mygeda.duapp.com上的博客">赏析页面 <span class="glyphicon glyphicon-info-sign"></span></label>
+            <div class="col-sm-10">
+              <input type="text" name="descUrl" class="form-control col-sm-6">
+            </div>
+          </div>
+          
+          <div class="form-group col-sm-12">
+            <label class="col-sm-2 control-label">备注<span class="glyphicon glyphicon-info-sign"></span></label>
+            <div class="col-sm-10">
+              <input type="text" name="comment" class="form-control col-sm-6">
             </div>
           </div>
         </form>
