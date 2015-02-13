@@ -4,6 +4,7 @@
  * 开发状态配置文件
  */
 var debug_config = {
+	port : 8080,
 	// 当前系统运行级别 debug / release
 	target : 'debug',
 	// 发布版时间戳，用于生成今天文件的文件名
@@ -13,20 +14,19 @@ var debug_config = {
 	mongoURL : "mongodb://localhost/cag",
 	// 跳过登录检测
 	skipSignin : true,
-
-	// Redis服务是否需要登录
-	redisSigin : false,
-	redisUsername : '',          // 用户名（API KEY）
-	redisPassword : '',  // 密码（Secret KEY）
-	redisHost : 'localhost',
-	redisPort : 80,
-	redisName : ''               // 数据库名
+	// CDN服务器的URL
+	cdn_url : '',
+	// 分析服务地址，百度或者是google
+	anailsysService : 'baidu', //  'google' 
+	// 如果配置了redirect，将会把所有的访问重定向到新服务
+	//redirect : "http://ltfc.net"
 };
 
 /**
  * 发布状态配置文件
  */
 var release_config = {
+	port : 8080,
 	// 当前系统运行级别 debug / release
 	target : 'release',
 	// 发布版时间戳，用于生成今天文件的文件名
@@ -36,14 +36,12 @@ var release_config = {
 	mongoURL : "mongodb://localhost/cag",
 	// 是否跳过登录检测
 	skipSignin : false ,
-
-	// Redis服务是否需要登录
-	redisSigin : true,
-	redisUsername : 'qk1WZRSnv28vLDyLNQNMPVwQ',          // 用户名（API KEY）
-	redisPassword : 'iY4hPnmUiIC78zcVRLHdaMitOTj0r310',  // 密码（Secret KEY）
-	redisHost : 'localhost',
-	redisPort : 80,
-	redisName : 'hXkZBlmreRzWfYWWKdHP'               // 数据库名
+	// CDN服务器的URL
+	cdn_url : 'http://cag.share-net.cn',
+	// 分析服务地址
+	anailsysService : 'baidu', //  'google' 
+	// 如果配置了redirect，将会把所有的访问重定向到新服务
+	//redirect : "http://ltfc.net"
 }
 module.exports = debug_config;
 // module.exports = release_config;

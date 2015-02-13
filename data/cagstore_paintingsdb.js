@@ -67,6 +67,7 @@ function preprocess(cagstore){
 			author = painting.author,
 			paintingName = painting.name;
 
+		if(painting.author === '李晓明') return;
 		outline.putPainting(painting);
 		//创建分类视图
 		existOrAdd(ages, age, function(){ return [painting];}, function( paintings ){ 
@@ -102,7 +103,8 @@ exports.queryfile = function(query, project, sort, fn, nocache){
     }else if(query['essence']){
 		fn(null, [].concat(authors['王羲之']).concat(authors['仇英']));
     }else{
-    	fn(new Error("当前运行在简单模式下，无法实现该查询"));
+    	//fn(new Error("当前运行在简单模式下，无法实现该查询"));
+    	fn(null, [].concat(authors['王羲之']).concat(authors['仇英']));
     }
 }
 
@@ -111,6 +113,11 @@ exports.outline = function(query, fn){
     return fn(null, outline.json());
 }
 
+
+//按照ID查询对象，Do nothing
+exports.findById = function(_id, fn){
+  fn(null, {});
+}
 
 // ============================= 下面是单元测试用的代码 ================================
 //var isme = require('./sharepage.js').isme;

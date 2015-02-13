@@ -1,18 +1,18 @@
 {
   "name": "中华珍宝馆",
-  "description": "收集最能代表中华文化的书画作品，供您深入欣赏和学习。图片清晰度超过实物，最大单个文件超过1G，放到最大可以铺满整个房间。 虽然大却依然快速打开，平滑缩放。",
+  "description": "中华珍宝馆展现超清晰度的中华文化历代珍贵书画作品，大部分藏品为高清图，与原作等大。非常适合书画鉴赏爱好者日常欣赏，和学生及学者学习和临摹书法与画作。珍宝馆收集了从晋代到清末的历代书画精品，并且在不断丰富中，每周推出一批最新收集的藏品。",
   "manifest_version": 2,
   "version": "1.1",
   "app": {
     "urls": [
-      "http://zhengbao.duapp.com/"
+      "http://zhenbao.duapp.com/"
     ],
     "launch": {
-      "web_url": "http://zhengbao.duapp.com"
+      "web_url": "http://zhenbao.duapp.com"
     }
   },
   "icons": {
-    "128": "icon_128.png"
+    "128": "cag_icon_128.png"
   },
   "permissions": [
     "unlimitedStorage"

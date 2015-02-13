@@ -11,7 +11,6 @@ var inspect = require('util').inspect
   , Helper = require('../mongo.js').Helper
   , extend = require('node.extend')
   , csv = require('csv')
-  , paintdb = require('./paintdb.js') 
   , cache = require('memory-cache');
 
 // === 基本数据结构定义，按照实际需求修改 ===

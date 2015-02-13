@@ -6,7 +6,7 @@ var PG = new $P({
 		// 如果有值，就滚动到对应的位置
 		current : '',
 		// 查询条件， query状态下有效
-		cond: { },
+		cond: {},
 		href : ''
 	},
 
@@ -38,96 +38,104 @@ var Module = $.extend(new $M(), {
 
 	// 根据页面状态设置控件状态
 	applyPageState : function(state){
-		Module.updateStatusBar(state);
-
 		if(PG.outline){
-			$('#topbar li').removeClass('active') ; 
-	    	if(state.type === 'essence'){
-	    		$('#essence').parents('li').addClass('active');
-			}else if(state.type === 'list'){
-				$('#list').parents('li').addClass('active');
-			}	
-			state.href && Module.scrollTo(state.href);
+			$('#topbar li').removeClass('active'); 
+			$('#' + state.type + '-zone').parents('li').addClass('active');
+	  		//state.href && Module.scrollTo(state.href);
     	}
 	},
 
     // 根据页面状态，载入数据
     loadPageData: function(state, page){
-    	if(!PG.essence){
-    		$('div.main-container').spin("large");
-	    	$.getJSON("/cagstore/essence.json", function(data){
-	    		PG.essence = data;
-	    		if(data.R === 'N')
-	    			return $.alert('.main-container', '读取精选推荐数据错误，情稍后再试', 3000);
-
-		    	var out = tmpl('paintinglistTmpl', {
-					cagstore : data,
-					opacity : false,
-					cdn: _cdn(),
-					isMobile : $.isMobile()
-				});
-				$('#paintingListRow').append(out);
-
-	    		$("img.lazy").lazyload({
-	    			container : '#paintingListRow',
-				    effect : "fadeIn",
-				    skip_invisible : false
-				});	
-				
-				$('div.main-container').spin(false);
-				Module.updateStatusBar(PG.state);
-	    	});
+    	var stateType = state.type;
+    	// 载入精选
+    	if(stateType === 'essence'){
+    		$('#outline-panel').collapse('hide');
+			Module.loadEssence();
+    	}else if(stateType === 'age'){
+    		if(!state.author){
+    			// 没有指定作者，就展开藏品目录
+    			$('#outline-panel').collapse('show');
+    			$('#paintingListRow').empty();
+    		}else{
+				// 载入指定作者
+				$('#outline-panel').collapse('hide');
+				Module.loadAuthor(state.age, state.author, $('#paintingListRow'));
+    		}
+    	}else if(stateType === 'modern'){
+    		$('#outline-panel').collapse('hide');
+    		Module.loadAuthor('当代', state.author, $('#paintingListRow'))
+    	}else if(stateType === 'search'){
+    		$('#outline-panel').collapse('hide');
     	}
     	
-    	if(!PG.outline){
+    	// 载入大纲
+    	Module.loadOutline();
+    },
+
+    // 按照查询条件载入数据
+    loadEssence : function(url, cond, opt){
+    	$('#paintinglist').spin("large");
+
+    	$.getJSON("/cagstore/essence.json", function(data){
+    		PG.essence = data;
+    		if(data.R === 'N')
+    			return $.alert('.main-container', '读取精选推荐数据错误，情稍后再试', 3000);
+
+	    	var out = tmpl('paintinglistTmpl', {
+	    		label : '精选馆',
+				cagstore : data,
+				opacity : false,
+				cdn: _cdn(),
+				isMobile : $.isMobile()
+			});
+			$('#paintingListRow').empty().append(out);
+			$('#paintingListRow a.download').popover();
+
+    		$("img.lazy").lazyload({
+    			container : $('#paintingListRow'),
+			    effect : "fadeIn",
+			    skip_invisible : false
+			});	
+			
+			$('#paintinglist').spin(false);
+    	});
+    },
+
+    loadOutline : function(){
+		if(!PG.outline){
 	    	$.getJSON("/cagstore/outline.json", function(data){
 	    		PG.outline = data;
 	    		if(data.R === 'N')
 	    			return $.alert('.main-container', '读取作品大纲错误，请稍后再试', 3000);
 
-	    		Module.initStatusBar();
-	  			var out = tmpl('outlineTmpl', {
-	  				outline : data
-	  			});
-	  			$('#paintinglist').append(out);
-	  			$("div.loading-box").lazyload({
-				    effect : "fadeIn",
-				    skip_invisible : false,
-				    appear : function(idx, settings){
-				    	var $this = $(this),
-				    		age = $this.data('age'),
-				    		author = $this.data('author');
-
-				    	Module.loadAuthor(author, $this);
-				    }
-				});
-
-				Module.applyPageState(PG.state);
+	    		Module.initOutlineDlg();
 	    	});
     	}
     },
 
     // 载入某个作者的所有作品
-    loadAuthor: function(author, $div){
-    	$div.spin();
-    	$.getJSON("/cagstore/fileinfo.json", { cond: { author : author } }
+    loadAuthor: function(age, author, $div){
+    	$('#paintinglist').spin("large");
+    	$.getJSON("/cagstore/fileinfo.json", { cond: { age : age, author : author } }
     		,function(data){
 	    		PG.cags = (PG.cags ? PG.cags.concat(data) : data) ;
 	    		if(data.R === 'N')
 	    			return $.alert('.main-container', '读取作者［' + author + '］数据错误，情稍后再试', 3000);
 
 		    	var out = tmpl('paintinglistTmpl', {
+		    		label : age + ( author ? ( ' - ' +  author) : "" ),
 					cagstore : data,
 					opacity : true,
 					cdn: _cdn(),
 					isMobile : $.isMobile()
 				});
-				
+
 				var outdiv = $(out);
-				outdiv.replaceAll($div)
+				$div.empty().append(outdiv)
 					.find("img.lazy")
 					.lazyload({
-						container : "#author-" + author + "-list",
+						container : $div,
 					    effect : "fadeIn",
 					    skip_invisible : false,
 					    appear : function(){
@@ -136,8 +144,7 @@ var Module = $.extend(new $M(), {
 					});
 
 				Module.loading = false;
-				$div.spin(false);
-				Module.updateStatusBar(PG.state);
+				$('#paintinglist').spin(false);
 	    	});	
     },
 
@@ -158,6 +165,7 @@ var Module = $.extend(new $M(), {
 	    		}
 
 	    		var out = tmpl('paintinglistTmpl', {
+	    			label : "查询结果",
 					cagstore : data,
 					opacity : true,
 					cdn : _cdn(),
@@ -177,46 +185,52 @@ var Module = $.extend(new $M(), {
 
 				Module.loading = false;
 				$div.spin(false);
-				Module.updateStatusBar(PG.state);
 	    	});	
     },
 
-    initStatusBar : function(){
-    	var outline = PG.outline, 
-    		ages = [], authors = [], paintings = [];
+    // init outline dialog
+    initOutlineDlg : function(){
+    	var out = tmpl('outlineDlgTmpl', {
+			outline : PG.outline
+		});
+		$('#outline-dlg').append(out);
 
-    	$.each(outline, function( idx, age){
-    		ages.push(age._id);
-    		authors = authors.concat($.map(age.authors, function(author){
-    			paintings = paintings.concat(author.paintings);
-    			return author.name;
-    		}));
-    	});
-    	PG.ages = ages;
-    	PG.authors = authors;
-    	PG.paintings = paintings;
+		var navOut = tmpl('outlineNavTmpl', {
+			outline : PG.outline
+		});
+		$('#outline-navi').append(navOut);
+		$('#outline-navi a.change-view').click(function(e){
+			// 切换到对应的年代，并滚动到位置
+			e.preventDefault();
+			var targetage = $(e.target).closest('a').data('target'),
+				targethref = $('a[data-age=' + targetage + ']');
 
-    	var ageItems = $.map(ages, function(age){
-    		return '<li role="presentation"><a href="#type=list&href=age-' + age + '" data-target="#age-' + age + '">' + age + '</a></li>';
-    	});
-    	$('#statusAge').append(ageItems.join(''));
+			$('#outline-panel div.panel-body')
+				.animate({ 
+					scrollTop: targethref.offset().top - 90 
+				}, 300
+				, function(){});
+		});
+		$('#outline-panel a.scroll-view').click(function(e){
+			e.preventDefault();
+			var targetage = $(e.target).closest('a').data('target');
+			if(targetage === "top"){
+				var scrollto  = 0;
+			}else{
+				var targethref = $('a[data-age=' + targetage + ']'),
+					scrollto  = targethref.offset().top - 90 ;	
+			}
+			
+			
+			
+			var targetage = $(e.target).closest('a').data('target'),
+				targethref = $('a[data-age=' + targetage + ']');
 
-    	var authorItems = $.map(authors, function(author){
-    		return '<li class="col-sm-3"><a href="#type=list&href=author-' + author + '" data-target="#author-' + author + '">' + author + '</a></li>'
-    	});
-    	$('#statusAuthor').append(authorItems.join(''));	
-    },
-
-    // 更新状态条
-    updateStatusBar : function(state){
-    	if(state.type === 'essence'){
-    		$('#statusTitle').empty().append('精选推荐'+ (PG.essence ? ' <span class="label label-default">' + PG.essence.length + '幅</span>' : ''));
-    	}else if(state.type === 'list'){
-    		$('#statusTitle').empty().append('全部浏览'+ (PG.paintings ? ' <span class="label label-default">' + PG.paintings.length + '幅</span>' : ''));
-    	}else if(state.type === 'search'){
-    		$('#statusTitle').empty().append('查询结果'+ (PG.search ? ' <span class="label label-default">' + PG.search.length + '幅</span>' : ''));
-    	}
-    	$('body').scrollspy('refresh');
+			$('#outline-panel div.panel-body')
+				.animate({ scrollTop: scrollto }
+					, 300
+					, function(){});
+		});
     },
 
     scrollTo : function(href){
@@ -224,7 +238,7 @@ var Module = $.extend(new $M(), {
      	// $("body").animate({ scrollTop: $('#' + href).offset().top }, 300, function(){
 		// 	console.log("set PG.scrolling = false");
 		// });
-		 $("body").scrollTop( $('#' + href).offset().top );
+		$("body").scrollTop( $('#' + href).offset().top - 80 );
     },
 
 	bind : function(){
@@ -236,7 +250,7 @@ var Module = $.extend(new $M(), {
 				return $('.searchbox').css('display','none');
 			}else{
 				$('.searchbox').css('display','');
-				Module.loadSearch(cond, $('#searchListRow'));
+				Module.loadSearch(cond, $('#paintingListRow'));
 				PG.pushState({ type : 'search', href : 'searchHref', key: cond.key});
 			};
 			event.preventDefault();	
@@ -245,7 +259,22 @@ var Module = $.extend(new $M(), {
 		$("img.lazy").lazyload({
 			effect : "fadeIn",
 		    skip_invisible : false
-		});	
+		});
+		// 点击弹出评论对话框
+		$("#recent-comment").on('click', 'a', function(e){
+			var targetUrl = $(e.target).attr('href');
+			if(/main.html#comments$/.test(targetUrl)){
+				$('#comment').modal();
+				e.preventDefault();
+			}
+		});
+
+		//在手机模式下自动关闭菜单
+		$('#topbar a.change-view').click(function(){
+			if($("#topbar").hasClass('in')){
+				$("#topbar").collapse('toggle');
+			}
+		});
 	},
 
 	activate : function( $painting ){

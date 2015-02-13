@@ -179,7 +179,8 @@ function authenticate(email, pass, fn) {
 }
 
 var users = { 
-    'santal.li@gmail.com' : { email : 'santal.li@gmail.com',  username : 'admin', password: 'Learn@Art', role: 'admin' }
+    'santal.li@gmail.com' : { email : 'santal.li@gmail.com',  username : 'admin', password: 'Learn@Art', role: 'admin' },
+    '514353009@qq.com' : { email : '514353009@qq.com',  username : '善卷溪隐', password: '514353009Pass', role: 'admin' }
 }
 
 

@@ -10,13 +10,14 @@ var express = require('express')
   , Data = require('./mongo.js')
   , sharepage = require('./sharepage')
   , logger = require('tracer').console()
-  , inspect = require('util').inspect;
+  , inspect = require('util').inspect
+  , conf = require('./config.js');
 
 var app = express();
 
 app.configure(function(){
   // 百度引擎使用18080为webapp端口
-  app.set('port', process.env.PORT || 18080);
+  app.set('port', process.env.PORT || conf.port );
   app.engine('.html', require('ejs').__express);
   app.set('views', __dirname + '/views');
   app.use(express.favicon(__dirname + '/public/favicon.ico'));

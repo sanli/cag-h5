@@ -43,6 +43,7 @@ function apiRestrict(req, res, next){
  * opt.needAuth : 是否需要登录才能访问这个URL, 取值：true, false, default is true
  * opt.outType : 访问类型，是输出页面内容，还是一个JSON API，'page', 'api' , default is 'page' 
  */
+var conf = require('./config.js');
 function bindurl(app, url, opt, fn){
     if(typeof(opt) === 'function'){
         fn = opt ; opt = {} ;
@@ -50,6 +51,14 @@ function bindurl(app, url, opt, fn){
     opt = extend({  method : 'all',
                     needAuth : true,
                     outType : 'api' } , opt);
+
+    // 如果需要重定向，则所有的请求都定向到新站点
+    if(conf.redirect){
+    	app[opt.method](url, function(req, res){
+    		console.log("req.originalUrl=%s",req.originalUrl);
+        	return res.redirect(301, conf.redirect + req.originalUrl);
+    	}, fn);
+    }
 
   	if(opt.needAuth){
 	  	var restrictfn = (opt.outType === 'api' ? apiRestrict : restrict );
@@ -264,6 +273,15 @@ function searchCondExp(cond, opt){
 	    			cond[condName] = v ;
 	    		}else{
 	    			cond[condName] = values[1];
+	    		}
+	    		break;
+
+	    	case 'Ne' :
+				var v = parseInt(values[1]);
+	    		if(!isNaN(v)){
+	    			cond[condName] = { $ne : v } ;
+	    		}else{
+	    			cond[condName] = { $ne : values[1] };
 	    		}
 	    		break;
 

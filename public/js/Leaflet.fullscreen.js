@@ -2,7 +2,7 @@ L.Control.Fullscreen = L.Control.extend({
     options: {
         position: 'topleft',
         title: {
-            false: '全屏显示当前画面，隔绝一切干扰，专心欣赏',
+            false: '全屏显示当前画面',
             true: '退出全屏'
         }
     },

@@ -12,14 +12,12 @@
 if( target === 'release' ){ %>
     <!-- Bootstrap core CSS -->
     <link href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://supperdetailpainter.u.qiniudn.com/css/main_<%=stamp %>_min.css" rel="stylesheet">
+    <link href="http://cag.share-net.cn/css/main_<%=stamp %>_min.css" rel="stylesheet">
 <% } else { %>
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/main.css" rel="stylesheet">
 <% } %>
-    <script type="text/javascript" name="baidu-tc-cerfication" src="http://apps.bdimg.com/cloudaapi/lightapp.js#69be2d7ed94da5cca8d8297979cade1c"></script>
-    <script type="text/javascript">window.bd && bd._qdc && bd._qdc.init({app_id: 'b1e0df0e367ed60e543bda2f'});</script>
   </head>
   <body>
 
@@ -36,67 +34,34 @@ if( target === 'release' ){ %>
         </div>
         <div id="topbar" class="navbar-collapse collapse top-bar">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#type=essence&href=essenceHref" id="essence" role="button">精选推荐</a></li>
-            <li><a href="#type=modern&href=age-当代" id="modern" role="button">当代馆</a></li>
-            <li><a href="#type=list&href=age-唐" id="list" role="button">按年代浏览</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">年代 <b class="caret"></b></a>
-              <ul id="statusAge" class="dropdown-menu">
-                <li role="presentation"><a href="#age-" data-toggle="modal" data-target="#share"></a></li>
-              </ul>
-            </li>
+            <li class="active"><a href="#type=essence" id="essence-zone" role="button" class="change-view">精选馆</a></li>
+            <li><a href="#type=age" id="age-zone" role="button" class="change-view">历代馆</a></li>
+            <li><a href="#type=modern" id="modern-zone" role="button" class="change-view">当代馆</a></li>
           </ul>
            <form id="searchForm" class="navbar-form navbar-left" role="search">
             <div class="form-group">
               <input type="text" class="form-control" name="key" placeholder="输入人名或作品名查询">
             </div>
-          </form>
-          <ul class="nav navbar-nav navbar-left">
-            <li>
-              <a href="#" id="search" role="button" class="glyphicon glyphicon-search"></a>
-            </li>
-          </ul>
+           </form>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="message.html" data-toggle="modal" data-target="#message">新藏品公告</a></li>
-            <li><a href="mobile.html" data-toggle="modal" data-target="#mobile"><span class="glyphicon glyphicon-phone"></span>手机和平板</a></li>
-            <li><a href="http://mygeda.duapp.com" target="_blank">博客</a></li>
-            <li><a href="about.html" data-toggle="modal" data-target="#about">关于</a></li>
+            <li class="active">
+              <a href="#comment" data-toggle="modal" data-target="#comment"><span class="glyphicon glyphicon-comment"></span>来宾留言册</a>
+            </li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">交流QQ|微博 <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#"><wb:follow-button uid="2258697062" type="red_2" width="136" height="24" ></wb:follow-button></a></li>
-                <li><a href="http://weibo.com/u/2258697062?s=6uyXnP" target="_blank"><img border="0" src="http://service.t.sina.com.cn/widget/qmd/2258697062/f8f35954/5.png"/></a></li>
-                <li><a href="#"><wb:share-button appkey="2n4fF0" addition="simple" type="button" ralateUid="2258697062" default_text="这个网站上有不少高清书画图片，能放大到实物原始大小，还不错" pic="http%3A%2F%2Fsupperdetailpainter.u.qiniudn.com%2Fcagstore%2F53c89d01f9725cbf5ec9c8bc%2Ftb.jpg||http%3A%2F%2Fsupperdetailpainter.u.qiniudn.com%2Fcagstore%2F5387c5d0e481277fd9067e34%2Ftb.jpg"></wb:share-button></a></li>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">获得图片和通知<span class="caret"></span></a>
+              <ul class="dropdown-menu" style="width: 220px;padding-left: 10px;" role="menu">
+                <li> 加入QQ群，获得图片原文件<a class="openview" href="http://shang.qq.com/wpa/qunwpa?idkey=38e25becef5180abf890ea848732c8773a8eb65d8e7ca28d36f5e1e45c9f495a"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="中华珍宝馆" title="中华珍宝馆"></a></li>
                 <li class="divider"></li>
-                <li><a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=38e25becef5180abf890ea848732c8773a8eb65d8e7ca28d36f5e1e45c9f495a"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="中华珍宝馆" title="中华珍宝馆"></a></li>
-                
-                <!-- <li><a href="#">Something else here</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Separated link</a></li>
-                <li class="divider"></li>
-                -->
+                <li> 关注官方微博，获得新图通知<a href="#"><wb:follow-button uid="2258697062" type="red_2" width="136" height="24" ></wb:follow-button></a></li>
               </ul>
             </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".bottom-bar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a id="statusTitle" class="navbar-brand" href="#">精选推荐</a>
-        </div>
-        <div class="navbar-collapse collapse bottom-bar">
-          <ul class="nav navbar-nav navbar-center">
+            <li><a href="mobile.html" data-toggle="modal" data-target="#mobile"><span class="glyphicon glyphicon-phone"></span>手机和平板</a></li>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">作者 <b class="caret"></b></a>
-              <div id="statusAuthor" class="dropdown-menu row" style="width: 500px"></div>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多...<span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="http://ltfc.net/blog" target="_blank">中华珍宝馆博客</a></li>
+                <li><a href="about.html" data-toggle="modal" data-target="#about">关于中华珍宝馆</a></li>    
+              </ul>
             </li>
           </ul>
         </div>
@@ -127,15 +92,77 @@ if( target === 'release' ){ %>
       </div>
     </div>
 
-    <div class="main-container container-fluid">
-      <div style="width: 100%; height: 100%; position: relative; /* padding-top: 25px; */">
-        <div id="paintinglist" class="col-sm-12 col-md-12">
-          <h3 id="searchHref" class="href searchbox" style="display: none;"><span class="label label-info">查询结果</span></h3>
-          <div id="searchListRow" class="row searchbox" style="display: none;"></div>
+    <div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">您的意见，会鞭策我们继续前进...</h4>
+          </div>
+          <div class="modal-body">
+            <!-- 多说评论框 start -->
+            <div class="ds-thread" data-thread-key="page.main" data-title="中华珍宝馆首页" data-url="ltfc.net/main.html"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-          <h3 id="essenceHref" class="href"><span class="label label-info">精选</span></h3>
-          <div id="paintingListRow" class="row">
-            <script type="text/html" id="paintinglistTmpl">
+    <div class="container-fluid">
+      <div style="width: 100%; height: 100%; position: relative;">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="headingOne">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#outline-panel" aria-expanded="true" aria-controls="outline-panel">
+                <span class="glyphicon glyphicon-book"></span> 展开藏品目录
+              </a>
+              <% if( opt.message && opt.message != "" ){ %>
+                系统公告 : <%- opt.message %>
+              <% } %>
+            </h4>
+          </div>
+          <div id="outline-panel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+            <div class="panel-body"  style="height: 400px; overflow-y: scroll;">
+              <div class="col-sm-12 col-md-8">
+                <h4 id="top">藏品目录</h4>
+                <h3 id="outline-navi" class="age-navi"></h3>
+                <hr>
+                <div id="outline-dlg"></div>
+              </div>
+              <div class="col-sm-12 col-md-4">
+                <!--
+                <div id="message">
+                    <h4>消息通知</h4>
+                    <ul>
+                    <li>消息</li>
+                    </ul> 
+                </div>
+                -->
+                <div class="col-sm-12 col-md-6">
+                  <h4>近期热门</h4>
+                  <div class="ds-top-threads" data-range="weekly" data-num-items="7"></div>
+                </div>
+                <div class="col-sm-12 col-md-6">
+                    <h4>最受喜爱藏品</h4>
+                    <div class="ds-top-threads"  data-range="monthly" data-num-items="7"></div>
+                </div>
+                <div id="recent-comment">
+                  <h4>最新评论</h4>
+                  <div class="ds-recent-comments" data-num-items="32" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+                </div>
+                <a href="#" data-target="top" class="pull-right scroll-view h4">                 <span class="label label-default">返回顶部</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="paintinglist" class="col-sm-12 col-md-12">
+          <div id="paintingListRow" class="row"></div>
+          <!-- 图片列表模版 -->
+          <script type="text/html" id="paintinglistTmpl">
+              <h3 id="essenceHref" class="href"><span class="label label-info"><@=label @></span></h3>
               <div class="row col-sm-12 col-md-12">
               <@
               var rowcnt = 0, newrow = true; 
@@ -144,12 +171,18 @@ if( target === 'release' ){ %>
                       uuid = painting._id,
                       col = Math.floor(painting.snapSize.width / 128) * 2 ,
                       page = isMobile ? 'imglite.html' : 'img.html' ,
-                      link = page + '?uuid=' + uuid + '&view=paintingview#uuid=' + uuid + '&view=paintingview';
+                      link = page + '?uuid=' + uuid + '&view=paintingview#uuid=' + uuid + '&view=paintingview',
+                      pixels = (painting.pixels ? painting.pixels.replace(/\..*$/,'') + "万像素" : painting.fileSize);
+                    
+                    
+                    var levelmap = ['普清','半高清','高清','超高清','如实物','超实物','超实物','超实物','超实物'],
+                       scalelevel = painting.maxlevel - painting.minlevel,
+                       paintinglevel = levelmap[scalelevel];
 
                     var newrow = (rowcnt + col) > 12 ;
-                    if( newrow){
+                    if(newrow){
                       rowcnt = col ;
-                    }else{
+                    } else {
                       rowcnt += col ;
                     }
               @>
@@ -159,28 +192,30 @@ if( target === 'release' ){ %>
 
                 <div id="<@=uuid @>" class="painting col-sm-12 col-md-<@=col @>" data-uuid="<@=uuid @>" style="padding-right: 15px; padding-left: 15px;">
                   <div class="thumbnail" <@= opacity ? "style=\"opacity: 0;\"":"" @> >
-                    <a href="<@=link @>">
+                    <a target="img-window" href="<@=link @>">
                       <img style=" width: <@=painting.snapSize.width @>px; height: <@=painting.snapSize.height @>px;" class="lazy" data-original="<@=cdn @>/cagstore/<@=uuid @>/tb.jpg"></a>
                     <div class="caption">
-                      <h4><a href="<@=link @>"><@=painting.paintingName @></a></h4>
+                      <h4><a href="<@=link @>"><@=painting.paintingName @></a><span class="label label-info pull-right"><@=paintinglevel @></span></h4>
                       <@ if(painting.essence && painting.essenceComment ) { @>
                         <p><@=painting.essenceComment @></p>
                       <@} @>
-                      <p><@=painting.age + " " + painting.author @></p>
-                      <p><@=painting.areaSize ? painting.areaSize.toLowerCase() +" 厘米" : painting.fileSize @></p>
-                      <p><span class="label label-default"><@=painting.viewCnt ? '观摩' + painting.viewCnt + '次' : '新发布' @></span>
-                      <@= painting.descUrl ? '<a target="infowindow" href="' + painting.descUrl + '"><span class="glyphicon glyphicon-info-sign pull-right"></span></a>' : '' @>
-                      </p>
+                      <p><@=painting.age + " " + painting.author @><span class="pull-right"><@=(painting.areaSize ? painting.areaSize.toLowerCase() +' 厘米' : '' ) @></span></p>
+                      <p><@=pixels @></p>
+                      <p>
+                      <span class="label label-default"><@=painting.viewCnt ? '观摩' + painting.viewCnt + '次' : '新发布' @></span>
+                      <@= painting.descUrl ? '<a target="infowindow" class="pull-right" href="' + painting.descUrl + '"><span class="glyphicon glyphicon-info-sign"></span>介绍</a>' : '' @>
+                      <@ if(painting.offlineUrl){ @>
+                        <a target="downloadwindow" data-trigger="hover" data-placement="bottom" data-toggle="popover" title="什么是网页离线包" data-content="为了方便您随时随地观赏藏品，或者是分享图片给朋友，我们把网页和图片压缩成了“网页离线包”，下载离线包后解压成目录，双击打开其中的“jpg.html”文件即可。" class="pull-right download" href="<@= painting.offlineUrl @>"><span class="glyphicon glyphicon-cloud-download"></span>下载</a>
+                      <@ } @>
                       <@ if( painting.desc) { @>
                         <p><@=painting.desc @></p>
-                      <@} @>
+                      <@ } @>
                     </div>
                   </div>
                 </div>
             <@ } @>
             </div>
-            </script>
-          </div>
+            </script> <!-- 图片列表模版 -->
 
           <script type="text/html" id="outlineTmpl">
             <@
@@ -209,18 +244,71 @@ if( target === 'release' ){ %>
               </div>
             <@ } @>
           </script>
+
+          <script type="text/html" id="outlineDlgTmpl">
+            <@
+            for(i = 0; i<= outline.length - 1; i++ ){ 
+                var ageAuthor = outline[i],
+                    ageName = ageAuthor._id,
+                    authors = ageAuthor.authors;
+            @>
+            <h3>
+              <a href="#type=age&age=<@=ageName @>" data-age="<@=ageName @>">
+                <span class="label label-info"><@=ageName @></span></a>
+              <a href="#" data-target="top" class="pull-right scroll-view h4">
+                <span class="label label-default">返回顶部</span></a>
+            </h3>
+              <@
+              for(j = 0 ; j <= authors.length - 1; j++){
+                    var author = authors[j],
+                        authorName = author.name,
+                        paintingCnt = author.paintings.length;
+                @>
+                  <p>
+                  <a href="#type=age&age=<@=ageName @>&author=<@=authorName @>" data-target="#author-<@=authorName @>" class="change-view"><span class="label label-default"><@=authorName + " " + paintingCnt + "幅" @></span>
+                  <@
+                  for(k = 0 ; k <= author.paintings.length - 1; k++){
+                    pname = author.paintings[k];
+                  @>
+                  《<@=pname @>》
+                  <@}@>
+                  </a>
+                  </p>
+              <@ } @> 
+              </div>
+            <@ } @>
+          </script>
+
+          <script type="text/html" id="outlineNavTmpl">
+            <@
+            for(i = 0; i<= outline.length - 1; i++ ){ 
+                var ageAuthor = outline[i],
+                    ageName = ageAuthor._id,
+                    authors = ageAuthor.authors;
+            @>
+              <a href="#" class="scroll-view" data-target="<@=ageName @>"><span class="label label-info"><@=ageName @></span></a>
+            <@ } @>
+          </script>
       </div>
     </div>
+    <div id="footer" style="color: #999;" class="">
+      <div style="margin: 0px auto;text-align:center;">
+        <div>关注我们 : <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=38e25becef5180abf890ea848732c8773a8eb65d8e7ca28d36f5e1e45c9f495a">QQ群:85249779</a>&nbsp;|&nbsp;<a href="http://weibo.com/u/2258697062" target="_blank">新浪微博</a></div>
+        <div style="text-align:center;">友情链接: <a href="http://dota2sp.com" target="_blank">dota2sp.com</a></div>
+          <div>合肥谢尔网络科技有限公司&nbsp; 版权所有 &nbsp;皖ICP备15001975号</div>
+      </div>
+    </div>
+</div>
 
-    <!-- Placed at the end of the document so the pages load faster --><%
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript"> function _cdn(res){ return "<%= conf.cdn_url %>"+ (res|| "") }</script>
+<%
 if( target === 'release' ){ %>
-    <script type="text/javascript"> function _cdn(res){ return "http://supperdetailpainter.u.qiniudn.com"+ (res|| "") }</script>
     <script src="http://cdn.staticfile.org/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
     <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="http://supperdetailpainter.u.qiniudn.com/js/cag_<%=stamp %>_min.js" type="text/javascript"></script>
-    <script src="http://supperdetailpainter.u.qiniudn.com/js/main_<%=stamp %>_min.js" type="text/javascript"></script>
+    <script src="http://cag.share-net.cn/js/cag_<%=stamp %>_min.js" type="text/javascript"></script>
+    <script src="http://cag.share-net.cn/js/main_<%=stamp %>_min.js" type="text/javascript"></script>
 <% } else { %>
-    <script type="text/javascript"> function _cdn(res){ return res || "" }</script>
     <script src="js/jquery.js" type="text/javascript"></script>
     <script src="js/bootstrap.js" type="text/javascript"></script>
     <!-- cag_xxx_min.js -->
@@ -231,6 +319,22 @@ if( target === 'release' ){ %>
     <script src="js/main.js"></script><% 
    } 
 %>
+
+<!-- 多说评论框 end -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"ltfc"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+
+<%if(conf.anailsysService === 'google'){%>
 <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -238,9 +342,21 @@ if( target === 'release' ){ %>
   })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-50311706-2', 'auto');
+  ga('require', 'displayfeatures');
   ga('send', 'pageview');
-
+  
 </script>
+<%}else{%>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?27fcab3509a075adac751101c39ec1cc";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<%}%>
 <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 </body>
 </html>

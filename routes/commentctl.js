@@ -70,6 +70,7 @@ exports.page = function(req, res){
     });
 };
 
+
 exports.json = function(req, res){
     var arg = getParam("json list", req, res, [CRUD.paintingId, PAGE.page, PAGE.cond, PAGE.sort]);
     if(!arg.passed)
@@ -88,8 +89,9 @@ exports.json = function(req, res){
     
     data.list(cond, page, arg.sort, function(err, docs){
         if(err) return rt(false, err.message, res);
-        
-        res.json(docs);
+
+        res.setHeader("Access-Control-Allow-Origin", "*");
+        res.json(docs);    
     });
 }
 
@@ -100,6 +102,7 @@ exports.create = function(req, res){
     data.addComment(arg.paintingId, arg.data, function(err, comment){
         if(err) return rt(false, err.message, res);
 
+        res.setHeader("Access-Control-Allow-Origin", "*");
         rt(true, { comment : comment }, res);
     }); 
 }   
@@ -112,6 +115,7 @@ exports.upVote = function(req, res){
     data.incCommentVote(arg._id, 'upVote', function(err, comment){
         if(err) return rt(false, err.message, res);
 
+        res.setHeader("Access-Control-Allow-Origin", "*");
         rt(true, { cnt : comment.upVote }, res);
     });
 }
@@ -124,6 +128,7 @@ exports.downVote = function(req, res){
     data.incCommentVote(arg._id, 'downVote', function(err, comment){
         if(err) return rt(false, err.message, res);
 
+        res.setHeader("Access-Control-Allow-Origin", "*");
         rt(true, {cnt : comment.downVote }, res);
     });
 }

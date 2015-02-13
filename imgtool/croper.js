@@ -91,7 +91,7 @@ function cropper( outdir, options ){
         gm(sourcePath)
         .interlace('Plane')
         .quality(80)
-        .unsharp(0, 0.75, 0.75, 0.008)
+        //.unsharp(0, 0.75, 0.75, 0.008)
         .strip()
         .resize(resizeWith)
         .write(resizefile, function (err) {
@@ -162,6 +162,16 @@ function cropper( outdir, options ){
 
     // 对文件进行切割
     function crop(fileinfo, fn){
+        //不覆盖生成已经切割过的文件
+        var targetdir = outdir + '/' + fileinfo._id,
+            file = fileinfo.files[0],
+            sourcePath = file.sourcePath;
+        // 生成jpg.html是整个过程的最后一步，如果没有生成jpg.html，判断为
+        if(!opt.overwrite && fs.existsSync(targetdir + '/jpg.html')){
+            console.log('文件:%s 已经切割，跳过...', sourcePath );
+            return fn(new Error('文件: ' + sourcePath + ' 已经切割，跳过...' ));
+        }
+
         var size = fileinfo.size,
             files = fileinfo.files ;
         levels = calcScaleLevel(size.width, size.height); //[13,14,15,16,17,18];
@@ -172,6 +182,10 @@ function cropper( outdir, options ){
             var idx =0;
             async.eachSeries( files, function(file, eachfilecb){
                 console.log("图片:%s level:%s subfileIdx:%s ", fileinfo.paintingName, level, idx);
+                if(fs.existsSync(targetdir + '/' + level + '/0_0.jpg')){
+                    console.log('文件:%s 已经存在，跳过这个级别的切割', targetdir + '/' + level + '/0_0.jpg' );
+                    return callback();
+                }
                 resizelevel(fileinfo, idx, level, function(err, resizefile){
                     if(err) return eachfilecb(err);
 
@@ -180,11 +194,16 @@ function cropper( outdir, options ){
                         if(err) {
                             console.log("剪切文件出错:%s", err);
                         }else{
-                            console.log("剪切文件完成:%s level:%d", fileinfo.paintingName, level);    
+                            console.log("剪切文件完成:%s level:%d", fileinfo.paintingName, level);
                         }
                         
-                        idx += 1;
-                        eachfilecb();
+                        // 删除生成的缩略图文件
+                        fs.unlink(resizefile, function(err){
+                            if(err) console.log("删除文件出错:%s", err);
+
+                            idx += 1;
+                            eachfilecb();
+                        });
                     }); 
                 });
             }, function(err){
@@ -194,8 +213,16 @@ function cropper( outdir, options ){
             if(err)
                 console.trace(err);
 
-            console.log('完成文件各个缩放级别的切割:%s', fileinfo.paintingName);
-            fn(err);
+            console.log('完成文件各个缩放级别的切割:%s ,开始生成缩略图', fileinfo.paintingName);
+            resizethumb(fileinfo, function(err){
+                if(err){
+                    console.trace(err);  
+                } else{
+                    console.log('生成缩略图完成:%s ,', fileinfo.paintingName);
+                }
+                fn(err);
+            })
+            
         });
     }
 
@@ -232,6 +259,9 @@ function PSCropper(outdir, options){
                 outdir : outdir + '/' + fileinfo._id
             });
 
+        if(fs.existsSync(outfile)){
+            return fn(new Error('文件已经生成, 跳过:' + outfile));
+        }
         fs.writeFileSync(outfile, ret);
         console.log("生成文件:%s", outfile);
         fn(null, outfile);

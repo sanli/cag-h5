@@ -4,12 +4,12 @@
 var PG = new $P({
     default :{
         // 查询条件
-        cond : {},
+        cond : { deleted : { $ne : true } },
         type : 'tag1',
         // 翻页条件
         page : { skip: 0, limit: 10 },
         // 排序字段
-        sort : { cellid : 1 },
+        sort : { by: '_id', order : -1 },
     },
 
     bind: function(){
@@ -149,10 +149,10 @@ var Module = $.extend(new $M(), {
         });
         $('#cellTable').on('click', 'a.action-remove', function(e){
             var _id = $(e.target).closest('tr').data('_id');
-            console.log('delete, _id:' + _id);
             Module.deleteModule(_id);
         });
-        $('div.aggregate').on('click', 'a.sortlink', $M.createSortHander(PG));
+        $('#cellTable').on('click', 'a.sortlink', $M.createSortHander(PG));
+        $('label[data-toggle]').popover();
     },
         
     //====================================================================================================================
@@ -160,12 +160,24 @@ var Module = $.extend(new $M(), {
     //====================================================================================================================
     // 删除paintings
     deleteModule: function(_id, options){
-        $.ask("删除对象","是否确认删除,删除后不能恢复？", function(){
-            $M.dodelete('/paintings/delete'
-                , { _id : _id }
+        // $.ask("删除对象","是否确认删除,删除后不能恢复？", function(){
+        //     $M.dodelete('/paintings/delete'
+        //         , { _id : _id }
+        //         , { successfn : function(){
+        //                 Module.loadPageData(PG.state.cond, PG.state.page);
+        //             }});
+        // });
+        $.showmodal('#deleteDlg', function(){
+            if ($('#module-delete-form').validate().form()){
+                // save change
+                var data = $('#module-delete-form').getdata({checkboxAsBoolean : true});
+                $M.dodelete('/paintings/delete'
+                , { _id : _id , data : data}
                 , { successfn : function(){
+                        $('#deleteDlg').modal('hide');
                         Module.loadPageData(PG.state.cond, PG.state.page);
                     }});
+            }
         });
     },
 
@@ -243,7 +255,7 @@ var Module = $.extend(new $M(), {
     // 根据查询条件和分页条件载入数据页面
     listPage : function(type, cond, sort, page, fn, fail){
         $M.doquery('/paintings/list'
-            , { type: type, cond : cond, page: page} 
+            , { type: type, cond : cond, page: page, sort : sort} 
             , { successfn : fn , failfn : fail , alertPosition : '#cellDiv' });
     },
 

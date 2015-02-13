@@ -56,9 +56,9 @@ exports.bindurl=function(app){
     bindurl(app, '/paintings/delete', exports.delete);
     bindurl(app, '/paintings/count', exports.count);
     bindurl(app, '/paintings/import', exports.import);
-    bindurl(app, '/paintings/export', exports.export);
-    bindurl(app, '/paintings/_activeall', exports.activeall);
+    //bindurl(app, '/paintings/_activeall', exports.activeall);
     bindurl(app, '/paintings/jump', { method : 'get' }, exports.jump);
+    bindurl(app, '/paintings/export', exports.export);
 }
 
 exports.page = function(req, res){
@@ -70,17 +70,17 @@ exports.page = function(req, res){
 };
 
 // 一个私有API，用于一次激活所有的paintings
-exports.activeall = function(req, res){
-    paintingsdb.PaintingView.update(
-        {}
-        , { $set: { active : true } }
-        , {multi: true}
-        , function(err, cnt){
-            if(err) return rt(false, err.message, res);
+// exports.activeall = function(req, res){
+//     paintingsdb.PaintingView.update(
+//         {}
+//         , { $set: { active : true } }
+//         , {multi: true}
+//         , function(err, cnt){
+//             if(err) return rt(false, err.message, res);
 
-            rt(true, {msg: "激活成功", cnt: cnt}, res);
-        });
-}
+//             rt(true, {msg: "激活成功", cnt: cnt}, res);
+//         });
+// }
 
 // 查询对象，并返回列表
 exports.list = function(req, res){
@@ -94,8 +94,8 @@ exports.list = function(req, res){
     };
 
     searchCondExp(arg.cond);
-    console.log(arg.cond);
-    
+    // 查询条件完全由前台页面控制
+    //arg.cond.deleted = { $ne : true };
     paintingsdb.list(arg.type, arg.cond, page, arg.sort, function(err, docs){
         if(err) return rt(false, err.message, res);
         
@@ -111,6 +111,8 @@ exports.count = function(req, res){
         return;
 
     searchCondExp(arg.cond);
+    // 查询条件移动到前台
+    //arg.cond.deleted = { $ne : true };
     paintingsdb.count(arg.type, arg.cond, function(err, count){
         if(err) return rt(false, err.message, res);
         
@@ -123,24 +125,28 @@ exports.retrive = function(req, res){
     var arg = getParam("retrive paintings", req, res, [CRUD._id]);
     if(!arg.passed) return;
 
-    paintingsdb.findById(arg._id, function(err, doc){
-        if(err) return rt(false, "查询出错:" + err.message, res);
-        if(!doc) return rt(false, "找不到对象：" + _id);
+    paintingsdb.findById( arg._id 
+        , function(err, doc){
+            if(err) return rt(false, "查询出错:" + err.message, res);
+            if(!doc) return rt(false, "找不到对象：" + _id);
 
-        rt(true, { doc : doc }, res);
-    });
+            rt(true, { doc : doc }, res);
+        }, true);
 }
 
 // 删除对象
 exports.delete = function(req, res){
-    var arg = getParam("delete paintings", req, res, [CRUD._id]);
+    var arg = getParam("delete paintings", req, res, [CRUD._id, CRUD.data]);
     if(!arg.passed) return;
 
-    paintingsdb.delete(arg._id , _ResultByState(res, function(err, doc){
+    var data = arg.data;
+    data.deleted = true;
+    data.active =  false;
+    paintingsdb.delete(arg._id , data, function(err, doc){
         if(err) return rt(false, "删除出错:" + err.message, res);
         
         rt(true, { doc : doc }, res);
-    }));
+    });
 }
 
 // 更新对象
@@ -167,6 +173,21 @@ exports.jump = function(req, res){
 
 }
 
+// 导出所有数据到客户端
+exports.export = function(req, res){
+    var arg = getParam("paintings export", req, res, []);
+    if(!arg.passed)
+        return;
+
+    searchCondExp(arg.cond);
+    paintingsdb.query(null, {}, { _id : 1 }, function(err, docs){
+        if(err) return rt(false, err.message, res);
+        
+        var exports = docs.map(function(doc){ return doc.toObject(); })
+        res.json(exports);
+    });
+};
+
 //确认导入
 var http = require('http')
 exports.import = function(req, res){
@@ -176,9 +197,17 @@ exports.import = function(req, res){
     
     var cnt = 0, errcnt = 0;
     async.eachSeries(arg.idlist, function(id, callback){
-        var target = 'http://supperdetailpainter.u.qiniudn.com' + '/cagstore/' + id + "/meta.json";
-        console.log("get info:%s", target);
-        http.get(target, function(res) {
+        var options = {
+          hostname: 'cag.share-net.cn' ,
+          port: 80,
+          path: '/cagstore/' + id + '/meta.json',
+          headers : {
+            'Referer' : 'http://ltfc.net/paintings.html',
+            'User-Agent' : 'LTFCImporter'
+          }
+        };
+        console.log("get info http://%s/%s", options.hostname, options.path);
+        http.get(options, function(res) {
             console.log("Got response: " + res.statusCode);
             var dataarray = [];
             res.on('data', function (chunk) {
@@ -213,60 +242,7 @@ exports.import = function(req, res){
     
 };
 
-//导出楼宇信息
-var exporter = function(){
-    var columns = ['楼宇名称', '楼宇标识', '归属物业点名称', '归属物业点编号'
-        , '地市', '县区', '区域类型1', '区域类型2', '区域类型3'
-        , '层数', '面积（平方米）', '常驻人数', '建筑年代'
-        , 'GSM室分是否覆盖', 'TD室分是否覆盖', 'WLAN是否覆盖', 'LTE室分是否覆盖'
-        , 'A+ABIS接口1', 'A+ABIS接口2', 'A+ABIS接口3'
-        , 'GSM小区', 'GSM小区数', 'GSM载频数', 'GSM忙时话音业务量', 'GSM忙时数据等效业务量', 'GSM忙时数据流量（MB）'
-        , 'GSM全天话音业务量', 'GSM全天数据等效业务量', 'GSM全天数据流量（MB）'
-        , 'TD小区', 'TD小区数', 'TD载频数', 'TD忙时话音业务量', 'TD忙时数据流量（MB）', 'TD全天话音业务量', 'TD全天数据流量（MB）'
-        , 'WLAN热点', 'WLAN热点总数', 'WLAN总AP数', 'WLAN全天总流量'
-        , 'TD-LTE小区', 'TD-LTE小区数', 'TD-LTE载频数', 'TD-LTE忙时数据流量（MB）', 'TD-LTE全天数据流量（MB）'
-        , '照片上传', '历史建设项目'];
 
-    return {
-        head : function(){
-            return columns.join(',') + '\n';
-        },
-
-        data : function(data){
-            var out = [data.name, data.buildingId, '', ''
-                , data.addComp.city, data.addComp.district, data.areatype1, data.areatype2, data.areatype3  
-                , data.level, data.areasize, data.population, data.buildage
-                , data.gsmcoverState, data.tdcoverState, data.wlancoverState, data.ltecoverState
-                , '', '', ''
-                , data.gsmCellItem, data.gsmCellAmount, data.gsmData1, data.gsmData2, data.gsmData3, data.gsmData4, data.gsmData5, data.gsmData6, data.gsmData7
-                , data.tdCellItem, data.tdCellAmount, data.tdData1, data.tdData2, data.tdData3, data.tdData4, data.tdData5
-                , data.wlanCellItem, data.wlanCellAmount, data.wlanData1, data.wlanData2
-                , data.lteCellItem, data.lteCellAmount, data.lteData1, data.lteData2, data.lteData3
-                , data.piclist, ''
-            ];
-            return '"' + out.join('","') + '"\n' ;
-        }
-    }
-}
-exports.export = function(req, res){
-    var arg = getParam("paintings list", req, res, [PAGE.cond, PAGE.sort, PAGE.type]);
-    if(!arg.passed)
-        return;
-
-    searchCondExp(arg.cond);
-    paintingsdb.query(arg.type, arg.cond, arg.sort, function(err, docs){
-        if(err) return rt(false, err.message, res);
-        
-        var filename = "export_" + arg.type + "_" + new Date().getTime() + ".csv";
-        var exporter = buildingExporter();
-        exportToCSVFile(docs, filename, exporter, function(err){
-            if(err)
-                return rt(false, "导出文件错误:" + err , res);
-
-            return rt(true, {file: filename, fname: "SFMIS-LY-export.csv"}, res);
-        });
-    });
-};
 
 // === 扩展的代码请加在这一行下面，方便以后升级模板的时候合并 ===
 

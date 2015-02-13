@@ -20,11 +20,24 @@ var mongoose = require('mongoose'),
 	Schema = mongoose.Schema;
 mongoose.connect(conf.mongoURL ,{
   db: { native_parser: true, safe:true },
+  server : { 
+    socketOptions : { keepAlive: 1 } 
+  }
 });
 var mdb = mongoose.connection;
-mdb.on('error', console.error.bind(console, 'mongoose db connection error:'));
-mdb.once('open', function callback (err) {
+// 连接断开后重连
+mdb.on('error', function(err){
+  console.error('[ERROR]: mongoose db error:%s', err);
+});
+mdb.on('open', function callback (err) {
 	console.log("mongoose连接DB成功...");
 });
+mdb.on('close', function(){
+  console.log('connection closed, should will reconnect soon');
+});
+
+
+
+
 
 
