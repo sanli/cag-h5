@@ -64,8 +64,10 @@ var painting_view = new Schema({
     deleteReason : String,
 
     // ---- 编辑录入 ----
-    // 是否有效
+    // 是否发布
     active: Boolean,
+    // 发布时间，用于查询最新发布
+    activeTime : Date,
     // 是否列在首页推荐
     essence: Boolean,
     // 推荐说明
@@ -78,6 +80,7 @@ var painting_view = new Schema({
     resourceLevel : String,
     // 画作级别: 绘画做平的级别
     paintingLevel : String,
+
 
     // --- 下载配置 ---
     // 离线包下载路径
@@ -95,16 +98,19 @@ var painting_view = new Schema({
 painting_view.index({_id : 1})
     .index({paintingName : 1})
     .index({author : 1})
-    .index({age : 1});;
+    .index({age : 1});
+
 var PaintingView = mongoose.model('painting_view', painting_view);
     exports.PaintingView = PaintingView;
+
+
 
 var Module = PaintingView;
 
 // === 基本功能实现函数,一般不用修改 ===
 // 增加某个图片的访问计数
 exports.incViewCount = function(_id, fn){
-  Module.update({_id : _id}, { $inc : { viewCnt: 1} }, fn);
+    Module.update({_id : _id}, { $inc : { viewCnt: 1 } }, fn);
 }
 
 // 查询某个艺术品详细信息
@@ -124,7 +130,6 @@ exports.queryfile = function(query, project, sort, fn, nocache){
         }    
     }
     
-
     Module.find(query, project)
         .sort(sort)
         .exec(function(err, fileinfos){
@@ -132,7 +137,7 @@ exports.queryfile = function(query, project, sort, fn, nocache){
 
             if(!nocache){
                 console.log("put object to cache key:%s", key);
-                cache.put(key, fileinfos);    
+                cache.put(key, fileinfos);
             }
             fn(err, fileinfos);
         });
@@ -186,8 +191,6 @@ exports.outline = function(query, fn){
                     v2 = ageSort[age2._id] ?  ageSort[age2._id] : ageSort['UNKNOWN'];
                 return v1 > v2 ? 1 : (v1 < v2 ? -1 : 0);
             });
-
-            console.log(outline);
             console.log("put object to cache key:%s", key);
             cache.put(key, outline);
             fn(err, outline);
@@ -231,11 +234,12 @@ exports.count = function(type, cond, fn){
 }
 
 exports.update = function(_id, obj, fn){
-  Module.update({_id : _id}, {$set : obj}, {upsert : true}, fn);
+    obj.updateTime = Date.now();
+    Module.update({_id : _id}, {$set : obj}, {upsert : true}, fn);
 
-  // 清空全部缓存
-  console.log("clear all cache");
-  cache.clear();
+    // 清空全部缓存
+    console.log("clear all cache");
+    cache.clear();
 }
 
 //按照ID查询对象
@@ -254,11 +258,12 @@ exports.findById = function(_id, project, fn, skipCache){
     console.log('missed OR skiped cache');  
   }
   
-  Module.findOne({ _id : _id,  deleted : { $ne : true } }
+  //Module.findOne({ _id : _id,  deleted : { $ne : true } }
+  Module.findOne({ _id : _id }
     , project
     , function(err, doc){
       if(err) return fn(err);
-      if(!doc) return fn(new Error('图片不存在：' + _id));
+      if(!doc) return fn(new Error('图片不存在或者已经下线：' + _id));
       
       var obj = doc.toObject();
       cache.put(key, obj);
@@ -303,7 +308,11 @@ var tester = {
       
       });
     }); 
-  }
+  },
+
+  testDefaultValue : function(){
+
+  },
 }
 
 if(isme(__filename)){

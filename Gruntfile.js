@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     // Clean up files as part of other tasks
     clean: {
         build: {
-            src: ['build/**']
+            src: ['.build/**']
         }
     },
 
@@ -28,16 +28,18 @@ module.exports = function(grunt) {
     concat: {
         cdn: {
             files: {
-                'build/cdn/js/cag.js': [
+                '.build/cdn/js/cag.js': [
                     'public/js/jquery.lazyload.js',
                     'public/js/sharepage.base.js',
-                    'public/js/sharepage.js'
+                    'public/js/sharepage.js',
+                    'public/js/sharepage.ext.js',
+                    'public/js/cagcommons.js'
                 ]
             },  
         },
         leafletplugin : {
             files: {
-                'build/cdn/js/leaflet-plugin.js': [
+                '.build/cdn/js/leaflet-plugin.js': [
                     'public/js/L.Control.Sidebar.js',
                     'public/js/leaflet.draw-src.js'
                 ]
@@ -52,17 +54,20 @@ module.exports = function(grunt) {
         },
         cdn: {
             files: {
-                'build/cdn/js/cag_<%= buildName %>_min.js' : 'build/cdn/js/cag.js',
-                'build/cdn/js/main_<%= buildName %>_min.js': 'public/js/main.js',
-                'build/cdn/js/img_<%= buildName %>_min.js': 'public/js/img.js',
-                'build/cdn/js/imglite_<%= buildName %>_min.js': 'public/js/imglite.js',
-                'build/cdn/js/paintings_<%= buildName %>_min.js': 'public/js/paintings.js',
-                'build/cdn/js/offline_<%= buildName %>_min.js': 'public/js/offline.js'
+                '.build/cdn/js/cag_<%= buildName %>_min.js' : '.build/cdn/js/cag.js',
+                '.build/cdn/js/main_<%= buildName %>_min.js': 'public/js/main.js',
+                '.build/cdn/js/img_<%= buildName %>_min.js': 'public/js/img.js',
+                '.build/cdn/js/imglite_<%= buildName %>_min.js': 'public/js/imglite.js',
+                '.build/cdn/js/paintings_<%= buildName %>_min.js': 'public/js/paintings.js',
+                '.build/cdn/js/offline_<%= buildName %>_min.js': 'public/js/offline.js',
+                '.build/cdn/js/mybookmark_<%= buildName %>_min.js': 'public/js/mybookmark.js',
+                '.build/cdn/js/userinfo_<%= buildName %>_min.js': 'public/js/userinfo.js',
+                '.build/cdn/js/regist_<%= buildName %>_min.js': 'public/js/regist.js'
             }    
         },
         leafletplugin : {
             files: {
-                'build/cdn/js/leaflet-plugin_min.js' : 'build/cdn/js/leaflet-plugin.js'
+                '.build/cdn/js/leaflet-plugin_min.js' : '.build/cdn/js/leaflet-plugin.js'
             }
         }
     },
@@ -70,12 +75,12 @@ module.exports = function(grunt) {
     cssmin: {
         cdn :{
             files: {
-                'build/cdn/css/main_<%= buildName %>_min.css': 'public/css/main.css'
+                '.build/cdn/css/main_<%= buildName %>_min.css': 'public/css/main.css'
             }
         },
          leafletplugin : {
             files:{
-                'build/cdn/css/leaflet-plugin_min.css': [
+                '.build/cdn/css/leaflet-plugin_min.css': [
                     'public/css/L.Control.Sidebar.css',
                     'public/css/leaflet.draw.css',
                     'public/css/leaflet.fullscreen.css'
@@ -92,17 +97,17 @@ module.exports = function(grunt) {
             files: [{
                 cwd: 'public/',
                 src: ['*.html', 'css/**', 'js/**', 'fonts/**', 'ico/**', 'images/**', 'favicon.ico', 'bower_components/**', 'blog/**'],
-                dest: 'build/cdn',
+                dest: '.build/cdn',
                 expand: true
             }]
         },
         aliyun: {
             noProcess : 'public',
             files: [{
-                src: ['public/css/**', 'public/favicon.ico', 'public/*.html', 'public/fonts/**', 'public/ico/**', 'public/images/**' , 'data/**'
-                    , 'routes/**', 'views/**', 'mongo.js' , 'sharepage.js'
+                src: ['public/css/**', 'public/favicon.ico', 'public/*.html', 'public/js/**', 'public/fonts/**', 'public/ico/**', 'public/images/**' , 'data/**'
+                    , 'routes/**', 'views/**', 'sharepage/**', 'mongo.js' , 'sharepage.js', 'logger.js'
                     , 'cag.js', 'package.json'],
-                dest: 'build/aliyun',
+                dest: '.build/aliyun',
                 expand: true
             }]
         },

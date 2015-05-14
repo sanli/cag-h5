@@ -11,6 +11,7 @@
  * app.all('/paintings/export', apiRestrict, building.export);
  */
 var paintingsdb = require('../data/paintingsdb.js')
+    , share = require('../sharepage')
     , getreq = require('../sharepage').getreq
     , getParam = require('../sharepage').getParam
     , rt = require('../sharepage').rt
@@ -62,10 +63,14 @@ exports.bindurl=function(app){
 }
 
 exports.page = function(req, res){
+    console.log(share.getUser(req));
     res.render('paintingspage.html', {
         title: "内容管理",
+        conf : require('../config.js'),
         target : conf.target,
-        stamp : conf.stamp
+        stamp : conf.stamp,
+        user : share.getUser(req),
+        commons : require('./commonsctl.js')
     });
 };
 
@@ -218,6 +223,8 @@ exports.import = function(req, res){
 
                 var obj = JSON.parse(json);
                 delete obj._id;
+                // 设置缺省访问次数为0
+                obj.viewCnt = 0; 
                 paintingsdb.update(id, obj, function(err){
                     if(err) {
                         console.log("[WRAN]" + err.message);

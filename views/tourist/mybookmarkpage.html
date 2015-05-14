@@ -1,0 +1,145 @@
+<% include ../thead.html %>
+
+<body>    
+  <% conf.hide_search = true; %>
+  <% include ../tnavi.html %>
+  <div class="container-fluid">
+    <div class="row">
+
+<!-- 边栏，操作区 -->
+
+<ul class="col-sm-3 col-md-2 sidebar nav nav-pills nav-stacked">
+    <li><a id="art-is-fun" class="fade">梁兄，我等你哦！</a></li>
+    <div class="btn-group-vertical col-sm-12" role="group">
+      <a href="/mybookmark.html" class="btn btn-default btn-lg">我的收藏</a>
+      <a href="/myinfo.html" class="btn btn-default btn-lg">个人信息</a>
+    </div>
+</ul>
+
+<!-- 控制条 -->
+<nav class="navbar navbar-default col-md-12 navbar-static-top sub-navbar" role="navigation">
+  <div class="container-fluid">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".top-bar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">我的收藏</a>
+        </div>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <li>
+          <div id="editingBtnGroup" class="btn-group pull-right navbar-form" data-toggle="buttons">
+            <label class="btn btn-default active"><input type="radio" name="editingBtn" checked value="false"> 浏览</label>
+            <label class="btn btn-default"><input type="radio" name="editingBtn" value="true"> 编辑</label>
+          </div>
+        </li>
+      </ul>
+      <form id="search-form" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <div class="form-group">
+            <input name="queryword" type="text" class="form-control" placeholder="查询">
+          </div>
+          <button type="submit" class="btn btn-default">查询</button>
+        </div>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><!-- 控制面板 -->
+
+<!-- 主操作区域 -->
+<div id="mainContent" class="main col-md-offset-2 col-md-10 ">
+
+<!-- 图片列表模版 -->
+<script type="text/html" id="cellTableTmpl">
+<div class="row">
+    <@ if (cells.length === 0) { @>
+      <div class="col-sm-12 alert alert-warning alert-dismissible fade in " role="alert">
+        <strong>一元复始</strong>，您目前还没有收藏，请在观摩览图时收场喜欢的展品。
+      </div>
+    <@ } @>
+    <@
+    for( i = 0 ; i<= cells.length - 1; i++) { 
+        var cell = cells[i];
+        if(cell.mark && cell.mark.paintingid){
+          var link = '/img/' + cell.mark.paintingid,
+            imgurl = _cdn('/cagstore/' + cell.mark.paintingid + '/tb.jpg');
+        }   
+    @>
+    <div class="painting col-sm-12 col-md-6" data-uuid="<@=cell._id @>" 
+        style="padding-right: 15px; padding-left: 15px;">
+      <div class="thumbnail col-sm-12 col-md-12" style="height: 150px;">
+        <button type="button" class="close action-ctl action action-remove fade" data-dismiss="modal" aria-hidden="true">×</button>
+        <a target="img-window" class="col-sm-12 col-md-8" href="<@=link @>">
+          <img class="lazy" data-original="<@=imgurl @>" alt="<@=cell.title @>"></a>
+        <div class="caption">
+          <h4><a href="<@=link @>"><@=cell.title @></a></h4>
+          <h6>收藏日期:<@=cell.createTime ? new Date(cell.createTime).toLocaleDateString() : '' @></h6>
+        </div>
+      </div>
+    </div>
+<@ } @>
+</div>
+</script> <!-- 图片列表模版 -->
+
+<!-- 分页器 -->
+<script type="text/html" id="pagebarTpl">
+    <ul class="pagination">
+      <li><a>共有记录：<@=count @>条</a></li>
+      <li <@=(currentIdx===0 ? 'class="active"':"" ) @> >
+        <a href="#skipto=0">第一页</a></li>
+      <li <@=(startPage === pre ? 'class="active"':"" ) @> >
+        <a href="#skipto=<@=pre @> ">...</a></li>
+        <@ for( i = startPage ; i<= endPage; i++){ @>
+          <li <@=(currentIdx === i ? 'class="active"':"" ) @> >
+            <a href="#skipto=<@=i@>"><@=i@></a></li>
+        <@ } @>
+        <li <@= (endPage === next ? 'class="active"':"" ) @> >
+          <a href="#skipto=<@=next@>">...</a></li>
+        <li><a href="#skipto=<@=pageCnt-1 @>">最后一页</a></li>
+    </ul>
+</script> <!-- 显示模板 -->
+
+<!-- 数据查询结果表格 -->
+<div id="cellDiv">
+  <div id="cellTable"></div>
+  <div class="panel-footer"><div id="pagebar"></div></div>
+</div>
+
+</div><!-- 数据查询结果表格 -->
+  </div>
+</div>
+  
+  <!-- 确认对话框 -->
+  <div id="confirmDlg" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog"><div class="modal-content"></div></div>
+  </div>
+
+
+  <!-- JS文件放在靠近HTML页面尾部的地方可以加快页面显示的速度 -->
+  <% if( target === 'release' ){ %>
+      <script type="text/javascript"> function _cdn(res){ return "http://supperdetailpainter.u.qiniudn.com"+ (res|| "") }</script>
+      <script src="http://cdn.staticfile.org/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+      <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+      <script src="http://supperdetailpainter.u.qiniudn.com/js/cag_<%=stamp %>_min.js" type="text/javascript"></script>
+      <script src="http://supperdetailpainter.u.qiniudn.com/js/mybookmark_<%=stamp %>_min.js"></script></script>
+  <% } else { %>
+    <script type="text/javascript"> function _cdn(res){ return res}</script>
+    <script src="/js/jquery.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.js" type="text/javascript"></script>
+    <!-- cag_xxx_min.js -->
+    <script src="/js/jquery.lazyload.js" type="text/javascript"></script>
+    <script src="/js/sharepage.base.js"></script>
+    <script src="/js/sharepage.js"></script>
+    <script src="/js/sharepage.ext.js"></script>
+    <script src="/js/cagcommons.js"></script>
+    <script src="/js/mybookmark.js"></script>
+  <% } %>
+
+<% include ../tfoot.html %>
+

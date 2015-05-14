@@ -5,9 +5,10 @@
     <meta name="google-site-verification" content="Aa-Px_e0MlHLJCGspxj9asA8Iue7q21mBh3b62pkl44" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="keywords" content="中华珍宝馆,高清书法图片,高清绘画图片,高清书画图片,传统书画艺术,书法欣赏,水墨画欣赏,中国名画,工笔画名作,图片下载,兰亭序,富春山居图,清明上河图,瘦金体,法海寺壁画"></meta>
+    <meta name="description" content="中华珍宝馆,中国历代高清书法图片欣赏和下载,高清绘画图片欣赏和下载" ></meta>
     <link rel="shortcut icon" href="/ico/favicon.ico">
-    <title>中华珍宝馆-图片浏览</title><%
+    <title><%=title %></title><%
 if( target === 'release' ){ %>
     <!-- Bootstrap core CSS -->
     <link href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
@@ -19,10 +20,10 @@ if( target === 'release' ){ %>
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
     <!-- Custom styles for this template -->
-    <link rel="stylesheet" href="css/leaflet.css" />
-    <link rel="stylesheet" href="css/leaflet.fullscreen.css" />
-    <link rel="stylesheet" href="css/L.Control.Sidebar.css" />
-    <link rel="stylesheet" href="css/leaflet.draw.css" />
+    <link rel="stylesheet" href="/css/leaflet.css" />
+    <link rel="stylesheet" href="/css/leaflet.fullscreen.css" />
+    <link rel="stylesheet" href="/css/L.Control.Sidebar.css" />
+    <link rel="stylesheet" href="/css/leaflet.draw.css" />
     <link href="/css/main.css" rel="stylesheet">
 <% } %>
   </head>
@@ -50,45 +51,34 @@ if( target === 'release' ){ %>
     </div>
 
       <div id="sidebar" style="display:none; opacity: 0.75;">
-        <a href="about.html" data-toggle="modal" data-target="#about" class="modal-link"><span class="glyphicon glyphicon-info-sign"></span>关于</a>
-        <a href="help.html" data-toggle="modal" data-target="#help" class="modal-link"><span class="glyphicon glyphicon-question-sign"></span>使用帮助</a>
-        <div id="comment-list"></div>
-        <script type="text/html" id="commentTmpl">
-        <div class="page-header">
-          <h2 id="painting-title"><@=info.paintingName @></h2>
-        </div>
-        <div class="comment-block">
-            <p class="comment-content">
-              <@ if(info.offlineUrl){ @>
-                <a target="downloadwindow" data-trigger="hover" data-placement="left" data-toggle="popover" title="什么是网页离线包" data-content="为了方便您随时随地观赏藏品，我们把网页和图片打包压缩成了一个“网页离线包”，下载离线包后解压，双击打开其中的“jpg.html”文件即可。“网页离线包”适合日常欣赏，比原始图片显示更快，缩放更方便，在电脑上看的效果也更好一点。" class="pull-right download" href="<@=info.offlineUrl @>"><span class="glyphicon glyphicon-cloud-download"></span>下载网页离线包</a>
-              <@ } @>
-              <@ if(info.originalUrl){ @>
-                <a target="downloadwindow" data-trigger="hover" data-placement="bottom" data-toggle="popover" title="下载图片说明" data-content="我们尽量提供最高分辨率的图片文件供您下载，文件大部分是tiff格式，尺寸非常大，需要用Photoshop类专业图片软件打开，如果您不是太熟悉这类软件，请下载“网页离线包”。" class="pull-right download" href="<@=info.originalUrl @>"><span class="glyphicon glyphicon-cloud-download"></span>下载图片</a>
-              <@ } @>
-              <h4 id="painting-title"><@=info.age @> <@=info.author @></h4>
-              <h5 id="painting-title">
-              <@=info.mediaType @> <@=info.areaSize ? info.areaSize + '厘米' : '' @> <@=info.ownerName @></h4>
-              <p><@=info.desc @></p>
-              
-            </p>
-        </div>
-        <div class="ds-share flat" data-thread-key="page.<@=info._id @>" data-title="<@=info.paintingName @>" 
-          data-images="http://cag.share-net.cn/cagstore/<@=info._id @>/tb.jpg" 
-          data-content="<@=info.author @> 《<@=info.paintingName @>》－<@=info.desc @>" 
-          data-url="http://ltfc.net/img.html?uuid=<@=info._id @>&view=paintingview#uuid=<@=info._id @>&view=paintingview">
-            <div class="ds-share-inline">
-              <ul  class="ds-share-icons-16">
-                <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-                <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
-                <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-                <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-              </ul>
-              <div class="ds-share-icons-more"></div>
+        <a href="/about.html" data-toggle="modal" data-target="#about" class="modal-link"><span class="glyphicon glyphicon-info-sign"></span>关于</a>
+        <a href="/help.html" data-toggle="modal" data-target="#help" class="modal-link"><span class="glyphicon glyphicon-question-sign"></span>使用帮助</a>
+        <div id="comment-list">
+            <div class="page-header">
+              <h2 id="painting-title"><%=info.paintingName %></h2>
+              <div class="">
+                <button id="bookmarkbtn" data-trigger="hover" data-placement="right" data-toggle="popover" title="收藏这个幅图" data-content="图片收藏后可以在标题栏中快速访问" type="button" 
+                  class="btn <%= bookmarked ? 'btn-info' : 'btn-default' %>"
+                  data-bookmarked="<%= bookmarked ? 'true' : 'false' %>"
+                  ><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><%= bookmarked ? '已收藏' : '收藏' %></button>
+                <% if(info.offlineUrl){ %>
+                  <a target="downloadwindow" data-trigger="hover" data-placement="left" data-toggle="popover" title="什么是网页离线包" data-content="为了方便您随时随地观赏藏品，我们把网页和图片打包压缩成了一个“网页离线包”，下载离线包后解压，双击打开其中的“jpg.html”文件即可。“网页离线包”适合日常欣赏，比原始图片显示更快，缩放更方便，在电脑上看的效果也更好一点。" class="pull-right download" href="<%=info.offlineUrl %>"><span class="glyphicon glyphicon-cloud-download"></span>下载网页离线包</a>
+                <% } %>
+                <% if(info.originalUrl){ %>
+                  <a target="downloadwindow" data-trigger="hover" data-placement="left" data-toggle="popover" title="下载图片说明" data-content="我们尽量提供最高分辨率的图片文件供您下载，文件大部分是tiff格式，尺寸非常大，需要用Photoshop类专业图片软件打开，如果您不是太熟悉这类软件，请下载“网页离线包”。" class="pull-right download" href="<%=info.originalUrl %>"><span class="glyphicon glyphicon-cloud-download"></span>下载图片</a>
+                <% } %>
+              </div>
             </div>
-         </div>
-        <div class="ds-thread" data-thread-key="page.<@=info._id @>" data-title="<@=info.paintingName @>" data-url="http://ltfc.net/img.html?uuid=<@=info._id @>&view=paintingview#uuid=<@=info._id @>&view=paintingview"></div>
-
-        </script>
+            <div class="comment-block">
+              <p class="comment-content">
+                <h4 id="painting-title"><%=info.age || "" %> <%=info.author || "" %></h4>
+                <h5 id="painting-title">
+                <%=info.mediaType || '' %> <%=info.areaSize ? info.areaSize + '厘米' : '' %> <%=info.ownerName || '' %></h4>
+                <p><%=info.desc %></p>
+              </p>
+            </div>
+            <div class="ds-thread" data-thread-key="page.<%=info._id %>" data-title="<%=info.paintingName %>" data-url="http://ltfc.net/img.html?uuid=<%=info._id %>&view=paintingview#uuid=<%=info._id %>&view=paintingview"></div>
+        </div>
       </div>
 
     <!-- 地图区域 -->
@@ -110,19 +100,20 @@ if( target === 'release' ){ %>
     <script src="http://cag.share-net.cn/js/cag_<%=stamp %>_min.js" type="text/javascript"></script>
     <script src="http://cag.share-net.cn/js/img_<%=stamp %>_min.js" type="text/javascript"></script>
 <% } else { %>
-    <script src="js/jquery.js" type="text/javascript"></script>
-    <script src="js/bootstrap.js" type="text/javascript"></script>
-    <script src="js/leaflet-src.js"></script>
+    <script src="/js/jquery.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.js" type="text/javascript"></script>
+    <script src="/js/leaflet-src.js"></script>
     <!-- Leaflet plugin -->
-    <script src="js/Leaflet.fullscreen.js"></script>
-    <script src="js/L.Control.Sidebar.js"></script>
-    <script src="js/leaflet.draw-src.js"></script>
+    <script src="/js/Leaflet.fullscreen.js"></script>
+    <script src="/js/L.Control.Sidebar.js"></script>
+    <script src="/js/leaflet.draw-src.js"></script>
     <!-- 合成  cag_xxx_min.js -->
-    <script src="js/jquery.lazyload.js" type="text/javascript"></script>
-    <script src="js/sharepage.base.js"></script>
-    <script src="js/sharepage.js"></script>
+    <script src="/js/jquery.lazyload.js" type="text/javascript"></script>
+    <script src="/js/sharepage.base.js"></script>
+    <script src="/js/sharepage.js"></script>
+    <script src="/js/cagcommons.js"></script>
     <!-- 合成  img_xxx_min.js -->
-    <script src="js/img.js"></script><% 
+    <script src="/js/img.js"></script><% 
    } 
 %>
 
@@ -157,9 +148,45 @@ var _hmt = _hmt || [];
 <%}%>
 <%if(arg.uuid){%>
 <script>
-  PG.default.uuid = '<%=arg.uuid %>';
+  PG.default.uuid = '<%= arg.uuid %>';
+  Module.fileinfo = <%- JSON.stringify(info) %>
 </script>
 <%}%>
+
+    <!-- 登录对话框 -->
+    <div class="modal fade" id="loginDlg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content container-fluid">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 class="header-text">登录中华珍宝馆</h3>
+          </div>
+          <div class="modal-body container-fluid">
+            <div style="padding: 10px;">
+              <form id="login-form" class="form-horizontal" role="form">
+                <div class="form-group">
+                  <div class="col-md-offset-2 col-md-8 col-sm-12">
+                    <input type="text" name="userid" class="form-control" placeholder="请用户名或者email" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-offset-2 col-md-8 col-sm-12">
+                    <input type="password" name="password" class="form-control" placeholder="输入密码" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-12 col-sm-12 control-label control-label"><a href="#">忘记密码?</a></label>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="/tourist/regist.html" class="btn btn-default">注册新用户</a>
+            <button id="saveBtn" class="btn btn-primary btn-lg">登录</button>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
 </html>
 

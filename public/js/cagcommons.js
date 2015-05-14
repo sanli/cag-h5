@@ -1,25 +1,60 @@
 //sfmiscommons.js
 /**
- * 扩展一些SFMis独有的功能函数, 需要在sharepage.js之后载入
+ * 扩展一些cagcommons独有的功能函数, 需要在sharepage.js之后载入
  */
 !function ($P) {
     "use strict";
 
     var fn = $P.prototype;
-    fn.getuser = function(fn){
-        if (PG.user)
-            return fn(null, PG.user);
-        $M.doquery('/getloginuser', {}, 
+    fn.getuser = function(fn, opt){
+        opt = opt || { asklogin : true };
+        if (PG.userinfo)
+            return fn(null, PG.userinfo);
+        $M.doquery('/whoami', {}, 
             { 
                 successfn : function(data){
-                    PG.user = data.user;
-                    fn(null, PG.user);
-                }, 
+                    if(data.tourist){
+                        PG.userinfo = data;
+                        fn(null, PG.userinfo);    
+                    }else if(opt.asklogin){
+                        PG.asklogin(fn, { 
+                            title : "请先登录中华珍宝馆，这幅画会加入到您的收藏中" 
+                        });
+                    }else{
+                        fn(null);
+                    }
+                },
                 failfn: function(data){
                     fn(new Error(data));
                 }
             });
     };
+
+    fn.islogin = function(){
+        return !!PG.userinfo;
+    }
+
+    fn.asklogin = function(fn, opt){
+        opt = opt || { title : "登录到中华珍宝馆" };
+        //弹出对话框
+        $.showmodal('#loginDlg',  function(){
+            if ($('#login-form').validate().form()){
+                // save change
+                var data = $('#login-form').getdata({checkboxAsBoolean : true});
+
+                $('#login-form').spin();
+                $M.doquery("/tourist/login", { data: data }
+                    ,{  
+                        successfn : function(result){
+                            $('#login-form').spin('false');
+                            fn(result.userinfo);
+                            $('#loginDlg').modal('hide');
+                        }, 
+                        alertPosition : '#loginDlg .modal-body'
+                    });
+            }
+        }, null, {  title : opt.title });
+    }
 
     fn.loadCity = function( options ){
         options = options || { el : "#deptId"}
@@ -46,22 +81,6 @@
         });
     };
 
-    fn.getcellinfo = function(cellid, type, fn, fail){
-        $M.doquery('/cell/getcellinfo'
-            , { cellid: cellid, type: type } 
-            , { successfn : fn , failfn : fail });
-    };
-
-    fn.caclCoverState = function(cellids, type, fn, fail){
-        // 如果Cell ID为空，直接短路输出
-        if( cellids.length === 0){
-            return fn( { coverState : '未覆盖' } );
-        }
-        $M.doquery('/cell/calcCoverState' 
-            , { cellids: cellids, type: type } 
-            , { successfn : fn , failfn : fail });
-    };
-
     fn.loadSysconf = function(fn, fail){
         $M.doquery('/sysconf/retrive', {}
             , { successfn : function(res){
@@ -79,7 +98,6 @@
   "use strict";
   $.extend({
     // 扩大或者缩小主操作区域
-    // 
     expandContent : function(expand){
       var $serviceCtlBar = $('#serviceCtlBar'),
           $mainContent = $('#mainContent'),
@@ -110,6 +128,53 @@
             $icon.addClass('icon-arrow-right')
                 .closest('li').addClass('active');
         }
+    },
+
+    //显示删除修改等控制条，加上了简单的动画
+    showControlBlock : function($cell, editing, $showBtnGroup){
+        var isEditing = editing === true || editing === 'true';
+        if(isEditing){
+            $cell.find('.action-ctl').addClass('show');
+            setTimeout(function(){ 
+                $cell.find('.action-ctl').addClass('in'); 
+            }, 100); // 延后100毫秒，否则动画不能正常显示
+        }else{
+            $cell.find('.action-ctl').removeClass('show').removeClass('in');
+        }
+
+        if($showBtnGroup) { 
+            //重新设置按钮状态
+            $($showBtnGroup.find('label.btn').removeClass('active')[ isEditing ? 1 : 0]).addClass('active');
+        }        
+    },
+
+    //显示查询控制条，加上了简单的动画
+    showSearchBlock : function($searchPanel, searching, $searchBtnGroup){
+        var show = (searching === true || searching === 'true');
+        if(show){
+            $searchPanel.addClass('show');
+            setTimeout(function(){ $searchPanel.addClass('in'); }, 100); // 延后100毫秒
+        }else{
+            $searchPanel.removeClass('in').removeClass('show');  // 延后100毫秒
+        };
+
+        if($searchBtnGroup) { 
+            //重新设置按钮状态
+            $($searchBtnGroup.find('label.btn').removeClass('active')[ show ? 1 : 0]).addClass('active');
+        }
+    },
+    // 这是我的一个小彩蛋
+    art_is_fun: function(hide){
+        if(!hide){
+            if($('#art-is-fun').length > 0){
+                $.get('/art_is_fun', function(data){
+                    $('#art-is-fun').addClass('in').text(data);
+                });
+            }
+        }else{
+            $('#art-is-fun').removeClass('in');
+        }
+        
     }
   });
 })(window.jQuery);

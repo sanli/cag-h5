@@ -1,96 +1,6 @@
-<!DOCTYPE html>
-<html lang="zh" xmlns:wb="http://open.weibo.com/wb">
-  <head>
-    <meta charset="utf-8">
-    <meta name="google-site-verification" content="Aa-Px_e0MlHLJCGspxj9asA8Iue7q21mBh3b62pkl44" />
-    <meta property="wb:webmaster" content="8a8dfde5c302e253" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0">
-    <meta name="description" content="">
-    <link rel="shortcut icon" href="/ico/favicon.ico">
-    <title>中华珍宝馆</title><%
-if( target === 'release' ){ %>
-    <!-- Bootstrap core CSS -->
-    <link href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="http://cag.share-net.cn/css/main_<%=stamp %>_min.css" rel="stylesheet">
-<% } else { %>
-    <!-- Bootstrap core CSS -->
-    <link href="/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/main.css" rel="stylesheet">
-<% } %>
-  </head>
-  <body>
-
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".top-bar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">中华珍宝馆</a>
-        </div>
-        <div id="topbar" class="navbar-collapse collapse top-bar">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#type=essence" id="essence-zone" role="button" class="change-view">精选馆</a></li>
-            <li><a href="#type=age" id="age-zone" role="button" class="change-view">历代馆</a></li>
-            <li><a href="#type=modern" id="modern-zone" role="button" class="change-view">当代馆</a></li>
-          </ul>
-           <form id="searchForm" class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-              <input type="text" class="form-control" name="key" placeholder="输入人名或作品名查询">
-            </div>
-           </form>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="active">
-              <a href="#comment" data-toggle="modal" data-target="#comment"><span class="glyphicon glyphicon-comment"></span>来宾留言册</a>
-            </li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">获得图片和通知<span class="caret"></span></a>
-              <ul class="dropdown-menu" style="width: 220px;padding-left: 10px;" role="menu">
-                <li> 加入QQ群，获得图片原文件<a class="openview" href="http://shang.qq.com/wpa/qunwpa?idkey=38e25becef5180abf890ea848732c8773a8eb65d8e7ca28d36f5e1e45c9f495a"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="中华珍宝馆" title="中华珍宝馆"></a></li>
-                <li class="divider"></li>
-                <li> 关注官方微博，获得新图通知<a href="#"><wb:follow-button uid="2258697062" type="red_2" width="136" height="24" ></wb:follow-button></a></li>
-              </ul>
-            </li>
-            <li><a href="mobile.html" data-toggle="modal" data-target="#mobile"><span class="glyphicon glyphicon-phone"></span>手机和平板</a></li>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">更多...<span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="http://ltfc.net/blog" target="_blank">中华珍宝馆博客</a></li>
-                <li><a href="about.html" data-toggle="modal" data-target="#about">关于中华珍宝馆</a></li>    
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content"></div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content"></div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="mobile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content"></div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="message" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content"></div>
-      </div>
-    </div>
+<% include thead.html %>
+<body>  
+  <% include tnavi.html %>
 
     <div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog">
@@ -110,8 +20,7 @@ if( target === 'release' ){ %>
       </div>
     </div>
 
-    <div class="container-fluid">
-      <div style="width: 100%; height: 100%; position: relative;">
+    <div class="container">      
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="headingOne">
             <h4 class="panel-title">
@@ -125,34 +34,11 @@ if( target === 'release' ){ %>
           </div>
           <div id="outline-panel" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
             <div class="panel-body"  style="height: 400px; overflow-y: scroll;">
-              <div class="col-sm-12 col-md-8">
+              <div class="col-sm-12 col-md-12">
                 <h4 id="top">藏品目录</h4>
                 <h3 id="outline-navi" class="age-navi"></h3>
                 <hr>
                 <div id="outline-dlg"></div>
-              </div>
-              <div class="col-sm-12 col-md-4">
-                <!--
-                <div id="message">
-                    <h4>消息通知</h4>
-                    <ul>
-                    <li>消息</li>
-                    </ul> 
-                </div>
-                -->
-                <div class="col-sm-12 col-md-6">
-                  <h4>近期热门</h4>
-                  <div class="ds-top-threads" data-range="weekly" data-num-items="7"></div>
-                </div>
-                <div class="col-sm-12 col-md-6">
-                    <h4>最受喜爱藏品</h4>
-                    <div class="ds-top-threads"  data-range="monthly" data-num-items="7"></div>
-                </div>
-                <div id="recent-comment">
-                  <h4>最新评论</h4>
-                  <div class="ds-recent-comments" data-num-items="32" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
-                </div>
-                <a href="#" data-target="top" class="pull-right scroll-view h4">                 <span class="label label-default">返回顶部</span></a>
               </div>
             </div>
           </div>
@@ -163,19 +49,19 @@ if( target === 'release' ){ %>
           <!-- 图片列表模版 -->
           <script type="text/html" id="paintinglistTmpl">
               <h3 id="essenceHref" class="href"><span class="label label-info"><@=label @></span></h3>
-              <div class="row col-sm-12 col-md-12">
+              <div class="row">
               <@
-              var rowcnt = 0, newrow = true; 
+              var rowcnt = 0; 
               for(i = 0; i<= cagstore.length - 1; i++ ){ 
                   var painting = cagstore[i],
                       uuid = painting._id,
                       col = Math.floor(painting.snapSize.width / 128) * 2 ,
-                      page = isMobile ? 'imglite.html' : 'img.html' ,
-                      link = page + '?uuid=' + uuid + '&view=paintingview#uuid=' + uuid + '&view=paintingview',
+                      page = isMobile ? 'imglite' : 'img' ,
+                      link = page + '/' + uuid ,
                       pixels = (painting.pixels ? painting.pixels.replace(/\..*$/,'') + "万像素" : painting.fileSize);
                     
                     
-                    var levelmap = ['普清','半高清','高清','超高清','如实物','超实物','超实物','超实物','超实物'],
+                    var levelmap = ['五级-普清','四级-半高清','三级-高清','二级-超高清','一级-如实物','特级-超实物','特级-超实物','特级-超实物','特级-超实物'],
                        scalelevel = painting.maxlevel - painting.minlevel,
                        paintinglevel = levelmap[scalelevel];
 
@@ -185,16 +71,21 @@ if( target === 'release' ){ %>
                     } else {
                       rowcnt += col ;
                     }
-              @>
-                <@ if(newrow){ @>
-                  </div><div class="row col-sm-12 col-md-12">
-                <@ } @>
 
-                <div id="<@=uuid @>" class="painting col-sm-12 col-md-<@=col @>" data-uuid="<@=uuid @>" style="padding-right: 15px; padding-left: 15px;">
-                  <div class="thumbnail" <@= opacity ? "style=\"opacity: 0;\"":"" @> >
-                    <a target="img-window" href="<@=link @>">
-                      <img style=" width: <@=painting.snapSize.width @>px; height: <@=painting.snapSize.height @>px;" class="lazy" data-original="<@=cdn @>/cagstore/<@=uuid @>/tb.jpg"></a>
-                    <div class="caption">
+                    var isVeritcal = (painting.snapSize.height / painting.snapSize.width) > 1;
+              @>
+                
+                <div id="<@=uuid @>" class="painting col-sm-12 col-md-6" data-uuid="<@=uuid @>" 
+                    style="padding-right: 15px; padding-left: 15px;">
+                  <div class="thumbnail col-sm-12 col-md-12" <@= opacity ? "style=\"opacity: 0;\"":"" @> >
+                    <a target="img-window" class="col-sm-12 <@=isVeritcal? 'col-md-6 img-div' : 'col-md-12 img-div-h' @>" href="<@=link @>">
+                      <img style="
+                          width: <@=painting.snapSize.width @>px; height: <@=painting.snapSize.height @>px; 
+                          "
+                        class="lazy" data-original="<@=cdn @>/cagstore/<@=uuid @>/tb.jpg"
+                        alt="<@=painting.paintingName @>"
+                        ></a>
+                    <div class="caption <@=isVeritcal? 'col-md-6' : 'col-md-12' @>">
                       <h4><a href="<@=link @>"><@=painting.paintingName @></a><span class="label label-info pull-right"><@=paintinglevel @></span></h4>
                       <@ if(painting.essence && painting.essenceComment ) { @>
                         <p><@=painting.essenceComment @></p>
@@ -291,14 +182,40 @@ if( target === 'release' ){ %>
           </script>
       </div>
     </div>
-    <div id="footer" style="color: #999;" class="">
-      <div style="margin: 0px auto;text-align:center;">
-        <div>关注我们 : <a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=38e25becef5180abf890ea848732c8773a8eb65d8e7ca28d36f5e1e45c9f495a">QQ群:85249779</a>&nbsp;|&nbsp;<a href="http://weibo.com/u/2258697062" target="_blank">新浪微博</a></div>
-        <div style="text-align:center;">友情链接: <a href="http://dota2sp.com" target="_blank">dota2sp.com</a></div>
-          <div>合肥谢尔网络科技有限公司&nbsp; 版权所有 &nbsp;皖ICP备15001975号</div>
-      </div>
+
+<nav class="navbar navbar-default navbar-static-top" style="margin: 0px;padding-top: 20px;padding-bottom: 10px;">
+  <div class="container">
+    <div class="col-sm-12 col-md-3">
+      <h5>近期热门</h5>
+      <div class="ds-top-threads" data-range="weekly" data-num-items="7"></div>
+      <h5>最受喜爱藏品</h5>
+        <div class="ds-top-threads"  data-range="monthly" data-num-items="7"></div>
     </div>
-</div>
+    <div class="col-sm-12 col-md-3">
+      <h5>思君不见关山远，且托云中锦书传</h5>
+      <hr>
+      <h5>随时随地看图，微信扫一扫订阅公共号:</h5>
+      <div>中华珍宝馆</div>
+      <img style="width:128px; height:128px;" src="/images/qrcode_for_gh_adb793bad6b2_258.jpg">
+      <h5>加入QQ群 <a class="openview" href="http://shang.qq.com/wpa/qunwpa?idkey=38e25becef5180abf890ea848732c8773a8eb65d8e7ca28d36f5e1e45c9f495a">85249779</a></h5>
+      <h5>关注新浪微博<a href="http://weibo.com/u/2258697062">@中华珍宝馆</a></h5>
+      <h5><a href="#comment" data-toggle="modal" data-target="#comment">表扬或建议</a></h5>
+      <h5><a href="/blog#!/article/1322626726307561482">关于图片下载</a></h5>
+    </div>
+    <div id="recent-comment" class="col-sm-12 col-md-4">
+      <h5>最新评论</h5>
+      <div class="ds-recent-comments" data-num-items="5" data-show-avatars="1" data-show-time="1" data-show-title="1" data-show-admin="1" data-excerpt-length="70"></div>
+    </div>
+    <div class="col-sm-12 col-md-2">
+        <h5>下载iOS版中华珍宝馆</h5>
+        <a href="https://itunes.apple.com/cn/app/zhong-hua-zhen-bao-guan/id905220385?mt=8"><img style="width:128px; height:128px;" src="/images/apple-qrcode.png"></a>
+        <h5>友情链接:</h5>
+        <a href="http://dota2sp.com" target="_blank">dota2sp.com</a>
+    </div>
+    <div class="col-sm-12 col-md-12"  style="text-align:center;"><a href="http://ltfc.net">中华珍宝馆 ltfc.net(兰亭富春)</a>&nbsp; 版权所有 &nbsp;皖ICP备15001975号 <a href="about.html" data-toggle="modal" data-target="#about">关于中华珍宝馆</a></div>
+  </div>
+</nav>
+
 
 <!-- Placed at the end of the document so the pages load faster -->
 <script type="text/javascript"> function _cdn(res){ return "<%= conf.cdn_url %>"+ (res|| "") }</script>
@@ -315,6 +232,7 @@ if( target === 'release' ){ %>
     <script src="js/jquery.lazyload.js" type="text/javascript"></script>
     <script src="js/sharepage.base.js"></script>
     <script src="js/sharepage.js"></script>
+    <script src="js/cagcommons.js"></script>
     <!-- main_xxx_min.js -->
     <script src="js/main.js"></script><% 
    } 
@@ -322,43 +240,24 @@ if( target === 'release' ){ %>
 
 <!-- 多说评论框 end -->
 <script type="text/javascript">
-var duoshuoQuery = {short_name:"ltfc"};
-  (function() {
-    var ds = document.createElement('script');
-    ds.type = 'text/javascript';ds.async = true;
-    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
-    ds.charset = 'UTF-8';
-    (document.getElementsByTagName('head')[0] 
-     || document.getElementsByTagName('body')[0]).appendChild(ds);
-  })();
+      var duoshuoQuery = {
+       short_name: "ltfc", 
+       /*
+       // 暂时不绑定用户的多说信息和对应的系统帐户
+       sso: { 
+           login: "/dslogin",//替换为你自己的回调地址
+           logout: "/dslogout"//替换为你自己的回调地址
+       }
+       */
+       };
+
+      (function() {
+          var ds = document.createElement('script');
+          ds.type = 'text/javascript';ds.async = true;
+          ds.src = 'http://static.duoshuo.com/embed.js';
+          ds.charset = 'UTF-8';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ds);
+      })();
   </script>
 <!-- 多说公共JS代码 end -->
-
-<%if(conf.anailsysService === 'google'){%>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-50311706-2', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-  
-</script>
-<%}else{%>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?27fcab3509a075adac751101c39ec1cc";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<%}%>
-<script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
-</body>
-</html>
-
-
+<% include tfoot.html %>

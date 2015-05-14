@@ -1,0 +1,125 @@
+<div class="navbar navbar-inverse navbar-fixed-top main-navbar" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".top-bar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">中华珍宝馆</a>
+        </div>
+        <div id="topbar" class="navbar-collapse collapse top-bar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/main.html#type=essence" id="essence-zone" role="button" class="change-view">精选馆</a></li>
+            <li><a href="/main.html#type=age" id="age-zone" role="button" class="change-view">历代馆</a></li>
+            <li><a href="/main.html#type=modern" id="modern-zone" role="button" class="change-view">当代馆</a></li>
+            <!-- <li><a href="/datatoys.html" id="modern-zone" role="button" class="change-view">千年一览</a></li> -->
+          </ul>
+          <% if(!conf.hide_search){%>
+          <form id="searchForm" class="navbar-form navbar-left search-form" role="search">
+            <div class="form-group">
+              <div class="input-group">
+                <input type="text" class="form-control" name="key" placeholder="输入人名或作品名查询">
+                <span class="input-group-btn">
+                  <button id="search-btn" class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </span>
+              </div>
+            </div>
+          </form>
+          <%} %>
+          <ul id="userinfoMenu" class="nav navbar-nav navbar-right">
+            <%
+            if(!torist){ %>
+              <li><a id="login-btn" href="#">登录</a></li>
+            <% } else { %>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span><%=torist && torist.userid %><b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/mybookmark.html"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>我的收藏</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li><a href="/myinfo.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>我的信息</a></li>
+                    <li role="presentation" class="divider"></li>
+                    <li><a href="/tourist/logout">注销登录</a></li>
+                </ul>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+<script type="text/html" id="userinfoTmpl">
+<li class="dropdown">
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+        <span class="glyphicon glyphicon-user" aria-hidden="true"></span><@=user && user.userid @><b class="caret"></b>
+    </a>
+    <ul class="dropdown-menu">
+        <li><a href="/mybookmark.html"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>我的收藏</a></li>
+        <li role="presentation" class="divider"></li>
+        <li><a href="/myinfo.html"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>我的信息</a></li>
+        <li role="presentation" class="divider"></li>
+        <li><a href="/tourist/logout">注销登录</a></li>
+    </ul>
+</li>
+</script>
+
+    <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="mobile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="message" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="loginDlg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content container-fluid">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 class="header-text">登录中华珍宝馆</h3>
+          </div>
+          <div class="modal-body container-fluid">
+            <div style="padding: 10px;">
+              <form id="login-form" class="form-horizontal" role="form">
+                <div class="form-group">
+                  <div class="col-md-offset-2 col-md-8 col-sm-12">
+                    <input type="text" name="userid" class="form-control" placeholder="请用户名或者email" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <div class="col-md-offset-2 col-md-8 col-sm-12">
+                    <input type="password" name="password" class="form-control" placeholder="输入密码" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-12 col-sm-12 control-label control-label"><a href="#">忘记密码?</a></label>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a href="/tourist/regist.html" class="btn btn-default">注册新用户</a>
+            <button id="saveBtn" class="btn btn-primary btn-lg">登录</button>
+          </div>
+        </div>
+      </div>
+    </div>

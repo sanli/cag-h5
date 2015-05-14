@@ -35,7 +35,8 @@ mdb.on('open', function callback (err) {
 mdb.on('close', function(){
   console.log('connection closed, should will reconnect soon');
 });
-
+exports.mongoose = mongoose;
+exports.connecting = mdb;
 
 
 

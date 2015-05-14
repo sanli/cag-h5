@@ -38,45 +38,46 @@ var Module = $.extend(new $M(), {
 
     // 根据页面状态，载入数据
     loadPageData: function(state, page){
-    	// load painting data
+		var fileinfo = Module.fileinfo;
+		var width = fileinfo.size.width,
+			height = fileinfo.size.height,
+			northEast = L.CRS.Simple.pointToLatLng(L.point([width, 0]), 18),
+			southWest = L.CRS.Simple.pointToLatLng(L.point([0, height]), 18),
+			bounds = L.latLngBounds(southWest, northEast);
+
+		if(Module.map){
+			Module.map.remove();
+		}
+		var map = Module.map = L.map('map',{
+			maxBounds: bounds,
+			minZoom: fileinfo.minlevel,
+		    crs: L.CRS.Simple,
+		    fullscreenControl: true
+		}).fitBounds( bounds );	
+
+		var la = state.layer || '',
+			detectRetina = fileinfo.maxlevel - fileinfo.minlevel >= 4; //巨型画作才需要探测Retina屏
+			
+		Module.tileLayer = L.tileLayer( _cdn('/cagstore/'+ state.uuid +'/{z}' + la + '/{x}_{y}.jpg'), {	
+		   bounds: bounds,
+		   maxZoom: fileinfo.maxlevel,
+		   detectRetina: detectRetina
+		}).addTo(map);
+
+		if(Module.isWebview(state)){
+			Module.map.removeControl(Module.map.attributionControl);
+		}else{
+			map.attributionControl
+				.setPrefix('<a href="/main.html?l=home"><span class="glyphicon glyphicon-home"></span>中华珍宝馆</a>')
+				.addAttribution('<a href="/main.html?l=more"><span class="glyphicon glyphicon-share-alt"></span>更多图片</a>');
+		}
+		Module.initMap(map);
+		
+
+		// load painting data
     	$('div.main').spin();
     	$.getJSON(_cdn("/cagstore/"+ state.uuid + "/meta.json"), function(data){
-    		var fileinfo = Module.fileinfo = data;
-			document.title = "中华珍宝馆-" + fileinfo.age + '-' + fileinfo.author + '-' + fileinfo.paintingName;
-			var width = fileinfo.size.width,
-				height = fileinfo.size.height,
-				northEast = L.CRS.Simple.pointToLatLng(L.point([width, 0]), 18),
-				southWest = L.CRS.Simple.pointToLatLng(L.point([0, height]), 18),
-				bounds = L.latLngBounds(southWest, northEast);
-
-			if(Module.map){
-				Module.map.remove();
-			}
-			var map = Module.map = L.map('map',{
-				maxBounds: bounds,
-				minZoom: fileinfo.minlevel,
-			    crs: L.CRS.Simple,
-			    fullscreenControl: true
-			}).fitBounds( bounds );	
-
-			var la = state.layer || '',
-				detectRetina = fileinfo.maxlevel - fileinfo.minlevel >= 4; //巨型画作才需要探测Retina屏
-				
-			Module.tileLayer = L.tileLayer( _cdn('/cagstore/'+ state.uuid +'/{z}' + la + '/{x}_{y}.jpg'), {	
-			   bounds: bounds,
-			   maxZoom: fileinfo.maxlevel,
-			   detectRetina: detectRetina
-			}).addTo(map);
-
-			if(Module.isWebview(state)){
-				Module.map.removeControl(Module.map.attributionControl);
-			}else{
-				map.attributionControl
-					.setPrefix('<a href="/main.html?l=home"><span class="glyphicon glyphicon-home"></span>中华珍宝馆</a>')
-					.addAttribution('<a href="/main.html?l=more"><span class="glyphicon glyphicon-share-alt"></span>更多图片</a>');
-			}
-			Module.initMap(map);
-			$('div.main').spin(false);
+    		$('div.main').spin(false);
     	}).fail(function() {
 		    $('#map').html("<h3>您寻找的艺术品［" + state.uuid + "］不存在，请<a href=\"/main.html\">返回首页</a></h3>");
 		    $('div.main').spin(false);
@@ -183,13 +184,8 @@ var Module = $.extend(new $M(), {
 	// ====================================================================================================================================
 	// 添加一个comment到边栏上
 	pushInfo2Sidebar : function(info){
-		var $block = tmpl('commentTmpl', {
-			info : info
-	  	});
-		$('#comment-list').append($block);
 		// 多说
 		$('#comment-list a.download').popover();
-
 		  (function() {
 		    var ds = document.createElement('script');
 			    ds.type = 'text/javascript';ds.async = true;

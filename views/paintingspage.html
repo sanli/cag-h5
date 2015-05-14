@@ -6,7 +6,7 @@
     <div class="container-fluid">
       <div class="row">
           <!-- 控制条 -->
-          <nav class="navbar navbar-default col-md-12" role="navigation">
+          <nav class="navbar navbar-default col-md-12 navbar-static-top sub-navbar" role="navigation">
             <div class="container-fluid">
               <!-- Collect the nav links, forms, and other content for toggling -->
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -45,7 +45,7 @@
             </div><!-- /.container-fluid -->
           </nav><!-- 控制面板 -->
             <!-- 数据查询结果表格 -->
-          <div class="col-md-12 main">
+          <div id="mainContent" class="col-md-12 main">
             <div id="content-body" class="content-body">
                 <div id="cellTable"></div>
                 <div class="pagebar"></div>
@@ -110,7 +110,16 @@
       <td><@=cell.essence ? '<span class="label label-info">是</span>' : '<span class="label label-warning">否</span>' @></td>
       <td><@=cell.descUrl ? '<a href="'+ cell.descUrl +'">跳转</a>' : '<span class="label label-warning">无</span>'   @></td>
       <td><@=cell.viewCnt @></td>
-      <td class="action-ctl"><a class="action action-edit">修改<i class="icon-edit"/></a>|<a class="action action-remove">删除<i class="icon-remove"/></span></td></tr>
+      <td class="action-ctl">
+        <a class="action action-edit">修改<i class="icon-edit"/></a>
+        <@if(!cell.deleted){@>
+        |<a class="action action-remove">删除<i class="icon-remove"/></span>
+        <@}else{@>
+          <br><span>删除原应：<@=cell.deleteReason @></span>
+          <br><a class="action action-undoremove">恢复<i class="icon-remove"/></span>
+        <@}@>
+      </td>
+      </tr>
    <@ } @>
   </tbody> 
     </table>
@@ -145,7 +154,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-          <button type="button" class="btn btn-primary">确认</button>
+          <button type="button" class="ok btn btn-primary">确认</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

@@ -1,0 +1,8 @@
+{
+    "access_key":               "M3JxWi-Rde7jd5srfUlxeOZd_RmFEIQr6lybz5UB",
+    "secret_key":               "V0zwqpKFsi60JQ4KDYSlyAPzDQMewRose-0ndQXb",
+    "bucket":                   "cag-cdn",
+    "sync_dir":                 "/Users/sanli/Documents/workspace/cag-h5/build/cdn/",
+    "deletable":    1,
+    "debug_level":  1
+}

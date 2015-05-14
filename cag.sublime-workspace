@@ -4,6 +4,70 @@
 		"selected_items":
 		[
 			[
+				"art",
+				"art_is_fun"
+			],
+			[
+				"update",
+				"updateModule"
+			],
+			[
+				"book",
+				"bookmarked"
+			],
+			[
+				"add",
+				"addClass"
+			],
+			[
+				"pa",
+				"paintingid"
+			],
+			[
+				"user",
+				"userinfo"
+			],
+			[
+				"t",
+				"tourist"
+			],
+			[
+				"ti",
+				"title"
+			],
+			[
+				"err",
+				"errpage"
+			],
+			[
+				"de",
+				"defaultopt"
+			],
+			[
+				"us",
+				"userinfoHtml"
+			],
+			[
+				"pass",
+				"password"
+			],
+			[
+				"s",
+				"script"
+			],
+			[
+				"data",
+				"datatoys"
+			],
+			[
+				"dr",
+				"drawAxis"
+			],
+			[
+				"cir",
+				"circle"
+			],
+			[
 				"conf",
 				"config"
 			],
@@ -38,14 +102,6 @@
 			[
 				"me",
 				"mediaType"
-			],
-			[
-				"pa",
-				"paintingName"
-			],
-			[
-				"add",
-				"addAttribution"
 			],
 			[
 				"dete",
@@ -140,10 +196,6 @@
 				"maxage"
 			],
 			[
-				"data",
-				"dataarray"
-			],
-			[
 				"row",
 				"rowcnt"
 			],
@@ -162,10 +214,6 @@
 			[
 				"le",
 				"length"
-			],
-			[
-				"ti",
-				"tilesize"
 			],
 			[
 				"ea",
@@ -290,10 +338,6 @@
 			[
 				"set",
 				"setTimeout"
-			],
-			[
-				"update",
-				"updateCellGlobal"
 			],
 			[
 				"nor",
@@ -424,10 +468,6 @@
 				"_updatePropertyCountStateByLoc"
 			],
 			[
-				"de",
-				"delete"
-			],
-			[
 				"que",
 				"queryBuildingWithGeo"
 			],
@@ -474,82 +514,44 @@
 			[
 				"point",
 				"pointToGeoJSON"
-			],
-			[
-				"en",
-				"enableStateEvent"
-			],
-			[
-				"dis",
-				"disableStateEvent"
-			],
-			[
-				"ena",
-				"enableStateEvent"
-			],
-			[
-				"remove",
-				"removeGisobj"
-			],
-			[
-				"c",
-				"center"
-			],
-			[
-				"M",
-				"MAP"
-			],
-			[
-				"obj",
-				"object"
-			],
-			[
-				"push",
-				"pushState"
-			],
-			[
-				"qu",
-				"queryBuildingWithGeo"
-			],
-			[
-				"fo",
-				"formulateCoordinate"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "build/aliyun/data/paintingsdb.js",
+			"file": "Gruntfile.js",
 			"settings":
 			{
-				"buffer_size": 7694,
+				"buffer_size": 4812,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "build/aliyun/routes/paintingsctl.js",
+			"contents": "/root/.forever/sfguihua.log {\n  daily\n  rotate 100\n  missingok\n  notifempty\n  compress\n  sharedscripts\n  copytruncate\n  dateext\n  dateformat %Y-%m-%d.\n}",
 			"settings":
 			{
-				"buffer_size": 7611,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "data/paintingsdb.js",
-			"settings":
-			{
-				"buffer_size": 7694,
-				"line_ending": "Unix"
+				"buffer_size": 152,
+				"line_ending": "Unix",
+				"name": "/root/.forever/sfguihua.log {"
 			}
 		}
 	],
 	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
 	"command_palette":
 	{
 		"height": 392.0,
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"pageckage",
+				"Package Control: List Packages"
+			],
 			[
 				"Package Control: list",
 				"Package Control: List Packages"
@@ -607,7 +609,7 @@
 				"About"
 			]
 		],
-		"width": 467.0
+		"width": 449.0
 	},
 	"console":
 	{
@@ -628,139 +630,141 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www"
+		"/Users/sanli/Documents/workspace/cag-h5",
+		"/Users/sanli/Documents/workspace/cag-h5/public",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js",
+		"/Users/sanli/Documents/workspace/cag-h5/views"
 	],
 	"file_history":
 	[
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/paintings.js",
-		"/Users/sanli/Documents/workspace/cag-h5/data/paintingsdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/routes/messagectl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage/IMPORT/back_db.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/imgpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/imglite.js",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/src/from.coffee",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/src/generator.coffee",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/front_module.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/leaflet-plugin_min.js",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/config.xml",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/js/main.js",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/mainpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/mobile.html",
-		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/paintingsdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/main.js",
-		"/Users/sanli/Documents/workspace/cag-h5/chromeapp/manifest.json",
-		"/Users/sanli/Documents/workspace/cag-h5/cag.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/blog/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/imglitepage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/blogpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/img.js",
-		"/Users/sanli/Documents/workspace/cag-h5/config.js",
-		"/Users/sanli/Documents/workspace/cag-h5/release/img.html",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/iconv-lite/test/main-test.js",
-		"/Users/sanli/Documents/workspace/cag-h5/imgtool/jieshao_tmpl.ejs",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt/node_modules/findup-sync/node_modules/glob/node_modules/inherits/package.json",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/lib/nodes/page.js",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/CordovaLib/build/CordovaLib.build/Debug-iphonesimulator/CordovaLib.build/Cordova-generated-files.hmap",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/mybookmark.js",
 		"/Users/sanli/Documents/workspace/cag-h5/Gruntfile.js",
-		"/Users/sanli/Downloads/paintings.json",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/registpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/userinfopage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/mybookmarkpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/bookmarkctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/bookmark/bookmarkpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.ext.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tfoot.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tnavi.html",
+		"/Users/sanli/Documents/workspace/cag-h5/data/touristdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/tourist.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/userinfo.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/cagcommons.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/bookmark.js",
+		"/Users/sanli/Documents/workspace/cag-h5/data/art_is_fun.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/imgpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/touristctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/main.js",
+		"/Users/sanli/Documents/workspace/cag-h5/data/bookmarkdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
+		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/mainpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/dateformat/lib/dateformat.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/thead.html",
+		"/Users/sanli/Documents/workspace/cag-h5/cag.js",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/img.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/routes/userctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/package.json",
+		"/Users/sanli/Documents/workspace/cag-h5/mongo.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/touristpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/config.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/navi.html",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/routes/bookmarkctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/tempout/routes/touristctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/back_route.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/front_module.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/signinpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/routes/paintingsctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/export/dump/cag/painting_v1.bson",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/CordovaLib/src/com/squareup/okhttp/internal/tls/DistinguishedNameParser.java",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/build/emulator/中华珍宝馆.app/Plugins/com.danielcwilson.plugins.googleanalytics/GAITrackedViewController.h",
-		"/Users/sanli/Documents/workspace/cag-h5/export/dump/cag/painting.metadata.json",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_userdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/imglitepage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/errpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/data/paintingsdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/head.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/imglite.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/regist.js",
+		"/Users/sanli/Desktop/remove-zongzi",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/connect/lib/middleware/session.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/browserify/test/backbone.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/css/backend.css",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/paintings.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/bootstrap.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/concurix-dashboard/assets/font-awesome/css/font-awesome.css",
+		"/Users/sanli/Documents/workspace/cag-h5/views/datatoyspage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/d3f.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/d3.html",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_enumdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/userdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_roledb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/ejs.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/js/sharepage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/commonsctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/front_module.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/tourist.js.old",
+		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/userdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/routes/userctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/data/imp.js",
+		"/Users/sanli/Documents/workspace/cag-h5/data/sys_enumdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/data/commonsdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_logdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_orgdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_confdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/back_db.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/d3t.html",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/share.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/blogpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/concurix-dashboard/node_modules/component-css/node_modules/component-each/node_modules/to-function/node_modules/remove-try-require/node_modules/replace-method/node_modules/recast/lib/lines.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/css/bootstrap.css",
+		"/Users/sanli/Documents/workspace/cag-h5/public/mobile.html",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/css/main.css",
+		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/js/cag.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/paintingsdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/data/cagstore_paintingsdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/messagelinkdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/messagedb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/commentdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/cagstore_paintingsdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/about.html",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/argument_parser.js",
-		"/Users/sanli/Desktop/paintings.json",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/css/main.css",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/中华珍宝馆/config.xml",
-		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/css/index.css",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/www/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/blog/index.html",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/assets/www/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/lib/nodes/expression.js",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/CordovaLib/src/org/apache/cordova/ExposedJsApi.java",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt-contrib-nodeunit/docs/nodeunit-examples.md",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www.bak/index.html",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www.bak/js/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/bower_components/chill/layout.html",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/data/non-ascii-identifier-part-only.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/bower_components/ninja/example/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/bower_components/ninja/example/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-zip/node_modules/jszip/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/underscore/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/build/bae/public/blog/index.html",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/cordova/apple_ios_version",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/CordovaLib/src/com/squareup/okhttp/internal/http/AbstractHttpInputStream.java",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/test/ping-pong-test.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/index.html",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/config.xml",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/src/index.coffee",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/lib/index.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/doc/index.md",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/css/themes/default/images/icons-svg/delete-black.svg",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/AndroidManifest.xml",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/node_modules/mpromise/.idea/libraries/Node_js_Dependencies_for_mpromise.xml",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt/node_modules/findup-sync/node_modules/glob/node_modules/minimatch/test/brace-expand.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/exit/package.json",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jshint/node_modules/htmlparser2/node_modules/domhandler/test/cases/08-extra_spaces_in_tag.json",
-		"/Users/sanli/Documents/workspace/cag-h5/imgtool/graper.js",
-		"/Users/sanli/Documents/workspace/cag-h5/imgtool.js",
-		"/Users/sanli/Downloads/uniq.6_sort.log",
-		"/Users/sanli/Downloads/uniq.5.log",
-		"/Users/sanli/Downloads/uniq.5_sort.log",
-		"/Users/sanli/Downloads/uniq.2.log",
-		"/Users/sanli/Downloads/uniq.1.log",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/node_modules/through/LICENSE.APACHE2",
-		"/Users/sanli/Documents/workspace/cag-h5/public/css/leaflet.css",
-		"/Users/sanli/Documents/workspace/cag-h5/public/css/backend.css",
+		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/blog/index.html",
+		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/routes/index.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/css/index.css",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/minkelite/node_modules/sqlite3/node_modules/node-pre-gyp/node_modules/rc/node_modules/deep-extend/test/index.spec.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/browserify/node_modules/vm-browserify/node_modules/indexof/package.json",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/concurix-dashboard/node_modules/less/test/data/page.html",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/concurix-dashboard/node_modules/moment/locale/zh-cn.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-zip/node_modules/jszip/node_modules/zlibjs/src/heap.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/concurix-dashboard/node_modules/d3/src/geo/azimuthal-equidistant.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt-cli/completion/zsh",
-		"/Users/sanli/Documents/workspace/cag-h5/views/navi.html",
-		"/Users/sanli/Documents/workspace/cag-h5/release/js/img_1402281388852_min.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/stylus/lib/functions/image.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/css/bootstrap.css",
-		"/Users/sanli/Documents/workspace/cag-h5/build/bae/data/cagstore_paintingsdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/data/messagedb.js",
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/www/index.html",
+		"/Users/sanli/Documents/workspace/cag-h5/imgtool.js",
+		"/Users/sanli/Documents/workspace/cag-h5/data/paintdb.js.bak.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/paintdb.js.bak.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/test/fixtures/includes/menu-item.ejs",
-		"/Users/sanli/Documents/workspace/cag-h5/public/bower_components/ninja/LICENSE",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/jake/lib/npm_publish_task.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/redis/examples/pub_sub.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/uglify-js/node_modules/source-map/build/prefix-utils.jsm",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/.bin/grunt",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt-cli/bin/grunt",
-		"/Users/sanli/Documents/workspace/cag-h5/public/blog/blog.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/blog.html",
-		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/js/img.withdraw.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/img.withdraw.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/js/img.js",
 		"/Users/sanli/Documents/workspace/cag-h5/crawler/imgcrawler.js",
 		"/Users/sanli/Documents/workspace/cag-h5/imgtool/commons.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt-contrib-cssmin/node_modules/grunt-lib-contrib/test/lib_test.js",
-		"/Users/sanli/Documents/workspace/cag-h5/imgtool/cropertmpl.ejs",
-		"/Users/sanli/Documents/workspace/cag-h5/data/paintdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/messagepage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/message.html",
-		"/Users/sanli/Downloads/zhenbao.6.log",
-		"/Users/sanli/Documents/workspace/cag-h5/data/commentdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/data/cagstore_paintingsdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/bae/routes/mainctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/bae/data/paintingsdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/bae/data/paintdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/bae/data/cagstore_paintdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/bootstrap.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/connect/node_modules/crc/lib/crc.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/bae/sharepage.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/js/bootstrap.js",
-		"/Users/sanli/Documents/workspace/cag-h5/release/js/bootstrap.js",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/CordovaLib/src/com/squareup/okhttp/HttpResponseCache.java",
-		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/css/main_1421853196491_min.css",
-		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/css/main.css",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/plugins/org.apache.cordova.network-information/package.json",
-		"/Users/sanli/Documents/workspace/cag-h5/imgtool/croper.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt-contrib-cssmin/node_modules/grunt-lib-contrib/package.json",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/connect/node_modules/formidable/test/fixture/js/special-chars-in-filename.js",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/css/themes/default/images/icons-svg/forbidden-black.svg",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt/node_modules/findup-sync/node_modules/glob/examples/usr-local.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt/node_modules/findup-sync/Gruntfile.js"
+		"/Users/sanli/Documents/workspace/cag-h5/views/mainpage.html.1",
+		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/routes/paintingsctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/routes/messagectl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/IMPORT/back_db.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/src/from.coffee",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/src/generator.coffee"
 	],
 	"find":
 	{
@@ -771,6 +775,7 @@
 		"height": 93.0,
 		"where_history":
 		[
+			"/Users/sanli/Documents/workspace/cag-h5/",
 			"/Users/sanli/Documents/workspace/cag-h5/data",
 			"/Users/sanli/Documents/workspace/cag-h5/routes",
 			"/Users/sanli/Documents/workspace/cag-h5/public/js",
@@ -805,134 +810,134 @@
 		"case_sensitive": false,
 		"find_history":
 		[
-			"viewcnt",
-			"ltfc",
-			"zhenbao.duapp.com",
-			"zhenbao",
-			"put object to cache key",
-			"bae",
-			"viewCnt",
-			"export",
-			",",
-			"qq",
-			"open",
-			"window.open",
-			"target",
-			"scrollTo",
-			"wrapLinkEvent",
-			"isMobile",
-			"QQ群",
-			"cordova.js",
-			"mobile",
-			"type=\"text/javascript\" ",
-			"6",
-			"<hr>",
-			"cdn",
-			"dist/",
-			"img.html",
-			"img.js",
-			"Painting",
-			"painting",
-			"Painting",
-			"painting",
-			"101.226.33.200",
-			"101.199.108.56",
-			"175.19.153.36",
-			"124.95.156.69",
-			"loadEssence",
-			"返回顶部",
-			"age",
-			"outline-dlg",
-			"age1",
-			",",
-			", ",
-			"当代",
-			"明清",
-			"paintdb",
-			"style=\"font-size: 24px;\"",
-			"div",
-			"class=\"col-sm-1 col-md-1\" ",
-			"<a",
-			"span class=\"label label-info\"",
-			"<h5>",
-			"bg.jpg",
-			"images/bg.jpg",
-			"supperdetailpainter.u.qiniudn.com",
-			"zhenbao.duapp.com",
-			"h5",
-			"h4",
-			"ul",
-			"emb",
-			"ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';",
-			"切分文件出错，跳过当前文",
-			"文件已经生成, 跳过",
-			"MyControl",
-			"loadSearch",
-			"label\n",
-			"collapseOne",
-			"outlineTmpl",
-			"outline",
-			"loadOutline\n",
-			"<!--",
-			"state.href",
-			"class=\"href\"",
-			"thumbnail",
-			"deleted",
-			"imageMagick",
-			"crop",
-			"delete",
-			"rm",
-			"remove",
-			"resizethumb",
-			"crop",
-			"ga",
-			"ga('send', 'pageview')",
-			"ga('send', 'pageview');",
-			"paintingview]",
-			"[url=",
-			"[/img][/url]",
-			"[img]",
-			"发布状态",
-			"delete",
-			"deleteModule",
-			"list",
-			"/Users/sanli/Desktop/中华珍宝馆/高清精选",
-			"cache",
-			"_genOfflineHtmlFile",
-			"下载网页离线包",
-			"pushInfo2Sidebar",
-			"5380542cab18e5515c68a7df",
-			"painting-title",
-			"head",
-			", ",
+			"         #",
+			"____",
+			"《",
+			"》",
+			"《",
+			"》",
+			"《",
+			"》",
+			"search-panel",
+			"\">\n",
+			"项目管理",
+			"if(share.isConflict(items, _id))",
+			"spin",
+			"chkbookmark",
+			"skipSignin",
+			"torist",
+			"download",
+			"tip",
+			"tourist_api",
+			"PIN",
+			"userinfoTmpl",
+			"js/",
+			"js/jquery",
+			"showSearchBlock",
+			"../../routes/sfcommonsctl.js",
+			"sf",
+			"../../config.js",
+			"js/",
+			"访客信息",
+			"torist",
 			" ",
-			"comment",
-			"scroll",
-			"setEditState",
-			"preprocess",
-			"全屏显示当前画面",
-			"全屏",
-			"_genOfflineHtmlFile",
-			"col-sm-10",
-			"col-sm-2",
-			"form-group",
-			"form-group ",
-			" %>",
-			"offlineFile",
-			"filename",
-			"Module.baseurl",
-			"paintingTitle",
-			",\n",
-			"generateFileinfo",
-			"console.log",
-			"console",
-			"_cdn",
-			"</script>",
-			"<script",
-			" target === 'release' ",
-			"<% if( target === 'release' ){ %>",
-			"http://zhenbao.duapp.com/",
-			"bg.jpg"
+			"main",
+			"userSessionKey",
+			".role",
+			"share",
+			"req.session.user",
+			"getUserName",
+			"user",
+			"getUserName",
+			"session",
+			"userId",
+			"css/",
+			"js/",
+			"css/",
+			"js/",
+			"img",
+			">\n",
+			"../",
+			"jx_zongzi_antenna_hz",
+			"jx_zongzi_room_hz",
+			"jx_zongzi_bbu_hz",
+			"jx_zongzi_antenna_hz",
+			"us",
+			"ud",
+			"searchCondExp",
+			"_assertNotNull",
+			"_ResultByState",
+			"rt(",
+			"rt",
+			"rs",
+			"rt",
+			"<%",
+			"findById",
+			"fileinfo",
+			"@>",
+			"<@",
+			"<@=",
+			"<@",
+			"loadInfo",
+			"pushInfo2Sidebar",
+			"FUCK_BAIDU",
+			"_gentoken",
+			"tuser",
+			"dlgfile",
+			"login-btn",
+			"tuser",
+			"req.session.tuser,",
+			"req.session.user",
+			"session",
+			"module-form",
+			"#module-form",
+			"<%",
+			"tourist",
+			"js/",
+			"hasRight('项目管理'",
+			"登录",
+			"duoshuoQuery",
+			"offset",
+			"mainContent",
+			"transition",
+			";*/\n",
+			"d3.max(dataset, function(d) { return d[1]; })",
+			"action-ctl",
+			"bodyId",
+			"cellTbody",
+			"cellTable",
+			"spin",
+			"cellTbody",
+			"fillUserDataRule",
+			"target",
+			"条件查询",
+			"target",
+			"sys_role",
+			"enum",
+			"sys",
+			"../sharepage",
+			"rt",
+			"sys_sysrole",
+			"sys_sysorg",
+			"commonsdb",
+			"upload",
+			"touristdb.js",
+			"../../sharepage",
+			"var imp = require('../../data/imp.js');",
+			"moduleName",
+			"h2",
+			"h1",
+			"loadSearch",
+			"180",
+			"h4",
+			"一级",
+			"newrow",
+			"ask",
+			"android",
+			"queryfile",
+			"processPainting",
+			"viewcnt",
+			"ltfc"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -978,108 +983,68 @@
 	"folders":
 	[
 		{
-			"follow_symlinks": true,
 			"path": "/Users/sanli/Documents/workspace/cag-h5"
-		},
-		{
-			"follow_symlinks": true,
-			"path": "/Users/sanli/Documents/workspace/cag-client/cagmobi"
 		}
 	],
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "build/aliyun/data/paintingsdb.js",
+					"file": "Gruntfile.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7694,
+						"buffer_size": 4812,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								6591,
-								6591
+								4267,
+								4267
 							]
 						],
 						"settings":
 						{
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3929.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "build/aliyun/routes/paintingsctl.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 7611,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7238,
-								7238
-							]
-						],
-						"settings":
-						{
-							"origin_encoding": "UTF-8",
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 3000.0,
+						"translation.x": 112.0,
+						"translation.y": 1279.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "data/paintingsdb.js",
+					"buffer": 1,
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 7694,
+						"buffer_size": 152,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1730,
-								1730
+								152,
+								152
 							]
 						],
 						"settings":
 						{
-							"origin_encoding": "UTF-8",
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"auto_name": "/root/.forever/sfguihua.log {",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 898.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1090,7 +1055,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 23.0
+		"height": 22.0
 	},
 	"input":
 	{
@@ -1159,528 +1124,530 @@
 	{
 		"height": 337.0
 	},
+	"pinned_build_system": "",
 	"project": "",
 	"replace":
 	{
-		"height": 42.0
+		"height": 40.0
 	},
 	"save_all_on_build": true,
 	"select_file":
 	{
 		"height": 0.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
-				"paintingsdb.js",
-				"cag-h5/data/paintingsdb.js"
-			],
-			[
-				"mainpage.html",
-				"cag-h5/views/mainpage.html"
-			],
-			[
-				"imglitepage.html",
-				"cag-h5/views/imglitepage.html"
-			],
-			[
-				"imgpage.html",
-				"cag-h5/views/imgpage.html"
-			],
-			[
-				"img.js",
-				"cag-h5/public/js/img.js"
-			],
-			[
-				"main.html",
-				"cag-h5/views/mainpage.html"
-			],
-			[
-				"mainctl.js",
-				"cag-h5/routes/mainctl.js"
-			],
-			[
-				"imglitepage",
-				"cag-h5/views/imglitepage.html"
-			],
-			[
-				"mainctl",
-				"cag-h5/routes/mainctl.js"
-			],
-			[
-				"cag.js",
-				"cag-h5/cag.js"
-			],
-			[
 				"grun",
-				"cag-h5/Gruntfile.js"
+				"Gruntfile.js"
 			],
 			[
-				"paitingsdb",
-				"cag-h5/data/paintingsdb.js"
+				"mybookmakr.js",
+				"public/js/mybookmark.js"
 			],
 			[
-				"paitingsdb.js",
-				"cag-h5/data/paintingsdb.js"
+				"bookmarkctl.js",
+				"routes/bookmarkctl.js"
 			],
 			[
-				"paintingctl",
-				"cag-h5/routes/paintingsctl.js"
+				"mybookmak",
+				"views/tourist/mybookmarkpage.html"
+			],
+			[
+				"bookmakrpage",
+				"views/bookmark/bookmarkpage.html"
+			],
+			[
+				"userinfopge",
+				"views/tourist/userinfopage.html"
+			],
+			[
+				"registpage",
+				"views/tourist/registpage.html"
+			],
+			[
+				"tfoot.html",
+				"views/tfoot.html"
+			],
+			[
+				"sharepage.ext.js",
+				"public/js/sharepage.ext.js"
+			],
+			[
+				"gruntfile.js",
+				"Gruntfile.js"
+			],
+			[
+				"userinfopage.",
+				"views/tourist/userinfopage.html"
+			],
+			[
+				"mybookmakrpage.html",
+				"views/tourist/mybookmarkpage.html"
+			],
+			[
+				"userinfopage",
+				"views/tourist/userinfopage.html"
+			],
+			[
+				"userinfo.js",
+				"public/js/userinfo.js"
+			],
+			[
+				"artisfun",
+				"data/art_is_fun.js"
+			],
+			[
+				"myboo",
+				"public/js/mybookmark.js"
+			],
+			[
+				"bookmark.js",
+				"public/js/bookmark.js"
+			],
+			[
+				"tourist.js",
+				"public/js/tourist.js"
+			],
+			[
+				"cagcommons.js",
+				"public/js/cagcommons.js"
+			],
+			[
+				"tour",
+				"public/js/tourist.js"
+			],
+			[
+				"artfu",
+				"data/art_is_fun.js"
+			],
+			[
+				"touristctl.js",
+				"routes/touristctl.js"
+			],
+			[
+				"tnavi.html",
+				"views/tnavi.html"
 			],
 			[
 				"main.css",
-				"cagmobi/www/css/main.css"
-			],
-			[
-				"index.html",
-				"cagmobi/www/index.html"
-			],
-			[
-				"main.js",
-				"cag-h5/public/js/main.js"
-			],
-			[
-				"isoindex.html",
-				"cagmobi/platforms/ios/www/index.html"
-			],
-			[
-				"paintingspage.",
-				"cag-h5/views/paintingspage.html"
-			],
-			[
-				"imglite",
-				"cag-h5/public/js/imglite.js"
-			],
-			[
-				"img.html",
-				"cag-h5/release/img.html"
-			],
-			[
-				"layout.html",
-				"cag-h5/public/bower_components/chill/layout.html"
-			],
-			[
-				"blogpage.html",
-				"cag-h5/views/blogpage.html"
-			],
-			[
-				"mob",
-				"cag-h5/public/mobile.html"
-			],
-			[
-				"navi.html",
-				"cag-h5/views/navi.html"
-			],
-			[
-				"conf",
-				"cag-h5/config.js"
-			],
-			[
-				"imgli",
-				"cag-h5/public/js/imglite.js"
-			],
-			[
-				"mianpage.html",
-				"cag-h5/views/mainpage.html"
-			],
-			[
-				"grunt",
-				"cag-h5/Gruntfile.js"
-			],
-			[
-				"paintingdb",
-				"cag-h5/data/paintingsdb.js"
-			],
-			[
-				"messagedb.js",
-				"cag-h5/data/messagedb.js"
-			],
-			[
-				"commentdb.js",
-				"cag-h5/data/commentdb.js"
-			],
-			[
-				"paintdb.js",
-				"cag-h5/data/paintdb.js"
-			],
-			[
-				"mianctl.js",
-				"cag-h5/routes/mainctl.js"
-			],
-			[
-				"bootstrap.css",
-				"cag-h5/public/css/bootstrap.css"
-			],
-			[
-				"sharepage.js",
-				"cag-h5/public/js/sharepage.js"
-			],
-			[
-				"sha",
-				"cag-h5/sharepage.js"
-			],
-			[
-				"imglite.js",
-				"cag-h5/public/js/imglite.js"
-			],
-			[
-				"imgtool.js",
-				"cag-h5/imgtool.js"
+				"public/css/main.css"
 			],
 			[
 				"paintingspage.html",
-				"cag-h5/views/paintingspage.html"
+				"views/paintingspage.html"
 			],
 			[
-				"paintingsctl.js",
-				"cag-h5/routes/paintingsctl.js"
+				"main.js",
+				"public/js/main.js"
 			],
 			[
-				"paintingsdb",
-				"cag-h5/data/paintingsdb.js"
+				"mybookmark.js",
+				"public/js/mybookmark.js"
 			],
 			[
-				"paintingsctl",
-				"cag-h5/routes/paintingsctl.js"
+				"mainpage.html",
+				"views/mainpage.html"
 			],
 			[
-				"paintngs.js",
-				"cag-h5/public/js/paintings.js"
+				"paintingspage",
+				"views/paintingspage.html"
 			],
 			[
-				"paintings.js",
-				"cag-h5/public/js/paintings.js"
+				"paint",
+				"views/paintingspage.html"
 			],
 			[
-				"imgtools",
-				"cag-h5/imgtool.js"
+				"bookmakrdb.js",
+				"data/bookmarkdb.js"
 			],
 			[
-				"imgtools.js",
-				"cag-h5/imgtool/commons.js"
+				"bookmakrctl.js",
+				"routes/bookmarkctl.js"
 			],
 			[
-				"cropcommons",
-				"cag-h5/imgtool/cropcommons.jsx"
+				"mybookmarkpage.html",
+				"views/tourist/mybookmarkpage.html"
 			],
 			[
-				".jsx",
-				"cag-h5/cagstore/5380542cab18e5515c68a7df/crop.jsx"
+				"mybo",
+				"public/js/mybookmark.js"
 			],
 			[
-				"mongo.js",
-				"cag-h5/mongo.js"
+				"bookmarkpage.html",
+				"views/bookmark/bookmarkpage.html"
 			],
 			[
-				"mongodb.js",
-				"cag-h5/node_modules/tracer/example/mongodb.js"
+				"imgpage.html",
+				"views/imgpage.html"
 			],
 			[
-				"message",
-				"cag-h5/views/message.html"
+				"thead",
+				"views/thead.html"
 			],
 			[
-				"cagstore_paintingsdb",
-				"cag-h5/data/cagstore_paintingsdb.js"
+				"uuserinfopage.html",
+				"views/tourist/userinfopage.html"
 			],
 			[
-				"cagstore",
-				"cag-h5/data/cagstore_paintingsdb.js"
+				"touristclt.js",
+				"routes/touristctl.js"
 			],
 			[
-				"pa",
-				"cag-h5/data/paintingsdb.js"
-			],
-			[
-				"mongo",
-				"cag-h5/mongo.js"
-			],
-			[
-				"offi",
-				"cag-h5/public/js/offline.js"
-			],
-			[
-				"offline_tmpl",
-				"cag-h5/imgtool/offline_tmpl.ejs"
-			],
-			[
-				"off",
-				"cag-h5/public/js/offline.js"
-			],
-			[
-				"offline",
-				"cag-h5/build/cdn/js/offline_1412693105095_min.js"
-			],
-			[
-				"offline_1412693105095_min.js",
-				"cag-h5/build/cdn/js/offline_1412693105095_min.js"
-			],
-			[
-				"help",
-				"cag-h5/public/help.html"
-			],
-			[
-				"金_武元直_赤壁图_纸本_51x136cm_旅顺博物馆",
-				"cag-h5/cagstore/5380542cab18e5515c68a7df/金_武元直_赤壁图_纸本_51x136cm_旅顺博物馆.html"
-			],
-			[
-				"lea",
-				"cag-h5/public/css/leaflet.css"
-			],
-			[
-				"mainpage",
-				"cag-h5/views/mainpage.html"
-			],
-			[
-				"cagstroe.js",
-				"cag-h5/cagstore.js"
-			],
-			[
-				"cagstore.js",
-				"cag-h5/cagstore.js"
-			],
-			[
-				"cagstore_",
-				"cag-h5/data/cagstore_paintingsdb.js"
-			],
-			[
-				"paintings",
-				"cag-h5/public/js/paintings.js"
-			],
-			[
-				"mian.css",
-				"cag-h5/public/css/main.css"
-			],
-			[
-				"",
-				"cag-h5/routes/paintingsctl.js"
-			],
-			[
-				"about",
-				"cag-h5/public/about.html"
-			],
-			[
-				"main",
-				"cag-h5/routes/mainctl.js"
-			],
-			[
-				"mess",
-				"cag-h5/views/message.html"
-			],
-			[
-				"mobile",
-				"cag-h5/public/mobile.html"
-			],
-			[
-				"package.js",
-				"cag-h5/package.json"
-			],
-			[
-				"sharepage",
-				"cag-h5/sharepage.js"
-			],
-			[
-				"config.js",
-				"cag-h5/config.js"
-			],
-			[
-				"painting",
-				"cag-h5/data/paintingsdb.js"
+				"bookmakrpage.html",
+				"views/bookmark/bookmarkpage.html"
 			],
 			[
 				"index.js",
-				"cagmobi/www/js/index.js"
+				"routes/index.js"
 			],
 			[
-				"about.html",
-				"cag-h5/public/about.html"
+				"cag.js",
+				"cag.js"
+			],
+			[
+				"sharepage.js",
+				"sharepage.js"
+			],
+			[
+				"touristdb.js",
+				"data/touristdb.js"
+			],
+			[
+				"bookma",
+				"routes/bookmarkctl.js"
+			],
+			[
+				"tnav",
+				"views/tnavi.html"
+			],
+			[
+				"userinfopage.html",
+				"views/tourist/userinfopage.html"
+			],
+			[
+				"touri",
+				"routes/touristctl.js"
+			],
+			[
+				"img.js",
+				"public/js/img.js"
+			],
+			[
+				"tourispage",
+				"views/tourist/touristpage.html"
+			],
+			[
+				"",
+				"views/bookmark/bookmarkpage.html"
+			],
+			[
+				"mongo.js",
+				"mongo.js"
+			],
+			[
+				"pacakge.js",
+				"package.json"
+			],
+			[
+				"sharepage",
+				"sharepage.js"
+			],
+			[
+				"mainctl.js",
+				"routes/mainctl.js"
+			],
+			[
+				"bookmakr.js",
+				"public/js/bookmark.js"
+			],
+			[
+				"bookmakdb",
+				"data/bookmarkdb.js"
+			],
+			[
+				"userctl.js",
+				"sharepage/sys/routes/userctl.js"
+			],
+			[
+				"config.js",
+				"config.js"
+			],
+			[
+				"express-sessions.js",
+				"node_modules/express-sessions/index.js"
+			],
+			[
+				"package.json",
+				"package.json"
+			],
+			[
+				"cagcommosn.js",
+				"public/js/cagcommons.js"
+			],
+			[
+				"bookmarkdb",
+				"data/bookmarkdb.js"
+			],
+			[
+				"touristpage.html",
+				"views/tourist/touristpage.html"
+			],
+			[
+				"front_module.html",
+				"sharepage/CRUD/front_module.html"
+			],
+			[
+				"backrout",
+				"sharepage/CRUD/back_route.js"
+			],
+			[
+				"back_route",
+				"sharepage/CRUD/back_route.js"
+			],
+			[
+				"navi.html",
+				"views/navi.html"
+			],
+			[
+				"bookmarkdb.js",
+				"data/bookmarkdb.js"
+			],
+			[
+				"bookmakr",
+				"sharepage/routes/bookmarkctl.js"
+			],
+			[
+				"reg",
+				"views/tourist/registpage.html"
+			],
+			[
+				"singin",
+				"views/signinpage.html"
+			],
+			[
+				"paintingsctl.js",
+				"routes/paintingsctl.js"
+			],
+			[
+				"navi",
+				"views/navi.html"
+			],
+			[
+				"touristdb",
+				"data/touristdb.js"
+			],
+			[
+				"userdb",
+				"sharepage/sys/data/sys_userdb.js"
+			],
+			[
+				"imglitepage.html",
+				"views/imglitepage.html"
+			],
+			[
+				"mainpagehtml",
+				"views/mainpage.html"
+			],
+			[
+				"head",
+				"views/head.html"
+			],
+			[
+				"thead.html",
+				"views/thead.html"
+			],
+			[
+				"paintingsdb",
+				"data/paintingsdb.js"
+			],
+			[
+				"errpage.html",
+				"views/errpage.html"
+			],
+			[
+				"imglite.js",
+				"public/js/imglite.js"
+			],
+			[
+				"err",
+				"views/errpage.html"
+			],
+			[
+				"paintingsdb.js",
+				"data/paintingsdb.js"
+			],
+			[
+				"backbone",
+				"node_modules/concurix-server/node_modules/browserify/test/backbone.js"
+			],
+			[
+				"registpage.html",
+				"views/tourist/registpage.html"
+			],
+			[
+				"backend.css",
+				"public/css/backend.css"
+			],
+			[
+				"turistctl.js",
+				"routes/touristctl.js"
+			],
+			[
+				"front",
+				"sharepage/CRUD/front_module.html"
+			],
+			[
+				"tou.js",
+				"public/js/tourist.js"
+			],
+			[
+				"paintings.js",
+				"public/js/paintings.js"
+			],
+			[
+				"painting",
+				"views/paintingspage.html"
+			],
+			[
+				"home.css",
+				"node_modules/concurix-server/node_modules/concurix-dashboard/assets/font-awesome/css/font-awesome.css"
+			],
+			[
+				"datatoyspage.html",
+				"views/datatoyspage.html"
+			],
+			[
+				"datatou",
+				"data/touristdb.js"
+			],
+			[
+				"front_moude.js",
+				"cag-h5/sharepage/CRUD/front_module.js"
+			],
+			[
+				"front_mo",
+				"cag-h5/sharepage/CRUD/front_module.html"
+			],
+			[
+				"backroute",
+				"cag-h5/sharepage/CRUD/back_route.js"
+			],
+			[
+				"paintingclt.js",
+				"cag-h5/routes/paintingsctl.js"
+			],
+			[
+				"ejs.js",
+				"cag-h5/node_modules/ejs/ejs.js"
 			],
 			[
 				"head.html",
 				"cag-h5/views/head.html"
 			],
 			[
-				"message.html",
-				"cag-h5/views/message.html"
+				"commonsctl.js",
+				"cag-h5/routes/commonsctl.js"
 			],
 			[
-				"mainct",
-				"cag-h5/routes/mainctl.js"
+				"touct",
+				"cag-h5/routes/touristctl.js"
 			],
 			[
-				"cag-h5/about.html",
-				"cag-h5/public/about.html"
+				"commonsctl",
+				"cag-h5/routes/commonsctl.js"
 			],
 			[
-				"mobi",
-				"cag-h5/public/mobile.html"
+				"sys_roledb",
+				"cag-h5/sharepage/sys/data/sys_roledb.js"
 			],
 			[
-				"cagmobi/index",
-				"cagmobi/www/js/index.js"
+				"userdb.js",
+				"cag-h5/sharepage/sys/data/userdb.js"
 			],
 			[
-				"cagmobi",
-				"cagmobi/www/about.html"
+				"sysroledb.js",
+				"cag-h5/sharepage/sys/data/sys_roledb.js"
 			],
 			[
-				"cagmobiabout.",
-				"cagmobi/www/about.html"
+				"sysroledb",
+				"cag-h5/sharepage/sys/data/sys_roledb.js"
 			],
 			[
-				"cagmobiindex.js",
-				"cagmobi/www/js/index.js"
+				"sys_enumdb",
+				"cag-h5/sharepage/sys/data/sys_enumdb.js"
 			],
 			[
-				"mobile.html",
-				"cag-h5/public/mobile.html"
+				"imp.js",
+				"cag-h5/data/imp.js"
 			],
 			[
-				"jquery.mobile",
-				"cagmobi/www/js/jquery.mobile-1.4.3.js"
+				"commonsdb.js",
+				"cag-h5/data/commonsdb.js"
 			],
 			[
-				"sharepage-mobile",
-				"cagmobi/www/js/sharepage-mobile.js"
+				"commonsctl.",
+				"cag-h5/routes/commonsctl.js"
 			],
 			[
-				"index.css",
-				"cagmobi/www/css/index.css"
-			],
-			[
-				"sharepage-mo",
-				"cagmobi/www/js/sharepage-mobile.js"
-			],
-			[
-				"jquerymo",
-				"cagmobi/www/js/jquery.mobile-1.4.3.js"
-			],
-			[
-				"jquery.mo",
-				"cag-client/cag/www/js/jquery.mobile-1.4.2.js"
-			],
-			[
-				"commentpage",
-				"cag-h5/views/commentpage.html"
-			],
-			[
-				"sharepage-mobile.js",
-				"cag-client/cag/www/js/sharepage-mobile.js"
-			],
-			[
-				"css/index.css",
-				"cag-client/cag/www/css/index.css"
-			],
-			[
-				"demo/index",
-				"cag-client/hello/www/demos/intro/index.html"
-			],
-			[
-				"leaflet-src.js",
-				"cag-h5/public/js/leaflet-src.js"
-			],
-			[
-				"leaflet-sr",
-				"cag-h5/public/js/leaflet-src.js"
-			],
-			[
-				"imgtoo",
-				"cag-h5/imgtool.js"
-			],
-			[
-				"naiv",
-				"cag-h5/views/navi.html"
-			],
-			[
-				"image.js",
-				"cag-h5/node_modules/stylus/lib/functions/image.js"
-			],
-			[
-				"backend.css",
-				"cag-h5/public/css/backend.css"
-			],
-			[
-				"commentctl",
-				"cag-h5/routes/commentctl.js"
-			],
-			[
-				"comment.js",
-				"cag-h5/public/js/comment.js"
-			],
-			[
-				"paintingpage.",
+				"paitningspage.html",
 				"cag-h5/views/paintingspage.html"
 			],
 			[
-				"commentdb",
-				"cag-h5/data/commentdb.js"
+				"backrou",
+				"cag-h5/sharepage/CRUD/back_route.js"
 			],
 			[
-				"jquery",
-				"cag-h5/public/js/jquery.js"
+				"sysen",
+				"cag-h5/data/sys_enumdb.js"
 			],
 			[
-				"gru",
-				"cag-h5/Gruntfile.js"
+				"tou",
+				"cag-h5/routes/touristctl.js"
 			],
 			[
-				"commentctl.js",
-				"cag-h5/routes/commentctl.js"
+				"tourctl.js",
+				"cag-h5/routes/touristctl.js"
 			],
 			[
-				"gruntfile.js",
-				"cag-h5/Gruntfile.js"
+				"backdb",
+				"cag-h5/sharepage/CRUD/back_db.js"
 			],
 			[
-				"bootstrap.js",
-				"cag-h5/public/js/bootstrap.js"
+				"share.js",
+				"cag-h5/sharepage/share.js"
 			],
 			[
-				"leaflet-src",
-				"cag-h5/public/js/leaflet-src.js"
+				"blogpage",
+				"cag-h5/views/blogpage.html"
 			],
 			[
-				"jquery.js",
-				"cag-h5/public/js/jquery.js"
-			],
-			[
-				"draw",
-				"cag-h5/public/js/leaflet.draw-src.js"
-			],
-			[
-				"leflet.js",
-				"cag-h5/public/js/leaflet.js"
-			],
-			[
-				"draw.",
-				"cag-h5/public/js/leaflet.draw-src.js"
-			],
-			[
-				"painting.js",
-				"cag-h5/public/js/paintings.js"
-			],
-			[
-				"sidebar.css",
-				"cag-h5/public/css/L.Control.Sidebar.css"
-			],
-			[
-				"sidebar",
-				"cag-h5/public/js/L.Control.Sidebar.js"
-			],
-			[
-				"package",
-				"cag-h5/package.json"
-			],
-			[
-				"sidebar.js",
-				"cag-h5/public/js/L.Control.Sidebar.js"
+				"imglitepage",
+				"cag-h5/views/imglitepage.html"
 			],
 			[
 				"imgpage",
 				"cag-h5/views/imgpage.html"
 			],
 			[
-				"static.js",
-				"cag-h5/node_modules/mongoose/static.js"
+				"bootst",
+				"cag-h5/public/css/bootstrap.css"
+			],
+			[
+				"mobile.html",
+				"cag-h5/public/mobile.html"
+			],
+			[
+				"paintingctl.js",
+				"cag-h5/routes/paintingsctl.js"
+			],
+			[
+				"main.html",
+				"cag-h5/views/mainpage.html"
+			],
+			[
+				"imgtool.js",
+				"cag-h5/imgtool.js"
 			]
 		],
 		"width": 0.0
@@ -1688,6 +1655,7 @@
 	"select_project":
 	{
 		"height": 500.0,
+		"last_filter": "",
 		"selected_items":
 		[
 			[
@@ -1700,15 +1668,124 @@
 	"select_symbol":
 	{
 		"height": 392.0,
+		"last_filter": "date",
 		"selected_items":
 		[
 			[
-				"import",
-				"import"
+				"date",
+				"dateFormat"
+			],
+			[
+				"showControlBlock",
+				"showControlBlock"
+			],
+			[
+				"getUser",
+				"getUser"
+			],
+			[
+				"fillUserDataRule",
+				"fillUserDataRule"
+			],
+			[
+				"getuser",
+				"getuser"
+			],
+			[
+				"autofill",
+				"autofill"
+			],
+			[
+				"compact",
+				"compact"
+			],
+			[
+				"omit",
+				"omit"
+			],
+			[
+				"authByData",
+				"authByData"
+			],
+			[
+				"whoami",
+				"whoami"
+			],
+			[
+				"getUserInfo",
+				"getUserInfo"
 			],
 			[
 				"bindurl",
 				"bindurl"
+			],
+			[
+				"ask",
+				"ask"
+			],
+			[
+				"showSearchBlock",
+				"showSearchBlock"
+			],
+			[
+				"getTitle",
+				"getTitle"
+			],
+			[
+				"getUserName",
+				"getUserName"
+			],
+			[
+				"findById",
+				"findById"
+			],
+			[
+				"errpage",
+				"errpage"
+			],
+			[
+				"session",
+				"session"
+			],
+			[
+				"doquery",
+				"doquery"
+			],
+			[
+				"getdata",
+				"getdata"
+			],
+			[
+				"alert",
+				"alert"
+			],
+			[
+				"logout",
+				"logout"
+			],
+			[
+				"affix",
+				"Affix"
+			],
+			[
+				"fillResult",
+				"fillResult"
+			],
+			[
+				"queryfile",
+				"queryfile"
+			],
+			[
+				"update",
+				"updateJSON"
+			],
+			[
+				"incViewCount",
+				"incViewCount"
+			],
+			[
+				"import",
+				"import"
 			],
 			[
 				"outline",
@@ -1717,10 +1794,6 @@
 			[
 				"h1",
 				"hex16"
-			],
-			[
-				"alert",
-				"Alert"
 			],
 			[
 				"cropfile",
@@ -1743,10 +1816,6 @@
 				"grapfileinfo"
 			],
 			[
-				"queryfile",
-				"queryfile"
-			],
-			[
 				"findOne",
 				"findOne"
 			],
@@ -1757,10 +1826,6 @@
 			[
 				"lazy",
 				"lazyload"
-			],
-			[
-				"findById",
-				"findById"
 			],
 			[
 				"writejson",
@@ -1777,10 +1842,6 @@
 			[
 				"delte",
 				"delete"
-			],
-			[
-				"update",
-				"update"
 			],
 			[
 				"getpaintinginfo",
@@ -1835,10 +1896,6 @@
 				"dodelete"
 			],
 			[
-				"ask",
-				"ask"
-			],
-			[
 				"scrollTop",
 				"resolveScrollToPos"
 			],
@@ -1879,16 +1936,8 @@
 				"json"
 			],
 			[
-				"autofill",
-				"autofill"
-			],
-			[
 				"eachSe",
 				"eachSeries"
-			],
-			[
-				"doquery",
-				"doquery"
 			],
 			[
 				"showmodal",
@@ -2039,10 +2088,6 @@
 				"loadCity"
 			],
 			[
-				"getdata",
-				"getdata"
-			],
-			[
 				"searchcond",
 				"processSearchCond"
 			],
@@ -2063,7 +2108,7 @@
 				"getParam"
 			]
 		],
-		"width": 692.0
+		"width": 828.0
 	},
 	"selected_group": 0,
 	"settings":
@@ -2073,7 +2118,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 248.0,
+	"side_bar_width": 233.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

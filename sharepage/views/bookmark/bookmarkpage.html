@@ -1,0 +1,236 @@
+<% include ../head.html %>
+
+<body>    
+  <% include ../navi.html %>
+  <div id="container" class="container-fluid">
+    <div class="row">
+
+<!-- 控制条 -->
+<nav class="navbar navbar-default col-md-12 navbar-static-top sub-navbar" role="navigation">
+  <div class="container-fluid">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#" class="importbtn">导入资源</a></li>
+        <% if(commons.hasRight('书签','import', user.role)){ %>
+          <li><a id="createbtn" href="#">新建访客信息</a></li>
+        <% } %>
+        <li><a id="exportbtn" href="#">导出数据</a></li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <li>
+          <div id="searchBtnGroup" class="btn-group navbar-form" data-toggle="buttons">
+            <label class="btn btn-default active" data-value="false"><input type="radio" name="searchBtn" value="false" checked> 全部数据</label>
+            <label class="btn btn-default" data-value="true"><input type="radio" name="searchBtn" value="true"> 条件查询</label>
+          </div>
+        </li>
+        <li>
+          <div id="editingBtnGroup" class="btn-group pull-right navbar-form" data-toggle="buttons">
+            <label class="btn btn-default active"><input type="radio" name="editingBtn" checked value="false"> 浏览</label>
+            <label class="btn btn-default"><input type="radio" name="editingBtn" value="true"> 编辑</label>
+          </div>
+        </li>
+      </ul>
+      <form id="search-form" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <div class="form-group">
+            <input name="queryword" type="text" class="form-control" placeholder="查询">
+          </div>
+          <button type="submit" class="btn btn-default">查询</button>
+        </div>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><!-- 控制面板 -->
+
+<!-- 主操作区域 -->
+<div id="mainContent" class="main col-md-12">
+    <!-- 查询面板 -->
+    <div id="searchPanel" class="panel panel-default fade search-panel">
+      <div class="panel-heading">查询条件</div>
+      <!-- TODO : 修改下面的查询条件 -->
+      <div class="panel-body">
+          <form id="detail-search-form" class="form-horizontal">
+            <fieldset>
+              <div class="form-group col-md-6">
+                  <label class="control-label col-sm-3">模块名称</label>
+                <div class="controls col-sm-8">
+                    <input name="moduleName" class="form-control">
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                  <label class="control-label col-sm-3">是否系统模块</label>
+                <div class="controls col-sm-6">
+                    <select name="isSysModule" class="form-control">
+                      <option value="">不判断</option>
+                      <option value="true">是</option>
+                      <option value="false">否</option>
+                    </select>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                  <label class="control-label col-sm-3">是否启用</label>
+                <div class="controls col-sm-6">
+                    <select name="isActive" class="form-control">
+                      <option value="">不判断</option>
+                      <option value="true">是</option>
+                      <option value="false">否</option>
+                    </select>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+      </div>
+      <div class="panel-footer" style="height: 50px;"><button id="detailSearchBtn" class="btn btn-primary pull-right">查询</button></div>
+    </div><!-- 查询面板 -->
+
+<!-- 显示模板 -->
+<!-- TODO : 修改下面的别表显示模版 -->
+<script type="text/html" id="cellTableTmpl">
+  <thead> 
+    <tr>
+      <th class="action-ctl"><input type="checkbox" data-sfcontrol="selectAll"><a>全选</a></th>
+    <@ 
+    var titles = [{field: 'moduleName' , title : '模块名称', canSort: true }
+      , { field: 'desc', title: '模块描述', canSort: true }];
+
+    for(i = 0 ; i<= titles.length -1 ; i++){
+      title = titles[i];
+    @>
+      <th>
+        <@ if(title.canSort){ @>
+          <a href="#sortby=<@=title.field @>&sortorder=<@=-(sort.order) @>" class="sortlink"> 
+        <@ } else { @>
+          <a> 
+        <@ } @>
+            <@=title.title @>
+            <@ if ( sort.by === title.field){ @>
+            <i class="glyphicon <@= sort.order === '-1' ? 'glyphicon-chevron-down' : 'glyphicon-chevron-up' @>"/>
+            <@ } @>
+            </a></th>
+    <@ } @>
+      <th class="action-ctl"><a>操作</a></th>
+    </tr>
+  </thead> 
+  <tbody id="bookmarkListTb">
+   <@ 
+    for( i = 0 ; i<= cells.length - 1; i++) { 
+        var cell = cells[i];
+   @>
+      <tr data-_id="<@=cell._id @>">
+        <td class="action-ctl fade"><input type="checkbox"></td>
+        <td><@=cell.moduleName @></td>
+        <td><@=cell.desc @></td>
+        <td class="action-ctl fade">
+        <%if(commons.hasRight('项目管理','write', user.role)){ %>
+          <a class="action action-edit">修改<i class="icon-edit"/></a> | 
+          <a class="action action-remove">删除<i class="icon-remove"/></a>
+        <% } else { %>
+          <a class="action action-edit">详情<i class="icon-edit"/></a>
+        <% } %>
+        </td></tr>
+   <@ } @>
+  </tbody>
+</script>
+
+<!-- 分页器 -->
+<script type="text/html" id="pagebarTpl">
+    <ul class="pagination">
+      <li><a>共有记录：<@=count @>条</a></li>
+      <li <@=(currentIdx===0 ? 'class="active"':"" ) @> >
+        <a href="#skipto=0">第一页</a></li>
+      <li <@=(startPage === pre ? 'class="active"':"" ) @> >
+        <a href="#skipto=<@=pre @> ">...</a></li>
+        <@ for( i = startPage ; i<= endPage; i++){ @>
+          <li <@=(currentIdx === i ? 'class="active"':"" ) @> >
+            <a href="#skipto=<@=i@>"><@=i@></a></li>
+        <@ } @>
+        <li <@= (endPage === next ? 'class="active"':"" ) @> >
+          <a href="#skipto=<@=next@>">...</a></li>
+        <li><a href="#skipto=<@=pageCnt-1 @>">最后一页</a></li>
+    </ul>
+</script> <!-- 显示模板 -->
+
+  <!-- 数据查询结果表格 -->
+  <div id="cellDiv" class="panel panel-default">
+    <div class="panel-heading">书签数据列表</div>
+    <table id="cellTable" class="table table-bordered table-hover"></table>
+    <div class="panel-footer"><div id="pagebar"></div></div>
+  </div>
+
+</div><!-- 数据查询结果表格 -->
+  </div>
+</div>
+  
+  <!-- 确认对话框 -->
+  <div id="confirmDlg" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog"><div class="modal-content"></div></div>
+  </div>
+
+  <!-- 导入信息对话框 -->
+  <div id="importDlg" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog"><div class="modal-content"></div></div>
+  </div>
+  
+  <!-- bookmark修改对话框 -->
+  <!-- TODO : 修改下面的数据编辑对话框 -->
+  <div id="moduleDlg" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 class="header-text">新建/修改模块信息</h3>
+        </div>
+        <div class="modal-body">
+          <ul class="nav nav-tabs" id="buildingNavtab">
+              <li class="active"><a href="#b1" data-toggle="tab">基本信息</a></li>
+          </ul>
+          <div style="padding: 10px;">
+            <form id="module-form" class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">模块名称</label>
+                <div class="col-sm-10">
+                  <input type="text" name="moduleName" class="form-control col-sm-6">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">模块描述</label>
+                <div class="col-sm-10">
+                  <input type="text" name="desc" class="form-control col-sm-6">
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">是否<br>系统模块</label>
+                <div class="col-sm-10">
+                  <label class="checkbox"><input name="isSysModule" type="checkbox" value="true"></label>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">是否启用</label>
+                <div class="col-sm-10">
+                  <label class="checkbox"><input name="isActive" type="checkbox" value="true"></label>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      <div class="modal-footer">
+        <button class="btn cancle" data-dismiss="modal" aria-hidden="true">取消</button>
+        <%if(commons.hasRight('书签','write', user.role)){ %>
+          <button id="saveBtn" class="btn btn-primary">确定</button>  
+        <% } %>
+      </div>
+    </div>
+  </div><!-- bookmark编辑修改对话框 -->
+
+  <!-- JS文件放在靠近HTML页面尾部的地方可以加快页面显示的速度 -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/sharepage.base.js"></script>
+  <script src="js/sharepage.js"></script>
+  <script src="js/sharepage.ext.js"></script>
+  <script src="js/sfmiscommons.js"></script>
+  <script src="js/websocketclient-gen.js"></script>
+  <script src="js/bookmark.js"></script>
+<% include ../foot.html %>
+

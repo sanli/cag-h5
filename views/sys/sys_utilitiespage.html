@@ -1,0 +1,139 @@
+<% include head.html %>
+
+<body>    
+  <% include navi.html %>
+  <div id="container" class="container-fluid">
+    <div class="row">
+
+<!-- 边栏，操作区 -->
+<div class="col-sm-3 col-md-2 sidebar">
+  <div id="searchBtnGroup" class="btn-group" data-toggle="buttons">
+      <label class="btn btn-default active" data-value="false"><input type="radio" name="searchBtn" value="false" checked> 全部数据</label>
+      <label class="btn btn-default" data-value="true"><input type="radio" name="searchBtn" value="true"> 条件查询</label>
+  </div>
+  <ul class="nav nav-sidebar">
+  <%if(commons.hasRight('数据工具','import', user.role)){ %>
+    <li><a id="createbtn" href="#">新建数据工具</a></li>
+    <li><a id="importbtn" href="#">导入数据(csv)</a></li>
+  <% } %>
+    <li><a id="downloadbtn" href="/sys_utilities/templ">下载数据模板文件</a></li>
+    <li><a id="exportbtn" href="#">导出数据</a></li>
+  </ul>
+</div>
+
+<!-- 主操作区域 -->
+<div id="mainContent" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <!-- 查询面板 -->
+    <div id="searchPanel" class="panel panel-default fade search-panel">
+      <div class="panel-heading">查询条件</div>
+      <!-- TODO : 修改下面的查询条件 -->
+      <div class="panel-body">
+          <form id="detail-search-form" class="form-horizontal">
+            <fieldset>
+              <div class="form-group col-md-6">
+                  <label class="control-label col-sm-3">模块名称</label>
+                <div class="controls col-sm-8">
+                    <input name="moduleName" class="form-control">
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                  <label class="control-label col-sm-3">是否系统模块</label>
+                <div class="controls col-sm-6">
+                    <select name="isSysModule" class="form-control">
+                      <option value="">不判断</option>
+                      <option value="true">是</option>
+                      <option value="false">否</option>
+                    </select>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                  <label class="control-label col-sm-3">是否启用</label>
+                <div class="controls col-sm-6">
+                    <select name="isActive" class="form-control">
+                      <option value="">不判断</option>
+                      <option value="true">是</option>
+                      <option value="false">否</option>
+                    </select>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+      </div>
+      <div class="panel-footer" style="height: 50px;"><button id="detailSearchBtn" class="btn btn-primary pull-right">查询</button></div>
+    </div><!-- 查询面板 -->
+
+    <!-- 数据备份 -->
+    <div class="panel panel-default">
+      <div class="panel-heading">                 
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#step_3_panel" aria-expanded="true" aria-controls="step_3_panel">数据备份<span class="glyphicon glyphicon-resize-vertical pull-right"></span></a>
+        </h4>
+      </div>
+      <div id="step_3_panel" class="panel-collapse collapse in" role="tabpanel">
+        <div class="panel-body">
+          <div class="modal-footer">                                                                       
+              <button class="btn btn-primary wfaction-btn">备份</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">创建一个所有数据的备份，备份文件在在</div>
+    </div><!-- 数据备份 -->
+
+
+    <!-- 修改归档后规划站点的名称 -->
+    <div class="panel panel-default">
+      <div class="panel-heading">                 
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#step_4_panel" aria-expanded="true" aria-controls="step_3_panel">修改归档后规划站点的名称<span class="glyphicon glyphicon-resize-vertical pull-right"></span></a>
+        </h4>
+      </div>
+      <div id="step_4_panel" class="panel-collapse collapse in" role="tabpanel">
+        <div class="panel-body">
+          <div class="modal-footer">                                                                       
+              <button class="btn btn-primary wfaction-btn">修改</button>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer">归档后的站点名称原则上不允许修改，如果实在要修改，需要涉及很多地方，必须使用这个工具来修改。</div>
+    </div><!-- 数据备份 -->
+
+
+</div><!-- 数据查询结果表格 -->
+  </div>
+</div>
+  
+  <!-- 确认对话框 -->
+  <div id="confirmDlg" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog"><div class="modal-content"></div></div>
+  </div>
+  
+  <!-- sys_utilities修改对话框 -->
+  <!-- TODO : 修改下面的数据编辑对话框 -->
+  <div id="moduleDlg" class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 class="header-text">任务执行输出</h3>
+        </div>
+        <div class="modal-body"><pre id="taskOutput"></pre></div>
+      <div class="modal-footer">
+        <button class="btn cancle" data-dismiss="modal" aria-hidden="true">取消</button>
+        <%if(commons.hasRight('数据工具','write', user.role)){ %>
+          <button id="saveBtn" class="btn btn-primary">确定</button>  
+        <% } %>
+      </div>
+    </div>
+  </div><!-- sys_utilities编辑修改对话框 -->
+
+  <!-- JS文件放在靠近HTML页面尾部的地方可以加快页面显示的速度 -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/sharepage.base.js"></script>
+  <script src="js/sharepage.js"></script>
+  <script src="js/sharepage.ext.js"></script>
+  <script src="js/sfmiscommons.js"></script>
+  <script src="js/websocketclient-gen.js"></script>
+  <script src="js/sys_utilities.js"></script>
+<% include foot.html %>
+

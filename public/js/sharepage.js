@@ -228,29 +228,36 @@ var $P = function(options) {
      * ask for confirm something
      */
     ask : function(title, message, ok){
-      $('#confirmDlg').find('div.modal-header h3').text(title) ; 
-      $('#confirmDlg').find('div.modal-body p').text(message);
-      $('#confirmDlg').modal().find("button.ok").one('click', function(){
-        $('#confirmDlg').modal('hide');
-        ok();
-      });
+      $('#confirmDlg').modal({remote : "/confirmdlg.html"});
+      $('#confirmDlg').on('shown.bs.modal', function(){
+          $('#confirmDlg').find("button.ok").one('click', ok);
+          $('#confirmDlg').find('div.modal-header h3').text(title);
+          $('#confirmDlg').find('div.modal-body p').text(message);
+        });
     },
 
     /**
      * 弹出modal对话框，保存完成调用okFn, 保存失败调用 cancleFn
      */
-    showmodal : function(dlgSelector, okfn, canclefn){
-      var dlg = $(dlgSelector).modal();
-      dlg.find("button.btn-primary").off('click').on('click', function(){
-        if(okfn(dlg)){
-          dlg.state = 'OK'
-          dlg.modal('hide');
-        }
-      });
-      dlg.off('hide').on('hide', function(){
-        if(dlg.state !== 'OK')
-          canclefn && canclefn();
-      });
+    showmodal : function(dlgSelector, okfn, canclefn, opt){
+        opt = opt || {};
+        opt = ( typeof opt === 'string' ? { title : opt } : opt);
+        var dlg = $(dlgSelector);
+        
+        dlg.modal(opt).one('shown.bs.modal', function(){
+            if(opt.title)  dlg.find('.modal-header  h3').text(opt.title);
+            dlg.find("button.btn-primary").off('click').on('click', function(){
+              if(okfn(dlg)){
+                dlg.state = 'OK';
+                dlg.modal('hide');
+              }
+            });
+            dlg.off('hide').on('hide', function(){
+              if(dlg.state !== 'OK')
+                canclefn && canclefn();
+            });  
+            opt.filldata && opt.filldata();
+        });
     },
 
     /**
@@ -260,7 +267,7 @@ var $P = function(options) {
     alert : function(selector, message, closetime){
       $('.alert').alert('close');
       $('.alert').remove();
-      $(selector).before('<div class="alert alert-info col-md-9 col-md-offset-1 fade in"><button type="button" class="close" data-dismiss="alert">×</button>'+ message +'</div>');
+      $(selector).before('<div class="alert alert-info fade in"><button type="button" class="close" data-dismiss="alert">×</button>'+ message +'</div>');
       if(closetime)
         setTimeout(function(){
           $('.alert').alert('close');
@@ -359,16 +366,21 @@ var $P = function(options) {
             elt = ( settings.restrict ) ? self.find( selector ) : $( selector );
 
             if ( elt.length == 1 ) {
-              if(elt.attr("type") == "checkbox"){
-                if(options.checkboxAsBoolean){
-                  elt.prop('checked', v); 
-                }else{
-                  elt.val( [v] );
-                }
+              if(elt.is('span')){
+                // 填充span
+                elt.text(v);
               }else{
-                elt.val( v ); 
+                // 填充form
+                if(elt.attr("type") == "checkbox"){
+                  if(options.checkboxAsBoolean){
+                    elt.prop('checked', v); 
+                  }else{
+                    elt.val( [v] );
+                  }
+                }else{
+                  elt.val( v ); 
+                }  
               }
-              
             } else if ( elt.length > 1 ) {
               // radio
               elt.val([v]);

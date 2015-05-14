@@ -179,6 +179,7 @@ function processPainting( cond , fn ){
                 crop = cropper.createImageMagickCropper('./cagstore'),
                 tasks = [];
 
+            cond['files.sourcePath'] = RegExp('^' + filedir + '.*');
             queryfile(cond, function(err, fileinfos){
                 if(fileinfos.length === 0 ) return fn();
 

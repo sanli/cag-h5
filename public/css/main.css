@@ -23,6 +23,26 @@ html, body {
   border-bottom: 1px solid #eee;
 }
 
+.sub-navbar {
+  /*z-index : 1040;*/
+}
+
+.affix.sub-navbar {  
+  /*z-index : 1040;*/
+  top: 0px;
+}
+
+.affixed {
+  margin-top: 71px;
+}
+
+.moveout {
+  top: -51px;
+}
+
+.main-navbar{
+  transition: all .2s ease-out;  
+}
 
 /*
  * Sidebar
@@ -107,7 +127,6 @@ html, body {
 
 .alert {
   z-index: 100;
-  position: fixed;
 }
 
 .vertical-row {
@@ -201,6 +220,9 @@ html, body {
   .nav-justified > li:last-child > a {
     border-right: 0;
     border-radius: 0 5px 5px 0;
+  }
+  .search-form {
+    width: 400px;
   }
 }
 
@@ -451,4 +473,41 @@ html, body {
 
 .age-navi {
   line-height: 1.5;  
+}
+
+.container {
+    width: 100%;
+}
+
+
+@media (min-width: 994px) {
+  .img-div {
+    height: 100%;
+    border-right: 1px dashed #ddd;
+  }
+
+  .thumbnail{
+    height: 400px; 
+    overflow: hidden;
+  }
+}
+
+.img-div-h {
+  height: 136px;
+  border-bottom: 1px dashed #ddd;
+  display: block;
+  z-index: 1000;
+}
+
+.img-div {
+    display: block;
+}
+
+#ds-login-bar > .ds-icons-32 a{
+  display: inline-block;
+  margin-left : 10px;
+}
+
+.action-ctl, .search-panel {
+  display: none;
 }

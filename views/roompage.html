@@ -1,0 +1,658 @@
+<% include head.html %>
+
+<body>    
+  <% include navi.html %>
+  <div id="container" class="container-fluid">
+    <div class="row-fluid disable-select">
+      <!--/span-->
+      <div id="mainContent" class="span12 content-area">
+        <!-- 控制面板 -->
+        <div id="serviceCtlBar" class="navbar span12 ctlbar">
+          <div class="navbar-inner">
+            <ul class="nav">
+              <li><a href="#" class="importbtn" data-type="gsm">导入room数据(csv)</a></li>
+              <li><a href="/templ/building_tmpl.csv">下载room数据模板文件</a></li>
+              <li><a id="exportBtn" href="#">导出数据</a></li>
+            </ul>
+
+            <ul class="nav pull-right">
+              <li class="divider-vertical"></li>
+              <li><a href="#" id="enableEditBtn">编辑<i class="icon-edit"></i></a></li>
+              <li class="divider-vertical"></li>
+              <li><form id="search-form" class="navbar-search pull-right">
+                <input type="text" name="buildingId" class="search-query" placeholder="编号查询">
+              </form></li>
+              <li class="divider-vertical"></li>
+              <li id="extendBtn"><a><i class="icon-search"></i></a></li>
+            </ul>
+          </div>
+        </div>
+
+<!-- 分析结果模板 -->
+<!-- 显示模板 -->
+<script type="text/html" id="roomCellTable">
+<div class="accordion-group">
+  <div class="accordion-heading">
+    <a class="accordion-toggle" data-toggle="collapse" href="#<@=bodyId @>">
+      <i class="icon-folder-open"></i><@=title @></a>
+  </div>
+  <div id="<@=bodyId @>" class="accordion-body collapse in">
+    <div class="accordion-inner">
+  <table class="table table-bordered table-hover"> 
+  <thead> 
+    <tr>
+    <@ 
+    var titles = [{field: 'buildingId' , title : '楼宇编号', canSort: true }
+      , { field: 'name', title: '名称', canSort: true }
+      , { field: 'propertyId',  title: '所属物业点', canSort: true }
+      , { field: 'areatype1',  title: '区域类型1', canSort: false }
+      , { field: 'areatype2',  title: '区域类型2', canSort: false }
+      , { field: 'areasize',  title: '面积(平方米)', canSort: true } 
+      , { field: 'population',  title: '常驻人数', canSort: true }
+      , { field: '',  title: '室分覆盖状态 <span class="label">未覆盖</span> <span class="label label-info">已覆盖</span></a></th>', canSort: false }];
+
+    for(i = 0 ; i<= titles.length -1 ; i++){
+      title = titles[i];
+    @>
+      <th>
+        <@ if(title.canSort){ @>
+          <a href="#sortby=<@=title.field @>&sortorder=<@=-(sort.order) @>" class="sortlink"> 
+        <@ } else { @>
+          <a> 
+        <@ } @>
+            <@=title.title @>
+            <@ if ( sort.by === title.field){ @>
+            <i class="<@= sort.order === '-1' ? 'icon-arrow-down' : ' icon-arrow-up' @>"/>
+            <@ } @>
+            </a></th>
+    <@ } @>
+      <th class="action-ctl"><a>操作</a></th>
+    </tr>
+  </thead> 
+  <tbody id="roomListTb">
+   <@ 
+    for( i = 0 ; i<= cells.length - 1; i++) { 
+        var cell = cells[i],
+          link = "/room/jump?_id=" + cell._id,
+          covers = ['gsm', 'td', 'wlan', 'lte'],
+          coverStates = [];
+
+        for( j = 0 ; j <= covers.length -1; j++) {
+          var cellname = covers[j], 
+              coverstate = cell[cellname+'coverState'];
+          coverStates.push('<span class="label ' + ( coverstate==='已覆盖' ? 'label-info' : '') 
+              + '">' + cellname.toUpperCase() + '</span>');
+        }
+        var cstag = coverStates.join(' ');
+   @>
+      <tr data-_id="<@=cell._id @>"><td><@=cell.roomId @></td>
+        <td><a href="<@=link @>" target="mapwindow"><@=cell.name @><i class="icon-share-alt"/></a></td>
+        <td><@=cell.propertyName @></td>
+        <td><@=cell.areatype1 @></td>
+        <td><@=cell.areatype2 @></td>
+        <td><@=cell.areasize @></td>
+        <td><@=cell.population @></td>
+        <td><@=cstag @></td>
+        <td class="action-ctl"><a class="action action-edit">修改<i class="icon-edit"/></a><a class="action action-remove">删除<i class="icon-remove"/></a></td></tr>
+   <@ } @>
+  </tbody> 
+    </table>
+    </div>
+  </div>
+</div>
+</script>
+<script type="text/html" id="pagebarTpl">
+  <div class="pagination">
+    <ul>
+      <li><a>共有记录：<@=count @>条</a></li>
+      <li <@=(currentIdx===0 ? 'class="active"':"" ) @> >
+        <a href="#skipto=0">第一页</a></li>
+      <li <@=(startPage === pre ? 'class="active"':"" ) @> >
+        <a href="#skipto=<@=pre @> ">...</a></li>
+        <@ for( i = startPage ; i<= endPage; i++){ @>
+          <li <@=(currentIdx === i ? 'class="active"':"" ) @> >
+            <a href="#skipto=<@=i@>"><@=i@></a></li>
+        <@ } @>
+        <li <@= (endPage === next ? 'class="active"':"" ) @> >
+          <a href="#skipto=<@=next@>">...</a></li>
+        <li><a href="#skipto=<@=pageCnt-1 @>">最后一页</a></li>
+    </ul>
+  </div>
+</script> <!-- 显示模板 -->
+
+        <!-- 数据查询结果表格 -->
+        <div id="content-body" class="content-body">
+          <div id="cellDiv" class="aggregate tab-pane active">
+              <div id="cellTable"></div>
+              <div id="pagebar"></div>
+          </div>
+        </div>
+      </div><!-- 数据查询结果表格 -->
+
+
+      <!-- 查询和控制面板 -->
+      <div class="layer-area sidepannel">
+        <!-- 控制面板 -->
+        <div id="mapctlBar" class="navbar side-ctlbar">
+              <div class="navbar-inner">
+               <ul class="nav">
+                  <li class="active"><a href="#p1" data-toggle="tab">楼宇查询</a></li>
+                </ul>
+              </div>
+            </div>
+        <div id="topNavbar" class="sidebar-nav">
+              <div class="navbar side-navbar"> 
+            <div class="navbar-inner"> 
+              <ul class="nav"> 
+                <button id="detailSearchBtn" class="btn btn-primary">查询</button> 
+              </ul> 
+            </div> 
+            </div>
+            <div class="tab-content">
+              <form id="detail-search-form" class="search-form form-horizontal">
+              <fieldset>
+                <div id="legend" class="">
+                  <legend class=""></legend>
+                </div>
+
+                <div class="control-group building-query property-query">
+                    <label class="control-label">选择地市</label>
+                  <div class="controls">
+                      <select name="deptId" id="deptId" class="input"></select>
+                  </div>
+                </div>
+
+                <div class="control-group building-query property-query">
+                    <label class="control-label">楼宇面积</label>
+                  <div class="controls">
+                       <select name="areasize" class="input">
+                  <option value="">不判断</option>
+                  <option value="GtLt(0,5000)">5000</option>
+                  <option value="GtLt(5000,10000)">5000-10000</option>
+                  <option value="GtLt(10000,30000)">10000-30000</option>
+                  <option value="GtLt(30000,50000)">30000-50000</option>
+                  <option value="GtLt(50000,100000)">50000-100000</option>
+                  <option value="GtLt(100000,1000000)">100000以上</option></select>
+                  </div>
+                </div>
+
+              
+                    <div class="control-group building-query" style="display: none;">
+
+                      <!-- Select Basic -->
+                      <label class="control-label">层数</label>
+                      <div class="controls">
+                        <select name="level" class="input">
+                  <option value="">不判断</option>
+                  <option value="GtLt(0,6)">6层含以下</option>
+                  <option value="GtLt(0,11)">11层含以下</option>
+                  <option value="GtLt(0,20)">20层含以下</option>
+                  <option value="GtLt(20,100)">20层以上</option></select>
+                      </div>
+
+                    </div><div class="control-group building-query property-query">
+
+                      <!-- Select Basic -->
+                      <label class="control-label">常驻人口</label>
+                      <div class="controls">
+                        <select name="population" class="input">
+                  <option value="">不判断</option>
+                  <option value="GtLt(0,100)">100</option>
+                  <option value="GtLt(100,500)">500</option>
+                  <option value="GtLt(500,1000)">1000</option>
+                  <option value="GtLt(1000,5000)">5000</option>
+                  <option value="GtLt(5000,100000)">5000以上</option></select>
+                      </div>
+
+                    </div>
+
+                <div class="control-group building-query property-query">
+
+                      <!-- Select Basic -->
+                      <label class="control-label">建筑年代</label>
+                      <div class="controls">
+                        <select name="buildage" class="input">
+                  <option value="">不判断</option>
+                  <option value="GtLt(2000,2010)">2010</option>
+                  <option value="GtLt(1990,2000)">2000</option>
+                  <option value="GtLt(0,1990)">1990</option></select>
+                      </div>
+                    </div>
+
+
+             
+                <div class="control-group building-query" > 
+                  <label class="control-label">应用建议</label>
+                      <div class="controls">
+                        <label class="checkbox"><input type="checkbox" name="needbuild" value="Eq(是)"> 规划建设</label>
+                        <label class="checkbox"><input type="checkbox" name="needoptimization" value="Eq(是)"> 维护优化</label>
+                        <label class="checkbox"><input type="checkbox" name="needspread" value="Eq(是)"> 终端营销</label>
+                        <label class="checkbox"><input type="checkbox" name="needspread" value="Eq(是)"> 市场推广</label>
+                      </div>
+                </div>
+
+                <div class="control-group building-query" > 
+                  <label class="control-label">覆盖状态</label>
+                      <div class="controls">
+                        <label class="checkbox"><input type="checkbox" name="gsmcoverState" value="Eq(全部覆盖)"> GSM全部覆盖 </label>
+                        <label class="checkbox"><input type="checkbox" name="tdcoverState" value="Eq(全部覆盖)"> TD全部覆盖 </label>
+                        <label class="checkbox"><input type="checkbox" name="wlancoverState" value="Eq(全部覆盖)"> WLAN全部覆盖 </label>
+                        <label class="checkbox"><input type="checkbox" name="ltecoverState" value="Eq(全部覆盖)"> LTE全部覆盖 </label>
+                      </div>
+                </div>
+
+                
+
+                
+
+
+
+              </div>
+              </fieldset>
+              </form>
+            </div>
+        </div>
+      </div><!-- 查询和控制面板 -->
+
+    </div>
+  </div>
+  
+  <!-- 确认对话框 -->
+  <div id="confirmDlg" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">再次确认:</h3>
+    </div>
+    <div class="modal-body">
+      <p>是否确认要做这个动作？</p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-primary ok" data-dismiss="modal">确认</button>
+      <button class="btn no" data-dismiss="modal">取消</button>
+    </div>
+  </div> <!-- 确认对话框 -->
+
+  <!-- 导入信息对话框 -->
+  <div id="importDlg" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">导入CELL</h3>
+    </div>
+    <div class="modal-body">
+      <pre id="previewDiv"></pre>
+    </div>
+    <div class="modal-footer">
+      <div id="fileUploader"></div>
+      <button class="btn cancle" data-dismiss="modal" aria-hidden="true">取消</button>
+      <button id="saveBuildingBtn" class="btn btn-primary">确认导入</button>
+    </div>
+  </div> <!-- 导入信息对话框 -->
+
+
+  <!-- 楼宇编辑修改对话框 -->
+  <div id="moduleDlg" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="myModalLabel">修改楼宇信息</h3>
+    </div>
+    <div class="modal-body">
+
+      <ul class="nav nav-tabs" id="buildingNavtab">
+            <li class="active"><a href="#b1" data-toggle="tab">基本信息</a></li>
+            <li class=""><a href="#b2" data-toggle="tab">楼宇图片</a></li>
+            <li class=""><a href="#b3" data-toggle="tab">指标详情</a></li>
+        </ul>
+
+        <div class="container span12">
+          <form id="module-form" class="form-horizontal">
+            <fieldset>
+            <div class="tab-content">
+                <div class="tab-pane active" id="b1">
+          <div class="row">
+              <div class="span5">
+
+              <div class="control-group">
+                    <label class="control-label" for="input01">楼宇名称</label>
+                    <div class="controls">
+                      <input type="text" name="name" id="module-name"  placeholder="楼宇名称,不能重复,必填" class="input-large required">
+                    </div>
+                  </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="input01">楼宇标识</label>
+                    <div class="controls">
+                      <input type="text" name="buildingId" id="module-buildingId" placeholder="根据所属物业点自动生成" class="input-large required" >
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                    <label class="control-label" for="input01">归属物业点名称</label>
+                    <div class="controls">
+                      <input type="text" name="propertyName" id="module-propertyName" placeholder="当前位置所属物业点" class="input-large" readonly>
+                    </div>
+                  </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="input01">所属物业点编号</label>
+                    <div class="controls">
+                      <input type="text" name="propertyId" id="module-propertyId"  placeholder="物业点编号" class="input-large" readonly>
+                      <p class="help-block"></p>
+                    </div>
+                  </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="input01">经纬度</label>
+                    <div class="controls">
+                      <input type="text" id="module-loc"  placeholder="当前经纬度（百度标准）" class="input-large" readonly>
+                    </div>
+                  </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="input01">地市县区</label>
+                    <div class="controls">
+                      <input type="text" id="module-cityarea"  placeholder=""  placeholder="" class="input-large" readonly>
+                      
+                    </div>
+                  </div>
+
+                  <div class="control-group">
+                      <label class="control-label">区域类型1</label>
+                      <div class="controls">
+                        <select name="areatype1" id="module-areatype1" class="input-large">
+                  <option>密集城区</option>
+                  <option>一般城区</option>
+                  <option>县城城区</option>
+                  <option>乡镇</option>
+                  <option>风景区</option></select>
+                      </div>
+                </div>
+
+                <div class="control-group">
+                      <label class="control-label">规划建设</label>
+                      <div class="controls">
+                        <select name="needbuild" id="module-needbuild" class="input-large">
+                      <option>否</option>
+                      <option>是</option>
+                      
+                    </select>
+                      </div>
+                </div>
+
+                <div class="control-group">
+                      <label class="control-label">维护优化</label>
+                      <div class="controls">
+                        <select name="needoptimization" id="module-needoptimization" class="input-large">
+                      <option>否</option>
+                      <option>是</option>
+                      
+                    </select>
+                      </div>
+                </div>
+
+                <div class="control-group">
+                      <label class="control-label">终端营销</label>
+                      <div class="controls">
+                        <select name="needmarket" id="module-needmarket" class="input-large">
+                     <option>否</option>
+                      <option>是</option>
+                      
+                    </select>
+                      </div>
+                </div>
+
+                <div class="control-group">
+                      <label class="control-label">市场推广</label>
+                      <div class="controls">
+                        <select name="needspread" id="module-needspread" class="input-large">
+                      <option>否</option>
+                      <option>是</option>
+                      
+                    </select>
+                      </div>
+                </div>
+            </div>
+
+            <div class="span5">
+                <div class="control-group">
+                      <label class="control-label">区域类型2</label>
+                      <div class="controls">
+                        <select name="areatype2" id="module-areatype2" class="input-large">
+    
+                  <option>高校园区</option>
+                  <option>政府机关</option>
+                  <option>办公写字楼</option>
+                  <option>交通枢纽</option>
+                  <option>乡镇农村</option>
+                  <option>住宅小区</option>
+                  <option>宾馆饭店</option>
+                  <option>商业建筑</option>
+                  <option>工厂企业</option>
+                  <option>公共场所</option></select>
+                      </div>
+                </div>
+
+                <div class="control-group">
+                    <label class="control-label" for="input01">区域类型3</label>
+                    <div class="controls">
+                      <input type="text" name="areatype3" id="module-areatype3" placeholder="补充描述" class="input-large">
+                    </div>
+                  </div>
+
+                <div class="control-group">
+                    <!-- Select Basic -->
+                    <label class="control-label">层数</label>
+                    <div class="controls">
+                      <input type="text" name="level" id="module-flownumber" placeholder="请输入整数" class="input-large">
+                    </div>
+              </div>
+                
+                  <div class="control-group">
+                    <label class="control-label" for="module-areasize">面积(平方米)</label>
+                    <div class="controls">
+                       <input type="text" name="areasize" id="module-areasize" placeholder="请输入有效数字" class="required input-large err">
+                    </div>
+                  </div>
+
+                <div class="control-group">
+                      <label class="control-label">常驻人数</label>
+                      <div class="controls">
+                         <input type="text" name="population" id="module-population" placeholder="请输入整数" class="input-large">
+                      </div>
+                    </div>
+
+                <div class="control-group">
+                      <!-- Select Basic -->
+                      <label class="control-label">建筑年代</label>
+                      <div class="controls">
+                        <input type="text" name="buildage" id="module-buildage" placeholder="格式:2001" class="input-large">
+                      </div>
+                    </div>
+
+
+                <div class="control-group">
+                      <label class="control-label">GSM室分覆盖状态</label>
+                      <div class="controls">
+                  <select name="gsmcoverState" id="module-gsmcoverState" class="input-large">
+                      <option>未覆盖</option>
+                      <option>已覆盖</option>
+                    </select>
+                      </div>
+                </div>
+
+                <div class="control-group">
+                      <label class="control-label">TD室分覆盖状态</label>
+                      <div class="controls">
+                  <select name="tdcoverState" id="module-tdcoverState" class="input-large">
+                      <option>未覆盖</option>
+                      <option>已覆盖</option>
+                    </select>
+                      </div>
+                </div>
+
+                <div class="control-group">
+                      <label class="control-label">WLAN室分覆盖状态</label>
+                      <div class="controls">
+                  <select name="wlancoverState" id="module-wlancoverState" class="input-large">
+                      <option>未覆盖</option>
+                      <option>已覆盖</option>
+                    </select>
+                      </div>
+                </div>
+
+                <div class="control-group">
+                      <label class="control-label">LTE室分覆盖状态</label>
+                      <div class="controls">
+                  <select name="ltecoverState" id="module-ltecoverState" class="input-large">
+                      <option>未覆盖</option>
+                      <option>已覆盖</option>
+                    </select>
+                      </div>
+                </div>
+            </div>
+          </div> <!-- 楼宇基本信息 -->
+                </div>
+              
+        <!-- 上传文件 -->
+              <div class="tab-pane" id="b2">
+                  <div class="row">
+              <div class="control-group"><div class="span4"><div id="picUploader"></div></div></div>
+          </div>
+          <li id="piclist" class="span9"></li>
+              </div>
+
+              <!-- 楼宇室分覆盖信息 -->
+                <div class="tab-pane" id="b3">
+            <div class="row">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label" for="input01">GSM小区编号</label>
+                    <div class="controls">
+                        <input type="text" name="gsmCellItem" id="buildingForm-gsmCellItem" placeholder="GSM小区,多个小区用逗号隔开" class="input-large">     
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="input01">TD小区编号</label>
+                    <div class="controls">
+                        <input type="text" name="tdCellItem" id="buildingForm-gsmCellItem" placeholder="GSM小区,多个小区用逗号隔开" class="input-large">     
+                    </div>
+                </div>
+              <div class="control-group">
+                  <label class="control-label">验证</label>
+                  <div class="controls">
+                  <button class="cell-valide btn">验证CELL有效性</button>
+                  </div>
+              </div>
+              </div>
+              <div class="span6">
+                <div class="control-group">
+                <label class="control-label" for="input01">WLAN小区编号</label>
+                    <div class="controls">
+                        <input type="text" name="wlanCellItem" id="buildingForm-gsmCellItem" placeholder="GSM小区,多个小区用逗号隔开" class="input-large">     
+                    </div>
+                </div>
+              <div class="control-group">
+                <label class="control-label" for="input01">LTE小区编号</label>
+                    <div class="controls">
+                        <input type="text" name="lteCellItem" id="buildingForm-gsmCellItem" placeholder="GSM小区,多个小区用逗号隔开" class="input-large">     
+                    </div>
+                </div>
+              </div>
+              <div class="span12">
+              <h5>指标统计结果</h5>
+                <table class="table table-bordered table-hover"> 
+                <thead> 
+                <tr>
+                    <th><a href="#">计算时间</a></th>
+                    <th><a href="#">GSM覆盖量</a></th>
+                    <th><a href="#">TD覆盖量</a></th>
+                    <th><a href="#">WLAN覆盖量</a></th>
+                    <th><a href="#">LTE覆盖量</a></th>
+                    <th><a href="#">A+Abis信息</a></th>
+                </tr> 
+                </thead>
+                <tbody id="buildingSFDataTB">
+<script  type="text/html" id="sfdataTpl" >
+<@ 
+for(i =0 ; i<= sfdatas.length -1 ; i++ ) {
+  var sfdata = sfdatas[i];
+@>
+  <tr>
+      <td>
+        <@=sfdata.snaptime ? new Date(sfdata.snaptime).toLocaleDateString() : "" @><br>
+        <@=sfdata.reason @>
+      </td>
+      <td>
+        <li>小区编号:       <@=sfdata.gsmCellItem @></li>
+        <li>小区数:         <@=sfdata.gsmCellAmount ? sfdata.gsmCellAmount.toFixed(2) : "0.0" @></li>
+      <li>载频数:         <@=sfdata.gsmData1 ? sfdata.gsmData1.toFixed(2) : "0.0" @></li>      
+      <li>忙时话音业务量(Erl):   <@=sfdata.gsmData2 ? sfdata.gsmData2.toFixed(2) : "0.0" @></li>
+      <li>忙时数据等效业务量(Erl):<@=sfdata.gsmData3 ? sfdata.gsmData3.toFixed(2) : "0.0" @></li>
+      <li>忙时数据流量(MB): <@=sfdata.gsmData4 ? sfdata.gsmData4.toFixed(2) : "0.0" @></li>
+      <li>全天话音业务量(Erl):   <@=sfdata.gsmData5 ? sfdata.gsmData5.toFixed(2) : "0.0" @></li>
+      <li>全天数据等效业务量:<@=sfdata.gsmData6 ? sfdata.gsmData6.toFixed(2) : "0.0" @></li>
+      <li>全天数据流量(MB): <@=sfdata.gsmData7 ? sfdata.gsmData7.toFixed(2) : "0.0" @></li>
+    </td>
+    <td>
+      <li>小区编号:       <@=sfdata.tdCellItem @></li>
+        <li>小区数:         <@=sfdata.tdCellAmount ? sfdata.tdCellAmount.toFixed(2) : "0.0" @></li>
+      <li>载频数:         <@=sfdata.tdData1 ? sfdata.tdData1.toFixed(2) : "0.0" @></li>      
+      <li>忙时话音业务量(Erl):  <@=sfdata.tdData2 ? sfdata.tdData2.toFixed(2) : "0.0" @></li>
+      <li>忙时数据流量(MB):<@=sfdata.tdData3 ? sfdata.tdData3.toFixed(2) : "0.0" @></li>
+      <li>全天话音业务量(Erl):  <@=sfdata.tdData4 ? sfdata.tdData4.toFixed(2) : "0.0" @></li>
+      <li>全天数据流量(MB):<@=sfdata.tdData5 ? sfdata.tdData5.toFixed(2) : "0.0" @></li>
+    </td>
+    <td>
+      <li>小区编号:              <@=sfdata.wlanCellItem @></li>
+        <li>WLAN小区数:    <@=sfdata.wlanCellAmount ? sfdata.wlanCellAmount.toFixed(2) : "0.0" @></li>
+      <li>热点数:                <@=sfdata.wlanData1 ? sfdata.wlanData1.toFixed(2) : "0.0"  @></li>
+      <li>AP数:                  <@=sfdata.wlanData2 ? sfdata.wlanData2.toFixed(2) : "0.0"  @></li>
+      <li>全天总流量(MB):             <@=sfdata.wlanData3 ? sfdata.wlanData3.toFixed(2) : "0.0"  @></li>
+    </td>
+    <td>                    
+      <li>小区编号:          <@=sfdata.lteCellItem @></li>
+        <li>小区数:           <@=sfdata.lteCellAmount ? sfdata.lteCellAmount.toFixed(2) : "0.0"  @></li>
+      <li>载频数:            <@=sfdata.lteData1 ? sfdata.lteData1.toFixed(2) : "0.0"  @></li>      
+      <li>忙时数据流量(MB):       <@=sfdata.lteData2 ? sfdata.lteData2.toFixed(2) : "0.0"  @></li>
+      <li>全天数据流量(MB):       <@=sfdata.lteData3 ? sfdata.lteData3.toFixed(2) : "0.0"  @></li>
+      </td>
+      <td>        
+      <li>室内常驻用户数:       <@=sfdata.abis1 ? sfdata.abis1.toFixed(2) : "0.0"  @></li>
+        <li>覆盖率(%)（-85dB的比例）:<@=sfdata.abis2 ? sfdata.abis2.toFixed(2) : "0.0" @></li>
+      <li>话音质量(%)（0-4级占比）:<@=sfdata.abis3 ? sfdata.abis3.toFixed(2) : "0.0" @></li>      
+      <li>平均覆盖电平（dB）:   <@=sfdata.abis4 ? sfdata.abis4.toFixed(2) : "0.0" @></li>
+      <li>掉话率(%):             <@=sfdata.abis5 ? sfdata.abis5.toFixed(2) : "0.0" @></li>
+      <li>寻呼成功率(%):          <@=sfdata.abis6 ? sfdata.abis6.toFixed(2) : "0.0" @></li>
+      <li>质差(%):               <@=sfdata.abis7 ? sfdata.abis7.toFixed(2) : "0.0" @></li>
+      <li>切换占比(%):            <@=sfdata.abis8 ? sfdata.abis8.toFixed(2) : "0.0" @></li>
+      <li>TD终端占比(%):          <@=sfdata.abis9 ? sfdata.abis9.toFixed(2) : "0.0" @></li>
+      </td>
+  </tr>
+<@ } @>
+</script>
+                </tbody> 
+              </table>
+            </div>
+                    </div>
+                  </div> <!-- 楼宇室分覆盖信息 -->
+          </div>
+          </fieldset>
+          </form>
+    </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn cancle" data-dismiss="modal" aria-hidden="true">取消</button>
+      <button id="saveBuildingBtn" class="btn btn-primary">确定</button>  
+    </div>
+  </div><!-- room编辑修改对话框 -->
+
+
+
+  <!-- JS文件放在靠近HTML页面尾部的地方可以加快页面显示的速度 -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.js"></script>
+  <script src="js/sharepage.js"></script>
+  <script src="js/sharepage.ext.js"></script>
+  <script src="js/sfmiscommons.js"></script>
+  <script src="js/room.js"></script>
+<% include foot.html %>
+

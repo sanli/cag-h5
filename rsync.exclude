@@ -1,0 +1,5 @@
+*.jsx
+*.html
+*.txt
+*.zip
+.DS_Store

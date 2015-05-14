@@ -99,7 +99,15 @@ var Module = $.extend(new $M(), {
         $('a.importbtn').on('click', function(e){
             Module.onImportFile();
         });
-
+        $('nav.sub-navbar').affix({ 
+            offset: { top: 50 } 
+        }).on('affix.bs.affix', function(e){
+            $('#mainContent').addClass('affixed');
+            $('div.main-navbar').addClass('moveout');
+        }).on('affix-top.bs.affix', function(e){
+            $('#mainContent').removeClass('affixed');
+            $('div.main-navbar').removeClass('moveout');
+        });
         $('#search-form').keypress(function(e){
             if ( event.which == 13 ) {
                 e.preventDefault();
@@ -151,6 +159,10 @@ var Module = $.extend(new $M(), {
             var _id = $(e.target).closest('tr').data('_id');
             Module.deleteModule(_id);
         });
+        $('#cellTable').on('click', 'a.action-undoremove', function(e){
+            var _id = $(e.target).closest('tr').data('_id');
+            Module.unDeleteModule(_id);
+        });
         $('#cellTable').on('click', 'a.sortlink', $M.createSortHander(PG));
         $('label[data-toggle]').popover();
     },
@@ -160,13 +172,6 @@ var Module = $.extend(new $M(), {
     //====================================================================================================================
     // 删除paintings
     deleteModule: function(_id, options){
-        // $.ask("删除对象","是否确认删除,删除后不能恢复？", function(){
-        //     $M.dodelete('/paintings/delete'
-        //         , { _id : _id }
-        //         , { successfn : function(){
-        //                 Module.loadPageData(PG.state.cond, PG.state.page);
-        //             }});
-        // });
         $.showmodal('#deleteDlg', function(){
             if ($('#module-delete-form').validate().form()){
                 // save change
@@ -181,21 +186,26 @@ var Module = $.extend(new $M(), {
         });
     },
 
+    // 恢复被删除的paintings
+    unDeleteModule: function(_id, options){
+        $.ask('删除确认','是否确定恢复被删除的图片？', function(){
+            var data = {
+                deleted : false,
+                active : true
+            };
+            Module._updateModule(
+                { _id : _id , data : data}, 
+                function(){
+                    Module.loadPageData(PG.state.cond, PG.state.page);
+                });
+        });
+    },
+
     // 编辑作品信息
     updateModule: function(_id, options){
-        // 更新楼宇信息
-        updateModule = function(condition, fn, fail){
-            $M.doupdate('/paintings/update', condition, { successfn : fn , failfn: fail});
-        },
-        // 查询楼宇详细信息
-        loadDataDetail = function(_id, fn){
-            $M.doquery('/paintings/retrive', {_id : _id}
-                , { successfn : fn ,
-                    alertPosition : '#buildingNavtab'});
-        };
 
         $('#module-form').clearall();
-        loadDataDetail(_id, function(module){
+        Module._loadDataDetail(_id, function(module){
             var data = module.doc;
             $('#module-form').clearall().autofill(data, {checkboxAsBoolean : true});
         });
@@ -204,8 +214,9 @@ var Module = $.extend(new $M(), {
             if ($('#module-form').validate().form()){
                 // save change
                 var data = $('#module-form').getdata({checkboxAsBoolean : true});
-                    
-                updateModule($.param({ 
+                
+                data.activeTime = new Date();
+                Module._updateModule($.param({ 
                     _id: _id,
                     data: data 
                 }), function(result){
@@ -226,7 +237,6 @@ var Module = $.extend(new $M(), {
             var idlist = $('#idListArea').val().split(',');
             $('#importDlg').spin();
             Module.importPaintings(idlist, function(data){
-
                 $.alert('#content-body', '成功导入资源 [' + data.count + "] 条");   
                 dlg.modal('hide');
             }, function(errmsg){
@@ -252,6 +262,18 @@ var Module = $.extend(new $M(), {
     // ========================================================================
     //      功能函数 
     // ========================================================================
+    // 更新楼宇信息
+    _updateModule : function(condition, fn, fail){
+        $M.doupdate('/paintings/update', condition, { successfn : fn , failfn: fail});
+    },
+
+    // 查询楼宇详细信息
+    _loadDataDetail : function(_id, fn){
+        $M.doquery('/paintings/retrive', {_id : _id}
+            , { successfn : fn ,
+                alertPosition : '#buildingNavtab'});
+    },
+
     // 根据查询条件和分页条件载入数据页面
     listPage : function(type, cond, sort, page, fn, fail){
         $M.doquery('/paintings/list'

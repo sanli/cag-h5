@@ -50,17 +50,19 @@ var Module = $.extend(new $M(), {
     	var stateType = state.type;
     	// 载入精选
     	if(stateType === 'essence'){
-    		$('#outline-panel').collapse('hide');
-			Module.loadEssence();
+    		Module.loadEssence();
+    		if($('#outline-panel').hasClass('in'))
+    			$('#outline-panel').collapse('hide');
     	}else if(stateType === 'age'){
     		if(!state.author){
     			// 没有指定作者，就展开藏品目录
-    			$('#outline-panel').collapse('show');
     			$('#paintingListRow').empty();
+    			$('#outline-panel').collapse('show');
     		}else{
 				// 载入指定作者
-				$('#outline-panel').collapse('hide');
 				Module.loadAuthor(state.age, state.author, $('#paintingListRow'));
+				$('#outline-panel').collapse('hide');
+				
     		}
     	}else if(stateType === 'modern'){
     		$('#outline-panel').collapse('hide');
@@ -148,6 +150,42 @@ var Module = $.extend(new $M(), {
 	    	});	
     },
 
+	// 载入新发布的作品，最多载入50个
+    loadRecent: function($div){
+    	$('#paintinglist').spin("large");
+    	$.getJSON("/cagstore/search.json", { cond : cond }
+    		,function(data){
+	    		PG.search = data ;
+	    		if(data.R === 'N')
+	    			return $.alert('.main-container', '查询错误，情稍后再试', 3000);
+
+	    		if(data.length === 0){
+	    			return $div.empty().append("<h3><span class=\"label label-warning\">目前没有新发布的画作，请等待</span></h3>");
+	    		}
+
+	    		var out = tmpl('paintinglistTmpl', {
+	    			label : "查询结果",
+					cagstore : data,
+					opacity : true,
+					cdn : _cdn(),
+					isMobile : $.isMobile()
+				});
+				
+				$div.empty().append(out)
+					.find("img.lazy")
+					.lazyload({
+						container : $div,
+					    effect : "fadeIn",
+					    skip_invisible : false,
+					    appear : function(){
+					    	$div.find("div.thumbnail").css('opacity', 1);
+					    }
+					});
+
+				Module.loading = false;
+				$div.spin(false);
+	    	});
+    },
     // 载入查询内容
     loadSearch : function(cond, $div){
     	var key = cond.key,
@@ -246,13 +284,8 @@ var Module = $.extend(new $M(), {
 		$('#searchForm').submit(function(event){
 			// 查询内容
 			var cond = $('#searchForm').getdata();
-			if(cond.key === ''){
-				return $('.searchbox').css('display','none');
-			}else{
-				$('.searchbox').css('display','');
-				Module.loadSearch(cond, $('#paintingListRow'));
-				PG.pushState({ type : 'search', href : 'searchHref', key: cond.key});
-			};
+			Module.loadSearch(cond, $('#paintingListRow'));
+			PG.pushState({ type : 'search', href : 'searchHref', key: cond.key});
 			event.preventDefault();	
 		});
 
@@ -348,7 +381,6 @@ var Module = $.extend(new $M(), {
 		return supported;
 	}());
 
-
 	$.mybrowser = {
 		ie: ie,
 		ielt9: ielt9,
@@ -384,6 +416,10 @@ var Module = $.extend(new $M(), {
 }(jQuery));
 
 function init(){
+	if($.mybrowser.ielt9 && !$.mybrowser.mobile){
+		return $('body').html('<h3 class="alert alert-warning" style="position: relative;">发生异常：当前浏览器版不兼容</h3>' 
+			+ '<h4 class="alert alert-success" style="position: relative;">中华珍宝馆不支持IE9.0以下版本，请换用其他浏览器或者升级你的IE。我们推荐使用"谷歌浏览器"，"火狐"或者是"360安全浏览器"。</h4>');
+	}
 	PG.bind();
 	Module.bind();
 	$(window).trigger('hashchange');

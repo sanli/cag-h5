@@ -1,0 +1,117 @@
+<% include ../thead.html %>
+
+<body>    
+  <% conf.hide_search = true; %>
+  <% include ../tnavi.html %>
+  <div class="container-fluid">
+    <div class="row">
+
+<!-- 边栏，操作区 -->
+
+<ul class="col-sm-3 col-md-2 sidebar nav nav-pills nav-stacked">
+    <li><a id="art-is-fun" class="fade">梁兄，我等你哦！</a></li>
+    <div class="btn-group-vertical col-sm-12" role="group">
+      <a href="/mybookmark.html" class="btn btn-default btn-lg">我的收藏</a>
+      <a href="/myinfo.html" class="btn btn-default btn-lg">个人信息</a>
+    </div>
+</ul>
+
+<!-- 控制条 -->
+<nav class="navbar navbar-default col-md-12 navbar-static-top sub-navbar" role="navigation">
+  <div class="container-fluid">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".top-bar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">个人信息</a>
+        </div>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <li>
+          <div id="editingBtnGroup" class="btn-group pull-right navbar-form" data-toggle="buttons">
+            <label class="btn btn-default active"><input type="radio" name="editingBtn" checked value="false"> 浏览</label>
+            <label class="btn btn-default"><input type="radio" name="editingBtn" value="true"> 编辑</label>
+          </div>
+        </li>
+      </ul>
+      <form id="search-form" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <div class="form-group">
+            <input name="queryword" type="text" class="form-control" placeholder="查询">
+          </div>
+          <button type="submit" class="btn btn-default">查询</button>
+        </div>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><!-- 控制面板 -->
+
+<!-- 主操作区域 -->
+<div id="mainContent" class="main col-md-offset-2 col-md-10 ">
+  <!-- 显示模板 -->
+  <!-- 数据查询结果表格 -->
+  <div id="cellDiv" class="panel panel-default">
+    <div class="panel-heading">访客信息</div>
+    <div class="panel-body">
+       <form id="module-form" class="form-horizontal" role="form">
+              <div class="form-group">
+                <label class="col-sm-2 control-label">用户名</label>
+                <div class="col-sm-4">
+                  <span type="text" name="userid" class="form-control col-sm-6"></span>
+                  <p class="help-block">创建的用户名不能再修改</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-4">
+                  <input type="email" name="email" class="form-control col-sm-6" required>
+                  <p class="help-block">后期系统将通过邮件给您发送新发布藏品通知</p>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-md-2 control-label" for="singlebutton">保存修改</label>
+                <div class="col-md-4">
+                  <button id="updatebtn" name="save" class="btn btn-primary">保存</button>
+                </div>
+              </div>
+            </form>
+    </div>
+  </div>
+</div><!-- 数据查询结果表格 -->
+  </div>
+</div>
+  
+  <!-- 确认对话框 -->
+  <div id="confirmDlg" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog"><div class="modal-content"></div></div>
+  </div>
+
+
+  <!-- JS文件放在靠近HTML页面尾部的地方可以加快页面显示的速度 -->
+  <% if( target === 'release' ){ %>
+      <script type="text/javascript"> function _cdn(res){ return "http://supperdetailpainter.u.qiniudn.com"+ (res|| "") }</script>
+      <script src="http://cdn.staticfile.org/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+      <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+      <script src="http://supperdetailpainter.u.qiniudn.com/js/cag_<%=stamp %>_min.js" type="text/javascript"></script>
+      <script src="http://supperdetailpainter.u.qiniudn.com/js/userinfo_<%=stamp %>_min.js"></script></script>
+  <% } else { %>
+    <script type="text/javascript"> function _cdn(res){ return res}</script>
+    <script src="/js/jquery.js" type="text/javascript"></script>
+    <script src="/js/bootstrap.js" type="text/javascript"></script>
+    <!-- cag_xxx_min.js -->
+    <script src="/js/jquery.lazyload.js" type="text/javascript"></script>
+    <script src="/js/sharepage.base.js"></script>
+    <script src="/js/sharepage.js"></script>
+    <script src="/js/sharepage.ext.js"></script>
+    <script src="/js/cagcommons.js"></script>
+    <script src="/js/userinfo.js"></script>
+  <% } %>
+
+<% include ../tfoot.html %>
+
