@@ -218,24 +218,30 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">修改对象信息</h4>
+        <h4 class="modal-title">图片信息</h4>
       </div>
       <div class="modal-body">
-        <ul class="nav nav-tabs" id="buildingNavtab">
+        <!-- <ul class="nav nav-tabs" id="buildingNavtab">
             <li class="active"><a href="#b1" data-toggle="tab">基本信息</a></li>
-        </ul>
+        </ul> -->
       <div class="container-fluid" style="padding: 10px;">
         <form id="module-form" class="form-horizontal" role="form">
           <div class="form-group col-sm-6">
             <label class="col-sm-4 control-label">作品名称</label>
             <div class="col-sm-8">
-              <input type="text" name="paintingName" class="form-control col-sm-6">
+              <input type="text" name="paintingName" class="form-control col-sm-6" required>
             </div>
           </div>
-          <div class="form-group col-sm-6">
+          <div class="form-group col-sm-3">
+            <label class="col-sm-4 control-label">年代</label>
+            <div class="col-sm-8">
+              <input type="text" name="age" class="form-control col-sm-6" required>
+            </div>
+          </div>
+          <div class="form-group col-sm-3">
             <label class="col-sm-4 control-label">作者</label>
             <div class="col-sm-8">
-              <input type="text" name="author" class="form-control col-sm-6">
+              <input type="text" name="author" class="form-control col-sm-6" required>
             </div>
           </div>
           <div class="form-group col-sm-12">
@@ -251,6 +257,26 @@
             </div>
           </div>
           <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label" data-toggle="popover" title="发布状态" data-trigger="click"  data-content="当前图片是否发布，是否归入精选馆">发布状态 <span class="glyphicon glyphicon-info-sign"></span></label>
+            <div class="col-sm-8">
+              <label class="checkbox"><input name="active" type="checkbox" value="是">发布</label>
+              <label class="checkbox"><input name="essence" type="checkbox" value="是">精选</label>
+              <label class="checkbox"><input name="mylove" type="checkbox" value="是">铭心绝品</label>
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label" data-toggle="popover" title="精选顺序" data-trigger="click"  data-content="图片在精选区中的排序位置">精选顺序<br>(大的在前) <span class="glyphicon glyphicon-info-sign"></span></label>
+            <div class="col-sm-8">
+              <input type="text" name="essenceSort" class="form-control col-sm-6">
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
+            <label class="col-sm-4 control-label" data-toggle="popover" title="精选顺序" data-trigger="click"  data-content="图片在铭心绝品的排序位置，可以使用时间格式：2016-11-10-01">铭心绝品顺序<br>(大的在前) <span class="glyphicon glyphicon-info-sign"></span></label>
+            <div class="col-sm-8">
+              <input type="text" name="myloveSort" class="form-control col-sm-6">
+            </div>
+          </div>
+          <div class="form-group col-sm-6">
             <label class="col-sm-4 control-label" data-toggle="popover" title="图片资源级别" data-trigger="click"  data-content="图片资源的质量，不是画作的艺术质量，请根据图片实际情况选择">图片资源级别<span class="glyphicon glyphicon-info-sign"></span></label>
             <div class="col-sm-8">
               <select name="resourceLevel" class="form-control" required>
@@ -262,32 +288,6 @@
               </select>
             </div>
           </div>
-          <div class="form-group col-sm-6">
-            <label class="col-sm-4 control-label" data-toggle="popover" title="精选顺序" data-trigger="click"  data-content="图片在精选区中的排序位置">精选顺序<br>(大的在前) <span class="glyphicon glyphicon-info-sign"></span></label>
-            <div class="col-sm-8">
-              <input type="text" name="essenceSort" class="form-control col-sm-6">
-            </div>
-          </div>
-          <!-- <div class="form-group col-sm-6">
-            <label class="col-sm-4 control-label">普通顺序<br>(大的在前) <span class="glyphicon glyphicon-info-sign"></span></label>
-            <div class="col-sm-8">
-              <input type="text" name="commonSort" class="form-control col-sm-6">
-            </div>
-          </div> -->
-          <div class="form-group col-sm-6">
-            <label class="col-sm-4 control-label" data-toggle="popover" title="发布状态" data-trigger="click"  data-content="当前图片是否发布，是否归入精选馆">发布状态 <span class="glyphicon glyphicon-info-sign"></span></label>
-            <div class="col-sm-8">
-              <label class="checkbox"><input name="active" type="checkbox" value="是">发布</label>
-              <label class="checkbox"><input name="essence" type="checkbox" value="是">精选</label>
-            </div>
-          </div>
-          <div class="form-group col-sm-6">
-            <label class="col-sm-4 control-label">年代</label>
-            <div class="col-sm-8">
-              <input type="text" name="age" class="form-control col-sm-6">
-            </div>
-          </div>
-
           <div class="form-group col-sm-6">
             <label class="col-sm-4 control-label">文件大小</label>
             <div class="col-sm-8">

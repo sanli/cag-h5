@@ -136,7 +136,7 @@ exports.retrive = function(req, res){
             if(!doc) return rt(false, "找不到对象：" + _id);
 
             rt(true, { doc : doc }, res);
-        }, true);
+        });
 }
 
 // 删除对象

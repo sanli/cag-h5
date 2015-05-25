@@ -61,11 +61,8 @@ if( target === 'release' ){ %>
                   class="btn <%= bookmarked ? 'btn-info' : 'btn-default' %>"
                   data-bookmarked="<%= bookmarked ? 'true' : 'false' %>"
                   ><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><%= bookmarked ? '已收藏' : '收藏' %></button>
-                <% if(info.offlineUrl){ %>
-                  <a target="downloadwindow" data-trigger="hover" data-placement="left" data-toggle="popover" title="什么是网页离线包" data-content="为了方便您随时随地观赏藏品，我们把网页和图片打包压缩成了一个“网页离线包”，下载离线包后解压，双击打开其中的“jpg.html”文件即可。“网页离线包”适合日常欣赏，比原始图片显示更快，缩放更方便，在电脑上看的效果也更好一点。" class="pull-right download" href="<%=info.offlineUrl %>"><span class="glyphicon glyphicon-cloud-download"></span>下载网页离线包</a>
-                <% } %>
-                <% if(info.originalUrl){ %>
-                  <a target="downloadwindow" data-trigger="hover" data-placement="left" data-toggle="popover" title="下载图片说明" data-content="我们尽量提供最高分辨率的图片文件供您下载，文件大部分是tiff格式，尺寸非常大，需要用Photoshop类专业图片软件打开，如果您不是太熟悉这类软件，请下载“网页离线包”。" class="pull-right download" href="<%=info.originalUrl %>"><span class="glyphicon glyphicon-cloud-download"></span>下载图片</a>
+                <% if(info.originalUrl || info.offlineUrl){ %>
+                  <a id="downloadbtn" target="downloadwindow" href="#" data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="查看与幅图相关的可下载资料" class="pull-right download"><span class="glyphicon glyphicon-cloud-download"></span>下载</a>
                 <% } %>
               </div>
             </div>

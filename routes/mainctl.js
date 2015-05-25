@@ -14,24 +14,36 @@ var getreq = require('../sharepage').getreq
     , conf = require('../config.js')
     // 正常的情况下使用mongodb存储数据
     , paintdb = require('../data/paintingsdb.js')
-    // 如果mongodb实效，需要放开下面语句，使用基于文件的数据列表
-    , file_paintdb = require('../data/cagstore_paintingsdb.js')
-    , extend = require('node.extend');
+    , async = require('async')
+    , us = require('underscore')
+    , extend = require('node.extend')
+    , writejson = require('./commonsctl.js').writejson
+    , exhibits = require('./exhibitctl.js');
 
 exports.broadcast = "";
 
 // ===============  定义模块入口文件 ================
 exports.bindurl=function(app){
+    // 大厅
     bindurl(app, '/', { outType : 'page', needAuth : false } , exports.main);
     bindurl(app, '/main.html', { outType : 'page', needAuth : false }, exports.main);
+    
+    // 看图
     bindurl(app, '/img.html', { outType : 'page', needAuth : false }, exports.img);
     bindurl(app, '/img/:uuid', { outType : 'page', needAuth : false }, exports.img);
-    bindurl(app, '/datatoys.html', { outType : 'page', needAuth : false }, exports.datatoys);
+    bindurl(app, '/img/:uuid/download', { outType : 'page', authRule : 'tourist' }, exports.download);
     // imglite.html 是精简版本的图片浏览器，只支持部分功能，用于手持设备浏览器，Android, IOS
     bindurl(app, '/imglite.html', { outType : 'page', needAuth : false }, exports.imglite);
     bindurl(app, '/imglite/:uuid', { outType : 'page', needAuth : false }, exports.imglite);
+    
+    // 实验性页面
+    bindurl(app, '/datatoys.html', { outType : 'page', needAuth : false }, exports.datatoys);
     bindurl(app, '/message.html', { outType : 'page', needAuth : false }, exports.message);
+    
+    // 公告消息页
     bindurl(app, '/blog', { outType : 'page', needAuth : false }, exports.blog);
+
+    // api
     bindurl(app, '/message.json', { outType : 'page', needAuth : false }, exports.messagejson);
     bindurl(app, '/cagstore/essence.json', { needAuth : false }, exports.essence);
     bindurl(app, '/cagstore/search.json', { needAuth : false }, exports.search);
@@ -53,7 +65,15 @@ var PAGE = {
     // 消息内容
     message : {name: 'message', key: 'message', optional: true, default: ''},
     // 视图类型
-    view : {name: 'view', key: 'view', optional: true, default: 'pageview' }
+    view : {name: 'view', key: 'view', optional: true, default: 'pageview' },
+    // 类型
+    type : {name: 'type', key: 'type', optional: true, default: 'essense' },
+    // 作者名称
+    age : {name: 'age', key: 'age', optional: true, default: '' },
+    // 作者名称
+    author : {name: 'author', key: 'author', optional: true, default: '' },
+    // 作者名称
+    key : {name: 'key', key: 'key', optional: true, default: '' }   
 }
 
 exports.broadcast = function(req, res){
@@ -71,17 +91,73 @@ exports.broadcast = function(req, res){
 
 // 发送到前段显示的消息
 exports.main = function(req, res){
-    res.render('mainpage.html', {
-        user : getUser(req),
-        torist : share.getTourist(req),
-        title: getTitle("首页"),
-        page : 'main',
-        target : conf.target,
-        stamp : conf.stamp,
-        conf : conf,
-        opt : {
-            message : exports.broadcast_message
-        }
+    _outline({}, function(err, outline){
+        // 各个展馆的数据
+        var exhibitsData = {},
+        // 题头图
+            headPainting = [];
+
+        // 查询各个展馆，每个展馆输出两行到首页上
+        async.series([
+            function(cb){
+                exhibits.query_exhibit(exhibits.meta.铭心绝品
+                    , { page : { skip : 0 , limit : 1 } }
+                    , function(err, fileinfos){
+                        if(err) cb(err);
+
+                        exhibitsData['铭心绝品'] = fileinfos;
+                        cb();
+                    });
+            },
+            function(cb){
+                exhibits.query_exhibit(exhibits.meta.精品馆
+                    , { page : { skip : 0 , limit : 6 } }
+                    , function(err, fileinfos){
+                        if(err) cb(err);
+
+                        exhibitsData['精品馆'] = fileinfos;
+                        cb();
+                    });
+            },
+            function(cb){
+                exhibits.query_exhibit(exhibits.meta.新发图
+                    , { page : { skip : 0 , limit : 6 } }
+                    , function(err, fileinfos){
+                        if(err) cb(err);
+
+                        exhibitsData['新发图'] = fileinfos;
+                        cb();
+                    });
+            },
+            function(cb){
+                exhibits.query_exhibit(exhibits.meta.当代馆
+                    , { page : { skip : 0 , limit : 6 } }
+                    , function(err, fileinfos){
+                        if(err) cb(err);
+
+                        exhibitsData['当代馆'] = fileinfos;
+                        cb();
+                    });
+            }]
+        ,function(err){
+            res.render('mainpage.html', {
+                user : share.getUser(req),
+                torist : share.getTourist(req),
+                title: getTitle("首页"),
+                page : 'main',
+                target : conf.target,
+                stamp : conf.stamp,
+                conf : conf,
+                cagstores : exhibitsData,
+                exhibits : exhibits.meta,
+                headPainting : headPainting,
+                outline : outline,
+                opt : {
+                    message : exports.broadcast_message,
+                    hide_search : false
+                }
+            });
+        });
     });
 };
 
@@ -93,7 +169,10 @@ exports.datatoys = function(req, res){
         page : 'datatoys',
         target : conf.target,
         stamp : conf.stamp,
-        conf : conf
+        conf : conf,
+        opt : {
+            hide_search : true
+        }
     });
 };
 
@@ -104,7 +183,10 @@ exports.blog = function(req, res){
         title: getTitle("日志"),
         target : conf.target,
         stamp : conf.stamp,
-        conf : conf
+        conf : conf,
+        opt : {
+            hide_search : true
+        }
     });
 };
 
@@ -116,7 +198,10 @@ exports.message = function(req, res){
         page : 'message',
         target : conf.target,
         stamp : conf.stamp,
-        conf : conf
+        conf : conf,
+        opt : {
+            hide_search : true
+        }
     });
 };
 
@@ -134,6 +219,12 @@ exports.imglite = function(req, res){
 };
 
 function renderImg(req, res, templ){
+    var agent = req.get('User-Agent');
+    if(/.*PhantomJS.*/.test(agent)){
+        //抓图工具
+        return;
+    }
+
     var arg = getParam("img", req, res, [ PAGE.uuid, PAGE.view ]);
     if(!arg.passed)
         return;
@@ -157,7 +248,10 @@ function renderImg(req, res, templ){
                     conf : conf,
                     arg: arg,
                     info : info,
-                    bookmarked : booked
+                    bookmarked : booked,
+                    opt : {
+                        hide_search : true
+                    }
                 });
 
                 // 记录访问次数
@@ -199,7 +293,7 @@ exports.essence = function(req, res){
         , function(err, fileinfos){
             if(err) return share.rt(false, err.message, res);
             writejson(res, fileinfos);
-        });
+        }, { skip : 0 , limit : 100});
 }
 
 // 查询文件信息列表
@@ -224,7 +318,7 @@ exports.search = function(req, res){
 
             fileinfos =  fileinfos.slice(page.skip, page.limit);
             writejson(res, fileinfos);
-        }, true);
+        });
 }
 
 // 查询符合条件的所有文件信息列表
@@ -271,13 +365,46 @@ exports.outline = function(req, res){
     if(!arg.passed)
         return;
 
-    // 查询outline
-    var cond = extend({ active : true }, arg.cond );
-    paintdb.outline( cond , function(err, outline){
+    _outline(arg.cond, function(err, outline){
         if(err) return share.rt(false, err.message, res);
 
         writejson(res, outline);
     });
 }
 
+
+_outline = function(cond, fn){
+    // 查询outline
+    cond = extend({ active : true }, cond );
+    paintdb.outline( cond , function(err, outline){
+        fn(err, outline);
+    });
+}
+
 // === 扩展的代码请加在这一行下面，方便以后升级模板的时候合并 ===
+// 图片下载页面
+exports.download = function(req, res){
+    var arg = getParam("download", req, res, [ PAGE.uuid ]);
+    if(!arg.passed)
+        return;
+
+    paintdb.findById(arg.uuid, function(err, info){
+        if(err) return share.errpage( err.message, req, res );
+        if(!info) return share.errpage('资料不存在', req, res );
+
+        res.render('downloadpage.html', {
+            user : getUser(req),
+            torist : share.getTourist(req),
+            title: getTitle("内容下载"),
+            page : 'download',
+            target : conf.target,
+            stamp : conf.stamp,
+            conf : conf,
+            info : info,
+            opt : {
+                hide_search : true
+            }
+        });
+    });
+};
+

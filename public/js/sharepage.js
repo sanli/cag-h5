@@ -236,6 +236,20 @@ var $P = function(options) {
         });
     },
 
+    /** 
+     * ask for confirm something
+     */
+    message : function(title, message, closetime){
+      $('#messageDlg').modal();
+      $('#messageDlg').on('shown.bs.modal', function(){
+          $('#messageDlg').find('div.modal-header h3').text(title);
+          $('#messageDlg').find('div.modal-body p').text(message);
+          setTimeout(function(){
+            $('#messageDlg').modal('hide');
+          }, closetime);
+        });
+    },
+
     /**
      * 弹出modal对话框，保存完成调用okFn, 保存失败调用 cancleFn
      */

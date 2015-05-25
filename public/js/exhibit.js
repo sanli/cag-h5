@@ -229,7 +229,8 @@ var Module = $.extend(new $M(), {
     // init outline dialog
     initOutlineDlg : function(){
     	var out = tmpl('outlineDlgTmpl', {
-			outline : PG.outline
+			outline : PG.outline,
+			isMobile : $.isMobile()
 		});
 		$('#outline-dlg').append(out);
 
@@ -237,38 +238,6 @@ var Module = $.extend(new $M(), {
 			outline : PG.outline
 		});
 		$('#outline-navi').append(navOut);
-		$('#outline-navi a.change-view').click(function(e){
-			// 切换到对应的年代，并滚动到位置
-			e.preventDefault();
-			var targetage = $(e.target).closest('a').data('target'),
-				targethref = $('a[data-age=' + targetage + ']');
-
-			$('#outline-panel div.panel-body')
-				.animate({ 
-					scrollTop: targethref.offset().top - 90 
-				}, 300
-				, function(){});
-		});
-		$('#outline-panel a.scroll-view').click(function(e){
-			e.preventDefault();
-			var targetage = $(e.target).closest('a').data('target');
-			if(targetage === "top"){
-				var scrollto  = 0;
-			}else{
-				var targethref = $('a[data-age=' + targetage + ']'),
-					scrollto  = targethref.offset().top - 90 ;	
-			}
-			
-			
-			
-			var targetage = $(e.target).closest('a').data('target'),
-				targethref = $('a[data-age=' + targetage + ']');
-
-			$('#outline-panel div.panel-body')
-				.animate({ scrollTop: scrollto }
-					, 300
-					, function(){});
-		});
     },
 
     scrollTo : function(href){
@@ -281,14 +250,6 @@ var Module = $.extend(new $M(), {
 
 	bind : function(){
 		$('body').scrollspy({ target: '.bottom-bar' });
-		$('#searchForm').submit(function(event){
-			// 查询内容
-			var cond = $('#searchForm').getdata();
-			Module.loadSearch(cond, $('#paintingListRow'));
-			PG.pushState({ type : 'search', href : 'searchHref', key: cond.key});
-			event.preventDefault();	
-		});
-
 		$("img.lazy").lazyload({
 			effect : "fadeIn",
 		    skip_invisible : false
@@ -307,6 +268,40 @@ var Module = $.extend(new $M(), {
 			if($("#topbar").hasClass('in')){
 				$("#topbar").collapse('toggle');
 			}
+		});
+
+
+		$('#outline-navi').on('click', 'a.change-view', function(e){
+			// 切换到对应的年代，并滚动到位置
+			e.preventDefault();
+			var targetage = $(e.target).closest('a').data('target'),
+				targethref = $('a[data-age=' + targetage + ']');
+
+			$('#outline-panel div.panel-body')
+				.animate({ 
+					scrollTop: targethref.offset().top - 90 
+				}, 300
+				, function(){});
+		});
+		$('#outline-panel').on('click', 'a.scroll-view', function(e){
+			e.preventDefault();
+			var targetage = $(e.target).closest('a').data('target');
+			if(targetage === "top"){
+				var scrollto  = 0;
+			}else{
+				var targethref = $('a[data-age=' + targetage + ']'),
+					scrollto  = targethref.offset().top - 90 ;	
+			}
+			
+			
+			
+			var targetage = $(e.target).closest('a').data('target'),
+				targethref = $('a[data-age=' + targetage + ']');
+
+			$('#outline-panel div.panel-body')
+				.animate({ scrollTop: scrollto }
+					, 300
+					, function(){});
 		});
 	},
 
@@ -422,7 +417,9 @@ function init(){
 	}
 	PG.bind();
 	Module.bind();
-	$(window).trigger('hashchange');
+	// 由于页面是preload的，不在需要自动触发hashchange事件
+	// $(window).trigger('hashchange');
+		
 };
 
 

@@ -1,4 +1,4 @@
-<div class="navbar navbar-inverse navbar-fixed-top main-navbar" role="navigation">
+<div id="top-navbar" class="navbar navbar-inverse navbar-fixed-top main-navbar" role="navigation">
       <div class="container-fluid">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".top-bar">
@@ -11,16 +11,19 @@
         </div>
         <div id="topbar" class="navbar-collapse collapse top-bar">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/main.html#type=essence" id="essence-zone" role="button" class="change-view">精选馆</a></li>
-            <li><a href="/main.html#type=age" id="age-zone" role="button" class="change-view">历代馆</a></li>
-            <li><a href="/main.html#type=modern" id="modern-zone" role="button" class="change-view">当代馆</a></li>
+            <li><a href="/main.html" id="essence-zone" role="button" class="change-view">首页</a></li>
+            <li><a href="/exhibit/essence" id="essence-zone" role="button" class="change-view">精选馆</a></li>
+            <li><a href="/exhibit/age" id="age-zone" role="button" class="change-view">历代馆</a></li>
+            <li><a href="/exhibit/modern" id="modern-zone" role="button" class="change-view">当代馆</a></li>
+            <li><a href="/exhibit/recent" id="modern-zone" role="button" class="change-view">新发图</a></li>
+            <li><a href="/exhibit/mylove" id="modern-zone" role="button" class="change-view">铭心绝品</a></li>
             <!-- <li><a href="/datatoys.html" id="modern-zone" role="button" class="change-view">千年一览</a></li> -->
           </ul>
-          <% if(!conf.hide_search){%>
+          <% if(opt && !opt.hide_search){%>
           <form id="searchForm" class="navbar-form navbar-left search-form" role="search">
             <div class="form-group">
               <div class="input-group">
-                <input type="text" class="form-control" name="key" placeholder="输入人名或作品名查询">
+                <input type="text" class="form-control" name="key" placeholder="输入人名或作品名单词，如：富春，回车查询...">
                 <span class="input-group-btn">
                   <button id="search-btn" class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
                 </span>

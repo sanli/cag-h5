@@ -1,3 +1,39 @@
+<!-- 意见和建议对话框 -->
+<div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">您的意见，会鞭策我们继续前进...</h4>
+      </div>
+      <div class="modal-body">
+        <!-- 多说评论框 start -->
+        <div class="ds-thread" data-thread-key="page.main" data-title="中华珍宝馆首页" data-url="ltfc.net/main.html"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 确认对话框 -->
+<div id="messageDlg" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+        <h3 id="myModalLabel">消息提示:</h3>
+      </div>
+      <div class="modal-body">
+        <p></p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" data-dismiss="modal">确认</button>
+      </div>
+  </div>
+  </div>
+</div>
 
 <%if(conf.anailsysService === 'google'){%>
 <script>
@@ -25,12 +61,13 @@ var _hmt = _hmt || [];
 <script src="http://tjs.sjs.sinajs.cn/open/api/js/wb.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
-    // 选中菜单项目，这个函数需要放在页面结尾处
-    var currentPath = window.location.pathname,
-            march = new RegExp(currentPath + '.*');
+        // 选中菜单项目，这个函数需要放在页面结尾处
+        var currentPath = window.location.pathname;
+        //march = new RegExp(currentPath + '.*');
         $("#top-navbar a").each(function(i, a){
             var $a = $(a);
-            if(march.test($a.attr('href')))
+            //if(march.test($a.attr('href')))
+            if( currentPath.indexOf($a.attr('href')) >= 0)
                 $a.parents('li').addClass('active');
         });
 
@@ -41,6 +78,14 @@ var _hmt = _hmt || [];
                 var userinfoHtml = tmpl('userinfoTmpl', {user : userinfo});
                 $('#userinfoMenu').html(userinfoHtml);
             });
+        });
+
+
+        $('#searchForm').submit(function(event){
+          event.preventDefault(); 
+          // 查询内容
+          var cond = $('#searchForm').getdata();
+          window.location.href= encodeURI("/exhibit/search/" + cond.key);
         });
 
 </script>

@@ -94,14 +94,14 @@ exports.bindurl = bindurl;
 
 
 function getUser(req){
-    return req.session.user;
+    return req.session ? req.session.user : null;
 }
 exports.getUser = getUser;
 
-exports.getTourist = function(req){
-	return req.session.tourist;	
+function getTourist(req){
+	return req.session ? req.session.tourist : null;	
 }
-
+exports.getTourist = getTourist;
 /**
  * 页面标题
  */
@@ -125,6 +125,11 @@ var getreq = function(msg, req, res, params){
 
 	var fun = function(param){
 		console.log(msg + " : " + param.key + "=" + req.param(param.key));
+
+		console.log(req.params);
+		console.log(req.body);
+		console.log(req.query);
+		console.log(req.param('data'));
 
 		if(!param.optional && !req.param(param.key)){
 			throw new Error('need param:'+ param.key +' in request');
@@ -193,14 +198,16 @@ exports._ResultByState = exports.resultByState = resultByState; // =============
 exports.errpage = function(message, req, res, opt){
 	var defaultopt = {
 		message : message,
-		user: getUserName(req),
         title: "中华珍宝馆 异常页面",
+		user: getUser(req),
+        torist : getTourist(req),
         target : conf.target,
         stamp : conf.stamp,
-        conf : conf
+        conf : conf,
+        opt : {}
 	};
 	var context = us.extend({}, defaultopt, opt);
-
+	console.log("context:",context);
 	// 输出页面
     res.render('errpage.html', context);
 }
@@ -504,9 +511,6 @@ var getUserDeptId = function(req){
 	return user.deptobj ? user.deptobj.id : null; 
 };
 exports.getUserDeptId = getUserDeptId;
-exports.getUser = function(req){
-	return req.session.user;
-}
 
 // 添加用户的数据权限，用于过滤用户无权查询的数据
 exports.fillUserDataRule = function(condition, req, setter){

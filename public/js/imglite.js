@@ -66,13 +66,13 @@ var Module = $.extend(new $M(), {
 
 		if(Module.isWebview(state)){
 			Module.map.removeControl(Module.map.attributionControl);
+			$('#bookmarkbtn').css('display', 'none');
 		}else{
 			map.attributionControl
 				.setPrefix('<a href="/main.html?l=home"><span class="glyphicon glyphicon-home"></span>中华珍宝馆</a>')
 				.addAttribution('<a href="/main.html?l=more"><span class="glyphicon glyphicon-share-alt"></span>更多图片</a>');
 		}
 		Module.initMap(map);
-		
 
 		// load painting data
     	$('div.main').spin();
@@ -177,6 +177,8 @@ var Module = $.extend(new $M(), {
 		$('#sidebar').mouseleave(function(){
 			$('#sidebar').css('opacity', 0.75);
 		});
+		
+		$('#bookmarkbtn').on('click', Module.pin);
 	},
 
 	// ====================================================================================================================================
@@ -186,6 +188,8 @@ var Module = $.extend(new $M(), {
 	pushInfo2Sidebar : function(info){
 		// 多说
 		$('#comment-list a.download').popover();
+		$('#comment-list button').popover();
+
 		  (function() {
 		    var ds = document.createElement('script');
 			    ds.type = 'text/javascript';ds.async = true;
@@ -198,6 +202,29 @@ var Module = $.extend(new $M(), {
 
 	isWebview : function(state){
 		return state.view ? /^webview/.test(state.view) : false ;
+	},
+
+	pin : function(e){
+		if($('#bookmarkbtn').data('bookmarked'))
+			return;
+
+		$('#bookmarkbtn').attr('disabled', true);
+		var file = Module.fileinfo;
+		$('#bookmarkbtn').spin();
+		PG.getuser(function(err, user){
+			$M.doquery('/bookmark/pin', {
+				title : file.paintingName,
+				paintingid : file._id
+			}, {
+				successfn : function(result){
+					$('#bookmarkbtn').spin(false);
+                    $('#bookmarkbtn').removeClass('btn-default').addClass('btn-info')
+                    	.data('bookmarked', true).attr('disabled', false);
+                }, 
+                alertPosition : '#loginDlg .modal-body'
+			});
+			
+		}, { asklogin : true });
 	}
 });
 

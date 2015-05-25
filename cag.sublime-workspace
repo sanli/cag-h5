@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"exh",
+				"exhibits"
+			],
+			[
+				"ra",
+				"setRandomPosition"
+			],
+			[
+				"set",
+				"setView"
+			],
+			[
+				"exhi",
+				"exhibitsData"
+			],
+			[
+				"ex",
+				"exhibits"
+			],
+			[
+				"fi",
+				"fileinfos"
+			],
+			[
+				"f",
+				"fileinfos"
+			],
+			[
+				"col",
+				"closetime"
+			],
+			[
 				"art",
 				"art_is_fun"
 			],
@@ -162,10 +194,6 @@
 			[
 				"get",
 				"getfileinfo"
-			],
-			[
-				"fi",
-				"filename"
 			],
 			[
 				"e",
@@ -336,10 +364,6 @@
 				"showGisobjInfo"
 			],
 			[
-				"set",
-				"setTimeout"
-			],
-			[
 				"nor",
 				"path.normalize(path);"
 			],
@@ -490,50 +514,33 @@
 			[
 				"mak",
 				"markerClick"
-			],
-			[
-				"OT",
-				"OTYPE_BUILDING"
-			],
-			[
-				"loc",
-				"locToPoint"
-			],
-			[
-				"O",
-				"OTYPE_BUILDING"
-			],
-			[
-				"oty",
-				"OTYPE_BUILDING"
-			],
-			[
-				"make",
-				"makeGisobjWithinQuery"
-			],
-			[
-				"point",
-				"pointToGeoJSON"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "Gruntfile.js",
+			"file": "routes/mainctl.js",
 			"settings":
 			{
-				"buffer_size": 4812,
+				"buffer_size": 13297,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "/root/.forever/sfguihua.log {\n  daily\n  rotate 100\n  missingok\n  notifempty\n  compress\n  sharedscripts\n  copytruncate\n  dateext\n  dateformat %Y-%m-%d.\n}",
+			"file": "views/commons/cagstore_short.inc",
 			"settings":
 			{
-				"buffer_size": 152,
-				"line_ending": "Unix",
-				"name": "/root/.forever/sfguihua.log {"
+				"buffer_size": 2912,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/commons/cagstore.inc",
+			"settings":
+			{
+				"buffer_size": 3086,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -631,65 +638,112 @@
 	"expanded_folders":
 	[
 		"/Users/sanli/Documents/workspace/cag-h5",
-		"/Users/sanli/Documents/workspace/cag-h5/public",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js",
-		"/Users/sanli/Documents/workspace/cag-h5/views"
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules",
+		"/Users/sanli/Documents/workspace/cag-h5/routes",
+		"/Users/sanli/Documents/workspace/cag-h5/views",
+		"/Users/sanli/Documents/workspace/cag-h5/views/exhibit"
 	],
 	"file_history":
 	[
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/mybookmark.js",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/exhibitctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/thead.html",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/mainpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/config.js",
+		"/Users/sanli/Documents/workspace/cag-h5/data/paintingsdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/commons/cagstore_short.inc",
+		"/Users/sanli/Documents/workspace/cag-h5/views/commons/cagstore.inc",
+		"/Users/sanli/Documents/workspace/cag-h5/views/imgpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/exhibit/exhibitpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/exhibit/searchpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/Gruntfile.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/registpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/userinfopage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/exhibit.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/exhibitpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/commonsctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/cag.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tfoot.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/main.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tnavi.html",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/paintingsctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/img.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/commons/outlinepanel.inc",
+		"/Users/sanli/Documents/workspace/cag-h5/views/outline.js",
+		"/Users/sanli/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/sanli/Documents/workspace/cag-h5/views/commons/cagstore_client.inc",
+		"/Users/sanli/Documents/workspace/cag-h5/views/cagstore_client.inc",
+		"/Users/sanli/Documents/workspace/cag-h5/views/commons/outlinepanel_client.inc",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/cagcommons.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/Makefile",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.base.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/backbone.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/commons/cagstore.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tfootnavi.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/leaflet.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/leaflet-src.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/lib/ejs.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/ejs.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/errpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/commons/outline.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/lib/document.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/underscore/underscore.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/mybookmarkpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/routes/bookmarkctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/touristctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/d3t.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/mybookmark.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/bookmark/bookmarkpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/download.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/downloadpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/confirmdlg.html",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.ext.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/tfoot.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/tnavi.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/downloadpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/filelist",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/serve-static/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/lib/schema.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/connect-mongo/lib/connect-mongo.js",
+		"/Users/sanli/Documents/workspace/cag-h5/package.json",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/node_modules/express/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-session/node_modules/on-headers/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/body-parser/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/node_modules/express/node_modules/connect/lib/middleware/session/store.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/node_modules/express/node_modules/connect/lib/middleware/session/session.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/node_modules/express/node_modules/connect/lib/middleware/session.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/concurix-dashboard/node_modules/concurix-api/node_modules/request/node_modules/tough-cookie/lib/cookie.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-session/session/session.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-session/index.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/connect/lib/middleware/session.js",
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/config.json",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/userinfopage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/imglitepage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/imglite.js",
+		"/Users/sanli/Documents/workspace/cag-h5/data/cagstore_paintingsdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/regist.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/registpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/js/userinfo.js",
 		"/Users/sanli/Documents/workspace/cag-h5/data/touristdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/tourist.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/userinfo.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/cagcommons.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/bookmark.js",
 		"/Users/sanli/Documents/workspace/cag-h5/data/art_is_fun.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/imgpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/touristctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/main.js",
 		"/Users/sanli/Documents/workspace/cag-h5/data/bookmarkdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
-		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/mainpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/dateformat/lib/dateformat.js",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/thead.html",
-		"/Users/sanli/Documents/workspace/cag-h5/cag.js",
 		"/Users/sanli/Documents/workspace/cag-h5/routes/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/img.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/routes/userctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/package.json",
 		"/Users/sanli/Documents/workspace/cag-h5/mongo.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/touristpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/config.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/index.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/navi.html",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/routes/bookmarkctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/tempout/routes/touristctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/back_route.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/front_module.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/signinpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/paintingsctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_userdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/imglitepage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/errpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/data/paintingsdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/head.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/imglite.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/regist.js",
 		"/Users/sanli/Desktop/remove-zongzi",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/connect/lib/middleware/session.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/browserify/test/backbone.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/css/backend.css",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/paintings.js",
@@ -701,9 +755,7 @@
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_enumdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/userdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_roledb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/ejs.js",
 		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/js/sharepage.js",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/commonsctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/front_module.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/tourist.js.old",
 		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/userdb.js",
@@ -715,56 +767,12 @@
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_orgdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_confdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/CRUD/back_db.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/d3t.html",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/share.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/blogpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/concurix-dashboard/node_modules/component-css/node_modules/component-each/node_modules/to-function/node_modules/remove-try-require/node_modules/replace-method/node_modules/recast/lib/lines.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/css/bootstrap.css",
 		"/Users/sanli/Documents/workspace/cag-h5/public/mobile.html",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/css/main.css",
-		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/js/cag.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/paintingsdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/data/cagstore_paintingsdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/messagelinkdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/messagedb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/commentdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/cagstore_paintingsdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/about.html",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt/node_modules/js-yaml/node_modules/argparse/lib/argument_parser.js",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/cordova/apple_ios_version",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/android/CordovaLib/src/com/squareup/okhttp/internal/http/AbstractHttpInputStream.java",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/browserify/node_modules/crypto-browserify/node_modules/browserify-sign/node_modules/parse-asn1/node_modules/asn1.js/test/ping-pong-test.js",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/index.html",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/config.xml",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/src/index.coffee",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/lib/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/doc/index.md",
-		"/Users/sanli/Documents/workspace/cag-h5/build/cdn/blog/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/routes/index.js",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/css/index.css",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/minkelite/node_modules/sqlite3/node_modules/node-pre-gyp/node_modules/rc/node_modules/deep-extend/test/index.spec.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/browserify/node_modules/vm-browserify/node_modules/indexof/package.json",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/concurix-dashboard/node_modules/less/test/data/page.html",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/concurix-dashboard/node_modules/moment/locale/zh-cn.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/node-zip/node_modules/jszip/node_modules/zlibjs/src/heap.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/concurix-dashboard/node_modules/d3/src/geo/azimuthal-equidistant.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt-cli/completion/zsh",
-		"/Users/sanli/Documents/workspace/cag-client/cagmobi/platforms/ios/www/index.html",
-		"/Users/sanli/Documents/workspace/cag-h5/imgtool.js",
-		"/Users/sanli/Documents/workspace/cag-h5/data/paintdb.js.bak.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/data/paintdb.js.bak.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/test/fixtures/includes/menu-item.ejs",
-		"/Users/sanli/Documents/workspace/cag-h5/crawler/imgcrawler.js",
-		"/Users/sanli/Documents/workspace/cag-h5/imgtool/commons.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/grunt-contrib-cssmin/node_modules/grunt-lib-contrib/test/lib_test.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/messagepage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/message.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/mainpage.html.1",
-		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/routes/paintingsctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/build/aliyun/routes/messagectl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage/IMPORT/back_db.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/src/from.coffee",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/src/generator.coffee"
+		"/Users/sanli/Documents/workspace/cag-client/cagmobi/www/css/main.css"
 	],
 	"find":
 	{
@@ -810,6 +818,109 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"glyphicon-cloud-download",
+			"console.log",
+			" -",
+			"console.log",
+			"console",
+			"console.log",
+			"<script src=\"http://cdn.staticfile.org/leaflet/0.7.2/leaflet.js\" type=\"text/javascript\"></script>",
+			"exhibitsData",
+			"view",
+			"exhibits.",
+			"condPick",
+			"author",
+			"loadTitlePainting",
+			"setRandomPosition",
+			"initMap",
+			"300px",
+			"carousel-example-generic",
+			"id=\"paintingListRow\" ",
+			"新发图",
+			"精品馆",
+			"viewopt",
+			"@",
+			"cdn",
+			"opacity",
+			"@>",
+			"<@",
+			"age",
+			"cagstore",
+			"exhibits",
+			"_query_exhibit",
+			"exhibits",
+			"_query_exhibit",
+			"getUser",
+			"essence_json",
+			"essence",
+			"exhibit",
+			"essence_json",
+			"_create_exhibit_page_json",
+			"writejson",
+			"_create_exhibit",
+			"zoomN",
+			"maxNativeZoom",
+			"initMap",
+			"opt",
+			"getUserName",
+			"outlineDlgTmpl",
+			"loadOutline",
+			"initOutlineDlg",
+			"morden_exhibit",
+			"_createExhibit",
+			"morden_exhibit",
+			"recentexhibit",
+			"mordenexhibit",
+			"age_exhibit",
+			"ageexhibit",
+			"recentexhibit",
+			"findById",
+			"cache",
+			"queryfile",
+			"label",
+			"us.pick",
+			"author",
+			"js/",
+			"cdn",
+			"_outline",
+			"//#!",
+			"filterByTourist",
+			"img",
+			"alt",
+			"view",
+			"@>",
+			"<@",
+			"@>",
+			"<@",
+			"outlineNavTmpl",
+			"isMobile",
+			"isMobile\n",
+			"isMobile",
+			"@",
+			"originalUrl",
+			"offlineUrl",
+			"btn-default",
+			"下载",
+			"style=\"height: 260px;\"",
+			"painting",
+			"<img class=\"lazy\" data-original=\"<@=imgurl @>\" alt=\"<@=cell.title @>\"></a>",
+			"../t",
+			"lastAccess",
+			"extendedparser",
+			"bodyParser",
+			"rolling",
+			"saveUninitialized",
+			"resaveSession",
+			"express-session",
+			"cleanup_interval",
+			"res.render(",
+			"hide_search",
+			"hide",
+			"isWebview",
+			"tip",
+			"mainctl.js",
+			"top: 51px;",
+			"  top: 51px;",
 			"         #",
 			"____",
 			"《",
@@ -834,110 +945,7 @@
 			"js/",
 			"js/jquery",
 			"showSearchBlock",
-			"../../routes/sfcommonsctl.js",
-			"sf",
-			"../../config.js",
-			"js/",
-			"访客信息",
-			"torist",
-			" ",
-			"main",
-			"userSessionKey",
-			".role",
-			"share",
-			"req.session.user",
-			"getUserName",
-			"user",
-			"getUserName",
-			"session",
-			"userId",
-			"css/",
-			"js/",
-			"css/",
-			"js/",
-			"img",
-			">\n",
-			"../",
-			"jx_zongzi_antenna_hz",
-			"jx_zongzi_room_hz",
-			"jx_zongzi_bbu_hz",
-			"jx_zongzi_antenna_hz",
-			"us",
-			"ud",
-			"searchCondExp",
-			"_assertNotNull",
-			"_ResultByState",
-			"rt(",
-			"rt",
-			"rs",
-			"rt",
-			"<%",
-			"findById",
-			"fileinfo",
-			"@>",
-			"<@",
-			"<@=",
-			"<@",
-			"loadInfo",
-			"pushInfo2Sidebar",
-			"FUCK_BAIDU",
-			"_gentoken",
-			"tuser",
-			"dlgfile",
-			"login-btn",
-			"tuser",
-			"req.session.tuser,",
-			"req.session.user",
-			"session",
-			"module-form",
-			"#module-form",
-			"<%",
-			"tourist",
-			"js/",
-			"hasRight('项目管理'",
-			"登录",
-			"duoshuoQuery",
-			"offset",
-			"mainContent",
-			"transition",
-			";*/\n",
-			"d3.max(dataset, function(d) { return d[1]; })",
-			"action-ctl",
-			"bodyId",
-			"cellTbody",
-			"cellTable",
-			"spin",
-			"cellTbody",
-			"fillUserDataRule",
-			"target",
-			"条件查询",
-			"target",
-			"sys_role",
-			"enum",
-			"sys",
-			"../sharepage",
-			"rt",
-			"sys_sysrole",
-			"sys_sysorg",
-			"commonsdb",
-			"upload",
-			"touristdb.js",
-			"../../sharepage",
-			"var imp = require('../../data/imp.js');",
-			"moduleName",
-			"h2",
-			"h1",
-			"loadSearch",
-			"180",
-			"h4",
-			"一级",
-			"newrow",
-			"ask",
-			"android",
-			"queryfile",
-			"processPainting",
-			"viewcnt",
-			"ltfc"
+			"../../routes/sfcommonsctl.js"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -989,24 +997,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Gruntfile.js",
+					"file": "routes/mainctl.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4812,
+						"buffer_size": 13297,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4267,
-								4267
+								1022,
+								1022
 							]
 						],
 						"settings":
@@ -1015,36 +1023,68 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 112.0,
-						"translation.y": 1279.0,
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "views/commons/cagstore_short.inc",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 152,
+						"buffer_size": 2912,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								152,
-								152
+								2190,
+								2339
 							]
 						],
 						"settings":
 						{
-							"auto_name": "/root/.forever/sfguihua.log {",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 403.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "views/commons/cagstore.inc",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3086,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2916,
+								2916
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 403.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1055,7 +1095,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 22.0
+		"height": 34.0
 	},
 	"input":
 	{
@@ -1138,12 +1178,340 @@
 		"selected_items":
 		[
 			[
+				"cagsotre.inc",
+				"views/commons/cagstore.inc"
+			],
+			[
+				"cagstore_",
+				"views/commons/cagstore_short.inc"
+			],
+			[
+				"thead",
+				"views/thead.html"
+			],
+			[
+				"exh",
+				"routes/exhibitctl.js"
+			],
+			[
+				"mainctl.js",
+				"routes/mainctl.js"
+			],
+			[
+				"paintingsdb.js",
+				"data/paintingsdb.js"
+			],
+			[
+				"mainpage.html",
+				"views/mainpage.html"
+			],
+			[
+				"cagstore_sh",
+				"views/commons/cagstore_short.inc"
+			],
+			[
+				"conf",
+				"config.js"
+			],
+			[
+				"cagstore.inc",
+				"views/commons/cagstore.inc"
+			],
+			[
+				"thead.html",
+				"views/thead.html"
+			],
+			[
+				"imgpage.html",
+				"views/imgpage.html"
+			],
+			[
+				"searchpage.html",
+				"views/exhibit/searchpage.html"
+			],
+			[
+				"exhibitctl.js",
+				"routes/exhibitctl.js"
+			],
+			[
+				"exhi",
+				"public/js/exhibit.js"
+			],
+			[
 				"grun",
 				"Gruntfile.js"
 			],
 			[
+				"exhibitpage.html",
+				"views/exhibitpage.html"
+			],
+			[
+				"cag.js",
+				"cag.js"
+			],
+			[
+				"tfoot.html",
+				"views/tfoot.html"
+			],
+			[
+				"ex",
+				"views/exhibitpage.html"
+			],
+			[
+				"exhiti",
+				"public/js/exhibit.js"
+			],
+			[
+				"tnavi.html",
+				"views/tnavi.html"
+			],
+			[
+				"exhibit.js",
+				"public/js/exhibit.js"
+			],
+			[
+				"cagstore.in",
+				"views/commons/cagstore_short.inc"
+			],
+			[
+				"main.js",
+				"public/js/main.js"
+			],
+			[
+				"paintingdb",
+				"data/paintingsdb.js"
+			],
+			[
+				"paintingsctl.js",
+				"routes/paintingsctl.js"
+			],
+			[
+				"outline.js",
+				"views/outline.js"
+			],
+			[
+				"img.js",
+				"public/js/img.js"
+			],
+			[
+				"mainc",
+				"routes/mainctl.js"
+			],
+			[
+				"cagsotre_client.inc",
+				"views/commons/cagstore_client.inc"
+			],
+			[
+				"exhibitpage",
+				"views/exhibitpage.html"
+			],
+			[
+				"cagcommons.js",
+				"public/js/cagcommons.js"
+			],
+			[
+				"m",
+				"node_modules/csv/Makefile"
+			],
+			[
+				"paintingspage.html",
+				"views/paintingspage.html"
+			],
+			[
+				"paintingsdb",
+				"data/paintingsdb.js"
+			],
+			[
+				"leaflet.js",
+				"public/js/leaflet.js"
+			],
+			[
+				"errpage",
+				"views/errpage.html"
+			],
+			[
+				"ejs.js",
+				"node_modules/ejs/lib/ejs.js"
+			],
+			[
+				"errpage.html",
+				"views/errpage.html"
+			],
+			[
+				"manctl.js",
+				"routes/mainctl.js"
+			],
+			[
+				"sharepage.js",
+				"sharepage.js"
+			],
+			[
+				"tfootna",
+				"views/tfootnavi.html"
+			],
+			[
+				"main.css",
+				"public/css/main.css"
+			],
+			[
+				"paint",
+				"data/paintingsdb.js"
+			],
+			[
+				"exhibit",
+				"public/js/exhibit.js"
+			],
+			[
+				"backbone",
+				"public/js/backbone.js"
+			],
+			[
+				"share",
+				"public/js/sharepage.js"
+			],
+			[
+				"tfoo",
+				"views/tfootnavi.html"
+			],
+			[
+				"t",
+				"views/tnavi.html"
+			],
+			[
+				"exhib",
+				"views/exhibitpage.html"
+			],
+			[
+				"e",
+				"views/exhibitpage.html"
+			],
+			[
+				"touristctl.js",
+				"routes/touristctl.js"
+			],
+			[
+				"bookmakrctl.js",
+				"routes/bookmarkctl.js"
+			],
+			[
+				"myb",
+				"views/tourist/mybookmarkpage.html"
+			],
+			[
+				"mybookma",
+				"views/tourist/mybookmarkpage.html"
+			],
+			[
 				"mybookmakr.js",
 				"public/js/mybookmark.js"
+			],
+			[
+				"bookmakrpage",
+				"views/bookmark/bookmarkpage.html"
+			],
+			[
+				"tfootnavi.html",
+				"views/tfootnavi.html"
+			],
+			[
+				"mybookmarkpage",
+				"views/tourist/mybookmarkpage.html"
+			],
+			[
+				"mybookmakrpage.html",
+				"views/tourist/mybookmarkpage.html"
+			],
+			[
+				"downpage",
+				"views/downloadpage.html"
+			],
+			[
+				"download",
+				"public/js/download.js"
+			],
+			[
+				"tnavi",
+				"views/tfootnavi.html"
+			],
+			[
+				"download.js",
+				"public/js/download.js"
+			],
+			[
+				"confirmdlg.html",
+				"public/confirmdlg.html"
+			],
+			[
+				"downloadpage",
+				"views/downloadpage.html"
+			],
+			[
+				"bookmakrpage.html",
+				"views/bookmark/bookmarkpage.html"
+			],
+			[
+				"",
+				"filelist"
+			],
+			[
+				"downloadpage.html",
+				"views/tourist/downloadpage.html"
+			],
+			[
+				"tour",
+				"routes/touristctl.js"
+			],
+			[
+				"express-sessions",
+				"node_modules/express-sessions/index.js"
+			],
+			[
+				"package.json",
+				"package.json"
+			],
+			[
+				"config",
+				"node_modules/concurix-server/config.json"
+			],
+			[
+				"imglitepage.html",
+				"views/imglitepage.html"
+			],
+			[
+				"imglite.js",
+				"public/js/imglite.js"
+			],
+			[
+				"config.js",
+				"config.js"
+			],
+			[
+				"userinfopage.html",
+				"views/tourist/userinfopage.html"
+			],
+			[
+				"userinfo.js",
+				"public/js/userinfo.js"
+			],
+			[
+				"mybookmarkpage.html",
+				"views/tourist/mybookmarkpage.html"
+			],
+			[
+				"mybookmakr",
+				"public/js/mybookmark.js"
+			],
+			[
+				"regist.js",
+				"public/js/regist.js"
+			],
+			[
+				"regipage",
+				"views/tourist/registpage.html"
+			],
+			[
+				"toursitctl.js",
+				"routes/touristctl.js"
 			],
 			[
 				"bookmarkctl.js",
@@ -1154,20 +1522,12 @@
 				"views/tourist/mybookmarkpage.html"
 			],
 			[
-				"bookmakrpage",
-				"views/bookmark/bookmarkpage.html"
-			],
-			[
 				"userinfopge",
 				"views/tourist/userinfopage.html"
 			],
 			[
 				"registpage",
 				"views/tourist/registpage.html"
-			],
-			[
-				"tfoot.html",
-				"views/tfoot.html"
 			],
 			[
 				"sharepage.ext.js",
@@ -1182,16 +1542,8 @@
 				"views/tourist/userinfopage.html"
 			],
 			[
-				"mybookmakrpage.html",
-				"views/tourist/mybookmarkpage.html"
-			],
-			[
 				"userinfopage",
 				"views/tourist/userinfopage.html"
-			],
-			[
-				"userinfo.js",
-				"public/js/userinfo.js"
 			],
 			[
 				"artisfun",
@@ -1210,64 +1562,20 @@
 				"public/js/tourist.js"
 			],
 			[
-				"cagcommons.js",
-				"public/js/cagcommons.js"
-			],
-			[
-				"tour",
-				"public/js/tourist.js"
-			],
-			[
 				"artfu",
 				"data/art_is_fun.js"
-			],
-			[
-				"touristctl.js",
-				"routes/touristctl.js"
-			],
-			[
-				"tnavi.html",
-				"views/tnavi.html"
-			],
-			[
-				"main.css",
-				"public/css/main.css"
-			],
-			[
-				"paintingspage.html",
-				"views/paintingspage.html"
-			],
-			[
-				"main.js",
-				"public/js/main.js"
 			],
 			[
 				"mybookmark.js",
 				"public/js/mybookmark.js"
 			],
 			[
-				"mainpage.html",
-				"views/mainpage.html"
-			],
-			[
 				"paintingspage",
-				"views/paintingspage.html"
-			],
-			[
-				"paint",
 				"views/paintingspage.html"
 			],
 			[
 				"bookmakrdb.js",
 				"data/bookmarkdb.js"
-			],
-			[
-				"bookmakrctl.js",
-				"routes/bookmarkctl.js"
-			],
-			[
-				"mybookmarkpage.html",
-				"views/tourist/mybookmarkpage.html"
 			],
 			[
 				"mybo",
@@ -1278,14 +1586,6 @@
 				"views/bookmark/bookmarkpage.html"
 			],
 			[
-				"imgpage.html",
-				"views/imgpage.html"
-			],
-			[
-				"thead",
-				"views/thead.html"
-			],
-			[
 				"uuserinfopage.html",
 				"views/tourist/userinfopage.html"
 			],
@@ -1294,20 +1594,8 @@
 				"routes/touristctl.js"
 			],
 			[
-				"bookmakrpage.html",
-				"views/bookmark/bookmarkpage.html"
-			],
-			[
 				"index.js",
 				"routes/index.js"
-			],
-			[
-				"cag.js",
-				"cag.js"
-			],
-			[
-				"sharepage.js",
-				"sharepage.js"
 			],
 			[
 				"touristdb.js",
@@ -1322,24 +1610,12 @@
 				"views/tnavi.html"
 			],
 			[
-				"userinfopage.html",
-				"views/tourist/userinfopage.html"
-			],
-			[
 				"touri",
 				"routes/touristctl.js"
 			],
 			[
-				"img.js",
-				"public/js/img.js"
-			],
-			[
 				"tourispage",
 				"views/tourist/touristpage.html"
-			],
-			[
-				"",
-				"views/bookmark/bookmarkpage.html"
 			],
 			[
 				"mongo.js",
@@ -1354,10 +1630,6 @@
 				"sharepage.js"
 			],
 			[
-				"mainctl.js",
-				"routes/mainctl.js"
-			],
-			[
 				"bookmakr.js",
 				"public/js/bookmark.js"
 			],
@@ -1370,16 +1642,8 @@
 				"sharepage/sys/routes/userctl.js"
 			],
 			[
-				"config.js",
-				"config.js"
-			],
-			[
 				"express-sessions.js",
 				"node_modules/express-sessions/index.js"
-			],
-			[
-				"package.json",
-				"package.json"
 			],
 			[
 				"cagcommosn.js",
@@ -1424,230 +1688,6 @@
 			[
 				"singin",
 				"views/signinpage.html"
-			],
-			[
-				"paintingsctl.js",
-				"routes/paintingsctl.js"
-			],
-			[
-				"navi",
-				"views/navi.html"
-			],
-			[
-				"touristdb",
-				"data/touristdb.js"
-			],
-			[
-				"userdb",
-				"sharepage/sys/data/sys_userdb.js"
-			],
-			[
-				"imglitepage.html",
-				"views/imglitepage.html"
-			],
-			[
-				"mainpagehtml",
-				"views/mainpage.html"
-			],
-			[
-				"head",
-				"views/head.html"
-			],
-			[
-				"thead.html",
-				"views/thead.html"
-			],
-			[
-				"paintingsdb",
-				"data/paintingsdb.js"
-			],
-			[
-				"errpage.html",
-				"views/errpage.html"
-			],
-			[
-				"imglite.js",
-				"public/js/imglite.js"
-			],
-			[
-				"err",
-				"views/errpage.html"
-			],
-			[
-				"paintingsdb.js",
-				"data/paintingsdb.js"
-			],
-			[
-				"backbone",
-				"node_modules/concurix-server/node_modules/browserify/test/backbone.js"
-			],
-			[
-				"registpage.html",
-				"views/tourist/registpage.html"
-			],
-			[
-				"backend.css",
-				"public/css/backend.css"
-			],
-			[
-				"turistctl.js",
-				"routes/touristctl.js"
-			],
-			[
-				"front",
-				"sharepage/CRUD/front_module.html"
-			],
-			[
-				"tou.js",
-				"public/js/tourist.js"
-			],
-			[
-				"paintings.js",
-				"public/js/paintings.js"
-			],
-			[
-				"painting",
-				"views/paintingspage.html"
-			],
-			[
-				"home.css",
-				"node_modules/concurix-server/node_modules/concurix-dashboard/assets/font-awesome/css/font-awesome.css"
-			],
-			[
-				"datatoyspage.html",
-				"views/datatoyspage.html"
-			],
-			[
-				"datatou",
-				"data/touristdb.js"
-			],
-			[
-				"front_moude.js",
-				"cag-h5/sharepage/CRUD/front_module.js"
-			],
-			[
-				"front_mo",
-				"cag-h5/sharepage/CRUD/front_module.html"
-			],
-			[
-				"backroute",
-				"cag-h5/sharepage/CRUD/back_route.js"
-			],
-			[
-				"paintingclt.js",
-				"cag-h5/routes/paintingsctl.js"
-			],
-			[
-				"ejs.js",
-				"cag-h5/node_modules/ejs/ejs.js"
-			],
-			[
-				"head.html",
-				"cag-h5/views/head.html"
-			],
-			[
-				"commonsctl.js",
-				"cag-h5/routes/commonsctl.js"
-			],
-			[
-				"touct",
-				"cag-h5/routes/touristctl.js"
-			],
-			[
-				"commonsctl",
-				"cag-h5/routes/commonsctl.js"
-			],
-			[
-				"sys_roledb",
-				"cag-h5/sharepage/sys/data/sys_roledb.js"
-			],
-			[
-				"userdb.js",
-				"cag-h5/sharepage/sys/data/userdb.js"
-			],
-			[
-				"sysroledb.js",
-				"cag-h5/sharepage/sys/data/sys_roledb.js"
-			],
-			[
-				"sysroledb",
-				"cag-h5/sharepage/sys/data/sys_roledb.js"
-			],
-			[
-				"sys_enumdb",
-				"cag-h5/sharepage/sys/data/sys_enumdb.js"
-			],
-			[
-				"imp.js",
-				"cag-h5/data/imp.js"
-			],
-			[
-				"commonsdb.js",
-				"cag-h5/data/commonsdb.js"
-			],
-			[
-				"commonsctl.",
-				"cag-h5/routes/commonsctl.js"
-			],
-			[
-				"paitningspage.html",
-				"cag-h5/views/paintingspage.html"
-			],
-			[
-				"backrou",
-				"cag-h5/sharepage/CRUD/back_route.js"
-			],
-			[
-				"sysen",
-				"cag-h5/data/sys_enumdb.js"
-			],
-			[
-				"tou",
-				"cag-h5/routes/touristctl.js"
-			],
-			[
-				"tourctl.js",
-				"cag-h5/routes/touristctl.js"
-			],
-			[
-				"backdb",
-				"cag-h5/sharepage/CRUD/back_db.js"
-			],
-			[
-				"share.js",
-				"cag-h5/sharepage/share.js"
-			],
-			[
-				"blogpage",
-				"cag-h5/views/blogpage.html"
-			],
-			[
-				"imglitepage",
-				"cag-h5/views/imglitepage.html"
-			],
-			[
-				"imgpage",
-				"cag-h5/views/imgpage.html"
-			],
-			[
-				"bootst",
-				"cag-h5/public/css/bootstrap.css"
-			],
-			[
-				"mobile.html",
-				"cag-h5/public/mobile.html"
-			],
-			[
-				"paintingctl.js",
-				"cag-h5/routes/paintingsctl.js"
-			],
-			[
-				"main.html",
-				"cag-h5/views/mainpage.html"
-			],
-			[
-				"imgtool.js",
-				"cag-h5/imgtool.js"
 			]
 		],
 		"width": 0.0
@@ -1667,10 +1707,114 @@
 	},
 	"select_symbol":
 	{
-		"height": 392.0,
-		"last_filter": "date",
+		"height": 47.0,
+		"last_filter": "queryfile",
 		"selected_items":
 		[
+			[
+				"queryfile",
+				"queryfile"
+			],
+			[
+				"requestAnimFrame",
+				"requestAnimFrame"
+			],
+			[
+				"setZoom",
+				"setZoom"
+			],
+			[
+				"errpage",
+				"errpage"
+			],
+			[
+				"initOutlineDlg",
+				"initOutlineDlg"
+			],
+			[
+				"getState",
+				"getState"
+			],
+			[
+				"$P",
+				"$__path"
+			],
+			[
+				"pick",
+				"pick"
+			],
+			[
+				"getParam",
+				"getParam"
+			],
+			[
+				"getTitle",
+				"getTitle"
+			],
+			[
+				"ask",
+				"ask"
+			],
+			[
+				"showme",
+				"showMessage"
+			],
+			[
+				"islogin",
+				"islogin"
+			],
+			[
+				"getuser",
+				"getuser"
+			],
+			[
+				"static",
+				"serveStatic"
+			],
+			[
+				"MongoStore",
+				"MongoStore"
+			],
+			[
+				"onHeaders",
+				"onHeaders"
+			],
+			[
+				"save",
+				"save"
+			],
+			[
+				"touch",
+				"touch"
+			],
+			[
+				"session",
+				"session"
+			],
+			[
+				"bodyParser",
+				"bodyParser"
+			],
+			[
+				"getUser",
+				"getUser"
+			],
+			[
+				"bindurl",
+				"bindurl"
+			],
+			[
+				"express.session",
+				"express.session"
+			],
+			[
+				"express.",
+				"express.session"
+			],
+			[
+				"incViewCount",
+				"incViewCount"
+			],
 			[
 				"date",
 				"dateFormat"
@@ -1680,16 +1824,8 @@
 				"showControlBlock"
 			],
 			[
-				"getUser",
-				"getUser"
-			],
-			[
 				"fillUserDataRule",
 				"fillUserDataRule"
-			],
-			[
-				"getuser",
-				"getuser"
 			],
 			[
 				"autofill",
@@ -1716,20 +1852,8 @@
 				"getUserInfo"
 			],
 			[
-				"bindurl",
-				"bindurl"
-			],
-			[
-				"ask",
-				"ask"
-			],
-			[
 				"showSearchBlock",
 				"showSearchBlock"
-			],
-			[
-				"getTitle",
-				"getTitle"
 			],
 			[
 				"getUserName",
@@ -1738,14 +1862,6 @@
 			[
 				"findById",
 				"findById"
-			],
-			[
-				"errpage",
-				"errpage"
-			],
-			[
-				"session",
-				"session"
 			],
 			[
 				"doquery",
@@ -1772,16 +1888,8 @@
 				"fillResult"
 			],
 			[
-				"queryfile",
-				"queryfile"
-			],
-			[
 				"update",
 				"updateJSON"
-			],
-			[
-				"incViewCount",
-				"incViewCount"
 			],
 			[
 				"import",
@@ -1926,10 +2034,6 @@
 			[
 				"send",
 				"send"
-			],
-			[
-				"static",
-				"static"
 			],
 			[
 				"json",
@@ -2102,13 +2206,9 @@
 			[
 				"Schema",
 				"Schema"
-			],
-			[
-				"getParam",
-				"getParam"
 			]
 		],
-		"width": 828.0
+		"width": 824.0
 	},
 	"selected_group": 0,
 	"settings":
@@ -2118,7 +2218,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 233.0,
+	"side_bar_width": 237.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

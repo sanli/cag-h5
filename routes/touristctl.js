@@ -79,7 +79,10 @@ exports.page = function(req, res){
         stamp : conf.stamp,
         title: '访客',
         user : share.getUser(req),
-        commons : require('./commonsctl.js')
+        commons : require('./commonsctl.js'),
+        opt : {
+            hide_search : true
+        }
     });
 };
 
@@ -91,7 +94,10 @@ exports.regist = function(req, res){
         stamp : conf.stamp,
         title: '访客',
         torist : share.getTourist(req),
-        commons : require('./commonsctl.js')
+        commons : require('./commonsctl.js'),
+        opt : {
+            hide_search : true
+        }
     });
 };
 
@@ -103,7 +109,10 @@ exports.userinfo = function(req, res){
         stamp : conf.stamp,
         title: '我的信息',
         torist : share.getTourist(req),
-        commons : commons
+        commons : commons,
+        opt : {
+            hide_search : true
+        }
     });
 };
 
@@ -115,7 +124,10 @@ exports.mybookmark = function(req, res){
         stamp : conf.stamp,
         title: '我的收藏',
         torist : share.getTourist(req),
-        commons : commons
+        commons : commons,
+        opt : {
+            hide_search : true
+        }
     });
 };
 
@@ -128,6 +140,7 @@ exports.create = function(req, res){
     touristdb.create(arg.data, function(err, newDoc){
         if(err) return share.rt(false, "注册用户出错，因为:" + err.message, res);
 
+        req.session.tourist = newDoc.toObject();
         share.rt(true, { user: newDoc }, res);
     });
 }
@@ -285,7 +298,10 @@ exports.dlg = function(req, res){
 
     res.render( 'tourist/' + arg.dlgfile, {
         user : share.getUser(req),
-        commons : require('./commonsctl.js')
+        commons : require('./commonsctl.js'),
+        opt : {
+         
+        }
     });
 };
 
@@ -360,7 +376,10 @@ exports.dslogin = function(req, res){
             title: '用户登录',
             user : userinfo,
             err : err,
-            commons : commons
+            commons : commons,
+            opt : {
+                hide_search : true
+            }
         });
     }
 

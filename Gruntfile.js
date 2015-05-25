@@ -56,13 +56,15 @@ module.exports = function(grunt) {
             files: {
                 '.build/cdn/js/cag_<%= buildName %>_min.js' : '.build/cdn/js/cag.js',
                 '.build/cdn/js/main_<%= buildName %>_min.js': 'public/js/main.js',
+                '.build/cdn/js/exhibit_<%= buildName %>_min.js': 'public/js/exhibit.js',
                 '.build/cdn/js/img_<%= buildName %>_min.js': 'public/js/img.js',
                 '.build/cdn/js/imglite_<%= buildName %>_min.js': 'public/js/imglite.js',
                 '.build/cdn/js/paintings_<%= buildName %>_min.js': 'public/js/paintings.js',
                 '.build/cdn/js/offline_<%= buildName %>_min.js': 'public/js/offline.js',
                 '.build/cdn/js/mybookmark_<%= buildName %>_min.js': 'public/js/mybookmark.js',
                 '.build/cdn/js/userinfo_<%= buildName %>_min.js': 'public/js/userinfo.js',
-                '.build/cdn/js/regist_<%= buildName %>_min.js': 'public/js/regist.js'
+                '.build/cdn/js/regist_<%= buildName %>_min.js': 'public/js/regist.js',
+                '.build/cdn/js/download_<%= buildName %>_min.js': 'public/js/download.js',
             }    
         },
         leafletplugin : {

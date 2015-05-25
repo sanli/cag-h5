@@ -9,6 +9,7 @@
     "underscore": "*",
     "express": "*",
     "express-session": "*",
+    "express-sessions": "*",
     "body-parser": "*",
     "compression": "*",
     "morgan": "*",
@@ -31,14 +32,14 @@
     "async": "*",
     "gm": "*",
     "mkdirp": "*",
-    "winston": "*",
+    "winston" : "*",
     "uglify-js": "~2.4.13",
     "jake": "~0.7.9",
     "jshint": "~2.4.4",
-    "redis": "0.10.3",
-    "memory-cache": "0.0.5",
-    "connect-mongo": "^0.8.1"
+    "redis" : "0.10.3",
+    "memory-cache" : "0.0.5"
   },
+
   "devDependencies": {
     "grunt": "^0.4.5",
     "grunt-cli": "~0.1.13",

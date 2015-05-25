@@ -42,8 +42,8 @@ var Module = $.extend(new $M(), {
     // 处理查询条件
     _processSearchCond : function(cond){
         // TODO: 处理需要做正则表达式查询的条件
-        if(cond.moduleName)
-            cond.moduleName = 'Reg(' + cond.moduleName + ')';
+        if(cond.title)
+            cond.title = 'Reg(' + cond.title + ')';
     },
 
     // 根据页面状态，载入数据
@@ -101,12 +101,11 @@ var Module = $.extend(new $M(), {
         }).on('affix.bs.affix', function(e){
             $('#mainContent').addClass('affixed');
             $('div.main-navbar').addClass('moveout');
-            $.art_is_fun();
         }).on('affix-top.bs.affix', function(e){
             $('#mainContent').removeClass('affixed');
             $('div.main-navbar').removeClass('moveout');
-            $.art_is_fun('hide');
-        });
+            $.art_is_fun();
+        });$.art_is_fun();
         
         $('#search-form').keypress(function(e){
             if (event.which == 13 ) {

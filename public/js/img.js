@@ -175,7 +175,8 @@ var Module = $.extend(new $M(), {
 			$('#sidebar').css('opacity', 0.75);
 		});
 		// 将当前画作加入用户书签
-		$('#bookmarkbtn').click(Module.pin);
+		$('#bookmarkbtn').on('click', Module.pin);
+		$('#downloadbtn').on('click', Module.download);
 	},
 
 	// ====================================================================================================================================
@@ -200,9 +201,10 @@ var Module = $.extend(new $M(), {
 	},
 
 	pin : function(e){
-		if($(e.target).data('bookmarked'))
+		if($('#bookmarkbtn').data('bookmarked'))
 			return;
 
+		$('#bookmarkbtn').attr('disabled', true);
 		var file = Module.fileinfo;
 		$('#bookmarkbtn').spin();
 		PG.getuser(function(err, user){
@@ -213,12 +215,23 @@ var Module = $.extend(new $M(), {
 				successfn : function(result){
 					$('#bookmarkbtn').spin(false);
                     $('#bookmarkbtn').removeClass('btn-default').addClass('btn-info')
-                    	.data('bookmarked', true);
+                    	.data('bookmarked', true).attr('disabled', false);
                 }, 
                 alertPosition : '#loginDlg .modal-body'
 			});
 			
 		}, { asklogin : true });
+	},
+
+	download : function(e){
+		e.preventDefault();
+		var file = Module.fileinfo;
+		PG.getuser(function(err, user){
+			document.location.href = '/img/' + file._id + '/download';
+		}, { 
+			asklogin : true,
+			asktitle : "请先登录中华珍宝馆"
+		});
 	}
 });
 

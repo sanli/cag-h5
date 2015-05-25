@@ -80,7 +80,13 @@ var painting_view = new Schema({
     resourceLevel : String,
     // 画作级别: 绘画做平的级别
     paintingLevel : String,
-
+    // 作品标签，用于对查询结果进行过滤
+    // 书法、楷书、行书、篆书、法帖、碑刻、国画、山水、工笔画、文人画...
+    tag : [String],
+    // 是否放入铭心绝品栏目
+    mylove: Boolean,
+    // 在铭心绝品栏目中的顺序
+    myloveSort : String,
 
     // --- 下载配置 ---
     // 离线包下载路径
@@ -98,7 +104,9 @@ var painting_view = new Schema({
 painting_view.index({_id : 1})
     .index({paintingName : 1})
     .index({author : 1})
-    .index({age : 1});
+    .index({tags : 1})
+    .index({age : 1})
+    .index({mylove : 1});
 
 var PaintingView = mongoose.model('painting_view', painting_view);
     exports.PaintingView = PaintingView;
@@ -114,31 +122,20 @@ exports.incViewCount = function(_id, fn){
 }
 
 // 查询某个艺术品详细信息
-exports.queryfile = function(query, project, sort, fn, nocache){
+exports.queryfile = function(query, project, sort, fn, page){
+    page = page || { skip : 0, limit : 50 };
     if(typeof(project) === 'function'){
         fn = project;
         sort = {};
         project = {};
     }
-    
-    if(!nocache){
-        var key = "fileinfo:" + JSON.stringify(query),
-            fileinfos = cache.get(key);
-        if(fileinfos){
-            console.log("load from cache, key:" + key);
-            return fn(null, fileinfos);
-        }    
-    }
-    
     Module.find(query, project)
         .sort(sort)
+        .skip(page.skip)
+        .limit(page.limit)
         .exec(function(err, fileinfos){
             if(err) console.trace(err);
 
-            if(!nocache){
-                console.log("put object to cache key:%s", key);
-                cache.put(key, fileinfos);
-            }
             fn(err, fileinfos);
         });
 }
@@ -243,31 +240,19 @@ exports.update = function(_id, obj, fn){
 }
 
 //按照ID查询对象
-exports.findById = function(_id, project, fn, skipCache){
+exports.findById = function(_id, project, fn){
   if(typeof project === 'function'){
-    skipCache = fn;
     fn = project ;
     project = {}; 
   }
 
-  var key = 'paintingview:' + _id,
-      obj = cache.get(key);
-  if(obj && !skipCache) {
-    return fn(null, obj);
-  }else{
-    console.log('missed OR skiped cache');  
-  }
-  
-  //Module.findOne({ _id : _id,  deleted : { $ne : true } }
   Module.findOne({ _id : _id }
     , project
     , function(err, doc){
       if(err) return fn(err);
       if(!doc) return fn(new Error('图片不存在或者已经下线：' + _id));
       
-      var obj = doc.toObject();
-      cache.put(key, obj);
-      fn(err, obj);
+      fn(err, doc.toObject());
     });
 }
 

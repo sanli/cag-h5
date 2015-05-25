@@ -73,12 +73,11 @@ var Module = $.extend(new $M(), {
         }).on('affix.bs.affix', function(e){
             $('#mainContent').addClass('affixed');
             $('div.main-navbar').addClass('moveout');
-            $.art_is_fun();
         }).on('affix-top.bs.affix', function(e){
             $('#mainContent').removeClass('affixed');
             $('div.main-navbar').removeClass('moveout');
-            $.art_is_fun('hide');
-        });
+            $.art_is_fun();
+        });$.art_is_fun();
         $('#search-form').keypress(function(e){
             if (event.which == 13 ) {
                 e.preventDefault();
