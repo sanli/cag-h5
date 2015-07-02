@@ -177,6 +177,21 @@ var cachedGetAll = share._CreateCachedGetAllFn('sysmoduledb.modules', "getAllMod
     invalideCache = cachedGetAll.invalide;
 exports.getAllModule =  cachedGetAll.list;
 
+// 返回一个module，这是非常常用的函数，需要cache
+var cache = require('memory-cache');
+exports.getModule = function(moduleName){
+    var roles = cache.get(cachekey);
+            if(roles) return fn(null, roles);
+    var module = cache.get('module_' + moduleName))
+        return 
+    _Module.find({})
+}
+
+
+
+exports.getAllModule(function(err, objs){
+    console.log('载入所有模块定义,cnt:' + objs.length);
+});
 
 // ============================= 下面是单元测试用的代码 ================================
 var isme = require('../sharepage.js').isme;

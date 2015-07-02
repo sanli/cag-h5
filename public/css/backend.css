@@ -456,3 +456,8 @@ a.add-cellitem, a.save-cellitem{
   display: table-cell!important;
   background-color: #f5f5f5;
 }
+
+.tag-pool span{
+  cursor: pointer;
+
+}

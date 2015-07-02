@@ -79,7 +79,7 @@ exports.page = function(req, res){
         stamp : conf.stamp,
         title: '访客',
         user : share.getUser(req),
-        commons : require('./commonsctl.js'),
+        commons : require('./cagcommonsctl.js'),
         opt : {
             hide_search : true
         }
@@ -94,7 +94,7 @@ exports.regist = function(req, res){
         stamp : conf.stamp,
         title: '访客',
         torist : share.getTourist(req),
-        commons : require('./commonsctl.js'),
+        commons : require('./cagcommonsctl.js'),
         opt : {
             hide_search : true
         }
@@ -298,7 +298,7 @@ exports.dlg = function(req, res){
 
     res.render( 'tourist/' + arg.dlgfile, {
         user : share.getUser(req),
-        commons : require('./commonsctl.js'),
+        commons : require('./cagcommonsctl.js'),
         opt : {
          
         }
@@ -363,7 +363,7 @@ exports.whoami = function(req, res){
  */
 var querystring = require('querystring'),
     http = require('http'),
-    commons = require('./commonsctl.js');
+    commons = require('./cagcommonsctl.js');
 exports.dslogin = function(req, res){
     var dscode = req.query['code'];
     logger.debug('dscode:' + dscode);

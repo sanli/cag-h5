@@ -1,76 +1,46 @@
 <% include thead.html %>
 <body>  
   <% include tnavi.html %>
-
-<div id="pagetitle" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <!--
-  <ol class="carousel-indicators">
-    <li data-target="#pagetitle" data-slide-to="0" class="active"></li>
-    <li data-target="#pagetitle" data-slide-to="1"></li>
-    <li data-target="#pagetitle" data-slide-to="2"></li>
-  </ol>
-  -->
-
-  <!-- Wrapper for slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <div id="mylove-painting" style="height: 400px; width : 100%"></div>
-      <div class="carousel-caption h4">
-      <% 
-      if(cagstores['铭心绝品'] && cagstores['铭心绝品'].length > 0) {
-        var painting = cagstores['铭心绝品'][0];
-      %>
-        铭心绝品《 <%= painting.paintingName %> 》 <%=painting.age %> <%= painting.author %> 
-      <% } else { %>
-        铭心绝品 《清明上河图》 北宋 张择端 
-      <% } %>
-         <a id="randomflybtn" class="btn btn-xs btn-info" href="#" role="button"><span class="glyphicon glyphicon-send"></span> 动一下 </a>
-         <a class="btn btn-xs btn-primary" href="/exhibit/mylove" role="button"><span class="glyphicon glyphicon-th"></span> 观赏更多...</a>
+  <div class="header-icon"><img src="/images/head-icon.png" alt="中华珍宝馆图标"></div>
+  <div id="pagetitle" class="carousel slide" data-ride="carousel">
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <div id="mylove-painting"></div>
+        <div class="carousel-caption" style="text-align: right;left: 10px;padding-bottom: 0px;right: 10px;">
+        <h4><% 
+        if(cagstores['铭心绝品'] && cagstores['铭心绝品'].length > 0) {
+          var painting = cagstores['铭心绝品'][0];
+        %>
+          <a style="color:#fff" href="/img/<%=painting._id %>">铭心绝品《 <%= painting.paintingName %> 》 <%=painting.age %> <%= painting.author %></a>
+        <% } else { %>
+          铭心绝品 《清明上河图》 北宋 张择端 
+        <% } %></h4>
+           <a id="randomflybtn" class="btn btn-xs btn-info" href="#" role="button"><span class="glyphicon glyphicon-send"></span> 动一下 </a>
+           <a class="btn btn-xs btn-primary" href="/exhibit/mylove" role="button"><span class="glyphicon glyphicon-th"></span> 观赏更多...</a>
+        </div>
       </div>
     </div>
-    <!--
-    <div class="item" style="height: 400px; width : 100%">
-      <img id="painting2" src="/cagstore/545ed1fac961b273669d6913/tb.jpg" alt="图片1">
-      <div class="carousel-caption">
-        标题二
-      </div>
-    </div>
-    <div class="item" style="height: 400px; width : 100%">
-      <img id="painting3" src="/cagstore/545ed1fac961b273669d6913/tb.jpg" alt="图片1">
-      <div class="carousel-caption">
-        标题二
-      </div>
-    </div>
-    -->
   </div>
 
-  <!-- Controls 
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-  -->
-</div>
     <div class="container">
         <div id="paintinglist" class="col-sm-12 col-md-12">
           <!-- 历代馆 -->
-          <div class="row">
-            <h3><span class="label label-info">历代馆</span>
-            <a class="btn btn-primary pull-right" href="/exhibit/age" role="button"><span class="glyphicon glyphicon-th"></span> 观赏更多...
-            </a></h3>
-            <hr>
+          <div class="row exhibit">
+            <p class="exhibit-head"><span class="btn btn-info btn-lg">历代馆</span>
+              <a class="btn btn-primary pull-right" href="/exhibit/age" role="button"><span class="glyphicon glyphicon-th"></span> 观赏更多...</a>
+              <a class="exhibit-info btn btn-primary pull-right" role="button" data-trigger="focus" tabindex="0" data-placement="bottom" data-toggle="popover" 
+      title="本馆介绍" data-content="历代藏品大全，全部馆藏内容都可在此看到"><span class="glyphicon glyphicon-info-sign"></span></a>
+            </p>
+            <a class="exhibit-info" role="button" data-trigger="focus" tabindex="0" style="color: #F5DEB3; cursor: help;"
+            data-placement="bottom" data-toggle="popover" title="为什么我们的域名是 LTFC.NET ?" data-content="书中兰亭（lt），画中富春（fc），由此两极天峰而生兰亭富春：ltfc.net"><span class="glyphicon glyphicon-info-sign"></span>为什么我们的域名是 LTFC.NET ?</a>
             <% (function(outline, viewopt){ %>
                 <%include ./commons/outlinepanel.inc %>
             <% })(outline, {
                   collapse : true 
               }); %>
           </div>
-          <div class="row">
+          <div class="row exhibit">
             <% (function(cagstore, opt){ %>
               <%include ./commons/cagstore_short.inc %>
             <% })(cagstores['精品馆'],{
@@ -79,7 +49,7 @@
                 link : '/exhibit/essence'
               }); %>
           </div>
-          <div class="row">
+          <div class="row exhibit">
             <% (function(cagstore, opt){ %>
               <%include ./commons/cagstore_short.inc %>
             <% })(cagstores['新发图'],{
@@ -88,7 +58,7 @@
                 link : '/exhibit/recent'
               }); %>
           </div>
-          <div class="row">
+          <div class="row exhibit">
             <% (function(cagstore, opt){ %>
               <%include ./commons/cagstore_short.inc %>
             <% })(cagstores['当代馆'],{

@@ -37,7 +37,8 @@
     "jshint": "~2.4.4",
     "redis": "0.10.3",
     "memory-cache": "0.0.5",
-    "connect-mongo": "^0.8.1"
+    "connect-mongo": "^0.8.1",
+    "fs-extra" : "*"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

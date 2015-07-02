@@ -1,5 +1,5 @@
 //user.js
-var userdb = require('../data/userdb.js')
+var userdb = require('../data/sys_userdb.js')
 	, getreq = require('../../../sharepage').getreq
 	, rt = require('../../../sharepage').rt
 	, _ResultByState = require('../../../sharepage')._ResultByState
@@ -49,7 +49,6 @@ exports.bindurl=function(app){
 
 exports.singinpage = function(req, res){
 	if(req.body.email){
-		//authByData(req.body.email, req.body.password, function(err, user){
 		authenticate(req.body.email, req.body.password, function(err, user){
 			if(user){
 				req.session.user = user;
@@ -84,7 +83,7 @@ exports.signout = function(req, res){
 }
 
 exports.signin = function(req, res){
-	authByData(req.body.username, req.body.password, function(err, user){
+	authenticate(req.body.username, req.body.password, function(err, user){
 		if(user){
 			res.send(ok("登录成功"));
 			req.session.user = user;
@@ -163,22 +162,23 @@ function authByData(name, pass, fn){
  * 使用固定密码，验证用户登录
  */
 function authenticate(email, pass, fn) {
-  console.log('验证用户 %s:%s', email, pass);
-  
-  //TODO：查询数据库，得到用户的验证信息
-  var user = users[email];
-  if (!user) return fn(new Error('用户不存在！'));
-  
-  //TODO: 验证密码,肯能要做Hash
-  if(pass === user.password)
-	  fn(null, user)
-  else
-	  fn(new Error("密码错误！"));
+	  console.log('验证用户 %s:%s', email, pass);
+	  
+	  //TODO：查询数据库，得到用户的验证信息
+	  var user = users[email];
+	  if (!user) return fn(new Error('用户不存在！'));
+	  
+	  //TODO: 验证密码,肯能要做Hash
+	  if(pass === user.password)
+		  fn(null, user)
+	  else
+		  fn(new Error("密码错误！"));
 }
 
 var users = { 
     'santal.li@gmail.com' : { email : 'santal.li@gmail.com',  username : 'admin', password: 'Learn@Art', role: 'admin' },
-    '514353009@qq.com' : { email : '514353009@qq.com',  username : '善卷溪隐', password: '514353009Pass', role: 'admin' }
+    '514353009@qq.com' : { email : '514353009@qq.com',  username : '善卷溪隐', password: '514353009Pass', role: 'admin' },
+    '719291184@qq.com' : { email : '719291184@qq.com',  username : '正林堂主', password: '719291184Pass', role: 'advertis' }
 }
 
 

@@ -4,42 +4,26 @@ var Collection = require('mongodb').Collection,
   ObjectID = require('mongodb').ObjectID,
   debug = require('util').debug,
   inspect = require('util').inspect,
-  mongoose = require('mongoose'),
-  Schema = require('mongoose').Schema
   db = require('../../../mongo.js').db,
-  DBOP = require('../../../mongo.js').DBOP;
+  mongoose = require('mongoose'),
+  Schema = require('mongoose').Schema;
 
 /**
- * 用户表Module
+ * 用户表，存储珍宝馆后台管理用户信息
  */
 var sys_user = new Schema({
     _id : Schema.Types.ObjectId,
-    userId : String,
+    userid : String,
     email : String,
     password: String,
-    realName: String,
-    role : String,
+    name : String,
+    role : { type : String, default : '管理员' },
 },  { collection: 'sys_users' });
-sys_user.index({userId : 1})
+sys_user.index({userid : 1})
     .index({email : 1});
 var User = mongoose.model('sys_user', sys_user);
     exports.User = User;
 
-// /**
-//  * 角色权限
-//  */
-// var sys_role = new Schema({
-//     _id : Schema.Types.ObjectId,
-//     role : String,
-//     roleName : String,
-//     acl : [{ 
-//     	item : String,
-//     	right : String , // 权限级别, 'write' | 'view' | 'all'
-//     }]
-// },  { collection: 'sys_role' });
-// sys_role.index({role : 1});
-// var Role = mongoose.model('sys_role', sys_role);
-//     exports.Role = Role;
 
 /**
  * 验证用户登录信息，如果用户登录有效，返回用户对象

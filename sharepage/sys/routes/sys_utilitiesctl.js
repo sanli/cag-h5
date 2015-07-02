@@ -54,7 +54,7 @@ exports.bindurl=function(app){
 // GUI页面
 exports.page = function(req, res){
     res.render('sys_utilitiespage.html', {
-        conf : require('../config.js'),
+        conf : require('../../../config.js'),
         title: sf.getTitle("数据工具"),
         user : req.session.user,
         commons : require('./sfcommonsctl.js')

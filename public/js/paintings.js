@@ -155,6 +155,10 @@ var Module = $.extend(new $M(), {
             var _id = $(e.target).closest('tr').data('_id');
             Module.updateModule(_id);
         });
+        $('#cellTable').on('click', 'a.action-advertis', function(e){
+            var _id = $(e.target).closest('tr').data('_id');
+            Module.updateAdvertis(_id);
+        });
         $('#cellTable').on('click', 'a.action-remove', function(e){
             var _id = $(e.target).closest('tr').data('_id');
             Module.deleteModule(_id);
@@ -165,6 +169,38 @@ var Module = $.extend(new $M(), {
         });
         $('#cellTable').on('click', 'a.sortlink', $M.createSortHander(PG));
         $('label[data-toggle]').popover();
+        $('div.tag-pool').on('click', 'span.tag', function(e){
+            e.preventDefault();
+            var $tgt = $(e.target).closest('span.tag'),
+                $pool = $tgt.closest('div.tag-pool');
+            if($pool.data('select') === 'single'){
+                $pool.find('span.tag').removeClass('label-info');
+            }
+            if($tgt.hasClass('label-info')){
+                $tgt.removeClass('label-info');
+            }else{
+                $tgt.addClass('label-info');
+            }
+        });
+        $(':checkbox[data-touch]').change(function(e){
+            console.log(e);
+            var $tgt = $(e.target),
+                touch = $tgt.data('touch'),
+                $touch = $('input[name=' + touch + ']');
+            if(!$tgt.prop('checked'))
+                return;
+
+            if(!$touch.val()){
+                var date = new Date().toISOString().replace(/T.*Z/, '');
+                $touch.val(date);
+            }
+
+            if( ($tgt.attr('name') === 'active') && $tgt.prop('checked') ){
+                $('input[name=activeTime]').val(new Date().toISOString());   
+            }
+
+
+        });
     },
         
     //====================================================================================================================
@@ -208,14 +244,55 @@ var Module = $.extend(new $M(), {
         Module._loadDataDetail(_id, function(module){
             var data = module.doc;
             $('#module-form').clearall().autofill(data, {checkboxAsBoolean : true});
+            $('#module-form').find('span[data-value]').removeClass('label-info');  
+
+            $('#module-form').find('div.tag-pool').each(function(i, pool){
+                var $pool = $(pool),
+                    target = $pool.data('target');
+
+                var values = data[target];
+                if(!values) return;
+
+                if( typeof(values) === 'string' ){
+                    values = [values];
+                };
+                $.each(values, function(idx, value){
+                    $pool.find('span[data-value='+ value +']').addClass('label-info');    
+                })
+            });  
         });
 
         $.showmodal('#moduleDlg', function(){
             if ($('#module-form').validate().form()){
                 // save change
                 var data = $('#module-form').getdata({checkboxAsBoolean : true});
-                
-                data.activeTime = new Date();
+
+                // 读取tagpool
+                var err = [];
+                $('#module-form').find('div.tag-pool').each(function(i, pool){
+                    var $pool = $(pool),
+                        target = $pool.data('target'),
+                        required = $pool.data('required') ,
+                        isSingle = ($pool.data('type') === 'single');
+
+                    var values = $.map($pool.find('span.tag.label-info'),function(tag, i){ 
+                                return $(tag).data('value');
+                            });
+                    if(isSingle){
+                        data[target] = values.length > 0 ? values[0] : null;
+                    }else{
+                        data[target] = values;
+                    };
+                    if(required && ( !data[target] || data[target].length === 0))
+                        err.push({ target : target, pool : $pool } );
+                });
+
+                if(err.length > 0){
+                    $.alert("div.tag-pool", '这个字段需要至少选择一个内容', 10000);
+                    return;
+                }
+
+                data.utime = new Date();
                 Module._updateModule($.param({ 
                     _id: _id,
                     data: data 
@@ -230,6 +307,47 @@ var Module = $.extend(new $M(), {
         });
     },
 
+    updateAdvertis : function(_id){
+        $('#module-form-adv').clearall();
+        Module._loadDataDetail(_id, function(module){
+            var data = module.doc;
+            $('#module-form-adv').clearall().autofill(data, {checkboxAsBoolean : true});
+            $('#module-form-adv').find('span[data-value]').removeClass('label-info');  
+
+            $('#module-form-adv').find('div.tag-pool').each(function(i, pool){
+                var $pool = $(pool),
+                    target = $pool.data('target');
+
+                var values = data[target];
+                if(!values) return;
+
+                if( typeof(values) === 'string' ){
+                    values = [values];
+                };
+                $.each(values, function(idx, value){
+                    $pool.find('span[data-value='+ value +']').addClass('label-info');    
+                })
+            });  
+        });
+
+        $.showmodal('#advModuleDlg', function(){
+            if ($('#module-form-adv').validate().form()){
+                // save change
+                var data = $('#module-form-adv').getdata({checkboxAsBoolean : true});
+                data.utime = new Date();
+                Module._updateModule($.param({ 
+                    _id: _id,
+                    data: data 
+                }), function(result){
+                    $('#advModuleDlg').modal('hide');
+                    Module.loadPageData(PG.state.cond, PG.state.page);
+                },
+                function(err){
+                    $.alert('#advModuleDlg .modal-body', err, 10000);
+                });
+            }
+        });
+    },
     
     //处理导入数据
     onImportFile : function(){
@@ -296,6 +414,7 @@ var Module = $.extend(new $M(), {
 function init(){
     Module.bind();
     PG.bind();
+    $('label[data-toggle=popover]').popover();
     $(window).trigger('hashchange');
 };
 

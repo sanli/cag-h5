@@ -64,7 +64,7 @@ exports.page = function(req, res){
         stamp : conf.stamp,
         title: sf.getTitle("<M%=module_desc %M>"),
         user : req.session.user,
-        commons : require('./sfcommonsctl.js')
+        commons : require('./cagcommonsctl.js')
     });
 };
 
@@ -232,7 +232,7 @@ exports.dlg = function(req, res){
 
     res.render( '<M%=module_name %M>/' + arg.dlgfile, {
         user : req.session.user,
-        commons : require('./commonsctl.js')
+        commons : require('./cagcommonsctl.js')
     });
 };
 

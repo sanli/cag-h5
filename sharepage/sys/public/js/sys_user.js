@@ -349,7 +349,6 @@ function init(){
     Module.bind();
     PG.bind();
     $(window).trigger('hashchange');
-    PG.loadSFControl();
 };
 
 $(document).ready(init);

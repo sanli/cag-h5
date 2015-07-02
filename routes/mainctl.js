@@ -17,7 +17,7 @@ var getreq = require('../sharepage').getreq
     , async = require('async')
     , us = require('underscore')
     , extend = require('node.extend')
-    , writejson = require('./commonsctl.js').writejson
+    , writejson = require('./cagcommonsctl.js').writejson
     , exhibits = require('./exhibitctl.js');
 
 exports.broadcast = "";
@@ -111,7 +111,7 @@ exports.main = function(req, res){
             },
             function(cb){
                 exhibits.query_exhibit(exhibits.meta.精品馆
-                    , { page : { skip : 0 , limit : 6 } }
+                    , { page : { skip : 0 , limit : 8 } }
                     , function(err, fileinfos){
                         if(err) cb(err);
 
@@ -121,7 +121,11 @@ exports.main = function(req, res){
             },
             function(cb){
                 exhibits.query_exhibit(exhibits.meta.新发图
-                    , { page : { skip : 0 , limit : 6 } }
+                    , { 
+                        page : { skip : 0 , limit : 8 },
+                        // 已经出现在精品馆的图，在首页上不出现在新发图中
+                        cond : { "essence" : false }
+                    }
                     , function(err, fileinfos){
                         if(err) cb(err);
 
@@ -131,7 +135,10 @@ exports.main = function(req, res){
             },
             function(cb){
                 exhibits.query_exhibit(exhibits.meta.当代馆
-                    , { page : { skip : 0 , limit : 6 } }
+                    , { 
+                        page : { skip : 0 , limit : 2 },
+                        cond : { "essence" : false }
+                    }
                     , function(err, fileinfos){
                         if(err) cb(err);
 
@@ -140,6 +147,7 @@ exports.main = function(req, res){
                     });
             }]
         ,function(err){
+            res.setHeader('Cache-Control', 'public, max-age=3600');
             res.render('mainpage.html', {
                 user : share.getUser(req),
                 torist : share.getTourist(req),
@@ -237,6 +245,8 @@ function renderImg(req, res, templ){
             if(err) return share.errpage( err.message, req, res );
 
             chkbookmark(share.getTourist(req), arg.uuid, function(err, booked){
+                res.setHeader('Cache-Control', 'public, max-age=3600');
+                
                 // 输出页面
                 res.render(templ, {
                     user: getUser(req),
@@ -387,6 +397,7 @@ exports.download = function(req, res){
     var arg = getParam("download", req, res, [ PAGE.uuid ]);
     if(!arg.passed)
         return;
+
 
     paintdb.findById(arg.uuid, function(err, info){
         if(err) return share.errpage( err.message, req, res );

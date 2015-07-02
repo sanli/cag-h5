@@ -238,13 +238,42 @@ html, body {
 }
 
 
-.page-header {
+/*.page-header {
   padding-bottom: 9px;
   margin: 40px 0 20px;
   border-bottom: 1px solid #eee;
+}*/
+#mylove-painting {
+  height: 360px; 
+  width : 100%;
 }
 
+.header-icon {
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  top: 275px;
+}
 
+.header-icon > img {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.exhibit {
+  margin-top: 55px;
+}
+
+.exhibit-head {
+    border-bottom: 1px dashed #5bc0de;
+}
+
+.exhibit-head > span{
+    width: 160px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
 
 /*
  * 评论的题头图
@@ -522,3 +551,4 @@ html, body {
   padding: 2px;
   height: 50px;
 }
+

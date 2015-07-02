@@ -53,10 +53,10 @@ exports.bindurl=function(app){
 // GUI页面
 exports.page = function(req, res){
     res.render('sys_enumpage.html', {
-        conf : require('../config.js'),
+        conf : require('../../../config.js'),
         title: sf.getTitle("数据字典"),
         user : req.session.user,
-        commons : require('./sfcommonsctl.js')
+        commons : require('./commonsctl.js')
     });
 };
 

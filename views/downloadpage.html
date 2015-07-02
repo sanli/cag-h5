@@ -79,6 +79,24 @@
     </div>
   </div>
 
+  <% if(info.advUrl){ %>
+  <div class="col-sm-12 col-md-3" style="padding-right: 15px; padding-left: 15px;">
+    <div class="thumbnail col-sm-12 col-md-12">
+      <h1 class="glyphicon glyphicon-gift col-sm-12 col-md-12"></h1>
+      <div class="caption">
+        <h4>购买《<%=info.paintingName %>》高仿画</h4>
+        <p>跳转到本站合作商家网店购买高仿画。</p>
+        <p><%= info.advDesc %></p>
+        <p>
+          <a href="<%=info.advUrl %>" class="btn btn-primary" target="_blank">北京正林堂<span class="glyphicon glyphicon-share-alt"></span></span></a> 
+        </p>
+      </div>
+    </div>
+  </div>
+  <% } %>
+
+
+  <!--
   <div class="col-sm-12 col-md-3" style="padding-right: 15px; padding-left: 15px;">
     <div class="thumbnail col-sm-12 col-md-12">
       <h1 class="glyphicon glyphicon-print col-sm-12 col-md-12"></h1>
@@ -107,6 +125,7 @@
       </div>
     </div>
   </div>
+  -->
 
     </div>
   </div>

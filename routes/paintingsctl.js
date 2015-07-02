@@ -63,14 +63,14 @@ exports.bindurl=function(app){
 }
 
 exports.page = function(req, res){
-    console.log(share.getUser(req));
+    
     res.render('paintingspage.html', {
         title: "内容管理",
         conf : require('../config.js'),
         target : conf.target,
         stamp : conf.stamp,
         user : share.getUser(req),
-        commons : require('./commonsctl.js')
+        commons : require('./cagcommonsctl.js')
     });
 };
 

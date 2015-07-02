@@ -9,12 +9,12 @@
  *   opt.exhibit : 展馆相关信息
  */
 %>
-<h3>
-  <span class="label label-info"><%=opt.exhibit.title %></span>
-  <a class="btn btn-primary pull-right" href="/exhibit/essence" role="button"><span class="glyphicon glyphicon-th"></span> 观赏更多...</a>
-</h3>
-<hr>
-<h5 class="well well-sm"><%=opt.exhibit.desc %></h5>
+<p class="exhibit-head">
+  <span class="btn btn-info btn-lg"><%=opt.exhibit.title %></span>
+  <a class="btn btn-primary pull-right" href="<%=opt.link %>" role="button"><span class="glyphicon glyphicon-th"></span> 观赏更多...</a>
+  <a class="exhibit-info btn btn-primary pull-right" role="button" data-trigger="focus" tabindex="0" data-placement="bottom" data-toggle="popover" 
+    title="本馆介绍" data-content="<%=opt.exhibit.desc %>"><span class="glyphicon glyphicon-info-sign"></span></a>
+</p>
 <%if(cagstore.length > 0){%>
   <div class="row">
     <%
@@ -59,7 +59,9 @@
               <% } %>
               </a>
               <span class="label label-info pull-right"><%=paintinglevel %></span></h4>
-
+              <% if(painting.essenceComment ) { %>
+                <p><%=painting.essenceComment %></p>
+              <%} %>
             <h5>
               <%=painting.age + " " + painting.author %>
               <span class="label label-default pull-right"><%=(painting.areaSize ? painting.areaSize.toLowerCase() +' 厘米' : '' ) %></span>

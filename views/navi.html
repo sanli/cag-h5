@@ -13,9 +13,19 @@
           <ul class="nav navbar-nav">
             <li><a href="main.html">去首页</a></li>
             <li><a id="selectArt" href="/paintings.html">资源管理</a></li>
+            <%if( user.role === 'admin'){%>
             <li><a id="selectArt" href="/tourist.html">游客管理</a></li>
             <li><a id="selectArt" href="/bookmark.html">书签管理</a></li>
             <!-- <li><a id="selectArt" href="/comment.html">用户赏析</a></li> -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    系统管理<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="/sysuser.html">后台用户管理</a></li>
+                </ul>
+            </li>
+            <%}%>
           </ul>
           <ul class="nav navbar-nav pull-right">
             <li class="dropdown">

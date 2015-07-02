@@ -14,7 +14,7 @@ var getreq = require('../sharepage').getreq
     , async = require('async')
     , us = require('underscore')
     , extend = require('node.extend')
-    , writejson = require('./commonsctl.js').writejson;
+    , writejson = require('./cagcommonsctl.js').writejson;
 
 exports.broadcast = "";
 
@@ -99,6 +99,7 @@ var _create_exhibit_page = function(opt){
                 , function(err, fileinfos){
                     if(err) return share.errpage(err.message, req, res);
 
+                    res.setHeader('Cache-Control', 'public, max-age=3600');
                     res.render(opt.view, {
                         user : getUser(req),
                         torist : share.getTourist(req),
@@ -150,7 +151,9 @@ function _query_exhibit( opt, arg, fn ){
     var cond = arg.cond || {},
         page = arg.page || { skip : 0, limit : 100 },
         argcond = us.pick(arg, opt.condPick),
-        cond = extend({}, argcond, opt.baseCond);
+        cond = extend(cond , argcond, opt.baseCond);
+
+    console.log(cond);
     paintdb.queryfile( cond
         , { files : false }
         , opt.sort
@@ -190,7 +193,7 @@ var exhibits = {
     "新发图": {
         param : [],
         baseCond : { active : true , deleted : { $ne : true } },
-        sort : { updateTime : -1 },
+        sort : { activeSort : -1 },
         // 最近发布的图片
         page : { skip : 0, limit : 50 },
         condPick : [],

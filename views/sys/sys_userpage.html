@@ -1,29 +1,50 @@
-
-<% include head.html %>
+<% include ../head.html %>
 
 <body>    
-  <% include navi.html %>
-  <div id="container" class="container-fluid">
+  <% include ../navi.html %>
+  <div class="container-fluid">
     <div class="row">
 
-<!-- 边栏，操作区 -->
-<div class="col-sm-3 col-md-2 sidebar">
-  <div id="searchBtnGroup" class="btn-group" data-toggle="buttons">
-      <label class="btn btn-default active" data-value="false"><input type="radio" name="searchBtn" value="false" checked> 全部数据</label>
-      <label class="btn btn-default" data-value="true"><input type="radio" name="searchBtn" value="true"> 条件查询</label>
-  </div>
-  <ul class="nav nav-sidebar">
-    <li><a id="createbtn" href="#">新建用户</a></li>
-    <!--
-    <li><a id="importbtn" href="#">导入数据(csv)</a></li>
-    <li><a id="downloadbtn" href="/templ/sysuser_tmpl.csv">下载数据模板文件</a></li>
-    <li><a id="exportbtn" href="#">导出数据</a></li>
-    -->
-  </ul>
-</div>
+<!-- 控制条 -->
+<nav class="navbar navbar-default col-md-12 navbar-static-top sub-navbar" role="navigation">
+  <div class="container-fluid">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if(commons.hasRight('用户管理','write', user.role)){ %>
+          <li><a id="createbtn" href="#">新建用户</a></li>
+        <% } %>
+        <li><a id="exportbtn" href="#">导出数据</a></li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <li>
+          <div id="searchBtnGroup" class="btn-group navbar-form" data-toggle="buttons">
+            <label class="btn btn-default active" data-value="false"><input type="radio" name="searchBtn" value="false" checked> 全部数据</label>
+            <label class="btn btn-default" data-value="true"><input type="radio" name="searchBtn" value="true"> 条件查询</label>
+          </div>
+        </li>
+        <li>
+          <div id="editingBtnGroup" class="btn-group pull-right navbar-form" data-toggle="buttons">
+            <label class="btn btn-default active"><input type="radio" name="editingBtn" checked value="false"> 浏览</label>
+            <label class="btn btn-default"><input type="radio" name="editingBtn" value="true"> 编辑</label>
+          </div>
+        </li>
+      </ul>
+      <form id="search-form" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <div class="form-group">
+            <input name="queryword" type="text" class="form-control" placeholder="查询">
+          </div>
+          <button type="submit" class="btn btn-default">查询</button>
+        </div>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><!-- 控制面板 -->
+
 
 <!-- 主操作区域 -->
-<div id="mainContent" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div id="mainContent" class="main col-md-12">
     <!-- 查询面板 -->
     <div id="searchPanel" class="panel panel-default fade search-panel">
       <div class="panel-heading">查询条件</div>
@@ -137,15 +158,7 @@
 
   <!-- 数据查询结果表格 -->
   <div id="cellDiv" class="panel panel-default">
-    <div class="panel-heading">系统用户数据列表
-      <form id="search-form" class="form pull-right">
-        <input name="userName" type="text" class="form-control input-sm" placeholder="编号或名称查询...">
-      </form>
-      <div id="editingBtnGroup" class="btn-group btn-group-sm pull-right" data-toggle="buttons">
-        <label class="btn btn-default active"><input type="radio" name="editingBtn" checked value="false"> 浏览</label>
-        <label class="btn btn-default"><input type="radio" name="editingBtn" value="true"> 编辑</label>
-      </div>
-    </div>
+    <div class="panel-heading">系统用户数据列表</div>
     <table id="cellTable" class="table table-bordered table-hover"></table>
     <div class="panel-footer"><div id="pagebar"></div></div>
   </div>
@@ -203,12 +216,6 @@
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">地市</label>
-                <div class="controls col-sm-10">
-                  <%- commons.citySelector('city', { allowEmpty : false , required : true}) %>
-                </div>
-              </div>
-              <div class="form-group">
                 <label class="col-sm-2 control-label">所属部门</label>
                 <div class="controls col-sm-10">
                     <select name="org" class="form-control" data-sfcontrol="sysorg">
@@ -247,12 +254,13 @@
   </div><!-- sysuser编辑修改对话框 -->
 
   <!-- JS文件放在靠近HTML页面尾部的地方可以加快页面显示的速度 -->
-  <script src="js/jquery.js"></script>
-  <script src="js/bootstrap.js"></script>
-  <script src="js/sharepage.base.js"></script>
-  <script src="js/sharepage.js"></script>
-  <script src="js/sharepage.ext.js"></script>
-  <script src="js/sfmiscommons.js"></script>
-  <script src="js/sysuser.js"></script>
-<% include foot.html %>
+  <script src="/js/jquery.js" type="text/javascript"></script>
+  <script src="/js/bootstrap.js" type="text/javascript"></script>
+  <script src="/js/jquery.lazyload.js" type="text/javascript"></script>
+  <script src="/js/sharepage.base.js"></script>
+  <script src="/js/sharepage.js"></script>
+  <script src="/js/sharepage.ext.js"></script>
+  <script src="/js/cagcommons.js"></script>
+  <script src="/js/sys_user.js"></script>
+<% include ../foot.html %>
 

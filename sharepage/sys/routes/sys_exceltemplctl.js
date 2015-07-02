@@ -55,7 +55,7 @@ exports.bindurl=function(app){
 // GUI页面
 exports.page = function(req, res){
     res.render('sys_exceltemplpage.html', {
-        conf : require('../config.js'),
+        conf : require('../../../config.js'),
         title: sf.getTitle("数据导入模版管理"),
         user : req.session.user,
         commons : require('./sfcommonsctl.js')

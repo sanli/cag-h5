@@ -15,10 +15,11 @@ var express = require('express')
   , mongo = require('./mongo.js');
 
 var app = express();
+app.set('x-powered-by', false)
 app.set('port', process.env.PORT || conf.port );
 app.engine('.html', require('ejs').__express);
 app.set('views', __dirname + '/views');
-app.use(express.static(path.join(__dirname, 'public'), { maxAge : 86400000 }));
+app.use(express.static(path.join(__dirname, 'public'), { maxAge : 31536000000 }));
 app.use(require('serve-favicon')(__dirname + '/public/favicon.ico'));
 app.use(require('morgan')('combined'));
 app.use(require('compression')());
@@ -62,7 +63,9 @@ app.use(session({
 // }
 
 // 系统模块
+app.use(express.static(path.join(__dirname, 'sharepage/sys/public')));
 require('./sharepage/sys/routes/userctl').bindurl(app);
+require('./sharepage/sys/routes/sys_userctl').bindurl(app);
 
 // load module
 require('./routes/mainctl').bindurl(app);
@@ -71,6 +74,7 @@ require('./routes/paintingsctl').bindurl(app);
 require('./routes/commentctl').bindurl(app);
 require('./routes/touristctl').bindurl(app);
 require('./routes/bookmarkctl').bindurl(app);
+
 
 var server = http.createServer(app).listen(app.get('port'), function(){
 	logger.info("启动web服务，在以下端口监听：" + app.get('port'));

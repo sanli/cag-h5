@@ -74,7 +74,7 @@ exports.page = function(req, res){
         stamp : conf.stamp,
         title: share.getTitle("书签"),
         user : req.session.user,
-        commons : require('./commonsctl.js')
+        commons : require('./cagcommonsctl.js')
     });
 };
 
@@ -262,7 +262,7 @@ exports.dlg = function(req, res){
 
     res.render( 'bookmark/' + arg.dlgfile, {
         user : req.session.user,
-        commons : require('./commonsctl.js')
+        commons : require('./cagcommonsctl.js')
     });
 };
 

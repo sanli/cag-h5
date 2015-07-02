@@ -63,10 +63,10 @@ exports.bindurl=function(app){
 // GUI页面
 exports.page = function(req, res){
     res.render('sys_checkrulepage.html', {
-        conf : require('../config.js'),
+        conf : require('../../../config.js'),
         title: "无线网全生命周期管理平台-预审判断规则集",
         user : req.session.user,
-        commons : require('./sfcommonsctl.js'),
+        commons : require('./commonsctl.js'),
     });
 };
 

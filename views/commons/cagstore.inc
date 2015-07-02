@@ -61,9 +61,9 @@
             <p><%=pixels %></p>
             <p>
             <span class="label label-default"><%=painting.viewCnt ? '观摩' + painting.viewCnt + '次' : '新发布' %></span>
-            <%= painting.descUrl ? '<a target="infowindow" class="pull-right" href="' + painting.descUrl + '"><span class="glyphicon glyphicon-info-sign"></span>介绍</a>' : '' %>
+            <%- painting.descUrl ? '<a target="infowindow" class="pull-right" href="' + painting.descUrl + '"><span class="glyphicon glyphicon-info-sign"></span>介绍</a>' : '' %>
             <% if( painting.desc) { %>
-              <p><%=painting.desc %></p>
+              <p><%= painting.desc %></p>
             <% } %>
           </div>
         </div>

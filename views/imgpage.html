@@ -63,6 +63,8 @@ if( target === 'release' ){ %>
                   ><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><%= bookmarked ? '已收藏' : '收藏' %></button>
                 <% if(info.originalUrl || info.offlineUrl){ %>
                   <a id="downloadbtn" target="downloadwindow" href="#" data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="查看与幅图相关的可下载资料" class="pull-right download"><span class="glyphicon glyphicon-cloud-download"></span>下载</a>
+                <% }else{ %>
+                  <a data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="这幅图片暂时没有开放下载，中华珍宝馆每日发布“近期热门”前三名的图片下载链接，需要下载请评论本图，将其顶到前三" class="pull-right download"><span class="glyphicon glyphicon-lock"></span>暂不提供下载</a>
                 <% } %>
               </div>
             </div>
@@ -114,35 +116,6 @@ if( target === 'release' ){ %>
    } 
 %>
 
-<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-<script type="text/javascript">
-  // 动态调用多评代码，但需要事先申明变量
-  var duoshuoQuery = {short_name:"ltfc"};
-</script>
-
-<%if(conf.anailsysService === 'google'){%>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-50311706-2', 'auto');
-  ga('require', 'displayfeatures');
-  ga('send', 'pageview');
-  
-</script>
-<%}else{%>
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?27fcab3509a075adac751101c39ec1cc";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<%}%>
 <%if(arg.uuid){%>
 <script>
   PG.default.uuid = '<%= arg.uuid %>';
@@ -184,6 +157,33 @@ var _hmt = _hmt || [];
         </div>
       </div>
     </div>
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+  // 动态调用多评代码，但需要事先申明变量
+  var duoshuoQuery = {short_name:"ltfc"};
+</script>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-50311706-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?27fcab3509a075adac751101c39ec1cc";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
 </body>
 </html>
 

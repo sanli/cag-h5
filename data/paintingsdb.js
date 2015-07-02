@@ -54,6 +54,8 @@ var painting_view = new Schema({
     snapSize : { width : Number, height : Number },
     // 展示的时候排序字段
     order : String,
+    // 是否特别标记出来
+    commented : Boolean,
     // 备注信息
     comment : String,
 
@@ -68,6 +70,8 @@ var painting_view = new Schema({
     active: Boolean,
     // 发布时间，用于查询最新发布
     activeTime : Date,
+    // 发布时间排序
+    activeSort : String,
     // 是否列在首页推荐
     essence: Boolean,
     // 推荐说明
@@ -82,7 +86,7 @@ var painting_view = new Schema({
     paintingLevel : String,
     // 作品标签，用于对查询结果进行过滤
     // 书法、楷书、行书、篆书、法帖、碑刻、国画、山水、工笔画、文人画...
-    tag : [String],
+    tags : [String],
     // 是否放入铭心绝品栏目
     mylove: Boolean,
     // 在铭心绝品栏目中的顺序
@@ -99,14 +103,28 @@ var painting_view = new Schema({
     // 描述性文字页面
     descUrl : String,
     // 用户评论数量
-    commentCnt : Number
+    commentCnt : Number,
+
+
+    // 广告链接
+    advUrl : String,
+    // 广告描述
+    advDesc : String,
+
+    // ---- 通用字段 ----
+    // 最后修改时间
+    utime : Date,
+    // 最后修改时间
+
 },  { collection: 'painting_view' });
 painting_view.index({_id : 1})
     .index({paintingName : 1})
     .index({author : 1})
     .index({tags : 1})
     .index({age : 1})
-    .index({mylove : 1});
+    .index({mylove : 1, myloveSort: 1})
+    .index({essence:1, essenceSort : 1})
+    .index({active:1, activeSort : 1});
 
 var PaintingView = mongoose.model('painting_view', painting_view);
     exports.PaintingView = PaintingView;

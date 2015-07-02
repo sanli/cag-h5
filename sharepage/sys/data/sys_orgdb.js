@@ -7,9 +7,8 @@ var inspect = require('util').inspect
   , ObjectID = require('mongodb').ObjectID
   , mongoose = require('mongoose')
   , Schema = mongoose.Schema
-  , Data = require('../mongo.js')
-  , share = require('../sharepage')
-  , Helper = require('../mongo.js').Helper
+  , Data = require('../../../mongo.js')
+  , share = require('../../../sharepage.js')
   , extend = require('node.extend')
   , csv = require('csv') ;
 
@@ -193,7 +192,6 @@ var cachedGetAll = share._CreateCachedGetAllFn('sysorgdb.orgs', "getAllOrg", _Mo
     invalide = cachedGetAll.invalide;
 exports.getAllOrg = cachedGetAll.list;
 // ============================= 下面是单元测试用的代码 ================================
-var isme = require('../sharepage.js').isme;
 var tester = {
   testImportCSV: function(){
     exports.importCSV ("../uploads/td_tmpl.csv", 'td', function(err, cnt){
@@ -203,8 +201,8 @@ var tester = {
   }
 }
 
-if(isme(__filename)){
-  if(process.argv.length > 2 && isme(__filename)){
+if(share.isme(__filename)){
+  if(process.argv.length > 2 && share.isme(__filename)){
     testfn = process.argv[2];
     console.log("run test:%s", testfn);
 
