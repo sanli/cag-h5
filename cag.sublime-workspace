@@ -520,18 +520,34 @@
 	"buffers":
 	[
 		{
-			"file": "routes/mainctl.js",
+			"file": "/Users/sanli/Documents/workspace/sanli.github.io/_posts/2015-07-02-move-to-github-pages.markdown",
 			"settings":
 			{
-				"buffer_size": 13707,
+				"buffer_size": 189,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "data/paintingsdb.js",
+			"file": "/Users/sanli/Documents/workspace/sanli.github.io/_layouts/default.html",
 			"settings":
 			{
-				"buffer_size": 7727,
+				"buffer_size": 248,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "views/head.html",
+			"settings":
+			{
+				"buffer_size": 964,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/sanli/Documents/workspace/sanli.github.io/_includes/header.html",
+			"settings":
+			{
+				"buffer_size": 1108,
 				"line_ending": "Unix"
 			}
 		}
@@ -629,19 +645,32 @@
 	},
 	"expanded_folders":
 	[
-		"/Users/sanli/Documents/workspace/cag-h5",
-		"/Users/sanli/Documents/workspace/cag-h5/logs",
-		"/Users/sanli/Documents/workspace/cag-h5/views"
 	],
 	"file_history":
 	[
+		"/Users/sanli/Documents/workspace/sanli.github.io/_layouts/post.html",
+		"/Users/sanli/Documents/workspace/sanli.github.io/_posts/2015-07-02-about-download.markdown",
+		"/Users/sanli/Documents/workspace/sanli.github.io/_posts/2015-07-02-welcome-to-jekyll.markdown",
+		"/Users/sanli/Documents/workspace/sanli.github.io/index.html",
+		"/Users/sanli/Documents/workspace/sanli.github.io/_config.yml",
+		"/Users/sanli/Documents/workspace/sanli.github.io/about.md",
+		"/Users/sanli/Documents/workspace/sanli.github.io/_includes/footer.html",
+		"/Users/sanli/Documents/workspace/sanli.github.io/_layouts/page.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tfootnavi.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tfoot.html",
+		"/Users/sanli/Documents/workspace/sanli.github.io/_includes/head.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/thead.html",
+		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
+		"/Users/sanli/Documents/workspace/cag-h5/data/paintingsdb.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
+		"/Users/sanli/Documents/workspace/sanli.github.io/Gemfile",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/routes/userctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/foot.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/navi.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/downloadpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/routes/userctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/main.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/paintings.js",
-		"/Users/sanli/Documents/workspace/cag-h5/data/paintingsdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/routes/exhibitctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/routes/commonsctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage.js",
@@ -658,7 +687,6 @@
 		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/touristpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/cag.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/routes/sys_userctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/data/touristdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/sys/sys_userpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/data/cagcommonsdb.js",
@@ -693,20 +721,16 @@
 		"/Users/sanli/Documents/workspace/cag-h5/views/imglitepage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/data/feedbackdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/tnavi.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/thead.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/commons/cagstore_short.inc",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/test/fixtures/comments.html",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/ejs.js",
 		"/Users/sanli/Desktop/uuav.txt",
 		"/Users/sanli/Downloads/uupassportdb.sql.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/messagepage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/tfootnavi.html",
 		"/Users/sanli/Documents/workspace/cag-h5/public/css/backend.css",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/commentpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/backbone.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/tfoot.html",
 		"/Users/sanli/Documents/workspace/cag-h5/routes/commentctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/mybookmark.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/mybookmarkpage.html",
@@ -751,18 +775,7 @@
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/node_modules/express/index.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/index.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-session/node_modules/on-headers/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/body-parser/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/node_modules/express/node_modules/connect/lib/middleware/session/store.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/node_modules/express/node_modules/connect/lib/middleware/session/session.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/node_modules/express/node_modules/connect/lib/middleware/session.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/node_modules/concurix-dashboard/node_modules/concurix-api/node_modules/request/node_modules/tough-cookie/lib/cookie.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-session/session/session.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-session/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express/node_modules/connect/lib/middleware/session.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/concurix-server/config.json",
-		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/userinfopage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/imglite.js",
-		"/Users/sanli/Documents/workspace/cag-h5/data/cagstore_paintingsdb.js"
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/body-parser/index.js"
 	],
 	"find":
 	{
@@ -991,67 +1004,125 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 3,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "routes/mainctl.js",
+					"file": "/Users/sanli/Documents/workspace/sanli.github.io/_posts/2015-07-02-move-to-github-pages.markdown",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 13707,
+						"buffer_size": 189,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								13319,
-								13319
+								186,
+								186
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 4433.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "data/paintingsdb.js",
-					"semi_transient": false,
+					"file": "/Users/sanli/Documents/workspace/sanli.github.io/_layouts/default.html",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 7727,
+						"buffer_size": 248,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2361,
-								2367
+								238,
+								238
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"tab_size": 2,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1272.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "views/head.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 964,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/Users/sanli/Documents/workspace/sanli.github.io/_includes/header.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1108,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -1142,6 +1213,42 @@
 		"selected_items":
 		[
 			[
+				"head.html",
+				"sanli.github.io/_includes/header.html"
+			],
+			[
+				"foot.html",
+				"sanli.github.io/_includes/footer.html"
+			],
+			[
+				"/css/main.css",
+				"cag-h5/public/css/main.css"
+			],
+			[
+				"thead.html",
+				"cag-h5/views/thead.html"
+			],
+			[
+				"tfoot.html",
+				"cag-h5/views/tfoot.html"
+			],
+			[
+				"tnavi.html",
+				"cag-h5/views/tfootnavi.html"
+			],
+			[
+				"userctl.js",
+				"sharepage/sys/routes/userctl.js"
+			],
+			[
+				"footnav",
+				"views/tfootnavi.html"
+			],
+			[
+				"paint",
+				"views/paintingspage.html"
+			],
+			[
 				"navi.html",
 				"views/navi.html"
 			],
@@ -1176,10 +1283,6 @@
 			[
 				"main.js",
 				"public/js/main.js"
-			],
-			[
-				"userctl.js",
-				"sharepage/sys/routes/userctl.js"
 			],
 			[
 				"paintingspage.html",
@@ -1402,20 +1505,12 @@
 				"public/js/backbone.js"
 			],
 			[
-				"paint",
-				"views/paintingspage.html"
-			],
-			[
 				"paintingdb",
 				"data/paintingsdb.js"
 			],
 			[
 				"cagstore_sho",
 				"views/commons/cagstore_short.inc"
-			],
-			[
-				"tfoot.html",
-				"views/tfoot.html"
 			],
 			[
 				"tfootnavi.html",
@@ -1474,10 +1569,6 @@
 				"config.js"
 			],
 			[
-				"thead.html",
-				"views/thead.html"
-			],
-			[
 				"searchpage.html",
 				"views/exhibit/searchpage.html"
 			],
@@ -1496,10 +1587,6 @@
 			[
 				"exhiti",
 				"public/js/exhibit.js"
-			],
-			[
-				"tnavi.html",
-				"views/tnavi.html"
 			],
 			[
 				"exhibit.js",
@@ -1636,22 +1723,6 @@
 			[
 				"downloadpage",
 				"views/downloadpage.html"
-			],
-			[
-				"bookmakrpage.html",
-				"views/bookmark/bookmarkpage.html"
-			],
-			[
-				"",
-				"filelist"
-			],
-			[
-				"express-sessions",
-				"node_modules/express-sessions/index.js"
-			],
-			[
-				"package.json",
-				"package.json"
 			]
 		],
 		"width": 0.0
@@ -2194,7 +2265,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 286.0,
+	"side_bar_width": 359.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
