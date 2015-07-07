@@ -15,7 +15,7 @@ var debug_config = {
 	// 使用mongodb session，不在需要skipSignin
 	skipSignin : false,
 	// CDN服务器的URL
-	cdn_url : '',
+	cdn_url : 'http://cag.share-net.cn',
 	// 分析服务地址，百度或者是google
 	anailsysService : 'baidu', //  'google' 
 	// 如果配置了redirect，将会把所有的访问重定向到新服务

@@ -519,38 +519,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "/Users/sanli/Documents/workspace/sanli.github.io/_posts/2015-07-02-move-to-github-pages.markdown",
-			"settings":
-			{
-				"buffer_size": 189,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/sanli/Documents/workspace/sanli.github.io/_layouts/default.html",
-			"settings":
-			{
-				"buffer_size": 248,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "views/head.html",
-			"settings":
-			{
-				"buffer_size": 964,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/Users/sanli/Documents/workspace/sanli.github.io/_includes/header.html",
-			"settings":
-			{
-				"buffer_size": 1108,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -645,9 +613,19 @@
 	},
 	"expanded_folders":
 	[
+		"/Users/sanli/Documents/workspace/cag-h5",
+		"/Users/sanli/Documents/workspace/cag-h5/public",
+		"/Users/sanli/Documents/workspace/cag-h5/routes",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage"
 	],
 	"file_history":
 	[
+		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tfootnavi.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/head.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tnavi.html",
+		"/Users/sanli/Documents/workspace/sanli.github.io/_posts/2015-07-02-move-to-github-pages.markdown",
+		"/Users/sanli/Documents/workspace/sanli.github.io/_includes/header.html",
 		"/Users/sanli/Documents/workspace/sanli.github.io/_layouts/post.html",
 		"/Users/sanli/Documents/workspace/sanli.github.io/_posts/2015-07-02-about-download.markdown",
 		"/Users/sanli/Documents/workspace/sanli.github.io/_posts/2015-07-02-welcome-to-jekyll.markdown",
@@ -656,13 +634,11 @@
 		"/Users/sanli/Documents/workspace/sanli.github.io/about.md",
 		"/Users/sanli/Documents/workspace/sanli.github.io/_includes/footer.html",
 		"/Users/sanli/Documents/workspace/sanli.github.io/_layouts/page.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/tfootnavi.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/tfoot.html",
 		"/Users/sanli/Documents/workspace/sanli.github.io/_includes/head.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/thead.html",
 		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
 		"/Users/sanli/Documents/workspace/cag-h5/data/paintingsdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
 		"/Users/sanli/Documents/workspace/sanli.github.io/Gemfile",
 		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/routes/userctl.js",
@@ -720,7 +696,6 @@
 		"/Users/sanli/Documents/workspace/cag-h5/views/imgpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/imglitepage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/data/feedbackdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/tnavi.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/commons/cagstore_short.inc",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/test/fixtures/comments.html",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/ejs/ejs.js",
@@ -772,10 +747,7 @@
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/serve-static/index.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/mongoose/lib/schema.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/connect-mongo/lib/connect-mongo.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/node_modules/express/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-session/node_modules/on-headers/index.js",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/body-parser/index.js"
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/express-sessions/node_modules/express/index.js"
 	],
 	"find":
 	{
@@ -1004,127 +976,8 @@
 	"groups":
 	[
 		{
-			"selected": 3,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "/Users/sanli/Documents/workspace/sanli.github.io/_posts/2015-07-02-move-to-github-pages.markdown",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 189,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								186,
-								186
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/Users/sanli/Documents/workspace/sanli.github.io/_layouts/default.html",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 248,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								238,
-								238
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "views/head.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 964,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/Users/sanli/Documents/workspace/sanli.github.io/_includes/header.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1108,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -1213,8 +1066,20 @@
 		"selected_items":
 		[
 			[
+				"paintingspage",
+				"views/paintingspage.html"
+			],
+			[
+				"tfoot.html",
+				"views/tfootnavi.html"
+			],
+			[
+				"tnavi.htm",
+				"views/tnavi.html"
+			],
+			[
 				"head.html",
-				"sanli.github.io/_includes/header.html"
+				"views/head.html"
 			],
 			[
 				"foot.html",
@@ -1227,10 +1092,6 @@
 			[
 				"thead.html",
 				"cag-h5/views/thead.html"
-			],
-			[
-				"tfoot.html",
-				"cag-h5/views/tfoot.html"
 			],
 			[
 				"tnavi.html",
@@ -1415,10 +1276,6 @@
 			[
 				"userdb.js",
 				"sharepage/sys/data/userdb.js"
-			],
-			[
-				"paintingspage",
-				"views/paintingspage.html"
 			],
 			[
 				"cag.js",
@@ -1719,10 +1576,6 @@
 			[
 				"confirmdlg.html",
 				"public/confirmdlg.html"
-			],
-			[
-				"downloadpage",
-				"views/downloadpage.html"
 			]
 		],
 		"width": 0.0
