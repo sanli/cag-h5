@@ -92,7 +92,7 @@ exports.broadcast = function(req, res){
 
 // 发送到前段显示的消息
 exports.main = function(req, res){
-    _outline({}, function(err, outline){
+    _outline({}, true, function(err, outline){
         // 各个展馆的数据
         var exhibitsData = {},
         // 题头图
@@ -394,20 +394,25 @@ exports.outline = function(req, res){
     if(!arg.passed)
         return;
 
-    _outline(arg.cond, function(err, outline){
+    _outline(arg.cond, false, function(err, outline){
         if(err) return share.rt(false, err.message, res);
 
         writejson(res, outline);
     });
 }
 
-
-_outline = function(cond, fn){
+_outline = function(cond, withid, fn){
     // 查询outline
     cond = extend({ active : true }, cond );
-    paintdb.outline( cond , function(err, outline){
-        fn(err, outline);
-    });
+    if(withid){
+        paintdb.outline_with_id( cond , function(err, outline){
+            fn(err, outline);
+        });
+    }else{
+        paintdb.outline( cond , function(err, outline){
+            fn(err, outline);
+        });
+    }
 }
 
 // === 扩展的代码请加在这一行下面，方便以后升级模板的时候合并 ===

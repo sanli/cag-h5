@@ -129,7 +129,7 @@ var Module = $.extend(new $M(), {
             PG.pushState(state, { triggerEvent : false });
         });
         // 开启编辑模式
-        $('#cellDiv').on('change', 'input[name=editingBtn]', function(e){
+        $('#editingBtnGroup').on('change', 'input[name=editingBtn]', function(e){
             e.preventDefault();
             var state = PG.state;
             state.editing = $('#editingBtnGroup :checked').val();
@@ -351,7 +351,6 @@ function init(){
     Module.bind();
     PG.bind();
     $(window).trigger('hashchange');
-    PG.loadCity();
 };
 
 $(document).ready(init);

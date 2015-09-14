@@ -23,16 +23,24 @@ var feedback = new Schema({
     userid : String,
     // 反馈类型: 意见，失效链接，图片需求
     feedbackType : String,
+    // 反馈相关的图片
+    paintingid :  Schema.Types.ObjectId,
     // 意见内容
     content : String,
+    // 创建时间
+    createTime : Date,
     // 最后修改时间
-    updateTime : Date
+    updateTime : Date,
+    // 反馈问题解决状态
+    resultStatus : String, 
+    // 反馈消息
+    resultMessage : String,
 },  { collection: 'feedback' });
 
 // 创建索引 
 // TODO: 根据实际结构确定索引结构
-feedback.index({_id : 1})
-    .index({userid : 1});
+feedback.index({ _id : 1 })
+    .index({ userid : 1 });
 var feedback = mongoose.model('feedback', feedback ),
     _Module = feedback ;
 exports.feedback  = feedback;

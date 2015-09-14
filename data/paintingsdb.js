@@ -105,7 +105,17 @@ var painting_view = new Schema({
     // 用户评论数量
     commentCnt : Number,
 
+    // ---- 画集相关字段 ----
+    // 是否是一个画集
+    isCollection : Boolean,
+    //  所属画集,如果为空表示不属于任何画集
+    belongCollection : Schema.Types.ObjectId,
+    //  在画集中的排序
+    collectionSort : String,
+    //  如果是画集，这个字段存放包含的所有画作
+    includeCollections : [Schema.Types.ObjectId],
 
+    // ---- 广告相关字段 ----
     // 广告链接
     advUrl : String,
     // 广告描述
@@ -122,6 +132,8 @@ painting_view.index({_id : 1})
     .index({author : 1})
     .index({tags : 1})
     .index({age : 1})
+    .index({belongCollection : 1, collectionSort : 1})
+
     .index({mylove : 1, myloveSort: 1})
     .index({essence:1, essenceSort : 1})
     .index({active:1, activeSort : 1});
@@ -212,6 +224,34 @@ exports.outline = function(query, fn){
         });
 }
 
+// 返回所有作品大纲
+//    { 年代 : { 作者 : ['xxxx', 'xxxx'] } } 
+exports.outline_with_id = function(query, fn){
+
+    var key = 'outline:all:withid',
+        outline = cache.get(key);
+    if(outline)
+        return fn(null, outline);
+
+    Module.collection.aggregate( 
+        { $match : query }
+        , { $sort : { author : 1, paintingName : 1 } }
+        , { $group : { _id: '$author' , paintings : { $push : { name : '$paintingName', uid : '$_id' } } , age : { $first : '$age'} }  }
+        , { $project : {  "author.name" : "$_id", "author.paintings" : '$paintings' , age: 1 } }
+        , { $group : { _id : '$age' , authors : { $push : '$author'}} }
+        , function(err, outline){
+            if(err) console.trace(err);
+
+            outline.sort(function(age1, age2){
+                var v1 = ageSort[age1._id] ?  ageSort[age1._id] : ageSort['UNKNOWN'],
+                    v2 = ageSort[age2._id] ?  ageSort[age2._id] : ageSort['UNKNOWN'];
+                return v1 > v2 ? 1 : (v1 < v2 ? -1 : 0);
+            });
+            console.log("put object to cache key:%s", key);
+            cache.put(key, outline);
+            fn(err, outline);
+        });
+}
 
 exports.list = function(type, cond, page, sort, fn){
 

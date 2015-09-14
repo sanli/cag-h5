@@ -14,8 +14,16 @@
             <li><a href="main.html">去首页</a></li>
             <li><a id="selectArt" href="/paintings.html">资源管理</a></li>
             <%if( user.role === 'admin'){%>
-            <li><a id="selectArt" href="/tourist.html">游客管理</a></li>
-            <li><a id="selectArt" href="/bookmark.html">书签管理</a></li>
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    游客信息<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a href="/tourist.html">游客管理</a></li>
+                  <li><a href="/bookmark.html">书签管理</a></li>
+                  <li><a href="/feedback.html">反馈信息</a></li>
+                </ul>
+            </li>
             <!-- <li><a id="selectArt" href="/comment.html">用户赏析</a></li> -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -23,6 +31,8 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li><a href="/sysuser.html">后台用户管理</a></li>
+                    <li><a href="/sys_enum.html">数据字典配置</a></li>
+                    <li><a href="/sys_conf.html">系统配置</a></li>
                 </ul>
             </li>
             <%}%>

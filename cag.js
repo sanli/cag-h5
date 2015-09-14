@@ -66,6 +66,7 @@ app.use(session({
 app.use(express.static(path.join(__dirname, 'sharepage/sys/public')));
 require('./sharepage/sys/routes/userctl').bindurl(app);
 require('./sharepage/sys/routes/sys_userctl').bindurl(app);
+require('./sharepage/sys/routes/sys_enumctl').bindurl(app);
 
 // load module
 require('./routes/mainctl').bindurl(app);
@@ -74,6 +75,7 @@ require('./routes/paintingsctl').bindurl(app);
 require('./routes/commentctl').bindurl(app);
 require('./routes/touristctl').bindurl(app);
 require('./routes/bookmarkctl').bindurl(app);
+require('./routes/feedbackctl').bindurl(app);
 
 
 var server = http.createServer(app).listen(app.get('port'), function(){

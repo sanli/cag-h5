@@ -101,16 +101,13 @@ exports.deptTypeSelector = function(name, opt){
 
 
 // 基础数据枚举类型选择器
-var enumdb = require('../sharepage/sys/data/sys_enumdb.js'),
-    use_static_enum = false;
-exports.siteTypeSelector = function(name, module, table, field, opt){
+var enumdb = require('../sharepage/sys/data/sys_enumdb.js');
+exports.enumSelector = function(name, itemName, opt){
     opt = opt || { allowEmpty : false , required : false , disabled : false };
 
-    var key = [module, table, field].join('_'),
-        enums = (use_static_enum ? selectorMap[key]
-            :  enumdb.getEnum(module, table, field) );
+    var enums = enumdb.getEnum( itemName );
 
-    if(!enums) return '<span>程序错误：类型无效{' + key + '}</>';
+    if(!enums) return '<span>程序错误：类型无效{' + itemName + '}</>';
 
     var selector =  "<select name=" + name + " class=\"form-control\" " 
         + (opt.required ? " required ": "") + (opt.disabled ? " disabled ": "") + " >";

@@ -12,6 +12,7 @@
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                   <li><a href="#" class="importbtn">导入资源</a></li>
+                  <li><a href="#" class="createCollectionbtn">创建画集</a></li>
                 </ul>
                 <form id="search-form" class="navbar-form navbar-right" role="search">
                   <div class="form-group">
@@ -73,6 +74,7 @@
   <table class="table table-bordered table-hover"> 
   <thead> 
     <tr>
+      <th class="action-ctl"><input type="checkbox" data-sfcontrol="selectAll"><a>全选</a></th>
     <@ 
     var titles = [ { field: 'view', title: '预览', canSort: false }
       , { field: 'author',  title: '作者', canSort: true }
@@ -83,7 +85,6 @@
       , { field: 'fileSize',  title: '文件大小', canSort: true }
       , { field: 'active',  title: '发布状态', canSort: true }
       , { field: 'essence',  title: '精选推荐', canSort: true }
-      , { field: 'essence',  title: '赏析页面', canSort: true }
       , { field: 'viewCnt',  title: '浏览量', canSort: true }];
 
     for(i = 0 ; i<= titles.length -1 ; i++){
@@ -109,18 +110,23 @@
     for( i = 0 ; i<= cells.length - 1; i++) { 
         var cell = cells[i],
             link = '/img.html?uuid='+ cell._id  +'&view=paintingview#uuid='+ cell._id +'&view=paintingview';
+        var levelmap = ['五级-普清','四级-半高清','三级-高清','二级-超高清','一级-如实物','特级-超实物','特级-超实物','特级-超实物','特级-超实物'],
+             scalelevel = cell.maxlevel - cell.minlevel,
+             paintinglevel = levelmap[scalelevel];
    @>
     <tr data-_id="<@=cell._id @>"> 
+      <td class="action-ctl"><input type="checkbox"></td>
       <td><a href="<@=link @>" target="mapwindow"><img src="<@=_cdn('/cagstore/' + cell._id  + '/tb.jpg') @>" style=" width : 128px;"></a></td>
       <td><@=cell.author @></td>
-      <td><a href="<@=link @>" target="mapwindow"><@=cell.paintingName @><i class="icon-share-alt"/></a></td>
+      <td><a href="<@=link @>" target="mapwindow"><@=cell.paintingName @><i class="icon-share-alt"/></a>
+        <span class="label label-info pull-right"><@= paintinglevel @></span>
+      </td>
       <td><@=cell.age @></td>
       <td><@=cell.updateTime.replace('T', '<br>') @></td>
       <td><@=cell.essenceSort @></td>
       <td><@=cell.fileSize @></td>
       <td><@=cell.active ? '<span class="label label-info">是</span>' : '<span class="label label-warning">否</span>' @></td>
       <td><@=cell.essence ? '<span class="label label-info">是</span>' : '<span class="label label-warning">否</span>' @></td>
-      <td><@=cell.descUrl ? '<a href="'+ cell.descUrl +'">跳转</a>' : '<span class="label label-warning">无</span>'   @></td>
       <td><@=cell.viewCnt @></td>
       <td class="action-ctl">
         <% if(user.role === 'admin'){ %>
@@ -235,12 +241,13 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">图片信息</h4>
+        <h4 class="modal-title">藏品信息</h4>
       </div>
       <div class="modal-body">
-        <!-- <ul class="nav nav-tabs" id="buildingNavtab">
+        <ul class="nav nav-tabs" id="buildingNavtab">
             <li class="active"><a href="#b1" data-toggle="tab">基本信息</a></li>
-        </ul> -->
+            <li><a href="#b2" data-toggle="tab">画集信息</a></li>
+        </ul>
         <div class="container-fluid" style="padding: 10px;">
           <form id="module-form" class="form-horizontal" role="form">
             <div class="form-group col-sm-6">
@@ -365,6 +372,13 @@
               <label class="col-sm-4 control-label">像素数量</label>
               <div class="col-sm-8">
                 <input type="text" name="pixels" class="form-control col-sm-6">
+              </div>
+            </div>
+
+            <div class="form-group col-sm-6">
+              <label class="col-sm-4 control-label">收藏者</label>
+              <div class="col-sm-8">
+                <input type="text" name="ownerName" class="form-control col-sm-6">
               </div>
             </div>
 

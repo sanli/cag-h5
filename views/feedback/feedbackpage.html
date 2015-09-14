@@ -11,9 +11,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="#" class="importbtn">导入资源</a></li>
-        <% if(commons.hasRight('用户反馈','import', user.role)){ %>
-          <li><a id="createbtn" href="#">新建访客信息</a></li>
+        <% if(commons.hasRight('用户管理','write', user.role)){ %>
+          <li><a id="createbtn" href="#">新建</a></li>
         <% } %>
         <li><a id="exportbtn" href="#">导出数据</a></li>
       </ul>
@@ -53,29 +52,29 @@
           <form id="detail-search-form" class="form-horizontal">
             <fieldset>
               <div class="form-group col-md-6">
-                  <label class="control-label col-sm-3">模块名称</label>
+                  <label class="control-label col-sm-3">用户编号</label>
                 <div class="controls col-sm-8">
                     <input name="moduleName" class="form-control">
                 </div>
               </div>
               <div class="form-group col-md-6">
-                  <label class="control-label col-sm-3">是否系统模块</label>
+                <label class="control-label col-sm-3">创建时间</label>
                 <div class="controls col-sm-6">
-                    <select name="isSysModule" class="form-control">
-                      <option value="">不判断</option>
-                      <option value="true">是</option>
-                      <option value="false">否</option>
-                    </select>
+                    <input name="createTime" class="form-control">
                 </div>
               </div>
               <div class="form-group col-md-6">
-                  <label class="control-label col-sm-3">是否启用</label>
+                <label class="control-label col-sm-3">反馈类型</label>
                 <div class="controls col-sm-6">
-                    <select name="isActive" class="form-control">
-                      <option value="">不判断</option>
-                      <option value="true">是</option>
-                      <option value="false">否</option>
-                    </select>
+                    <%- commons.enumSelector('feedbackType', 'feedback.feedbackType', 
+                      { allowEmpty : true , required : false }) %>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="control-label col-sm-3">解决状态</label>
+                <div class="controls col-sm-6">
+                    <%- commons.enumSelector('resultType', 'feedback.resultType', 
+                      { allowEmpty : true , required : false }) %>
                 </div>
               </div>
             </fieldset>
@@ -91,8 +90,11 @@
     <tr>
       <th class="action-ctl"><input type="checkbox" data-sfcontrol="selectAll"><a>全选</a></th>
     <@ 
-    var titles = [{field: 'moduleName' , title : '模块名称', canSort: true }
-      , { field: 'desc', title: '模块描述', canSort: true }];
+    var titles = [{field: 'userid' , title : '用户编号', canSort: true }
+      , { field: 'feedbackType', title: '反馈类型', canSort: true }
+      , { field: 'paintingid', title: '相关图片', canSort: true }
+      , { field: 'createTime', title: '创建时间', canSort: true }
+      , { field: 'resultStatus', title: '解决状态', canSort: true }];
 
     for(i = 0 ; i<= titles.length -1 ; i++){
       title = titles[i];
@@ -119,8 +121,11 @@
    @>
       <tr data-_id="<@=cell._id @>">
         <td class="action-ctl fade"><input type="checkbox"></td>
-        <td><@=cell.moduleName @></td>
-        <td><@=cell.desc @></td>
+        <td><@=cell.userid @></td>
+        <td><@=cell.feedbackType @></td>
+        <td><@=cell.paintingid @></td>
+        <td><@=cell.createTime @></td>
+        <td><@=cell.resultStatus @></td>
         <td class="action-ctl fade">
         <%if(commons.hasRight('项目管理','write', user.role)){ %>
           <a class="action action-edit">修改<i class="icon-edit"/></a> | 
@@ -182,35 +187,46 @@
           <h3 class="header-text">新建/修改模块信息</h3>
         </div>
         <div class="modal-body">
-          <ul class="nav nav-tabs" id="buildingNavtab">
-              <li class="active"><a href="#b1" data-toggle="tab">基本信息</a></li>
-          </ul>
           <div style="padding: 10px;">
             <form id="module-form" class="form-horizontal" role="form">
               <div class="form-group">
-                <label class="col-sm-2 control-label">模块名称</label>
+                <label class="col-sm-2 control-label">反馈用户</label>
                 <div class="col-sm-10">
-                  <input type="text" name="moduleName" class="form-control col-sm-6">
+                  <span type="text" name="userid" class="form-control col-sm-6"></span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">模块描述</label>
+                <label class="col-sm-2 control-label">反馈类型</label>
                 <div class="col-sm-10">
-                  <input type="text" name="desc" class="form-control col-sm-6">
+                  <span type="text" name="userid" class="form-control col-sm-6"></span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">是否<br>系统模块</label>
+                <label class="col-sm-2 control-label">相关资源</label>
                 <div class="col-sm-10">
-                  <label class="checkbox"><input name="isSysModule" type="checkbox" value="true"></label>
+                  <span type="text" name="userid" class="form-control col-sm-6"></span>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">是否启用</label>
+                <label class="col-sm-2 control-label">意见内容</label>
                 <div class="col-sm-10">
-                  <label class="checkbox"><input name="isActive" type="checkbox" value="true"></label>
+                  <span type="text" name="userid" class="form-control col-sm-6"></span>
                 </div>
               </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">问题解决状态*</label>
+                <div class="col-sm-10">
+                  <%- commons.enumSelector('resultStatus', 'feedback.resultType', 
+                      { allowEmpty : true , required : true }) %>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="col-sm-2 control-label">反馈消息</label>
+                <div class="col-sm-10">
+                  <textarea name="resultMessage" class="form-control col-sm-6" required></textarea>
+                </div>
+              </div>
+
             </form>
           </div>
         </div>

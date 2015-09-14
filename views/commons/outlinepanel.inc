@@ -52,14 +52,14 @@
                       paintingCnt = author.paintings.length;
               %>
                 <p>
-                <a href="/exhibit/age/<%=ageName %>/<%=authorName %>" data-target="#author-<%=authorName %>" class="change-view"><span class="label label-default"><%=authorName + " " + paintingCnt + "幅" %></span>
+                <a href="/exhibit/age/<%=ageName %>/<%=authorName %>" data-target="#author-<%=authorName %>" class="change-view h4"><span class="label label-default"><%=authorName + " " + paintingCnt + "幅" %></span></a>
                 <%
                 for(k = 0 ; k <= author.paintings.length - 1; k++){
                   pname = author.paintings[k];
                 %>
-                《<%=pname %>》
+                《<a href="/img/<%=pname.uid %>" target="_blank"><%=pname.name %></a>》
                 <%}%>
-                </a>
+                
                 </p>
             <% } %> 
           <% } %>

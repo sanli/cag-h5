@@ -86,7 +86,7 @@ var _create_exhibit_page = function(opt){
         if(!arg.passed)
             return;    
 
-        _outline({}, function(err, outline){
+        _outline({}, true, function(err, outline){
             var argcond = us.pick(arg, opt.condPick);
             var cond = extend({}, argcond, opt.baseCond);
 

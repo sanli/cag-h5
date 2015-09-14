@@ -1,24 +1,49 @@
-<% include head.html %>
+<% include ../head.html %>
 
 <body>    
-  <% include navi.html %>
-  <div id="container" class="container-fluid">
+  <% include ../navi.html %>
+  <div class="container-fluid">
     <div class="row">
 
-<!-- 边栏，操作区 -->
-<div class="col-sm-3 col-md-2 sidebar">
-  <div id="searchBtnGroup" class="btn-group" data-toggle="buttons">
-      <label class="btn btn-default active" data-value="false"><input type="radio" name="searchBtn" value="false" checked> 全部数据</label>
-      <label class="btn btn-default" data-value="true"><input type="radio" name="searchBtn" value="true"> 条件查询</label>
-  </div>
-  <ul class="nav nav-sidebar">
-    <li><a id="createbtn" href="#">新建字典项</a></li>
-    <li><a id="exportbtn" href="#">导出数据</a></li>
-  </ul>
-</div>
+<!-- 控制条 -->
+<nav class="navbar navbar-default col-md-12 navbar-static-top sub-navbar" role="navigation">
+  <div class="container-fluid">
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <% if(commons.hasRight('系统管理','write', user.role)){ %>
+          <li><a id="createbtn" href="#">新建字典项</a></li>
+        <% } %>
+        <li><a id="exportbtn" href="#">导出数据</a></li>
+      </ul>
+      <ul class="nav navbar-nav pull-right">
+        <li>
+          <div id="searchBtnGroup" class="btn-group navbar-form" data-toggle="buttons">
+            <label class="btn btn-default active" data-value="false"><input type="radio" name="searchBtn" value="false" checked> 全部数据</label>
+            <label class="btn btn-default" data-value="true"><input type="radio" name="searchBtn" value="true"> 条件查询</label>
+          </div>
+        </li>
+        <li>
+          <div id="editingBtnGroup" class="btn-group pull-right navbar-form" data-toggle="buttons">
+            <label class="btn btn-default active"><input type="radio" name="editingBtn" checked value="false"> 浏览</label>
+            <label class="btn btn-default"><input type="radio" name="editingBtn" value="true"> 编辑</label>
+          </div>
+        </li>
+      </ul>
+      <form id="search-form" class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <div class="form-group">
+            <input name="queryword" type="text" class="form-control" placeholder="查询">
+          </div>
+          <button type="submit" class="btn btn-default">查询</button>
+        </div>
+      </form>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav><!-- 控制面板 -->
 
 <!-- 主操作区域 -->
-<div id="mainContent" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div id="mainContent" class="col-sm-12 col-md-12 main">
     <!-- 查询面板 -->
     <div id="searchPanel" class="panel panel-default fade search-panel">
       <div class="panel-heading">查询条件</div>
@@ -27,28 +52,16 @@
           <form id="detail-search-form" class="form-horizontal">
             <fieldset>
               <div class="form-group col-md-6">
-                  <label class="control-label col-sm-3">模块名称</label>
+                  <label class="control-label col-sm-3">字典项名称</label>
                 <div class="controls col-sm-8">
-                    <input name="module" class="form-control">
-                </div>
-              </div>
-              <div class="form-group col-md-6">
-                  <label class="control-label col-sm-3">表名</label>
-                <div class="controls col-sm-8">
-                    <input name="table" class="form-control">
-                </div>
-              </div>
-              <div class="form-group col-md-6">
-                  <label class="control-label col-sm-3">字段名称</label>
-                <div class="controls col-sm-6">
-                    <input name="field" class="form-control">
+                    <input name="itemName" class="form-control">
                 </div>
               </div>
             </fieldset>
           </form>
       </div>
-      <div class="panel-footer" style="height: 50px;"><button id="detailSearchBtn" class="btn btn-primary pull-right">查询</button></div>
-    </div><!-- 查询面板 -->
+    <div class="panel-footer" style="height: 50px;"><button id="detailSearchBtn" class="btn btn-primary pull-right">查询</button></div>
+</div><!-- 查询面板 -->
 
 <!-- 显示模板 -->
 <!-- TODO : 修改下面的别表显示模版 -->
@@ -57,9 +70,8 @@
     <tr>
       <th class="action-ctl"><input type="checkbox" data-sfcontrol="selectAll"><a>全选</a></th>
     <@ 
-    var titles = [{field: 'module' , title : '模块名称', canSort: true }
-      , { field: 'table', title: '表名', canSort: true }
-      , { field: 'field', title: '字段名称', canSort: true }
+    var titles = [{field: 'itemName' , title : '字典项名称', canSort: true }
+      , { field: 'desc', title: '描述', canSort: true }
       , { field: 'enums', title: '可选值', canSort: false }];
 
     for(i = 0 ; i<= titles.length -1 ; i++){
@@ -87,9 +99,8 @@
    @>
       <tr data-_id="<@=cell._id @>">
       <td class="action-ctl fade"><input type="checkbox"></td>
-      <td><@=cell.module @></td>
-      <td><@=cell.table @></td>
-      <td><@=cell.field @></td>
+      <td><@=cell.itemName @></td>
+      <td><@=cell.desc @></td>
       <td><@=cell.enums @></td>
       <td class="action-ctl fade"><a class="action action-edit">修改<i class="icon-edit"/></a> | <a class="action action-remove">删除<i class="icon-remove"/></a></td></tr>
    <@ } @>
@@ -116,15 +127,7 @@
 
   <!-- 数据查询结果表格 -->
   <div id="cellDiv" class="panel panel-default">
-    <div class="panel-heading">数据字典数据列表
-      <form id="search-form" class="form pull-right">
-        <input name="field" type="text" class="form-control input-sm" placeholder="字段名称查询...">
-      </form>
-      <div id="editingBtnGroup" class="btn-group btn-group-sm pull-right" data-toggle="buttons">
-        <label class="btn btn-default active"><input type="radio" name="editingBtn" checked value="false"> 浏览</label>
-        <label class="btn btn-default"><input type="radio" name="editingBtn" value="true"> 编辑</label>
-      </div>
-    </div>
+    <div class="panel-heading">数据字典数据列表</div>
     <table id="cellTable" class="table table-bordered table-hover"></table>
     <div class="panel-footer"><div id="pagebar"></div></div>
   </div>
@@ -159,27 +162,23 @@
           <div style="padding: 10px;">
             <form id="module-form" class="form-horizontal" role="form">
               <div class="form-group">
-                <label class="col-sm-2 control-label">模块名称</label>
+                <label class="col-sm-2 control-label">字典名称</label>
                 <div class="col-sm-10">
-                  <input type="text" name="module" class="form-control col-sm-6">
+                  <input type="text" name="itemName" class="form-control col-sm-6" required>
+                  <p>可以是以点"."分隔的字符串, 例如:  用户反馈.反馈类型 ， 资源管理.图片资源级别 , 资源管理.图片信息标签</p>
                 </div>
               </div>
               <div class="form-group">
-                <label class="col-sm-2 control-label">表名</label>
+                <label class="col-sm-2 control-label">描述</label>
                 <div class="col-sm-10">
-                  <input type="text" name="table" class="form-control col-sm-6">
-                </div>
-              </div>
-              <div class="form-group">
-                <label class="col-sm-2 control-label">字段名</label>
-                <div class="col-sm-10">
-                  <input type="text" name="field" class="form-control col-sm-6">
+                  <input type="text" name="desc" class="form-control col-sm-6">
                 </div>
               </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label">枚举值</label>
                 <div class="col-sm-10">
-                  <textarea name="enums" class="form-control col-sm-6"></textarea>
+                  <textarea name="enums" class="form-control col-sm-6" required></textarea>
+                  <p>以","分隔的字符串, 例如: 高清原图,高清转扫,中清原图,中清转扫, <strong>请不要删除已有的项目，除非你确切的知道会有什么效果。</strong></p>
                 </div>
               </div>
             </form>
@@ -198,7 +197,7 @@
   <script src="js/sharepage.base.js"></script>
   <script src="js/sharepage.js"></script>
   <script src="js/sharepage.ext.js"></script>
-  <script src="js/sfmiscommons.js"></script>
+  <script src="js/cagcommons.js"></script>
   <script src="js/sys_enum.js"></script>
-<% include foot.html %>
+<% include ../foot.html %>
 

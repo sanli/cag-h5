@@ -5,11 +5,11 @@
  */
 var sys_enumdb = require('../data/sys_enumdb.js')
     // base function
-    , share = require('../sharepage')
-    , sf = require('../config.js')
+    , share = require('../../../sharepage')
+    , sf = require('../../../config.js')
+    , conf = require('../../../config.js')
     , inspect = require('util').inspect
-    , ObjectID = require('mongodb').ObjectID
-    , upload = require('./upload');
+    , ObjectID = require('mongodb').ObjectID;
 
 //LIST用到的参数
 var PAGE = {
@@ -49,12 +49,13 @@ exports.bindurl=function(app){
     // ...
 }
 
-
 // GUI页面
 exports.page = function(req, res){
-    res.render('sys_enumpage.html', {
-        conf : require('../../../config.js'),
-        title: sf.getTitle("数据字典"),
+    res.render('sys/sys_enumpage.html', {
+        conf : conf,
+        target : conf.target,
+        stamp : conf.stamp,
+        title: "数据字典",
         user : req.session.user,
         commons : require('./commonsctl.js')
     });

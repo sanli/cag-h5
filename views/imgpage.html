@@ -5,8 +5,8 @@
     <meta name="google-site-verification" content="Aa-Px_e0MlHLJCGspxj9asA8Iue7q21mBh3b62pkl44" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="中华珍宝馆,高清书法图片,高清绘画图片,高清书画图片,传统书画艺术,书法欣赏,水墨画欣赏,中国名画,工笔画名作,图片下载,兰亭序,富春山居图,清明上河图,瘦金体,法海寺壁画"></meta>
-    <meta name="description" content="中华珍宝馆,中国历代高清书法图片欣赏和下载,高清绘画图片欣赏和下载" ></meta>
+    <meta name="keywords" content="高清书画,书画图片下载,中华珍宝馆,书法欣赏,书法艺术,绘画欣赏,绘画艺术,传统艺术,水墨画欣赏,古画欣赏,工笔画欣赏"></meta>
+    <meta name="description" content="中华珍宝馆,书法欣赏,高清书法图片下载,绘画欣赏,高清绘画图片下载"></meta>
     <link rel="shortcut icon" href="/ico/favicon.ico">
     <title><%=title %></title><%
 if( target === 'release' ){ %>
@@ -64,7 +64,7 @@ if( target === 'release' ){ %>
                 <% if(info.originalUrl || info.offlineUrl){ %>
                   <a id="downloadbtn" target="downloadwindow" href="#" data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="查看与幅图相关的可下载资料" class="pull-right download"><span class="glyphicon glyphicon-cloud-download"></span>下载</a>
                 <% }else{ %>
-                  <a data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="这幅图片暂时没有开放下载，中华珍宝馆每日发布“近期热门”前三名的图片下载链接，需要下载请评论本图，将其顶到前三" class="pull-right download"><span class="glyphicon glyphicon-lock"></span>暂不提供下载</a>
+                  <a href="mailto:support@share-net.cn?subject=我需要付费下载图片《<%=info.paintingName %>》" data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="这幅图片暂时没有开放下载，中华珍宝馆每日发布“近期热门”前三名的图片下载链接，需要下载请评论本图，将其顶到前三，或者你也可以给我们发邮件，申请服务下载。" class="pull-right download"><span class="glyphicon glyphicon-lock"></span>申请付费下载</a>
                 <% } %>
               </div>
             </div>

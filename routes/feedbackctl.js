@@ -62,7 +62,7 @@ exports.page = function(req, res){
         conf : conf,
         target : conf.target,
         stamp : conf.stamp,
-        title: sf.getTitle("用户反馈"),
+        title: "用户反馈",
         user : req.session.user,
         commons : require('./cagcommonsctl.js')
     });
