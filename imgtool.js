@@ -187,7 +187,7 @@ function _createZipFile(filename, basedir, fn){
 //var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/元/bigfile';
 //var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/宋/ready';
 //var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/宋/bigfile
-var filedir = '/Users/sanli/百度云同步盘/历代精品/宋/ready';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/宋/ready';
 //var filedir = '/Users/sanli/百度云同步盘/历代精品/宋/bigfile';
 
 
@@ -208,6 +208,9 @@ var filedir = '/Users/sanli/百度云同步盘/历代精品/宋/ready';
 //var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/唐/ready';
 //var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/唐/bigfile';
 //var filedir = '/Users/sanli/Desktop/中华珍宝馆/我唐山人分享';
+
+// 开始处理明代书法
+var filedir = '/Users/sanli/百度云同步盘/历代精品/宋/ready';
 function processPainting( cond , fn ){
     // 1. 读取文件信息
     graper.grapfileinfo(filedir, function(){
