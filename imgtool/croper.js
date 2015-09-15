@@ -182,6 +182,13 @@ function cropper( outdir, options ){
             var idx =0;
             async.eachSeries( files, function(file, eachfilecb){
                 console.log("图片:%s level:%s subfileIdx:%s ", fileinfo.paintingName, level, idx);
+                var file = fileinfo.files[idx],
+                    sourcePath = file.sourcePath;
+                if(!fs.existsSync(sourcePath)){
+                    console.log('源文件:%s 不存在，跳过这个级别的切割',  sourcePath);
+                    return callback();
+                }
+
                 if(fs.existsSync(targetdir + '/' + level + '/0_0.jpg')){
                     console.log('文件:%s 已经存在，跳过这个级别的切割', targetdir + '/' + level + '/0_0.jpg' );
                     return callback();
@@ -247,6 +254,11 @@ function PSCropper(outdir, options){
         var tempfile = 'imgtool/cropertmpl.ejs';
         if(!fs.existsSync(tempfile))
             return fn(new Error("模板文件不存在：" + tempfile));
+
+
+        var sourcePath = fileinfo.files[0].sourcePath;
+        if(!fs.existsSync(sourcePath))
+            return fn(new Error("原文件不存在：" + sourcePath));
 
         mkdirp.sync(outdir + '/' + fileinfo._id);
         var outfile = outdir + '/' + fileinfo._id + '/crop.jsx',
