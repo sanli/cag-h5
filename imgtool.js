@@ -46,23 +46,25 @@ function generateFileinfo(outdir, fn){
             if(err) return fn(err);
 
             async.eachSeries(fileinfos, function(fileinfo, cb){
-                if(fs.existsSync(outdir + '/' + fileinfo._id)){
+                var dir = outdir + '/' + fileinfo._id,
+                    tpfile = dir + '/tb.jpg'; 
+                if(fs.existsSync(dir) && fs.existsSync(tpfile)){
                     if(fs.existsSync(outdir + '/' + fileinfo._id + '/jpg.html')){
                         cb();
-                        return;
+                    }else{
+                        var  outfileinfo = extend(fileinfo.toObject());
+                        delete outfileinfo.files;
+                        var metaFilename = outdir + '/' + fileinfo._id + '/meta.json' ;
+                        var out = JSON.stringify(outfileinfo);
+                        fs.writeFileSync(metaFilename, out);
+                        console.log('输出文件 meta info:%s', metaFilename);
+                        croped.push(outfileinfo);
+
+                        //生成离线下载文件
+                        _genOfflineHtmlFile(outdir, fileinfo, cb);                        
                     }
-
-                    var  outfileinfo = extend(fileinfo.toObject());
-                    delete outfileinfo.files;
-                    var metaFilename = outdir + '/' + fileinfo._id + '/meta.json' ;
-                    var out = JSON.stringify(outfileinfo);
-                    fs.writeFileSync(metaFilename, out);
-                    console.log('输出文件 meta info:%s', metaFilename);
-                    croped.push(outfileinfo);
-
-                    //生成离线下载文件
-                    _genOfflineHtmlFile(outdir, fileinfo, cb);
                 }else{
+                    console.log("目标目录不存在%s，跳过", outdir + '/' + fileinfo._id);
                     cb();
                 }
             }, function(cb){
@@ -135,7 +137,9 @@ function _genOfflineHtmlFile(outdir, fileinfo, fn){
 var spawn = require('child_process').spawn;
 function _createZipFile(filename, basedir, fn){
     var zip = spawn('zip'
-     
+        , ['-r', '../../offline/' + filename, 'jpg.html', 'xin_xi.txt' , '12', '13', '14', '15', '16', '17', '18']
+        , { cwd: basedir });
+
     zip.stdout.on('data', function (data) {
         //console.log('[ERROR]zip stderr: ' + data.toString());
     });
@@ -159,11 +163,51 @@ function _createZipFile(filename, basedir, fn){
  * 导入制定文件到珍宝馆
  * paintingName : 藏品名称
  */
-var filedir = '/Users/sanli/Desktop/中华珍宝馆/高清精选';
+//var filedir = '/Users/sanli/Desktop/中华珍宝馆/高清精选';
 //var filedir = '/Volumes/XiaoMi/百度云同步盘/历代精品/宋/赵佶';
 //var filedir = '/Volumes/XiaoMi/百度云同步盘/历代精品/宋/郭熙';
 //var filedir = '/Volumes/XiaoMi/百度云同步盘/历代精品/宋/李成';
-//var filedir = '/Volumes/XiaoMi/百度云同步盘/历代精品/宋/赵孟坚';
+//var filedir = '/Users/sanli/Desktop/中华珍宝馆/高清精选/梁楷';
+// var filedir = '/Users/sanli/Desktop/中华珍宝馆/高清精选/马远';
+//var filedir = '/Users/sanli/Desktop/中华珍宝馆/高清精选/赵孟坚';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/元/倪瓒';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/元/黄公望';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/元/吴镇';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/元/王蒙';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/元/赵雍';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/元/赵孟頫";
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/元/赵孟頫/bigfile';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/元/钱选';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/元/钱选/bigfile';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/元/ready';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/元/ready/bigfile';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/元';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/元';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/元/赵孟頫';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/元/bigfile';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/宋/ready';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/宋/bigfile
+var filedir = '/Users/sanli/百度云同步盘/历代精品/宋/ready';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/宋/bigfile';
+
+
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/晋/ready';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/晋/bigfile';
+
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/欧美/ready';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/欧美/bigfile';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/唐/ready';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/唐/bigfile';
+
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/五代/ready';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/金/ready';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/五代/bigfile';
+
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/明/ready';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/明/bigfile';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/唐/ready';
+//var filedir = '/Users/sanli/百度云同步盘/历代精品/古代书法/唐/bigfile';
+//var filedir = '/Users/sanli/Desktop/中华珍宝馆/我唐山人分享';
 function processPainting( cond , fn ){
     // 1. 读取文件信息
     graper.grapfileinfo(filedir, function(){
@@ -175,9 +219,13 @@ function processPainting( cond , fn ){
 
             // 3. 执行切分    
             var cagstoreFolder = '/Users/sanli/Documents/workspace/cag-h5/cagstore',
-                //crop = cropper.createPSCropper(cagstoreFolder),
-                crop = cropper.createImageMagickCropper('./cagstore'),
+                // TODO: 需要根据文件大小判断使用什么切割器，> 500M智能使用PS，< 500M使用GMCropper
+                pscrop = cropper.createPSCropper(cagstoreFolder),
+                imcrop = cropper.createImageMagickCropper('./cagstore'),
                 tasks = [];
+            // 根据目录名选择对应的切分器
+            var crop = /\/bigfile$/.test(filedir) ? pscrop : imcrop;
+            //var crop = pscrop;
 
             cond['files.sourcePath'] = RegExp('^' + filedir + '.*');
             queryfile(cond, function(err, fileinfos){
@@ -187,9 +235,9 @@ function processPainting( cond , fn ){
                 async.eachSeries(fileinfos, function(fileinfo, callback){
                     crop.crop(fileinfo, function(err, outfile){
                         if(err){
-                            console.log('切分文件出错，跳过当前文件',err);
-                        }else{
-                            tasks.push({script: outfile, info : fileinfo});    
+			    console.log('切分文件出错，跳过当前文件',err);
+			}else{
+		 	tasks.push({script: outfile, info : fileinfo});
                         }
                         callback();
                     });
@@ -224,7 +272,7 @@ var isme = require('./sharepage.js').isme;
 var tester = {
     // 导入藏品到珍宝馆存储系统
     importFile : function(){
-        processPainting({}, function(err){
+        processPainting( { updateTime : { $gt : new Date("2015-03-20")} } , function(err){
             if(err) console.log('发生错误:', err);
             console.log('执行结束');
         });
