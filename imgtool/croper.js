@@ -143,6 +143,11 @@ function cropper( outdir, options ){
             return fn();
         }
 
+        // 为了批量生成切片文件，需要解决gm的一个bug, args.js文件中
+        // return this.out("-crop", w + "x" + h + "+" + (x || 0) + "+" + (y || 0) + (percent ? '%' : ''));
+        // 替换为
+        // return this.out("-crop", w + "x" + h + "+" + ( x ? ( x + "+" ) : "" ) + ( y ? y : "" ) + (percent ? '%' : ''));
+        // 参考：https://github.com/aheckmann/gm/issues/442
         gm(resizefile)
         .interlace('Plane')
         .background('#FFFFE0')

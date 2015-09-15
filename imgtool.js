@@ -30,6 +30,11 @@
     calcScaleLevel = require('./imgtool/commons.js').calcScaleLevel,
     cropper = require('./imgtool/croper.js');
 
+
+var conf = {
+    outdir : '/Volumes/新加卷/cagstore',
+    offlinedir : '/Volumes/新加卷/offline'
+}
 /**
  * 图片信息导出为json文件，供静态网页使用，需要扫描输出目录，只有已经输出切割内容的文件才输出到
  * fileinfo.json中.
@@ -137,7 +142,7 @@ function _genOfflineHtmlFile(outdir, fileinfo, fn){
 var spawn = require('child_process').spawn;
 function _createZipFile(filename, basedir, fn){
     var zip = spawn('zip'
-        , ['-r', '../../offline/' + filename, 'jpg.html', 'xin_xi.txt' , '12', '13', '14', '15', '16', '17', '18']
+        , ['-r', conf.offlinedir + '/' + filename, 'jpg.html', 'xin_xi.txt' , '12', '13', '14', '15', '16', '17', '18']
         , { cwd: basedir });
 
     zip.stdout.on('data', function (data) {
@@ -222,7 +227,7 @@ function processPainting( cond , fn ){
             debugger;
             // 3. 执行切分    
             //var cagstoreFolder = '/Users/sanli/Documents/workspace/cag-h5/cagstore',
-            var cagstoreFolder = '/Volumes/新加卷/cagstore',
+            var cagstoreFolder = conf.outdir,
                 // TODO: 需要根据文件大小判断使用什么切割器，> 500M智能使用PS，< 500M使用GMCropper
                 pscrop = cropper.createPSCropper(cagstoreFolder),
                 //imcrop = cropper.createImageMagickCropper('./cagstore'),
@@ -316,7 +321,7 @@ var tester = {
     },
 
     generateAllFileinfo : function(){
-        generateFileinfo('./cagstore', function(err, str){
+        generateFileinfo(conf.outdir, function(err, str){
             if(err) console.trace(err);
 
             console.log("输出完成");

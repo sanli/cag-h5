@@ -1,1 +1,1 @@
-exports.cagstore = [{"_id":"54919c6ce49a8df80766088a","author":"赵孟坚","paintingName":"墨兰图全卷","updateTime":"2014-12-17T15:08:28.376Z","age":"南宋","mediaType":"纸本","areaSize":"34.5x90.2","fileSize":"1.5576MB","pixels":"51920.00000000001","maxlevel":18,"minlevel":14,"snapSize":{"width":460,"height":128},"size":{"width":73476,"height":7066}}];
+exports.cagstore = [];
