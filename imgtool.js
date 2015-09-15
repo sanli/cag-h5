@@ -210,7 +210,7 @@ function _createZipFile(filename, basedir, fn){
 //var filedir = '/Users/sanli/Desktop/中华珍宝馆/我唐山人分享';
 
 // 开始处理明代书法
-var filedir = '/Users/sanli/百度云同步盘/历代精品/宋/ready';
+var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/古代书法/明/ready';
 function processPainting( cond , fn ){
     // 1. 读取文件信息
     graper.grapfileinfo(filedir, function(){
@@ -219,12 +219,14 @@ function processPainting( cond , fn ){
         // 2. 提取画作信息
         graper.grapPainting(filedir, function(){
             console.log('STEP2 : 分析作品信息结束，开始分层切分...');
-
+            debugger;
             // 3. 执行切分    
-            var cagstoreFolder = '/Users/sanli/Documents/workspace/cag-h5/cagstore',
+            //var cagstoreFolder = '/Users/sanli/Documents/workspace/cag-h5/cagstore',
+            var cagstoreFolder = '/Volumes/新加卷/cagstore',
                 // TODO: 需要根据文件大小判断使用什么切割器，> 500M智能使用PS，< 500M使用GMCropper
                 pscrop = cropper.createPSCropper(cagstoreFolder),
-                imcrop = cropper.createImageMagickCropper('./cagstore'),
+                //imcrop = cropper.createImageMagickCropper('./cagstore'),
+                imcrop = cropper.createImageMagickCropper(cagstoreFolder),
                 tasks = [];
             // 根据目录名选择对应的切分器
             var crop = /\/bigfile$/.test(filedir) ? pscrop : imcrop;
@@ -238,9 +240,9 @@ function processPainting( cond , fn ){
                 async.eachSeries(fileinfos, function(fileinfo, callback){
                     crop.crop(fileinfo, function(err, outfile){
                         if(err){
-			    console.log('切分文件出错，跳过当前文件',err);
-			}else{
-		 	tasks.push({script: outfile, info : fileinfo});
+	                       console.log('切分文件出错，跳过当前文件',err);
+            			}else{
+            		 	   tasks.push({script: outfile, info : fileinfo});
                         }
                         callback();
                     });
