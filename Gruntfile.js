@@ -106,7 +106,7 @@ module.exports = function(grunt) {
         aliyun: {
             noProcess : 'public',
             files: [{
-                src: ['public/css/**', 'public/favicon.ico', 'public/*.html', 'public/js/**', 'public/fonts/**', 'public/ico/**', 'public/images/**' , 'data/**'
+                src: ['public/css/**', 'public/favicon.ico', 'public/*.html', 'public/js/**', 'public/fonts/**', 'public/ico/**', 'public/images/**' ,'public/donate/**' , 'data/**'
                     , 'routes/**', 'views/**', 'sharepage/**', 'mongo.js' , 'sharepage.js', 'logger.js'
                     , 'cag.js', 'package.json'],
                 dest: '.build/aliyun',

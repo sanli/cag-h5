@@ -28,6 +28,7 @@ exports.bindurl=function(app){
     bindurl(app, '/', { outType : 'page', needAuth : false } , exports.main);
     bindurl(app, '/main.html', { outType : 'page', needAuth : false }, exports.main);
     bindurl(app, '/comments', { outType : 'page', needAuth : false }, exports.dscomments);
+    bindurl(app, '/donate', { outType : 'page', needAuth : false }, exports.donate);
     
     // 看图
     bindurl(app, '/img.html', { outType : 'page', needAuth : false }, exports.img);
@@ -205,6 +206,23 @@ exports.dscomments = function(req, res){
         user : share.getUser(req),
         torist : share.getTourist(req),
         title: "最近评论",
+        page : 'commons',
+        target : conf.target,
+        stamp : conf.stamp,
+        conf : conf,
+        opt : {
+            message : exports.broadcast_message,
+            hide_search : false
+        }
+    });
+};
+
+// 赞助页面
+exports.donate = function(req, res){
+    res.render('donate.html', {
+        user : share.getUser(req),
+        torist : share.getTourist(req),
+        title: "赞助",
         page : 'commons',
         target : conf.target,
         stamp : conf.stamp,
