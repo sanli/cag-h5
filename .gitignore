@@ -8,3 +8,4 @@ qiniuconf.json
 node_modules
 nohup.out
 *.sublime*
+cag.sublime-workspace

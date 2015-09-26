@@ -215,8 +215,13 @@ function _createZipFile(filename, basedir, fn){
 //var filedir = '/Users/sanli/Desktop/中华珍宝馆/我唐山人分享';
 
 // 开始处理明代书法
-var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/古代书法/明/ready';
-//var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/古代书法/明/bigfile';
+//var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/古代书法/明/ready';
+var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/古代书法/明/bigfile';
+
+//var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/近代大家/ready';
+//var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/近代大家/bigfile';
+
+
 function processPainting( cond , fn ){
     // 1. 读取文件信息
     graper.grapfileinfo(filedir, function(){
