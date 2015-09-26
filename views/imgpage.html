@@ -57,10 +57,11 @@ if( target === 'release' ){ %>
             <div class="page-header">
               <h2 id="painting-title"><%=info.paintingName %></h2>
               <div class="">
-                <button id="bookmarkbtn" data-trigger="hover" data-placement="right" data-toggle="popover" title="收藏这个幅图" data-content="图片收藏后可以在标题栏中快速访问" type="button" 
+                <button id="bookmarkbtn" data-trigger="hover" data-placement="right" data-toggle="popover" title="收藏这幅图" data-content="图片收藏后可以在标题栏中快速访问" type="button" 
                   class="btn <%= bookmarked ? 'btn-info' : 'btn-default' %>"
                   data-bookmarked="<%= bookmarked ? 'true' : 'false' %>"
                   ><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><%= bookmarked ? '已收藏' : '收藏' %></button>
+                <a id="donate" class="btn btn-primary" href="/donate/" style="color: #fff;">我们需要小额赞助</a>
                 <% if(info.originalUrl || info.offlineUrl){ %>
                   <a id="downloadbtn" target="downloadwindow" href="#" data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="查看与幅图相关的可下载资料" class="pull-right download"><span class="glyphicon glyphicon-cloud-download"></span>下载</a>
                 <% }else{ %>
