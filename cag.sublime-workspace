@@ -523,23 +523,7 @@
 			"file": "imgtool.js",
 			"settings":
 			{
-				"buffer_size": 12969,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "imgtool/croper.js",
-			"settings":
-			{
-				"buffer_size": 12469,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "package.json",
-			"settings":
-			{
-				"buffer_size": 1219,
+				"buffer_size": 13094,
 				"line_ending": "Unix"
 			}
 		}
@@ -639,24 +623,35 @@
 	[
 		"/Users/sanli/Documents/workspace/cag-h5",
 		"/Users/sanli/Documents/workspace/cag-h5/imgtool",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm"
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data",
+		"/Users/sanli/Documents/workspace/cag-h5/views"
 	],
 	"file_history":
 	[
+		"/Users/sanli/Documents/workspace/cag-h5/Gruntfile.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/tnavi.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/imgpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/downloadpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/donate.html",
+		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/routes/commonsctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/views/dscommentpage.html",
+		"/Users/sanli/Documents/workspace/cag-h5/routes/commentctl.js",
+		"/Users/sanli/Documents/workspace/cag-h5/imgtool.js",
+		"/Users/sanli/Documents/workspace/cag-h5/imgtool/croper.js",
+		"/Users/sanli/Documents/workspace/cag-h5/package.json",
 		"/Users/sanli/Documents/workspace/cag-h5/.gitignore",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/lib/args.js",
 		"/Users/sanli/Documents/workspace/cag-h5/node_modules/gm/README.md",
-		"/Users/sanli/Documents/workspace/cag-h5/package.json",
 		"/Users/sanli/Documents/workspace/cag-h5/imgtool/graper.js",
 		"/Users/sanli/Documents/workspace/cag-h5/data/paintdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/imgtool.js",
 		"/Users/sanli/Documents/workspace/cag-h5/imgtool/cropcommons.jsx",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/tourist.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/main.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/userinfopage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/tourist/touristpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/mainctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/data/paintingsdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/foot.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/tfootnavi.html",
@@ -668,9 +663,7 @@
 		"/Users/sanli/Documents/workspace/cag-h5/routes/exhibitctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/thead.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/tfoot.html",
-		"/Users/sanli/Documents/workspace/cag-h5/views/imgpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/img.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/paintingspage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/head.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/navi.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/commons/cagstore.inc",
@@ -686,13 +679,11 @@
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/sys_enum.js",
 		"/Users/sanli/Documents/workspace/cag-h5/routes/cagcommonsctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_enumdb.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/tnavi.html",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/routes/sys_enumctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.base.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/bookmark/bookmarkpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/data/bookmarkdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/config.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/dscommentpage.html",
 		"/Users/sanli/Documents/workspace/sanli.github.io/_posts/2015-07-02-move-to-github-pages.markdown",
 		"/Users/sanli/Documents/workspace/sanli.github.io/_includes/header.html",
 		"/Users/sanli/Documents/workspace/sanli.github.io/_layouts/post.html",
@@ -707,9 +698,7 @@
 		"/Users/sanli/Documents/workspace/cag-h5/public/css/main.css",
 		"/Users/sanli/Documents/workspace/sanli.github.io/Gemfile",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/routes/userctl.js",
-		"/Users/sanli/Documents/workspace/cag-h5/views/downloadpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/paintings.js",
-		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/routes/commonsctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_roledb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/userdb.js",
 		"/Users/sanli/Documents/workspace/cag-h5/sharepage/sys/data/sys_moduledb.js",
@@ -752,7 +741,6 @@
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/sharepage.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/commentpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/backbone.js",
-		"/Users/sanli/Documents/workspace/cag-h5/routes/commentctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/mybookmark.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/exhibit.js",
 		"/Users/sanli/Documents/workspace/cag-h5/public/js/bookmark.js",
@@ -762,16 +750,13 @@
 		"/Users/sanli/Documents/workspace/cag-h5/public/test.png",
 		"/Users/sanli/Documents/workspace/cag-h5/views/exhibit/exhibitpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/views/exhibit/searchpage.html",
-		"/Users/sanli/Documents/workspace/cag-h5/Gruntfile.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/exhibitpage.html",
 		"/Users/sanli/Documents/workspace/cag-h5/routes/commonsctl.js",
 		"/Users/sanli/Documents/workspace/cag-h5/views/outline.js",
 		"/Users/sanli/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/Users/sanli/Documents/workspace/cag-h5/views/cagstore_client.inc",
 		"/Users/sanli/Documents/workspace/cag-h5/views/commons/outlinepanel_client.inc",
-		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/Makefile",
-		"/Users/sanli/Documents/workspace/cag-h5/views/commons/cagstore.js",
-		"/Users/sanli/Documents/workspace/cag-h5/public/js/leaflet.js"
+		"/Users/sanli/Documents/workspace/cag-h5/node_modules/csv/Makefile"
 	],
 	"find":
 	{
@@ -820,6 +805,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"wx",
+			"...",
+			"h3",
+			"dscomments",
 			"outdir",
 			"offline",
 			"offlinedir",
@@ -943,10 +932,6 @@
 			"\"../",
 			"../",
 			"glyphicon-cloud-download",
-			"console.log",
-			" -",
-			"console.log",
-			"console",
 			"console.log"
 		],
 		"highlight": true,
@@ -1002,7 +987,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -1011,15 +996,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 12969,
+						"buffer_size": 13094,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8008,
-								8008
+								7759,
+								7759
 							]
 						],
 						"settings":
@@ -1029,67 +1014,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "imgtool/croper.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 12469,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8486,
-								8493
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3381.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "package.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1219,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								315,
-								315
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2660.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1183,6 +1108,46 @@
 		"selected_items":
 		[
 			[
+				"imgtool.js",
+				"imgtool.js"
+			],
+			[
+				"grun",
+				"Gruntfile.js"
+			],
+			[
+				"dona",
+				"views/donate.html"
+			],
+			[
+				"imgpage.html",
+				"views/imgpage.html"
+			],
+			[
+				"paintingspage",
+				"views/paintingspage.html"
+			],
+			[
+				"navi",
+				"views/tnavi.html"
+			],
+			[
+				"dsc",
+				"views/dscommentpage.html"
+			],
+			[
+				"mainctl.js",
+				"routes/mainctl.js"
+			],
+			[
+				"commentctl.js",
+				"routes/commentctl.js"
+			],
+			[
+				"commonsctl.js",
+				"sharepage/sys/routes/commonsctl.js"
+			],
+			[
 				"git",
 				".gitignore"
 			],
@@ -1219,10 +1184,6 @@
 				"views/foot.html"
 			],
 			[
-				"mainctl.js",
-				"routes/mainctl.js"
-			],
-			[
 				"mybookmarkpage.html",
 				"views/tourist/mybookmarkpage.html"
 			],
@@ -1257,10 +1218,6 @@
 			[
 				"img.js",
 				"public/js/img.js"
-			],
-			[
-				"imgpage.html",
-				"views/imgpage.html"
 			],
 			[
 				"paintingspage.html",
@@ -1387,10 +1344,6 @@
 				"config.js"
 			],
 			[
-				"paintingspage",
-				"views/paintingspage.html"
-			],
-			[
 				"tnavi.htm",
 				"views/tnavi.html"
 			],
@@ -1509,10 +1462,6 @@
 			[
 				"cag.j",
 				"cag.js"
-			],
-			[
-				"commonsctl.js",
-				"sharepage/sys/routes/commonsctl.js"
 			],
 			[
 				"sysroledb.js",
@@ -1669,30 +1618,6 @@
 			[
 				"exhibitctl.js",
 				"routes/exhibitctl.js"
-			],
-			[
-				"grun",
-				"Gruntfile.js"
-			],
-			[
-				"exhibitpage.html",
-				"views/exhibitpage.html"
-			],
-			[
-				"exhiti",
-				"public/js/exhibit.js"
-			],
-			[
-				"exhibit.js",
-				"public/js/exhibit.js"
-			],
-			[
-				"cagstore.in",
-				"views/commons/cagstore_short.inc"
-			],
-			[
-				"outline.js",
-				"views/outline.js"
 			]
 		],
 		"width": 0.0
