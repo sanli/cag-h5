@@ -171,6 +171,13 @@ function cropper( outdir, options ){
         var targetdir = outdir + '/' + fileinfo._id,
             file = fileinfo.files[0],
             sourcePath = file.sourcePath;
+
+        // 如果源文件不存在，则返回错误
+        if(!fs.existsSync(sourcePath)){
+            console.log('源文件:%s 不存在，跳过切割',  sourcePath);
+            return fn(new Error('文件:［' + sourcePath + '］ 不存在，跳过切割...' ));
+        }
+
         // 生成jpg.html是整个过程的最后一步，如果没有生成jpg.html，判断为
         if(!opt.overwrite && fs.existsSync(targetdir + '/jpg.html')){
             console.log('文件:%s 已经切割，跳过...', sourcePath );

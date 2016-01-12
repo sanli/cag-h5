@@ -48,20 +48,12 @@ var Module = $.extend(new $M(), {
 		if(Module.map){
 			Module.map.remove();
 		}
-
-		var options = {
+		var map = Module.map = L.map('map',{
 			maxBounds: bounds,
 			minZoom: fileinfo.minlevel,
 		    crs: L.CRS.Simple,
 		    fullscreenControl: true
-		}
-		// 如果是WebView版本，则移除控件
-		if(Module.isWebview(state)){
-			options.zoomControl = false;
-			options.attributionControl = false;
-		}
-
-		var map = Module.map = L.map('map', options).fitBounds( bounds );	
+		}).fitBounds( bounds );	
 
 		var la = state.layer || '',
 			detectRetina = fileinfo.maxlevel - fileinfo.minlevel >= 4; //巨型画作才需要探测Retina屏
@@ -73,15 +65,12 @@ var Module = $.extend(new $M(), {
 		}).addTo(map);
 
 		if(Module.isWebview(state)){
+			Module.map.removeControl(Module.map.attributionControl);
 			$('#bookmarkbtn').css('display', 'none');
 		}else{
-			if(Module.isIOS()){
-				map.attributionControl
-					.setPrefix('<a href="/l/iosapp"><span class="glyphicon glyphicon-phone"></span>中华珍宝馆APP</a>');	
-			}else{
-				map.attributionControl
-					.setPrefix('<a href="/main.html?l=home"><span class="glyphicon glyphicon-home"></span>中华珍宝馆</a>');	
-			}
+			map.attributionControl
+				.setPrefix('<a href="/main.html?l=home"><span class="glyphicon glyphicon-home"></span>中华珍宝馆</a>')
+				.addAttribution('<a href="/main.html?l=more"><span class="glyphicon glyphicon-share-alt"></span>更多图片</a>');
 		}
 		Module.initMap(map);
 
@@ -119,14 +108,12 @@ var Module = $.extend(new $M(), {
         	Module.setEditState(false);
         });
 
-        if(!Module.isWebview(PG.state)){
-			Module.commentctl = new MyControl();
-			Module.commentctl.click = function(){
-			 	Module.toggleEditState();
-			};
-			map.addControl(Module.commentctl);
-		}
-		
+		Module.commentctl = new MyControl();
+		Module.commentctl.click = function(){
+		 	Module.toggleEditState();
+		};
+
+		map.addControl(Module.commentctl);
 		// 移动版不自动弹出评论框
 		// setTimeout(function(e){
 		// 	Module.toggleEditState();	
@@ -215,10 +202,6 @@ var Module = $.extend(new $M(), {
 
 	isWebview : function(state){
 		return state.view ? /^webview/.test(state.view) : false ;
-	},
-
-	isIOS : function(){
-		return /(iPhone|iPad)/.test(navigator.userAgent)
 	},
 
 	pin : function(e){

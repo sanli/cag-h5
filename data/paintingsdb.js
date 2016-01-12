@@ -84,6 +84,9 @@ var painting_view = new Schema({
     resourceLevel : String,
     // 画作级别: 绘画做平的级别
     paintingLevel : String,
+    // 对画作的整体评价，综合考虑各个因素得到
+    // ['五级-普清','四级-半高清','三级-高清','二级-超高清','一级-如实物','特级-超实物'],
+    overallLevel : String,
     // 作品标签，用于对查询结果进行过滤
     // 书法、楷书、行书、篆书、法帖、碑刻、国画、山水、工笔画、文人画...
     tags : [String],
@@ -159,6 +162,8 @@ exports.queryfile = function(query, project, sort, fn, page){
         sort = {};
         project = {};
     }
+
+    console.log(query);
     Module.find(query, project)
         .sort(sort)
         .skip(page.skip)
@@ -314,6 +319,15 @@ exports.findById = function(_id, project, fn){
     });
 }
 
+exports.findByCond = function(cond, fn){
+  Module.findOne(cond
+    , function(err, doc){
+      if(err) return fn(err);
+            
+      fn(err, doc && doc.toObject());
+    });  
+}
+
 //删除一张图，只是标记为已删除，不实际删除图片
 exports.delete = function(_id, data, fn) {
     Module.update({ _id : _id}, {$set : data}, function(err){
@@ -324,6 +338,31 @@ exports.delete = function(_id, data, fn) {
       fn(err);
     });
 }
+
+
+// 判断一张图的整体级别
+//  ['五级-普通图','四级-大图','三级-高清图','二级-绢丝可见','一级-如观实物','特级-俯观实物'],
+var levelmap = ['五级-普通图','四级-大图','三级-高清图','二级-绢丝可见','一级-如观实物','特级-俯观实物'];
+exports.judgelevel = function(painting){
+  // 根据缩放计算基本级别
+  var level = painting.maxlevel - painting.minlevel;
+
+  // 资源级别如果不是 "高清原拍", 就降1～2个级别，
+  // 如果资源级别为空，就定为 "高清原拍"
+  var resure_dec = { '高清原拍' : 0 , '高清转扫' : -1, '中清原拍' : -1, '中清转扫' : -2, '聊胜于无' : -3  };
+  if(painting.resourceLevel){
+    var dec = resure_dec[painting.resourceLevel] || 0;
+    level += dec;
+  }
+
+  // TODO: 判断是否为（纵或者横方向上的），一般是册页，扇面，长卷等，如果为小图，提高一分，因为小图的缩放比一般来说比较小，通过缩放比计算
+  // 出来的得分偏低，需要给予提高。可以通过比较实际尺寸的到。
+  // TODO: 需要精确设定图片大小
+
+  var paintinglevel = levelmap[ Math.min( level, levelmap.length - 1 )];
+  return paintinglevel;
+}
+
 
 // ============================= 下面是单元测试用的代码 ================================
 var isme = require('../sharepage.js').isme;
@@ -351,6 +390,25 @@ var tester = {
       
       });
     }); 
+  },
+
+  // 刷新评级
+  refreshOverallLevel : function(){
+    Module.find({}, function(err, paintings){
+      if(err) return console.log(err);
+
+      async.eachSeries(paintings, function(painting, cb){
+        var overallLevel = exports.judgelevel(painting);
+        Module.update({ _id : painting._id}, 
+          { $set : { overallLevel : overallLevel } }, cb);
+      }, function(err){
+        if(err) {
+          console.log(err);
+        } else {
+          console.log("更新所有级别完成");
+        }
+      });
+    });
   },
 
   testDefaultValue : function(){

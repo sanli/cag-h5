@@ -26,6 +26,7 @@ function calcSize(painting){
         fileSize = 0, pixels = 0,
         fileNames = [],
         size = { width : 0 , height : 0};
+
     files.forEach(function(file){
         fileSize += parseFloat(file.filesize.toUpperCase().replace("MB"));
         pixels += parseFloat(file.pixels.toUpperCase().replace("MB"));

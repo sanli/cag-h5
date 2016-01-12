@@ -216,7 +216,11 @@ function _createZipFile(filename, basedir, fn){
 
 // 开始处理明代书法
 //var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/古代书法/明/ready';
-var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/古代书法/明/bigfile';
+//var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/古代书法/明/bigfile';
+
+// /清/
+var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/清/ready';
+//var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/清/bigfile';
 
 //var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/近代大家/ready';
 //var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/近代大家/bigfile';

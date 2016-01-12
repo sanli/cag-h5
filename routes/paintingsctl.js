@@ -223,6 +223,7 @@ exports.import = function(req, res){
 
                 var obj = JSON.parse(json);
                 delete obj._id;
+                obj.overallLevel = paintingsdb.judgelevel(obj); 
                 // 设置缺省访问次数为0
                 obj.viewCnt = 0; 
                 paintingsdb.update(id, obj, function(err){

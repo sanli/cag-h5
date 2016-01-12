@@ -26,6 +26,7 @@ exports.broadcast = "";
 exports.bindurl=function(app){
     // 大厅
     bindurl(app, '/', { outType : 'page', needAuth : false } , exports.main);
+    bindurl(app, '/l/:target', { outType : 'page', needAuth : false } , exports.shortlink);
     bindurl(app, '/main.html', { outType : 'page', needAuth : false }, exports.main);
     bindurl(app, '/comments', { outType : 'page', needAuth : false }, exports.dscomments);
     bindurl(app, '/donate', { outType : 'page', needAuth : false }, exports.donate);
@@ -37,6 +38,8 @@ exports.bindurl=function(app){
     // imglite.html 是精简版本的图片浏览器，只支持部分功能，用于手持设备浏览器，Android, IOS
     bindurl(app, '/imglite.html', { outType : 'page', needAuth : false }, exports.imglite);
     bindurl(app, '/imglite/:uuid', { outType : 'page', needAuth : false }, exports.imglite);
+    bindurl(app, '/outline/:age/:author/:paintingName', { outType : 'page', needAuth : false }, exports.imgliteOfOutline );
+    bindurl(app, '/feedbacklite.html', { outType : 'page', needAuth : false }, exports.feedbacklite);
     
     // 实验性页面
     bindurl(app, '/datatoys.html', { outType : 'page', needAuth : false }, exports.datatoys);
@@ -74,8 +77,12 @@ var PAGE = {
     age : {name: 'age', key: 'age', optional: true, default: '' },
     // 作者名称
     author : {name: 'author', key: 'author', optional: true, default: '' },
+    // 作品名称
+    paintingName : {name: 'paintingName', key: 'paintingName', optional: true, default: '' },
     // 作者名称
-    key : {name: 'key', key: 'key', optional: true, default: '' }   
+    key : {name: 'key', key: 'key', optional: true, default: '' } ,
+    // 短链接跳转
+    target : {name: 'target', key: 'target', optional: true, default: '' } ,
 }
 
 exports.broadcast = function(req, res){
@@ -89,6 +96,21 @@ exports.broadcast = function(req, res){
         exports.broadcast_message = "";
     }
     writejson(res, { message : exports.broadcast_message });
+}
+
+
+
+exports.shortlink = function(req, res){
+    var arg = getParam("shortlink", req, res, [ PAGE.target]);
+    if(!arg.passed)
+        return;
+
+    var slink = {
+        iosapp  : 'https://itunes.apple.com/cn/app/zhong-hua-zhen-bao-guan/id905220385?mt=8'
+    };
+
+    var target = slink[arg.target] || 'http://ltfc.net';
+    res.redirect(target);
 }
 
 // 发送到前段显示的消息
@@ -263,6 +285,7 @@ exports.imglite = function(req, res){
     renderImg(req, res, 'imglitepage.html');
 };
 
+
 function renderImg(req, res, templ){
     var agent = req.get('User-Agent');
     if(/.*PhantomJS.*/.test(agent)){
@@ -308,6 +331,38 @@ function renderImg(req, res, templ){
             });
         });
 }
+
+// 通过  age / author / paintingName 查找作品，显示找到的第一幅作品
+exports.imgliteOfOutline = function(req, res){
+    var arg = getParam("img", req, res, [ PAGE.age, PAGE.author, PAGE.paintingName ]);
+    if(!arg.passed)
+        return;
+
+    if(!arg.age || !arg.author || !arg.paintingName)
+        return share.errpage( "却少必要条件", req, res );
+
+    paintdb.findByCond({ age : arg.age , author : arg.author, paintingName : arg.paintingName }, function(err, doc){
+        if(err) return share.errpage( err.message, req, res ); 
+        if(!doc) return share.errpage('您寻找的图片不存在或者已经下线', req, res );
+
+        req.params.uuid = doc._id;
+        renderImg(req, res, 'imglitepage.html');
+    });
+};
+
+exports.feedbacklite = function(req, res){
+    res.render('feedbacklitepage.html', {
+        user: getUser(req),
+        torist : share.getTourist(req),
+        title: getTitle("意见反馈"),
+        target : conf.target,
+        stamp : conf.stamp,
+        conf : conf,
+        opt : {
+            hide_search : true
+        }
+    });
+};
 
 var bookmarkdb = require('../data/bookmarkdb.js');
 function chkbookmark(tourist, paintingid, fn){
