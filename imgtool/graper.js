@@ -132,11 +132,11 @@ function grapPainting(dir, fn){
         console.log('读取文件信息：%s', target);
 
         var painting = getpaintinginfo(basename);
-        if(!painting) return;
+        if(!painting) return callback();
 
         // 已经不再有多切片文件的情况，所以不再需要聚合同名文件
         // TODO: 这里的逻辑已经可以简化了
-        var paintingName = painting.author + '-' + painting.paintingName
+        var paintingName = painting.author + '-' + painting.paintingName;
         if(!paintings[paintingName]){
             paintings[paintingName] = painting;
         }
@@ -166,6 +166,8 @@ function grapPainting(dir, fn){
 
         var paintingsToSave = [];
         for(paintingname in paintings){
+            ///console.log("paintingname:%s", paintingname);
+            //console.log("paintings[paintingname]:", paintings[paintingname]);
             paintingsToSave.push( commons.calcSize(paintings[paintingname]) );
         }
 

@@ -42,6 +42,8 @@ exports.bindurl=function(app){
     // 铭心绝品
     bindurl(app, '/exhibit/search/:key', { outType : 'page', needAuth : false }, exports.search_exhibit);
     bindurl(app, '/api/search/:key', { needAuth : false }, exports.search_exhibit_json);
+
+    bindurl(app, '/api/hotsearch', { needAuth : false }, exports.hotsearch);    
 };
 
 var PAGE = {
@@ -130,20 +132,20 @@ var _create_exhibit_json = function(opt){
         if(!arg.passed)
             return;    
 
-            var argcond = us.pick(arg, opt.condPick);
-            var cond = extend({}, argcond, opt.baseCond);
+        var argcond = us.pick(arg, opt.condPick);
+        var cond = extend({}, argcond, opt.baseCond);
 
-            if(opt.condfn)
-                argcond = opt.condfn(argcond);
+        if(opt.condfn)
+            cond = opt.condfn(cond);
 
-            paintdb.queryfile( cond
-                , { files : false }
-                , opt.sort
-                , function(err, fileinfos){
-                    if(err) return share.errpage(err.message, req, res);
+        paintdb.queryfile( cond
+            , { files : false }
+            , opt.sort
+            , function(err, fileinfos){
+                if(err) return share.errpage(err.message, req, res);
 
-                    writejson(res, fileinfos);
-                }, opt.page);
+                writejson(res, fileinfos);
+            }, opt.page);
     }
 };
 
@@ -252,5 +254,10 @@ exports.morden_exhibit_json = _create_exhibit_json(exhibits.当代馆);
 exports.recent_exhibit_json = _create_exhibit_json(exhibits.新发图);
 exports.mylove_exhibit_json = _create_exhibit_json(exhibits.铭心绝品);
 exports.search_exhibit_json = _create_exhibit_json(exhibits.搜索);
+
+
+exports.hotsearch = function(req, res){
+    writejson(res, ['宋','清明上河','兰亭序','赵孟頫']);
+}
 
 

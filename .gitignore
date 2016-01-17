@@ -9,3 +9,7 @@ node_modules
 nohup.out
 *.sublime*
 cag.sublime-workspace
+
+qiniuconf.json.net
+
+cag.sublime-workspace
