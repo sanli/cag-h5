@@ -43,7 +43,8 @@ exports.bindurl=function(app){
     bindurl(app, '/exhibit/search/:key', { outType : 'page', needAuth : false }, exports.search_exhibit);
     bindurl(app, '/api/search/:key', { needAuth : false }, exports.search_exhibit_json);
 
-    bindurl(app, '/api/hotsearch', { needAuth : false }, exports.hotsearch);    
+    bindurl(app, '/api/hotsearch', { needAuth : false }, exports.hotsearch); 
+    bindurl(app, '/api/info/:uuid', { needAuth : false }, exports.info);   
 };
 
 var PAGE = {
@@ -52,9 +53,9 @@ var PAGE = {
     // 查询条件
     cond : {name: 'cond', key: 'cond', optional: true, default: {} },
     // 排序条件
-    sort : {name: 'sort', key: 'sort', optional: true, default: { wyData1 :1 } },
+    sort : {name: 'sort', key: 'sort', optional: true, default: { _id :1 } },
     // 图片浏览的UUID
-    uuid : {name: 'uuid', key: 'uuid', optional: true, default: '538054ebab18e5515c68a7eb'},
+    uuid : {name: 'uuid', key: 'uuid', optional: false},
     // 消息内容
     message : {name: 'message', key: 'message', optional: true, default: ''},
     // 视图类型
@@ -258,6 +259,22 @@ exports.search_exhibit_json = _create_exhibit_json(exhibits.搜索);
 
 exports.hotsearch = function(req, res){
     writejson(res, ['宋','清明上河','兰亭序','赵孟頫']);
+}
+
+// 查询ID的用户信息
+exports.info = function(req, res){
+    var arg = getParam("fileinfo", req, res, [ PAGE.uuid ]);
+
+    if(!arg.passed)
+        return;
+    
+    paintdb.findById(arg.uuid
+        , { }
+        , function(err, info){
+            if(err) return share.rt(false, err.message, res);
+
+           writejson(res, info);
+        });   
 }
 
 

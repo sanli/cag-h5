@@ -1,8 +1,6 @@
 //PG对象是整个页面的驱动对象，页面的状态在PG对象的state中保存
 var PG = new $P({
-	default: {
-		uuid: '538054ebab18e5515c68a7eb'
-	},
+	default: {},
 
 	bind: function(){
 		this.bindhash();
@@ -38,6 +36,13 @@ var Module = $.extend(new $M(), {
 
     // 根据页面状态，载入数据
     loadPageData: function(state, page){
+    	var jsondata = PG.state.data;
+    	if(!jsondata){
+    		return;
+    	}else{
+    		Module.fileinfo = JSON.parse(jsondata);
+    	}
+
 		var fileinfo = Module.fileinfo;
 		var width = fileinfo.size.width,
 			height = fileinfo.size.height,
@@ -66,7 +71,7 @@ var Module = $.extend(new $M(), {
 		var la = state.layer || '',
 			detectRetina = fileinfo.maxlevel - fileinfo.minlevel >= 4; //巨型画作才需要探测Retina屏
 			
-		Module.tileLayer = L.tileLayer( _cdn('/cagstore/'+ state.uuid +'/{z}' + la + '/{x}_{y}.jpg'), {	
+		Module.tileLayer = L.tileLayer( fileinfo._id +'/{z}' + la + '/{x}_{y}.jpg', {	
 		   bounds: bounds,
 		   maxZoom: fileinfo.maxlevel,
 		   detectRetina: detectRetina
@@ -83,15 +88,6 @@ var Module = $.extend(new $M(), {
 			}
 		}
 		Module.initMap(map);
-
-		// load painting data
-    	$('div.main').spin();
-    	$.getJSON(_cdn("/cagstore/"+ state.uuid + "/meta.json"), function(data){
-    		$('div.main').spin(false);
-    	}).fail(function() {
-		    $('#map').html("<h3>您寻找的艺术品［" + state.uuid + "］不存在，请<a href=\"/main.html\">返回首页</a></h3>");
-		    $('div.main').spin(false);
-		});
     },
 
     // 初始化图片，创建控件
@@ -125,11 +121,6 @@ var Module = $.extend(new $M(), {
 			};
 			map.addControl(Module.commentctl);
 		}
-		
-		// 移动版不自动弹出评论框
-		// setTimeout(function(e){
-		// 	Module.toggleEditState();	
-		// },800);
     },
 
     toggleEditState : function(){
@@ -143,19 +134,13 @@ var Module = $.extend(new $M(), {
 
     loadInfo : function( paintingId, fn ){
     	var $sidebar = $('#sidebar');
-    	$.getJSON("/cagstore/info.json"
-    		, { uuid : paintingId }
-    		, function(data){
-    			if(data.R === 'N')
-	    			return $.alert('#sidebar', '读取藏品信息错误。', 3000);
-
-	    		var info = data;
-	    		Module.pushInfo2Sidebar(info);
-	    		fn && fn(null);
-	    	}).fail(function() {
-			    $.alert('#sidebar','读取藏品信息错误。', 3000);
-			    fn && fn(new Error('读取文件信息错误。'));
-			});
+    	
+		var info = Module.fileinfo;
+		var sidehtml = tmpl('sidebarTpl', {
+			info : info
+		})
+		$sidebar.html(sidehtml);
+	    fn && fn(null);
     },
 
     setEditState : function(isEditing){
@@ -197,21 +182,6 @@ var Module = $.extend(new $M(), {
 	//    功能函数 
 	// ====================================================================================================================================
 	// 添加一个comment到边栏上
-	pushInfo2Sidebar : function(info){
-		// 多说
-		$('#comment-list a.download').popover();
-		$('#comment-list button').popover();
-
-		  (function() {
-		    var ds = document.createElement('script');
-			    ds.type = 'text/javascript';ds.async = true;
-			    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
-			    ds.charset = 'UTF-8';
-			    (document.getElementsByTagName('head')[0] 
-			     || document.getElementsByTagName('body')[0]).appendChild(ds);
-		  })();
-	},
-
 	isWebview : function(state){
 		return state.view ? /^webview/.test(state.view) : false ;
 	},
@@ -219,29 +189,6 @@ var Module = $.extend(new $M(), {
 	isIOS : function(){
 		return /(iPhone|iPad)/.test(navigator.userAgent)
 	},
-
-	pin : function(e){
-		if($('#bookmarkbtn').data('bookmarked'))
-			return;
-
-		$('#bookmarkbtn').attr('disabled', true);
-		var file = Module.fileinfo;
-		$('#bookmarkbtn').spin();
-		PG.getuser(function(err, user){
-			$M.doquery('/bookmark/pin', {
-				title : file.paintingName,
-				paintingid : file._id
-			}, {
-				successfn : function(result){
-					$('#bookmarkbtn').spin(false);
-                    $('#bookmarkbtn').removeClass('btn-default').addClass('btn-info')
-                    	.data('bookmarked', true).attr('disabled', false);
-                }, 
-                alertPosition : '#loginDlg .modal-body'
-			});
-			
-		}, { asklogin : true });
-	}
 });
 
 

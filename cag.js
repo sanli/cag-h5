@@ -36,20 +36,21 @@ var session = require('express-session'),
 // 每次访问URL都会导致一次session查询，每次修改session内容都会导致写入数据库
 // 所以修改session内容需要谨慎考虑性能，请参考以下URL进行配置:
 // https://www.npmjs.com/package/connect-mongo
+// Session数据会为每次连接都创建一个
 app.use(session({ 
   secret: 'china-art-for-chinese-people', 
-  saveUninitialized: true,
-  resave: false,  // 避免重复的写入session
+  saveUninitialized: false,  // 没有写入session的访问不加入DB数据
+  resave: false,             // 避免重复的写入session
   cookie: { 
-    maxAge: 31536000000 // cookie存活一年
+    maxAge: 31536000000       // cookie存活三个月
   }, 
   store: new MongoStore({ 
     //instance: mongo.mongoose, 
     mongooseConnection: mongo.mongoose.connection,
     collection: 'sessions2', 
     stringify : false,
-    autoRemove: 'native',  // session实效时间和cookie一样长
-    touchAfter: 24 * 3600, // 每隔1天才会自动刷新一次session到数据库
+    autoRemove: 'native',    // session实效时间和cookie一样长
+    touchAfter: 6 * 3600,    // 每隔6小时才会更新一次session的超时数据
   }) 
 }));
 

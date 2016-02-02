@@ -100,7 +100,7 @@ var painting_view = new Schema({
     offlineUrl : String,
     // 原始包下载路径
     originalUrl : String,
-
+    
     // 观摩次数
     viewCnt : { type : Number, default : 0 },
     // 描述性文字页面
