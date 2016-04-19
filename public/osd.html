@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenSeadragon Basic Demo</title>
+    <script type="text/javascript" src='/js/openseadragon.js'></script>
+    <script type="text/javascript" src='/js/jquery.min.js'></script>
+    <style type="text/css">
+
+        .openseadragon1 {
+            width: 800px;
+            height: 600px;
+        }
+
+    </style>
+</head>
+<body>
+    <div>
+        Simple demo page to show a default OpenSeadragon viewer.
+    </div>
+    <div id="contentDiv" class="openseadragon1"></div>
+    <script type="text/javascript">
+
+        var viewer = OpenSeadragon({
+            debugMode: true,
+            id: "contentDiv",
+            prefixUrl:     "/images/",
+            minLevel: 15,
+            maxLevel: 18,
+            //defaultZoomLevel : 15,
+            tileSources:   {
+                // height: 16938,
+                // width:  9358,
+                height: 3401,
+                width: 29142,
+                tileSize: 256,
+                minLevel: 15,
+                maxLevel: 18 ,
+                getTileUrl: function( level, x, y ){
+                    return "http://cag.share-net.cn/cagstore/56a1c9c79575e54d25e6d32b/" +
+                            level + "/" + x + "_" + y + ".jpg";
+                            //(level-8) + "-r" + y + "-c" + x + ".jpg";
+                }
+            },
+            //navigatorSizeRatio: 0.25,
+            //showNavigator:true
+        });
+
+
+
+
+    </script>
+</body>
+</html>

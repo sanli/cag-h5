@@ -85,6 +85,8 @@
       , { field: 'fileSize',  title: '文件大小', canSort: true }
       , { field: 'active',  title: '发布状态', canSort: true }
       , { field: 'essence',  title: '精选推荐', canSort: true }
+      , { field: 'download',  title: '下载', canSort: true }
+      , { field: 'outline',  title: '离线', canSort: true }
       , { field: 'viewCnt',  title: '浏览量', canSort: true }];
 
     for(i = 0 ; i<= titles.length -1 ; i++){
@@ -127,6 +129,8 @@
       <td><@=cell.fileSize @></td>
       <td><@=cell.active ? '<span class="label label-info">是</span>' : '<span class="label label-warning">否</span>' @></td>
       <td><@=cell.essence ? '<span class="label label-info">是</span>' : '<span class="label label-warning">否</span>' @></td>
+      <td><@=cell.originalUrl ? '<a target="_download" href="' + cell.originalUrl +'" class="label label-info">是</a>' : '<a class="label label-warning">否</a>' @></td>
+      <td><@=cell.offlineUrl ? '<span class="label label-info">是</span>' : '<span class="label label-warning">否</span>' @></td>
       <td><@=cell.viewCnt @></td>
       <td class="action-ctl">
         <% if(user.role === 'admin'){ %>

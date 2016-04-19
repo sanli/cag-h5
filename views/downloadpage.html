@@ -55,31 +55,6 @@
     </div>
   </div>
 
-  <div class="col-sm-12 col-md-3" style="padding-right: 15px; padding-left: 15px;">
-    <div class="thumbnail col-sm-12 col-md-12">
-      <%if(info.offlineUrl){%>
-        <a target="img-window" class="col-sm-12 col-md-12" href="<@=link @>">
-          <h1 class="glyphicon glyphicon-compressed"></h1>
-        </a>
-      <%}else{%>
-        <h1 class="glyphicon glyphicon-compressed col-sm-12 col-md-12"></h1>
-      <%}%>
-      <div class="caption">
-        <h4>网页离线包</h4>
-        <p><b>网页离线包</b>，把珍宝馆网页和图片切片打包成一个压缩文件，下载离线包后解压，打开其中的<b>“jpg.html”</b>文件即可。离线包适合不是做设计的用户。</p>
-        <p>
-          <%if(info.offlineUrl){%>
-            <a href="<%=info.offlineUrl %>" class="btn btn-primary btn-download" role="button">百度云盘<span class="glyphicon glyphicon-share-alt"></span></a>
-          <%}else{%>
-            <a href="#" class="btn btn-default btn-download" role="button">百度云盘</a>
-            <a href="#" class="btn btn-default btn-download" role="button">360云盘</a>
-          <%}%>
-          
-        </p>
-      </div>
-    </div>
-  </div>
-
   <% if(info.advUrl){ %>
   <div class="col-sm-12 col-md-3" style="padding-right: 15px; padding-left: 15px;">
     <div class="thumbnail col-sm-12 col-md-12">

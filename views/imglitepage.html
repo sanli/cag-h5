@@ -62,7 +62,7 @@ if( target === 'release' ){ %>
                   class="btn <%= bookmarked ? 'btn-info' : 'btn-default' %>"
                   data-bookmarked="<%= bookmarked ? 'true' : 'false' %>"
                   ><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><%= bookmarked ? '已收藏' : '收藏' %></button>
-                <% if(info.originalUrl || info.offlineUrl){ %>
+                <% if(info.originalUrl){ %>
                   <a id="downloadbtn" target="downloadwindow" href="#" data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="查看与幅图相关的可下载资料" class="pull-right download"><span class="glyphicon glyphicon-cloud-download"></span>下载</a>
                 <% }else{ %>
                   <a data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="这幅图片暂时没有开放下载，中华珍宝馆每日发布“近期热门”前三名的图片下载链接，需要下载请评论本图，将其顶到前三" class="pull-right download"><span class="glyphicon glyphicon-lock"></span>暂不提供下载</a>

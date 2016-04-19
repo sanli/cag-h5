@@ -258,7 +258,7 @@ exports.search_exhibit_json = _create_exhibit_json(exhibits.搜索);
 
 
 exports.hotsearch = function(req, res){
-    writejson(res, ['宋','清明上河','兰亭序','赵孟頫']);
+    writejson(res, ['宋','清明上河图','兰亭序','赵孟頫','唐寅', '董源', '智永','灵飞经']);
 }
 
 // 查询ID的用户信息

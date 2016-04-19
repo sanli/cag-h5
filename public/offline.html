@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>中华珍宝馆离线包</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" href="css/leaflet.fullscreen.css" />
+    <link rel="stylesheet" href="css/L.Control.Sidebar.css" />
+    <link rel="stylesheet" href="css/leaflet.draw.css" />
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body style="padding-top: 0px;background: #FFFFE0;">
+
+    <!-- 关于对话框 -->
+    <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    <!-- 关于对话框 -->
+    <div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    <!-- 操作对话框 -->
+    <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    <!-- 地图区域 -->
+    <div class="main-container container-fluid">
+      <div style="width: 100%; height: 100%; position: relative;" class="main">
+          <div style="width: 100%; height: 100%; position: relative; background: #FFFFE0;" id="map"></div>
+      </div>
+    </div>
+
+
+    <div id="sidebar" style="display:none; opacity: 0.9;"></div>
+    <script type="text/html" id="sidebarTpl">
+        <div id="comment-list">
+          <div class="page-header">
+            <h2 id="painting-title"><@= info.paintingName @></h2>
+          </div>
+            <div class="comment-block">
+              <p class="comment-content">
+                <h4 id="painting-title"><@=info.age || "" @> <@=info.author || "" @></h4>
+                <h5 id="painting-title">
+                <@=info.mediaType || '' @> <@=info.areaSize ? info.areaSize + '厘米' : '' @> <@=info.ownerName || '' @></h4>
+                <p><@=info.desc @></p>
+              </p>
+            </div>
+        </div>
+    </script>
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/leaflet-src.js"></script>
+    <script src="js/L.Control.Sidebar.js"></script>
+    <script src="js/leaflet.draw-src.js"></script>
+    <script src="js/jquery.lazyload.js" type="text/javascript"></script>
+    <script src="js/sharepage.base.js"></script>
+    <script src="js/sharepage.js"></script>
+    <script src="js/appoffline.js"></script>
+</body>
+</html>
+
+
