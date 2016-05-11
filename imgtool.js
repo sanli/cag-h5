@@ -32,8 +32,8 @@
 
 
 var conf = {
-    outdir : '/Volumes/新加卷/cagstore',
-    offlinedir : '/Volumes/新加卷/offline'
+    outdir : '/Volumes/cag-s1/cagstore_s2/cagstore',
+    offlinedir : '/Volumes/cag-s1/offline'
 }
 /**
  * 图片信息导出为json文件，供静态网页使用，需要扫描输出目录，只有已经输出切割内容的文件才输出到
@@ -219,7 +219,8 @@ function _createZipFile(filename, basedir, fn){
 //var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/古代书法/明/bigfile';
 
 // /清/
-var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/清/ready';
+//var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/清/ready';
+var filedir = '/Volumes/cag-s1/百度云同步盘/清/ready';
 //var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/清/bigfile';
 
 //var filedir = '/Volumes/新加卷/百度云盘/百度云同步盘/历代精品/近代大家/ready';

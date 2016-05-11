@@ -14,6 +14,6 @@ qiniuconf.json.net
 
 cag.sublime-workspace
 
-qiniuconf_media.json
+qiniuconf_*.json
 
 *.log

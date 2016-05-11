@@ -62,11 +62,17 @@ if( target === 'release' ){ %>
                   data-bookmarked="<%= bookmarked ? 'true' : 'false' %>"
                   ><span class="glyphicon glyphicon-heart" aria-hidden="true"></span><%= bookmarked ? '已收藏' : '收藏' %></button>
                 <a id="donate" class="btn btn-primary" href="/donate/" style="color: #fff;">我们需要小额赞助</a>
+              <%
+              /* 暂停下载一段时间 */
+              if(false){
+              %>
                 <% if(info.originalUrl){ %>
                   <a id="downloadbtn" target="downloadwindow" href="#" data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="查看与幅图相关的可下载资料" class="pull-right download"><span class="glyphicon glyphicon-cloud-download"></span>下载</a>
                 <% }else{ %>
-                  <a href="mailto:support@share-net.cn?subject=我需要付费下载图片《<%=info.paintingName %>》" data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="这幅图片暂时没有开放下载，中华珍宝馆每日发布“近期热门”前三名的图片下载链接，需要下载请评论本图，将其顶到前三，或者你也可以给我们发邮件，申请服务下载。" class="pull-right download"><span class="glyphicon glyphicon-lock"></span>申请付费下载</a>
+                  <a href="mailto:support@ltfc.net?subject=我需要付费下载图片《<%=info.paintingName %>》" data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="这幅图片暂时没有开放下载，请等待一段时间，或者给我们发邮件，要求提前开放下载。我么的邮箱是: support@ltfc.net" class="pull-right download"><span class="glyphicon glyphicon-lock"></span>申请付费下载</a>
                 <% } %>
+              <% } %>
+              <a data-trigger="hover" data-placement="left" data-toggle="popover" title="暂停下载说明" data-content="开发团队正在解决百度云失效的链接，暂时停止下载" class="pull-right download"><span class="glyphicon glyphicon-lock"></span>暂停下载</a>
               </div>
             </div>
             <div class="comment-block">
