@@ -4,7 +4,7 @@
  * 开发状态配置文件
  */
 var debug_config = {
-	port : 8080,
+	port : 80,
 	// 当前系统运行级别 debug / release
 	target : 'debug',
 	// 发布版时间戳，用于生成今天文件的文件名
@@ -38,7 +38,8 @@ var release_config = {
 	// 是否跳过登录检测
 	skipSignin : false ,
 	// CDN服务器的URL
-	cdn_url : 'http://cag.share-net.cn',
+	// cdn_url : 'http://cag.share-net.cn',
+	cdn_url : 'http://cag.ltfc.net',
 	// 分析服务地址
 	anailsysService : 'baidu', //  'google' 
 	// 如果配置了redirect，将会把所有的访问重定向到新服务

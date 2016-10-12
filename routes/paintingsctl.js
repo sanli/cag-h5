@@ -1,4 +1,5 @@
 //#!本文件由share.js自动产生于Sun Apr 20 2014 22:13:27 GMT+0800 (CST), 产生命令行为: node share.js gen paintings CRUD ..
+"use strict";
 /**
  * paintingsHTTP入口模块, 需要在主文件中添加map
  * var paintings = require('./routes/paintings');
@@ -226,6 +227,7 @@ exports.import = function(req, res){
                 obj.overallLevel = paintingsdb.judgelevel(obj); 
                 // 设置缺省访问次数为0
                 obj.viewCnt = 0; 
+                obj.offlineUrl = `http://outline.ltfc.net/${id}.zip`;
                 paintingsdb.update(id, obj, function(err){
                     if(err) {
                         console.log("[WRAN]" + err.message);

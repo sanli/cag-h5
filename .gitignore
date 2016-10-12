@@ -4,6 +4,7 @@ offline/*
 cagstore/*
 logs/*
 .build/*
+public/cagstore/*
 qiniuconf.json
 node_modules
 nohup.out

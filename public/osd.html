@@ -2,52 +2,116 @@
 <html>
 <head>
     <title>OpenSeadragon Basic Demo</title>
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="Aa-Px_e0MlHLJCGspxj9asA8Iue7q21mBh3b62pkl44" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="高清书画,书画图片下载,中华珍宝馆,书法欣赏,书法艺术,绘画欣赏,绘画艺术,传统艺术,水墨画欣赏,古画欣赏,工笔画欣赏"></meta>
+    <meta name="description" content="中华珍宝馆,书法欣赏,高清书法图片下载,绘画欣赏,高清绘画图片下载"></meta>
+    <link rel="shortcut icon" href="/ico/favicon.ico">
     <script type="text/javascript" src='/js/openseadragon.js'></script>
     <script type="text/javascript" src='/js/jquery.min.js'></script>
+    
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/main.css" rel="stylesheet">
     <style type="text/css">
-
-        .openseadragon1 {
-            width: 800px;
-            height: 600px;
+        #contentDiv {
+            background-color: #FFFFE0; 
         }
 
+        .openseadragon1 {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            padding-top: 0px; background: #FFFFE0;    
+        }
+        
     </style>
+
 </head>
-<body>
-    <div>
-        Simple demo page to show a default OpenSeadragon viewer.
-    </div>
+<body style="">
     <div id="contentDiv" class="openseadragon1"></div>
     <script type="text/javascript">
 
-        var viewer = OpenSeadragon({
-            debugMode: true,
-            id: "contentDiv",
-            prefixUrl:     "/images/",
-            minLevel: 15,
-            maxLevel: 18,
-            //defaultZoomLevel : 15,
-            tileSources:   {
-                // height: 16938,
-                // width:  9358,
-                height: 3401,
-                width: 29142,
-                tileSize: 256,
-                minLevel: 15,
-                maxLevel: 18 ,
-                getTileUrl: function( level, x, y ){
-                    return "http://cag.share-net.cn/cagstore/56a1c9c79575e54d25e6d32b/" +
-                            level + "/" + x + "_" + y + ".jpg";
-                            //(level-8) + "-r" + y + "-c" + x + ".jpg";
-                }
-            },
-            //navigatorSizeRatio: 0.25,
-            //showNavigator:true
-        });
+
+        function view_pic(uuid){
+
+            loadInfo(uuid, function(err, info){
+                if(err) return console.log(err);
+
+                console.log(info);
+                var height = info.size.height;
+                var width = info.size.width;
+                var maxlevel = info.maxlevel;
+                var minlevel = info.minlevel;
 
 
 
+                var viewer = OpenSeadragon({
+                    //debugMode: true,
+                    id: "contentDiv",
+                    prefixUrl:     "/images/",
+                    immediateRender : true,
+                    //defaultZoomLevel : 4,
+                    placeholderFillStyle : '#00ff00',
+                    visibilityRatio: 1.0,
+                    maxZoomPixelRatio : 1.5,
+                    maxImageCacheCount : 128,
+                    // useCanvas : false,
+                    // showRotationControl: true,
+                    // sequenceMode: true,
+                    //showNavigator:  true,
+                    //showReferenceStrip: true,
+                    gestureSettingsTouch : {
+                        //pinchRotate : true
+                    },
+                    tileSources:   [{
+                        height : height,
+                        width : width,
+                        tileSize: 512,
+                        minLevel: minlevel,
+                        maxLevel: maxlevel,
+                        getTileUrl: function( level, x, y ){
+                            console.log(level, x, y);
+                            // return "http://cag.share-net.cn/cagstore/" + uuid + "/" +
+                            //         (level + 13) + "/" + x + "_" + y + ".jpg";
+                            return "/cagstore/" + uuid + "/" +
+                                    level + "/" + x + "_" + y + ".jpg";
+                        }
+                    }],
+                    //navigatorSizeRatio: 0.25,
+                    //showNavigator:true
+                });
+            });
+        };
+
+
+        function loadInfo( paintingId, fn ){
+            var $sidebar = $('#sidebar');
+            // $.getJSON("/cagstore/meta.json"
+            //     , { uuid : paintingId }
+            //$.getJSON("http://cag.share-net.cn/cagstore/"+ paintingId + "/meta.json"
+            $.getJSON("/cagstore/"+ paintingId + "/meta.json"
+                , function(data){
+                    if(data.R === 'N')
+                        return $.alert('#sidebar', '读取藏品信息错误。', 3000);
+
+                    var info = data;
+                    fn && fn(null, info);
+                }).fail(function() {
+                    $.alert('#sidebar','读取藏品信息错误。', 3000);
+                    fn && fn(new Error('读取文件信息错误。'));
+                });
+        };
+
+        var hash = window.location.hash.replace('#', '');
+        view_pic(hash ? hash : '5761801ebaf53c27a64b9c9e');
 
     </script>
 </body>
 </html>
+n

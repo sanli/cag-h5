@@ -54,6 +54,7 @@ exports.bindurl=function(app){
     bindurl(app, '/cagstore/search.json', { needAuth : false }, exports.search);
     bindurl(app, '/cagstore/fileinfo.json', { needAuth : false }, exports.fileinfo);
     bindurl(app, '/cagstore/outline.json', { needAuth : false }, exports.outline);
+    bindurl(app, '/cagstore/outline_d3.json', { needAuth : false }, exports.outline_d3);
     bindurl(app, '/cagstore/info.json', { needAuth : false }, exports.info);
     bindurl(app, '/cagstore/broadcast', { needAuth : false }, exports.broadcast);
 };
@@ -278,15 +279,21 @@ exports.messagejson = function(req, res){
 };
 
 exports.img = function(req, res){
-    renderImg(req, res, 'imgpage.html');
+    renderImg(req, res, {
+        'v1' : 'imgpage.html',
+        'v2' : 'imgpage_v2.html',
+    });
 };
 
 exports.imglite = function(req, res){
-    renderImg(req, res, 'imglitepage.html');
+    renderImg(req, res, {
+        'v1' : 'imglitepage.html',
+        'v2' : 'imglitepage_v2.html'
+    });
 };
 
 
-function renderImg(req, res, templ){
+function renderImg(req, res, templopt){
     var agent = req.get('User-Agent');
     if(/.*PhantomJS.*/.test(agent)){
         //抓图工具
@@ -300,13 +307,19 @@ function renderImg(req, res, templ){
     paintdb.findById(arg.uuid
         , { age : 1 , areaSize : 1 , author : 1 , desc : 1 , descUrl : 1 , essenceComment : 1 , 
             mediaType : 1 , offlineUrl : 1 , originalUrl : 1 , ownerName : 1 , paintingName : 1 , 
-            pixels : 1, size : 1, maxlevel : 1, minlevel :1 }
+            pixels : 1, size : 1, maxlevel : 1, minlevel :1, version : 1 }
         , function(err, info){
             if(err) return share.errpage( err.message, req, res );
+            if(!info) return share.errpage('出错了，查找的图片不存在。', req, res );
+
+            var version = info.version || 'v1';
+            var templ = templopt[version];
+            if(!templ) return share.errpage(`出错了，找不到正确的图片展示引擎。`, req, res );
+
 
             chkbookmark(share.getTourist(req), arg.uuid, function(err, booked){
                 res.setHeader('Cache-Control', 'public, max-age=3600');
-                
+
                 // 输出页面
                 res.render(templ, {
                     user: getUser(req),
@@ -334,19 +347,30 @@ function renderImg(req, res, templ){
 
 // 通过  age / author / paintingName 查找作品，显示找到的第一幅作品
 exports.imgliteOfOutline = function(req, res){
-    var arg = getParam("img", req, res, [ PAGE.age, PAGE.author, PAGE.paintingName ]);
+    var arg = getParam("img", req, res, [ PAGE.age, PAGE.author, PAGE.paintingName, PAGE.view ]);
     if(!arg.passed)
         return;
 
     if(!arg.age || !arg.author || !arg.paintingName)
-        return share.errpage( "却少必要条件", req, res );
+        return share.errpage( "缺少必要条件", req, res );
 
     paintdb.findByCond({ age : arg.age , author : arg.author, paintingName : arg.paintingName }, function(err, doc){
         if(err) return share.errpage( err.message, req, res ); 
         if(!doc) return share.errpage('您寻找的图片不存在或者已经下线', req, res );
 
         req.params.uuid = doc._id;
-        renderImg(req, res, 'imglitepage.html');
+
+        if(!/^webview.*/.test(PAGE.view)){
+            renderImg(req, res, {
+                'v1' : 'imglitepage.html',
+                'v2' : 'imglitepage_v2.html'
+            });
+        }else{
+            renderImg(req, res, {
+                'v1' : 'imgpage.html',
+                'v2' : 'imgpage_v2.html',
+            });
+        }
     });
 };
 
@@ -459,6 +483,34 @@ exports.info = function(req, res){
 
            writejson(res, info);
         });   
+}
+
+
+// 返回作品列表
+exports.outline_d3 = function(req, res){
+    var arg = getParam("outline", req, res, [ PAGE.cond ]);
+    if(!arg.passed)
+        return;
+
+    _outline(arg.cond, false, function(err, outline){
+        if(err) return share.rt(false, err.message, res);
+
+        //convert the outline to d3 fomart
+        var arttree = outline.map( age => {
+                        return {
+                            name : age._id,
+                            children : age.authors.map( author => {
+                                return { 
+                                    name : author.name, 
+                                    size : author.paintings.length,
+                                    paintings : author.paintings
+                                }
+                            })
+                        };
+                    });
+
+        writejson(res, { "name": "中华珍宝馆", "children": arttree });
+    });
 }
 
 // 返回作品列表

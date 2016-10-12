@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>中华珍宝馆离线包</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+        /*body {
+            padding-top: 0px; background: #FFFFE0;    
+        }*/
+
+        body {
+          font-family: 'Open Sans', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 微软雅黑, STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+        }
+
+        #imgview {
+          background: #e7e7e7;
+          /*transition: all .6s ease-in-out;*/
+        }
+
+        .min {
+          height: 320px;
+        }
+
+        .expand {
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          top: 0px;
+          left: 0px;
+        }
+
+        .infoview {
+          transform: translate(0, 100%);
+          transition: transform .3s ease-out;
+          position: absolute;
+          width: 100%;
+          height:100%;
+        }
+
+        .infoview.in{
+          transform: translate(0, 0%);
+        }
+
+        .infoview .info{
+          background-color: #ffffff;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="imgview" class="expand"></div>
+    <!-- 地图区域 -->
+    <div id="infopanel" class="main-container container-fluid infoview" style="display : none"></div>
+    <script type="text/html" id="sidebarTpl">
+      <div class="row" style="background: #fff; height:100%">
+        <div class="col-sm-12 col-md-12 info">
+            <div class="page-header">
+                <button type="button" class="close" aria-hidden="true">×</button>
+                <h2 id="painting-title"><@=info.paintingName @></h2>
+                <div class="comment-block">
+                  <p class="comment-content">
+                    <h4 id="painting-title"><@=info.age || "" @> <@=info.author || "" @></h4>
+                    <h5 id="painting-title">
+                    <@=info.mediaType || '' @> <@=info.areaSize ? info.areaSize + '厘米' : '' @> <@=info.ownerName || '' @></h5>
+                  </p>
+                </div>
+              
+              <div class="comment-block">
+                <p><@=info.desc ? info.desc : "暂无描述" @></p>
+              </div>
+              <div class="ds-thread" data-thread-key="page.<@=info._id @>" data-title="<@=info.paintingName @>" data-url="http://ltfc.net/img.html?uuid=<@=info._id @>&view=paintingview#uuid=<@=info._id @>&view=paintingview"></div>
+            </div>
+        </div>
+      </div>
+    </script>
+
+    <!-- 关于对话框 -->
+    <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    <!-- 关于对话框 -->
+    <div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    <!-- 操作对话框 -->
+    <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title" id="myModalLabel">使用帮助</h4>
+          </div>
+          <div class="modal-body">
+            <dl class="dl-horizontal">
+              <dt>移动画面</dt><dd>鼠标拖动</dd>
+              <dt>放大画面</dt><dd>双击</dd>
+              <dt>放大或缩小画面</dt><dd>转动滚轮</dd>
+              <dt>放大画面</dt><dd>双指缩放（手机或平板）</dd>
+              <dt>移动画面</dt><dd>键盘上下左右，   s\a\d\w键</dd>
+              <dt>回到初始状态</dt><dd>键盘 0 键</dd>
+              <dt>缩小画面</dt><dd>键盘 - / _，   shift+W，   shift+上键 </dd>
+              <dt>放大画面</dt><dd>键盘 = / +，   shift+S，   shift+下键</dd>
+            </dl>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/jquery.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js" type="text/javascript"></script>
+    <script src="js/openseadragon.js" type="text/javascript" ></script>
+    <script src="js/openseadragon-scalebar.js" type="text/javascript" ></script>
+    <script src="js/jquery.lazyload.js" type="text/javascript"></script>
+    <script src="js/sharepage.base.js"></script>
+    <script src="js/sharepage.js"></script>
+    <script src="js/cagcommons.js"></script>
+    <script src="js/appoffline_v2.js"></script>
+</body>
+</html>
+
+

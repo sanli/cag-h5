@@ -125,11 +125,6 @@ var Module = $.extend(new $M(), {
 			};
 			map.addControl(Module.commentctl);
 		}
-		
-		// 移动版不自动弹出评论框
-		// setTimeout(function(e){
-		// 	Module.toggleEditState();	
-		// },800);
     },
 
     toggleEditState : function(){
