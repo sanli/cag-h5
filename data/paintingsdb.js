@@ -58,6 +58,8 @@ var painting_view = new Schema({
     commented : Boolean,
     // 备注信息
     comment : String,
+    // picture version
+    version : String,
 
     // ---- 删除信息 ----
     // 是否删除

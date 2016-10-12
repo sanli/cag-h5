@@ -59,6 +59,8 @@ module.exports = function(grunt) {
                 '.build/cdn/js/exhibit_<%= buildName %>_min.js': 'public/js/exhibit.js',
                 '.build/cdn/js/img_<%= buildName %>_min.js': 'public/js/img.js',
                 '.build/cdn/js/imglite_<%= buildName %>_min.js': 'public/js/imglite.js',
+                '.build/cdn/js/img_v2_<%= buildName %>_min.js': 'public/js/img_v2.js',
+                '.build/cdn/js/imglite_v2_<%= buildName %>_min.js': 'public/js/imglite_v2.js',
                 '.build/cdn/js/paintings_<%= buildName %>_min.js': 'public/js/paintings.js',
                 '.build/cdn/js/offline_<%= buildName %>_min.js': 'public/js/offline.js',
                 '.build/cdn/js/mybookmark_<%= buildName %>_min.js': 'public/js/mybookmark.js',
@@ -112,16 +114,6 @@ module.exports = function(grunt) {
                 dest: '.build/aliyun',
                 expand: true
             }]
-        },
-        // 发布到AppEngine的动态内容，js, html
-        svn : {
-            files: [{
-                src: ['public/css/**', 'public/favicon.ico', 'public/*.html', 'public/fonts/**', 'public/ico/**', 'public/images/**', 'data/**'
-                    , 'routes/**', 'views/**', 'mongo.js' , 'sharepage.js'
-                    , 'cag.js', 'package.json', 'cagstore.js' ],
-                dest: '/Users/sanli/Documents/bae_workspace/clirepo/zhenbao',
-                expand: true
-            }]  
         }
     },
 
@@ -138,7 +130,7 @@ module.exports = function(grunt) {
   // 默认被执行的任务列表。
   grunt.registerTask('default', [
     'concat:cdn', 'uglify:cdn', 'cssmin:cdn' , 
-    'copy:cdn', 'copy:aliyun', 'copy:svn'
+    'copy:cdn', 'copy:aliyun'
     ]);
   grunt.registerTask('leafletplugin', ['concat:leafletplugin', 'uglify:leafletplugin', 'cssmin:leafletplugin']);
 };

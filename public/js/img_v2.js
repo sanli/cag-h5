@@ -39,40 +39,100 @@ var Module = $.extend(new $M(), {
     // 根据页面状态，载入数据
     loadPageData: function(state, page){
 		var fileinfo = Module.fileinfo;
-		var width = fileinfo.size.width,
-			height = fileinfo.size.height,
-			northEast = L.CRS.Simple.pointToLatLng(L.point([width, 0]), 18),
-			southWest = L.CRS.Simple.pointToLatLng(L.point([0, height]), 18),
-			bounds = L.latLngBounds(southWest, northEast);
+		var height = fileinfo.size.height;
+        var width = fileinfo.size.width;
+        var maxlevel = fileinfo.maxlevel;
+        var minlevel = fileinfo.minlevel;
 
-		if(Module.map){
-			Module.map.remove();
-		}
-		var map = Module.map = L.map('map',{
-			maxBounds: bounds,
-			minZoom: fileinfo.minlevel,
-		    crs: L.CRS.Simple,
-		    fullscreenControl: true
-		}).fitBounds( bounds );	
+        var viewOptions = {
+            //debugMode: true,
+            id: "imgview",
+            prefixUrl:     "/images/",
+            // Render the best closest level first, ignoring the lowering levels which provide the effect of very blurry to sharp. 
+            // It is recommended to change setting to true for mobile devices.
+            immediateRender : true,
+            placeholderFillStyle : '#00ff00',
+            visibilityRatio: 1.0,
 
-		var la = state.layer || '',
-			detectRetina = fileinfo.maxlevel - fileinfo.minlevel >= 4; //巨型画作才需要探测Retina屏
-			
-		Module.tileLayer = L.tileLayer( _cdn('/cagstore/'+ state.uuid +'/{z}' + la + '/{x}_{y}.jpg'), {	
-		   bounds: bounds,
-		   maxZoom: fileinfo.maxlevel,
-		   detectRetina: detectRetina
-		}).addTo(map);
+            maxZoomPixelRatio : 1.5,
+            // 减小内存使用
+            maxImageCacheCount : 128,
+            // 减小CPU使用 
+            // useCanvas : false,
+            // visibilityRatio: 0.96,
+            // defaultZoomLevel : 4,
+            // showRotationControl: true,
+            // sequenceMode: true,
+            // showNavigator:  true,
+            // showReferenceStrip: true,
+            // gestureSettingsTouch : {
+            //    pinchRotate : true
+            // },
+            showFullPageControl: true,
+            // 只在网页版显示缩略图
+            controlsFadeDelay : 1800,
+            controlsFadeLength : 1600,
+            tileSources:   [{
+                height : height,
+                width : width,
+                tileSize: 512,
+                minLevel: minlevel,
+                maxLevel: maxlevel,
+                getTileUrl: function( level, x, y ){
+                    // return "http://cag.share-net.cn/cagstore/" + uuid + "/" + (level + 13) + "/" + x + "_" + y + ".jpg";
+                    return _cdn("/cagstore/" + state.uuid + "/" + level + "/" + x + "_" + y + ".jpg");
+                }
+            }],
+        };
 
-		if(Module.isWebview(state)){
-			Module.map.removeControl(Module.map.attributionControl);
-			$('#bookmarkbtn').css('display', 'none');
-		}else{
-			map.attributionControl
-				.setPrefix('<a href="/main.html?l=home"><span class="glyphicon glyphicon-home"></span>中华珍宝馆</a>')
-				.addAttribution('<a href="/main.html?l=more"><span class="glyphicon glyphicon-share-alt"></span>更多图片</a>');
-		}
-		Module.initMap(map);
+        if(!$.isWebview && !$.isMobile()){
+        	// var ratio = Math.pow(2, maxlevel - minlevel);
+	        // var minmap_width = Math.floor(width / ratio);
+	        // var minmap_height = Math.floor(height / ratio);
+	        // var minmap_top = 0;
+	        //var minmap_left = $("#imgview").width() - minmap_width - 0 ;
+	        var minmap_left = 0;
+	        $.extend(viewOptions, {
+	        	maxZoomPixelRatio : 1.5,
+	        	showNavigator:true,
+	            // 减小内存使用
+	            // maxImageCacheCount : 100,
+	            // 减小CPU使用 
+	            // useCanvas : true,
+	            // navigatorPosition : 'ABSOLUTE',
+	            // navigatorTop : minmap_top,
+	            // navigatorLeft : minmap_left,
+	            // navigatorHeight: minmap_height,
+	            // navigatorWidth: minmap_width,
+        	});
+        }
+        var viewer = Module.viewer = OpenSeadragon(viewOptions);
+        // 聚焦到cavas上，才可以通过键盘控制
+        document.getElementById('imgview').querySelector('.openseadragon-canvas').focus();
+        viewer.addHandler('open', function(e){
+        	$(Module.viewer.navigator.element).css('display', 'none');
+        });
+        viewer.addHandler('pre-full-page', function(e){
+        	if(e.fullPage){
+        		$(Module.viewer.navigator.element).css('display', 'inline-block');
+        	}else{
+        		$(Module.viewer.navigator.element).css('display', 'none');
+        	}
+        });
+
+		if (fileinfo.areaSize) {
+        	var pixelsPerMeter = Module.calcPixelsPerMeter(fileinfo);
+        	if(pixelsPerMeter){
+        		viewer.scalebar({
+				  	minWidth: '75px',
+				  	pixelsPerMeter: pixelsPerMeter,
+				  	boundsarThickness : 1,
+				  	stayInsideImage : false,
+					color : '#a1412d',
+					fontColor : '#a1412d',
+				});
+        	}
+        }
 
 		// load painting data
     	$('div.main').spin();
@@ -84,15 +144,33 @@ var Module = $.extend(new $M(), {
 		});
     },
 
+    // 计算图片物理尺寸对应的像素尺寸
+    calcPixelsPerMeter : function(fileinfo){
+    	var size = /([\d\.]+)[xX*]([\d\.]+)/.exec(fileinfo.areaSize);
+    	if(!size) return null;
+		// 物理尺寸，一般单位是cm
+		var pyheight = parseFloat(size[1]);
+		var pywidth = parseFloat(size[2]);
+		function _calc(pix, py){
+			if(!isNaN(py))
+				return pix * 100 / py;  // 物理尺寸的单位是厘米	
+			return null;
+		}
+
+		// 使用比较短的一条边来计算比例，因为比较短的边一般来说不会被截取掉能够得到稍微精确的结果
+		var ratio = null;
+		if(fileinfo.size.width < fileinfo.size.height){
+			if( (ratio = _calc(fileinfo.size.width, pywidth)) != null ) return ratio;
+			if( (ratio = _calc(fileinfo.size.height, pyheight))!= null ) return	ratio;
+		}else{
+			if( (ratio = _calc(fileinfo.size.height, pyheight)) != null ) return ratio;
+			if( (ratio = _calc(fileinfo.size.width, pywidth)) != null ) return ratio;
+		}
+		return null;
+    },
+
     // 初始化图片，创建控件
-    initMap : function(map){
-    	map.on('dragstart', function(){
-		 	$('div.leaflet-control-attribution').addClass('popup');
-		});
-		map.on('dragend', function(){
-			$('div.leaflet-control-attribution').removeClass('popup');
-		});
-		
+    initViewer : function(map){
     	$('#sidebar').css('display', '');
 		var sidebar = L.control.sidebar('sidebar', {
             closeButton: true,
@@ -230,6 +308,7 @@ var Module = $.extend(new $M(), {
 
 
 function init(){
+	OpenSeadragon.supportsFullScreen = false;
 	PG.bind();
 	Module.bind();
 	$(window).trigger('hashchange');
@@ -237,29 +316,29 @@ function init(){
 
 
 // 按钮控件
-var MyControl = L.Control.extend({
-    options: {
-        position: 'topright',
-        title: '打开信息面板'
-    },
+// var MyControl = L.Control.extend({
+//     options: {
+//         position: 'topright',
+//         title: '打开信息面板'
+//     },
 
-    onAdd: function (map) {
-        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control my-custom-control');
-        this.link = L.DomUtil.create('a', 'glyphicon glyphicon-pencil', container);
-        this.link.title = this.options.title;
-        L.DomEvent.on(this.link, 'click', this._click, this);
-        return container;
-    },
+//     onAdd: function (map) {
+//         var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control my-custom-control');
+//         this.link = L.DomUtil.create('a', 'glyphicon glyphicon-pencil', container);
+//         this.link.title = this.options.title;
+//         L.DomEvent.on(this.link, 'click', this._click, this);
+//         return container;
+//     },
 
-    _click : function(e){
-    	L.DomEvent.stopPropagation(e);
-		L.DomEvent.preventDefault(e);
-		this.click(e);
-    },
+//     _click : function(e){
+//     	L.DomEvent.stopPropagation(e);
+// 		L.DomEvent.preventDefault(e);
+// 		this.click(e);
+//     },
 
-    click : function(e){
-    	console.log("should replace with implementing.");
-    }
-});
+//     click : function(e){
+//     	console.log("should replace with implementing.");
+//     }
+// });
 
 $(document).ready(init);

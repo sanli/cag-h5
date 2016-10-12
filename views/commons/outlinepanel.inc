@@ -15,6 +15,7 @@
       <a class="<%= viewopt.collapse ? 'collapsed' : '' %>" data-toggle="collapse" data-parent="#accordion" href="#outline-panel" aria-expanded="true" aria-controls="outline-panel">
         <span class="glyphicon glyphicon-book"></span> 展开所有藏品目录
       </a>
+      <a class="pull-right" href="http://blog.ltfc.net/message/2016/07/06/cag-paintings-index.html">藏品大转盘 <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a>
     </h4>
   </div>
   <div id="outline-panel" class="panel-collapse <%= viewopt.collapse ? 'collapse' : '' %>" role="tabpanel" aria-labelledby="headingOne">
