@@ -40,6 +40,9 @@ exports.bindurl=function(app){
     bindurl(app, '/imglite/:uuid', { outType : 'page', needAuth : false }, exports.imglite);
     bindurl(app, '/outline/:age/:author/:paintingName', { outType : 'page', needAuth : false }, exports.imgliteOfOutline );
     bindurl(app, '/feedbacklite.html', { outType : 'page', needAuth : false }, exports.feedbacklite);
+
+    bindurl(app, '/snapshot/:uuid/:level/:area', { needAuth : false }, exports.snapshot);
+
     
     // 实验性页面
     bindurl(app, '/datatoys.html', { outType : 'page', needAuth : false }, exports.datatoys);
@@ -57,6 +60,8 @@ exports.bindurl=function(app){
     bindurl(app, '/cagstore/outline_d3.json', { needAuth : false }, exports.outline_d3);
     bindurl(app, '/cagstore/info.json', { needAuth : false }, exports.info);
     bindurl(app, '/cagstore/broadcast', { needAuth : false }, exports.broadcast);
+
+
 };
 
 var PAGE = {
@@ -100,6 +105,12 @@ exports.broadcast = function(req, res){
 }
 
 
+exports.snapshot = function(req, res){
+    // 创建一个图片快照文件，上传到七牛云，再重定向用户
+    // 如果快照已经存在，直接重定向用户
+    // TODO : merge the tile online
+    
+}
 
 exports.shortlink = function(req, res){
     var arg = getParam("shortlink", req, res, [ PAGE.target]);
