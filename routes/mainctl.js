@@ -161,7 +161,7 @@ exports.main = function(req, res){
             function(cb){
                 exhibits.query_exhibit(exhibits.meta.当代馆
                     , { 
-                        page : { skip : 0 , limit : 2 },
+                        page : { skip : 0 , limit : 4 },
                         cond : { "essence" : false }
                     }
                     , function(err, fileinfos){
