@@ -61,7 +61,8 @@ exports.bindurl=function(app){
     bindurl(app, '/cagstore/info.json', { needAuth : false }, exports.info);
     bindurl(app, '/cagstore/broadcast', { needAuth : false }, exports.broadcast);
 
-
+    // 图片世界
+    bindurl(app, '/artworld/:uuid', { outType : 'page', needAuth : false }, exports.artworld);
 };
 
 var PAGE = {
@@ -110,6 +111,27 @@ exports.snapshot = function(req, res){
     // 如果快照已经存在，直接重定向用户
     // TODO : merge the tile online
     
+}
+
+exports.artworld = function(req, res){
+    // 一个艺术品的世界，我们可以在这个世界里游历和互动，画作既为卧游，何不真正游起来
+    var arg = getParam("img", req, res, [ PAGE.uuid, PAGE.view ]);
+    if(!arg.passed)
+        return;
+
+    // 输出页面
+    res.render("artworldpage.html", {
+        user: getUser(req),
+        torist : share.getTourist(req),
+        title: "中华珍宝馆 " + info.age + ' ' + info.author + ' ' + info.paintingName,
+        page : 'main',
+        target : conf.target,
+        stamp : conf.stamp,
+        conf : conf,
+        arg: arg,
+        info : info
+    });
+
 }
 
 exports.shortlink = function(req, res){

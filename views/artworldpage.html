@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="utf-8">
+    <meta name="google-site-verification" content="Aa-Px_e0MlHLJCGspxj9asA8Iue7q21mBh3b62pkl44" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content=""></meta>
+    <meta name="description" content=""></meta>
+    <link rel="shortcut icon" href="/ico/favicon.ico">
+    <title> 架空美食世界 </title>
+    <!-- Bootstrap core CSS -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <!-- <link href="/css/main.css" rel="stylesheet"> -->
+    <style type="text/css">
+        /*body {
+            padding-top: 0px; background: #FFFFE0;    
+        }*/
+
+        body {
+          font-family: 'Open Sans', Arial, 'Hiragino Sans GB', 'Microsoft YaHei', 微软雅黑, STHeiti, 'WenQuanYi Micro Hei', SimSun, sans-serif;
+        }
+
+        #imgview {
+          background: #e7e7e7;
+          /*transition: all .6s ease-in-out;*/
+        }
+
+        .min {
+          height: 320px;
+        }
+
+        .expand {
+          width: 100%;
+          height: 100%;
+          position: fixed;
+          top: 0px;
+          left: 0px;
+        }
+
+        .infoview {
+          /*transform: translate(0, 100%);*/
+          transition: transform .3s ease-out;
+          /*position: absolute;*/
+          width: 100%;
+          color: #fff;
+
+          position: fixed;
+          right: 0;
+          left: 0;
+          bottom: 0;
+          margin-bottom: 0;
+          border-width: 1px 0 0;
+          background-color: #000;
+          color: #fff;
+          opacity: .5;
+          height: 150px;
+        }
+
+        .infoview.in{
+          transform: translate(0, 80%);
+        }
+
+        .infoview .info{
+          
+        }
+
+        .backMusic {
+            display: none;
+        }
+
+        #top-navbar {
+          background-color: #000;
+          z-index: 100;
+          opacity: .5;
+          padding: 10px;
+          color: #fff;
+        }
+
+        .tag-wrap {
+            /*font-family: "宋体",Arial;*/
+            cursor: pointer;
+            position: absolute;
+            z-index: 12;
+        }
+
+
+        .tag-wrap .prismatic {
+            cursor: pointer;
+            position: absolute;
+            left: 1px;
+            top: 6px;
+            height: 17px;
+            width: 17px;
+            background: url(http://minghuaji.dpm.org.cn/content/qingming/resource/img/storyPoint2.png) no-repeat;
+        }
+
+        .tag-wrap .text {
+            font-size: 14px;
+            /*color: #e3c698;*/
+            color : #fff;
+            position: absolute;
+            width: 20px;
+            word-wrap: break-word;
+            line-height: 18px;
+            padding-top: 30px;
+            left: -13px;
+        }
+
+        .tag-wrap .line {
+            cursor: pointer;
+            z-index: 11;
+            position: absolute;
+            /*border-right: 1px solid #e3c698;*/
+            border-right: 1px solid #fff;
+            height: 50px;
+            width: 20px;
+            top: 23px;
+            left: -12px;
+            opacity: .7;
+        }
+
+    </style>
+  </head>
+  <body>
+
+    <!-- 地图区域 -->
+<div id="top-navbar" class="navbar navbar-inverse navbar-fixed-top main-navbar" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">射雕英雄世界</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class="active"><a id="takeInfo" href="#"><span class="glyphicon glyphicon-screenshot"></span></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+  </div>
+</div>
+
+    <div id="imgview" class="expand"></div>
+    <audio class="backMusic" data="undefined" controls="controls" loop="">
+      <source src="http://minghuaji.dpm.org.cn/content/qingming/resource/sound/1-郊外乡村.ogg" type="audio/ogg">
+      <source src="http://minghuaji.dpm.org.cn/content/qingming/resource/sound/1-郊外乡村.wav" type="audio/wav">
+      <source src="http://minghuaji.dpm.org.cn/content/qingming/resource/sound/1-郊外乡村.mp3" type="audio/mp3">
+      Your browser does not support the audio tag.
+    </audio>
+    
+    <!-- 地图区域 -->
+    <div id="scenePanel" class="main-container container-fluid infoview">
+      <div class="info"></div>
+    </div>
+
+    <!-- 事件容器 -->
+    <div id="eventPanel"></div>
+
+
+    <!-- 关于对话框 -->
+    <div class="modal fade" id="about" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+    <!-- 关于对话框 -->
+    <div class="modal fade" id="share" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content"></div>
+      </div>
+    </div>
+
+
+    
+<script type="text/html" id="sceneTmpl">
+    <@ for( i = 0 ; i<= scenes.length - 1 ; i++){ 
+      var scene = scenes[i];
+    @>
+      <a data-sceneid="<@= scene.sceneid @>" class="h2 scene" href="#"> <@= scene.title @> </a>
+    <@ } @>
+</script> <!-- 显示模板 -->
+
+<div id="html-overlay" class="tag-wrap event-wrap" data-eventid="00000">
+  <div class="prismatic"></div>
+  <!-- <div class="glyphicon glyphicon-screenshot"></div> -->
+  <p class="text before-opreate">青龙偃月刀</p>
+  <span class="line" style="height: 95px;"></span>
+</div>
+
+<script type="text/html" id="eventTmpl">
+    <@ 
+    for(i = 0 ; i<= events.length - 1; i++){
+      var event = events[i];  
+    @>
+      <div id="event-<@= event.eventid @>" class="tag-wrap event-wrap" data-eventid="<@= event.eventid @>">
+        <div class="prismatic"></div>
+        <!-- <div class="glyphicon glyphicon-screenshot"></div> -->
+        <p class="text before-opreate"><@= event.title @> </p>
+        <span class="line" style="height: 95px;"></span>
+      </div>
+    <@ } @>
+</script> <!-- 显示模板 -->
+
+
+
+    <!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript"> 
+  function _cdn(res){ return "<%=conf.cdn_url %>"+res }
+  function _media(res){ return "<%=conf.media_url %>"+res }
+</script>
+<script src="/js/jquery.js" type="text/javascript"></script>
+<script src="/js/bootstrap.js" type="text/javascript"></script>
+<script src="/js/openseadragon.js" type="text/javascript" ></script>
+<script src="/js/openseadragon-scalebar.js" type="text/javascript" ></script>
+<script src="/js/jquery.lazyload.js" type="text/javascript"></script>
+<script src="/js/sharepage.base.js"></script>
+<script src="/js/sharepage.js"></script>
+<script src="/js/cagcommons.js"></script>
+<script src="/js/artworld.js"></script>
+
+<script>
+  PG.default.uuid = '57ab508a8d5930da4be093b5' ;
+  Module.fileinfo = {"_id":"57ab508a8d5930da4be093b5","author":"陈枚","paintingName":"射雕英雄传","age":"清","mediaType":"绢本","areaSize":"台北故宫","ownerName":"35.6x1152","pixels":"14530.000000000002","maxlevel":18,"minlevel":10,"version":"v2","offlineUrl":"http://outline.ltfc.net/57ab508a8d5930da4be093b5.zip","size":{"width":69087,"height":2103}};
+  // 播放背景英语
+  //  $(".backMusic")[0].play();
+
+  var sceneStore = [{
+    sceneid : 1, 
+    // 场景名称
+    title : "牛家村学艺",
+    // 该场景对应的图片区域 [ 左上角x ，左上角y， 右下角x, 右下角y ]
+    //bound : [ 100 , 0, 1200, 900],
+    bound :  [ 33826, 1064, 1280, 350],
+    // 场景描述，包括文字内容，视频，音频
+    content : { text : "", video : "", audio : "" },
+    // 场景预览图
+    thumbnail : 'senceStore/s1.png',
+    // 定位位置
+    events : [{
+      eventid : 1,
+      title : "溪边论菜",
+      position : { x : 34417 , y : 1021 },
+      content : { text : "", video : "", audio : "" }
+    },{
+      eventid : 2,
+      title : "村口做菜",
+      position : { x : 34459 , y : 1050 },
+      content : { text : "", video : "", audio : "" }
+    }]
+  }, {
+    sceneid : 2,
+    title : "桃花岛",
+    // 定位位置
+    // 该场景对应的图片区域 [ 左上角x ，左上角y， 右下角x, 右下角y ]
+    bound : [39847, 1043, 1280, 351],
+    // 场景描述，包括文字内容，视频，音频
+    content : { text : "", video : "", audio : "" },
+    // 场景预览图
+    thumbnail : 'senceStore/s2.png',
+    events : [{
+      eventid : 3,
+      title : "八卦梅花阵",
+      position : { x : 300 , y : 300 }
+    },{
+      eventid : 4,
+      title : "碧海潮生曲",
+      position : { x : 400 , y : 400 }
+    },]
+  }, {
+    sceneid : 4,
+    title : "南宋皇城",
+    // 定位位置
+    // 该场景对应的图片区域 [ 左上角x ，左上角y， 右下角x, 右下角y ]
+    bound : [ 5000 , 400, 1000, 900],
+    // 场景描述，包括文字内容，视频，音频
+    content : { text : "", video : "", audio : "" },
+    // 场景预览图
+    thumbnail : 'senceStore/s2.png',
+    events : [{
+      eventid : 5,
+      title : "八卦梅花阵",
+      position : { x : 300 , y : 300 }
+    },{
+      eventid : 6,
+      title : "碧海潮生曲",
+      position : { x : 400 , y : 400 }
+    },]
+  }, {
+    sceneid : 5,
+    title : "大漠孤岛",
+    // 定位位置
+    // 该场景对应的图片区域 [ 左上角x ，左上角y， 右下角x, 右下角y ]
+    bound : [55661, 722, 4265, 1168],
+    // 场景描述，包括文字内容，视频，音频
+    content : { text : "", video : "", audio : "" },
+    // 场景预览图
+    thumbnail : 'senceStore/s2.png',
+    events : [{
+      eventid : 7,
+      title : "八卦梅花阵",
+      position : { x : 300 , y : 300 }
+    },{
+      eventid : 8,
+      title : "碧海潮生曲",
+      position : { x : 400 , y : 400 }
+    },]
+  }];
+
+
+</script>
+
+
+
+</body>
+</html>
+
+

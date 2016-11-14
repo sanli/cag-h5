@@ -68,7 +68,7 @@
         var cell = cells[i];
         if(cell.mark && cell.mark.paintingid){
           var link = '/img/' + cell.mark.paintingid,
-            imgurl = _cdn('/cagstore/' + cell.mark.paintingid + '/tb.jpg');
+            imgurl = _media('/cagstore/' + cell.mark.paintingid + '/tb.jpg');
         }   
     @>
     <div class="painting col-sm-12 col-md-6" data-uuid="<@=cell._id @>" 
@@ -122,14 +122,16 @@
 
 
   <!-- JS文件放在靠近HTML页面尾部的地方可以加快页面显示的速度 -->
+    <script type="text/javascript"> 
+      function _cdn(res){ return "<%=conf.cdn_url %>"+ (res|| "") }
+      function _media(res){ return "<%=conf.media_url %>"+ (res|| "") }
+    </script>
   <% if( target === 'release' ){ %>
-      <script type="text/javascript"> function _cdn(res){ return "http://supperdetailpainter.u.qiniudn.com"+ (res|| "") }</script>
       <script src="http://cdn.staticfile.org/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
       <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
-      <script src="http://supperdetailpainter.u.qiniudn.com/js/cag_<%=stamp %>_min.js" type="text/javascript"></script>
-      <script src="http://supperdetailpainter.u.qiniudn.com/js/mybookmark_<%=stamp %>_min.js"></script></script>
+      <script src="<%=conf.cdn_url %>/js/cag_<%=stamp %>_min.js" type="text/javascript"></script>
+      <script src="<%=conf.cdn_url %>/js/mybookmark_<%=stamp %>_min.js"></script></script>
   <% } else { %>
-    <script type="text/javascript"> function _cdn(res){ return res}</script>
     <script src="/js/jquery.js" type="text/javascript"></script>
     <script src="/js/bootstrap.js" type="text/javascript"></script>
     <!-- cag_xxx_min.js -->

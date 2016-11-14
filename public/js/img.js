@@ -57,7 +57,7 @@ var Module = $.extend(new $M(), {
 		var la = state.layer || '',
 			detectRetina = fileinfo.maxlevel - fileinfo.minlevel >= 4; //巨型画作才需要探测Retina屏
 			
-		Module.tileLayer = L.tileLayer( _cdn('/cagstore/'+ state.uuid +'/{z}' + la + '/{x}_{y}.jpg'), {	
+		Module.tileLayer = L.tileLayer( _media('/cagstore/'+ state.uuid +'/{z}' + la + '/{x}_{y}.jpg'), {	
 		   bounds: bounds,
 		   maxZoom: fileinfo.maxlevel,
 		   detectRetina: detectRetina
@@ -74,7 +74,7 @@ var Module = $.extend(new $M(), {
 
 		// check existing of painting
     	$('div.main').spin();
-    	$.getJSON(_cdn("/cagstore/"+ state.uuid + "/meta.json"), function(data){
+    	$.getJSON(_media("/cagstore/"+ state.uuid + "/meta.json"), function(data){
 				$('div.main').spin(false);
   		}).fail(function() {
 		     $('#map').html("<h3>您寻找的艺术品［" + state.uuid + "］不存在，请<a href=\"/main.html\">返回首页</a></h3>");

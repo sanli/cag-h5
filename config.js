@@ -15,7 +15,11 @@ var debug_config = {
 	// 使用mongodb session，不在需要skipSignin
 	skipSignin : false,
 	// CDN服务器的URL
-	cdn_url : 'http://cag.share-net.cn',
+	// cdn_url : 'http://cag.share-net.cn',
+	// 静态文件CDN
+	cdn_url : 'http://cdn.ltfc.net',
+	// 图片文件CDN
+	media_url : 'http://cag.ltfc.net',
 	// 分析服务地址，百度或者是google
 	anailsysService : 'baidu', //  'google' 
 	// 如果配置了redirect，将会把所有的访问重定向到新服务
@@ -33,13 +37,15 @@ var release_config = {
 	// 发布版时间戳，用于生成今天文件的文件名
 	stamp : '1427387849970',
 	// 静态内容大部分保存在cdn上
-	cdn : 'http://supperdetailpainter.u.qiniudn.com',
 	mongoURL : "mongodb://localhost/cag",
 	// 是否跳过登录检测
 	skipSignin : false ,
 	// CDN服务器的URL
 	// cdn_url : 'http://cag.share-net.cn',
-	cdn_url : 'http://cag.ltfc.net',
+	// 静态文件CDN
+	cdn_url : 'http://cdn.ltfc.net',
+	// 图片文件CDN
+	media_url : 'http://cag.ltfc.net',
 	// 分析服务地址
 	anailsysService : 'baidu', //  'google' 
 	// 如果配置了redirect，将会把所有的访问重定向到新服务

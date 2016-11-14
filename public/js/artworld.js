@@ -1,7 +1,8 @@
 //PG对象是整个页面的驱动对象，页面的状态在PG对象的state中保存
 var PG = new $P({
 	default: {
-		uuid: '538054ebab18e5515c68a7eb'
+		uuid: '538054ebab18e5515c68a7eb',
+		editing : false
 	},
 
 	bind: function(){
@@ -66,7 +67,10 @@ var Module = $.extend(new $M(), {
             // 减小CPU使用 
             // useCanvas : false,
             // visibilityRatio: 0.96,
-            // defaultZoomLevel : 4,
+            defaultZoomLevel : maxlevel ,
+            showZoomControl : false,
+            showHomeControl : false,
+            showFullPageControl : false,
             // showRotationControl: true,
             // sequenceMode: true,
             // showNavigator:  true,
@@ -74,6 +78,8 @@ var Module = $.extend(new $M(), {
             // gestureSettingsTouch : {
             //    pinchRotate : true
             //},
+      //       sequenceMode: true,
+    		// showReferenceStrip: true,
             // 只在网页版显示缩略图
             controlsFadeDelay : 1800,
             controlsFadeLength : 1600,
@@ -88,6 +94,11 @@ var Module = $.extend(new $M(), {
                     return _media("/cagstore/" + state.uuid + "/" + level + "/" + x + "_" + y + ".jpg");
                 }
             }],
+            overlays: [{
+		        px: 33826,
+		        py: 815,
+		        id: 'html-overlay'
+		    }],
         };
 
         var viewer = Module.viewer = OpenSeadragon(viewOptions);
@@ -142,44 +153,46 @@ var Module = $.extend(new $M(), {
 
     // 初始化图片，创建控件
     initViewer : function(viewer, fileinfo){
-    	// 创建比例尺
-		if (fileinfo.areaSize) {
-        	var pixelsPerMeter = Module.calcPixelsPerMeter(fileinfo);
-        	if(pixelsPerMeter){
-        		viewer.scalebar({
-				  	minWidth: '75px',
-				  	pixelsPerMeter: pixelsPerMeter,
-				  	boundsarThickness : 1,
-				  	stayInsideImage : false,
-					color : '#a1412d',
-					fontColor : '#a1412d',
-				});
-        	}
-        }
+   		Module.initSence(sceneStore);
+    },
 
+    initSence : function(sceneStore){
+    	$scenePanel = $('#scenePanel div.info');
+    	$scenePanel.spin();
+		$M.fillResult($scenePanel, { 
+			scenes : sceneStore,
+            tempId: 'sceneTmpl',
+		});
+		$scenePanel.spin(false);
+		setTimeout(function(){
+			Module.initEventPoint(sceneStore);
+		}, 3000);
+    },
 
-        if(!Module.isWebview()){
-        	// 加入button
-			var buttons = [];
-			buttons.push( new OpenSeadragon.Button({
-	            tooltip:    '显示相关信息',
-	            srcRest:    '/images/info_rest.png',
-	            srcGroup:   '/images/info_grouphover.png',
-	            srcHover:   '/images/info_hover.png',
-	            srcDown:    '/images/info_pressed.png',
-	            onClick:     function(){ 
-	            	Module.toggleEditState();
-	            }
-	        }));
-			buttons = new OpenSeadragon.ButtonGroup({
-	    		buttons: buttons
+    initEventPoint : function(sceneStore){
+    	// 加入锚点
+		var events = [];
+		sceneStore.forEach( scene => {
+			events = events.concat(scene.events);
+		});
+
+		$eventPanel = $('#eventPanel');
+		$M.fillResult($eventPanel, { 
+			events : events,
+            tempId: 'eventTmpl',
+		});
+		var viewport = Module.viewer.viewport;
+		events.forEach(event => {
+			var position = event.position;
+			console.log(position);
+			var point = viewport.imageToViewportCoordinates(position.x, position.y);
+			console.log(point);
+			var eventid = "event-" + event.eventid; 
+			Module.viewer.addOverlay({
+	            element: eventid,
+	            location: point,
 	        });
-	        var navControl  =  buttons.element;
-	        Module.viewer.addControl(
-	            navControl,
-	            { anchor: OpenSeadragon.ControlAnchor.BOTTOM_RIGHT }
-	        );	
-        }
+		});
     },
 
     toggleEditState : function(){
@@ -250,6 +263,30 @@ var Module = $.extend(new $M(), {
 		$('#infopanel button.close').on('click', function(){
 			Module.setEditState(false);
 		});
+		
+		$('#scenePanel div.info').on('click', 'a.h2', function(event){
+			$tgt = $(event.target);
+			var sceneid = $tgt.data('sceneid');
+			Module.flyToScene(sceneid);
+		});
+
+		$('#takeInfo').on('click', function(event){
+			event.preventDefault();
+			Module.showBoundInfo();
+
+			if(!PG.state.editing){
+				PG.pushState({ editing : true });
+				Module.viewer.addHandler('canvas-click', function(event) {
+					 // The canvas-click event gives us a position in web coordinates.
+				    var webPoint = event.position;
+				    // Convert that to viewport coordinates, the lingua franca of OpenSeadragon coordinates.
+				    var viewportPoint = Module.viewer.viewport.pointFromPixel(webPoint);
+				    // Convert from viewport coordinates to image coordinates.
+				    var imagePoint = Module.viewer.viewport.viewportToImageCoordinates(viewportPoint);
+				    console.log(imagePoint);
+				});
+			}
+		});
 	},
 
 	// ====================================================================================================================================
@@ -260,19 +297,34 @@ var Module = $.extend(new $M(), {
 		// 多说
 		$('#comment-list a.download').popover();
 		$('#comment-list button').popover();
-
-		  (function() {
-		    var ds = document.createElement('script');
-			    ds.type = 'text/javascript';ds.async = true;
-			    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
-			    ds.charset = 'UTF-8';
-			    (document.getElementsByTagName('head')[0] 
-			     || document.getElementsByTagName('body')[0]).appendChild(ds);
-		  })();
 	},
 
 	isWebview : function(){
 		return PG.state.view ? /^webview/.test(PG.state.view) : false ;
+	},
+
+
+	flyToScene : function(sceneid){
+		scene = _.find(sceneStore, scene => { 
+			return scene.sceneid === sceneid ;
+		});
+		var boundPx = scene.bound;
+
+			var viewport = Module.viewer.viewport;
+		// bound使用的是图片的像素位置，需要转换为 viewport 的位置才能正确的移动位置
+		var boundRect = viewport.imageToViewportRectangle(boundPx[0], boundPx[1], boundPx[2], boundPx[3]);
+		Module.viewer.viewport.fitBounds(boundRect);
+		// withSlowOSDAnimation(viewport, function(){
+			// Module.viewer.viewport.fitBounds(boundRect);
+		// });
+	},
+
+	showBoundInfo : function(){
+		var viewport = Module.viewer.viewport;
+		var bound = viewport.getBounds();
+		var boundPx = viewport.viewportToImageRectangle(bound);
+		var snapBound = [ Math.round(boundPx.x), Math.round(boundPx.y), Math.round(boundPx.width), Math.round(boundPx.height)];
+		console.log(snapBound);
 	},
 
 	pin : function(e){
@@ -283,7 +335,7 @@ var Module = $.extend(new $M(), {
 		var file = Module.fileinfo;
 		$('#bookmarkbtn').spin();
 		PG.getuser(function(err, user){
-			$M.doquery('/bookmark/pin', {
+			$M.doquery('/bookmark/pin', {	
 				title : file.paintingName,
 				paintingid : file._id
 			}, {
@@ -297,6 +349,28 @@ var Module = $.extend(new $M(), {
 		}, { asklogin : true });
 	}
 });
+
+
+// temporarily set OpenSeadragon animation params
+// to a very slow animate, then restore.
+function withSlowOSDAnimation(viewport, f) {
+	// save old ones
+	var oldValues = {};
+	oldValues.centerSpringXAnimationTime = viewport.centerSpringX.animationTime;
+	oldValues.centerSpringYAnimationTime = viewport.centerSpringY.animationTime;
+	oldValues.zoomSpringAnimationTime = viewport.zoomSpring.animationTime;
+
+	// set our new ones
+	viewport.centerSpringX.animationTime = viewport.centerSpringY.animationTime = viewport.zoomSpring.animationTime = 3;
+
+	// callback
+	f()
+
+	// restore values
+	viewport.centerSpringX.animationTime = oldValues.centerSpringXAnimationTime;
+	viewport.centerSpringY.animationTime = oldValues.centerSpringYAnimationTime;
+	viewport.zoomSpring.animationTime = oldValues.zoomSpringAnimationTime;
+}
 
 
 function init(){

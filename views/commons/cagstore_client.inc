@@ -34,7 +34,7 @@
                       <img style="
                           width: <@=painting.snapSize.width @>px; height: <@=painting.snapSize.height @>px; 
                           "
-                        class="lazy" data-original="<@=cdn @>/cagstore/<@=uuid @>/tb.jpg"
+                        class="lazy" data-original="<@=conf.media_url @>/cagstore/<@=uuid @>/tb.jpg"
                         alt="<@=painting.paintingName @>"
                         ></a>
                     <div class="caption <@=isVeritcal? 'col-md-6' : 'col-md-12' @>">

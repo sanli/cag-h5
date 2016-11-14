@@ -88,7 +88,7 @@ var Module = $.extend(new $M(), {
 	    		label : '精选馆',
 				cagstore : data,
 				opacity : false,
-				cdn: _cdn(),
+				cdn: _media(),
 				isMobile : $.isMobile()
 			});
 			$('#paintingListRow').empty().append(out);
@@ -129,7 +129,7 @@ var Module = $.extend(new $M(), {
 		    		label : age + ( author ? ( ' - ' +  author) : "" ),
 					cagstore : data,
 					opacity : true,
-					cdn: _cdn(),
+					cdn: _media(),
 					isMobile : $.isMobile()
 				});
 
@@ -167,7 +167,7 @@ var Module = $.extend(new $M(), {
 	    			label : "查询结果",
 					cagstore : data,
 					opacity : true,
-					cdn : _cdn(),
+					cdn : _media(),
 					isMobile : $.isMobile()
 				});
 				
@@ -206,7 +206,7 @@ var Module = $.extend(new $M(), {
 	    			label : "查询结果",
 					cagstore : data,
 					opacity : true,
-					cdn : _cdn(),
+					cdn : _media(),
 					isMobile : $.isMobile()
 				});
 				

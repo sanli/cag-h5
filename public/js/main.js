@@ -97,7 +97,7 @@ var Module = $.extend(new $M(), {
 		map.scrollWheelZoom.disable();
 
 		var detectRetina = fileinfo.maxlevel - fileinfo.minlevel >= 4; //巨型画作才需要探测Retina屏
-		Module.tileLayer = L.tileLayer( _cdn('/cagstore/'+ fileinfo._id +'/{z}/{x}_{y}.jpg'), {	
+		Module.tileLayer = L.tileLayer( _media('/cagstore/'+ fileinfo._id +'/{z}/{x}_{y}.jpg'), {	
 		   bounds: bounds,
 		   //maxZoom: fileinfo.maxlevel,
 		   maxNativeZoom: fileinfo.maxlevel,
@@ -136,7 +136,7 @@ var Module = $.extend(new $M(), {
 	    		label : '精选馆',
 				cagstore : data,
 				opacity : false,
-				cdn: _cdn(),
+				cdn: _media(),
 				isMobile : $.isMobile()
 			});
 			$('#paintingListRow').empty().append(out);
@@ -177,7 +177,7 @@ var Module = $.extend(new $M(), {
 		    		label : age + ( author ? ( ' - ' +  author) : "" ),
 					cagstore : data,
 					opacity : true,
-					cdn: _cdn(),
+					cdn: _media(),
 					isMobile : $.isMobile()
 				});
 
@@ -215,7 +215,7 @@ var Module = $.extend(new $M(), {
 	    			label : "查询结果",
 					cagstore : data,
 					opacity : true,
-					cdn : _cdn(),
+					cdn : _media(),
 					isMobile : $.isMobile()
 				});
 				

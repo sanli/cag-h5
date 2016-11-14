@@ -80,7 +80,7 @@ var Module = $.extend(new $M(), {
                 maxLevel: maxlevel,
                 getTileUrl: function( level, x, y ){
                     // return "http://cag.share-net.cn/cagstore/" + uuid + "/" + (level + 13) + "/" + x + "_" + y + ".jpg";
-                    return _cdn("/cagstore/" + state.uuid + "/" + level + "/" + x + "_" + y + ".jpg");
+                    return _media("/cagstore/" + state.uuid + "/" + level + "/" + x + "_" + y + ".jpg");
                 }
             }],
         };
@@ -136,7 +136,7 @@ var Module = $.extend(new $M(), {
 
 		// load painting data
     	$('div.main').spin();
-    	$.getJSON(_cdn("/cagstore/"+ state.uuid + "/meta.json"), function(data){
+    	$.getJSON(_media("/cagstore/"+ state.uuid + "/meta.json"), function(data){
     		$('div.main').spin(false);
     	}).fail(function() {
 		    $('#map').html("<h3>您寻找的艺术品［" + state.uuid + "］不存在，请<a href=\"/main.html\">返回首页</a></h3>");
