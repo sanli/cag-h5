@@ -187,7 +187,7 @@ var exhibits = {
     "当代馆" : {
         param : [ ],
         baseCond : { active : true , deleted : { $ne : true } , age : '当代'},
-        sort : { author : 1 },
+        sort : { activeSort : -1, author : 1 },
         condPick : ['author', 'age'],
         title : "当代馆",
         desc : "当代书画家呈现出与古人不同的面貌，评价交给历史，当代馆只为让你看到最真实的现代书画艺术"

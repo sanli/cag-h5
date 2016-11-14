@@ -54,24 +54,24 @@ module.exports = function(grunt) {
         },
         cdn: {
             files: {
-                '.build/cdn/js/cag_<%= buildName %>_min.js' : '.build/cdn/js/cag.js',
-                '.build/cdn/js/main_<%= buildName %>_min.js': 'public/js/main.js',
-                '.build/cdn/js/exhibit_<%= buildName %>_min.js': 'public/js/exhibit.js',
-                '.build/cdn/js/img_<%= buildName %>_min.js': 'public/js/img.js',
-                '.build/cdn/js/imglite_<%= buildName %>_min.js': 'public/js/imglite.js',
-                '.build/cdn/js/img_v2_<%= buildName %>_min.js': 'public/js/img_v2.js',
-                '.build/cdn/js/imglite_v2_<%= buildName %>_min.js': 'public/js/imglite_v2.js',
-                '.build/cdn/js/paintings_<%= buildName %>_min.js': 'public/js/paintings.js',
-                '.build/cdn/js/offline_<%= buildName %>_min.js': 'public/js/offline.js',
-                '.build/cdn/js/mybookmark_<%= buildName %>_min.js': 'public/js/mybookmark.js',
-                '.build/cdn/js/userinfo_<%= buildName %>_min.js': 'public/js/userinfo.js',
-                '.build/cdn/js/regist_<%= buildName %>_min.js': 'public/js/regist.js',
-                '.build/cdn/js/download_<%= buildName %>_min.js': 'public/js/download.js',
+                '.build/aliyun/public/js/cag_<%= buildName %>_min.js' : '.build/cdn/js/cag.js',
+                '.build/aliyun/public/js/main_<%= buildName %>_min.js': 'public/js/main.js',
+                '.build/aliyun/public/js/exhibit_<%= buildName %>_min.js': 'public/js/exhibit.js',
+                '.build/aliyun/public/js/img_<%= buildName %>_min.js': 'public/js/img.js',
+                '.build/aliyun/public/js/imglite_<%= buildName %>_min.js': 'public/js/imglite.js',
+                '.build/aliyun/public/js/img_v2_<%= buildName %>_min.js': 'public/js/img_v2.js',
+                '.build/aliyun/public/js/imglite_v2_<%= buildName %>_min.js': 'public/js/imglite_v2.js',
+                '.build/aliyun/public/js/paintings_<%= buildName %>_min.js': 'public/js/paintings.js',
+                '.build/aliyun/public/js/offline_<%= buildName %>_min.js': 'public/js/offline.js',
+                '.build/aliyun/public/js/mybookmark_<%= buildName %>_min.js': 'public/js/mybookmark.js',
+                '.build/aliyun/public/js/userinfo_<%= buildName %>_min.js': 'public/js/userinfo.js',
+                '.build/aliyun/public/js/regist_<%= buildName %>_min.js': 'public/js/regist.js',
+                '.build/aliyun/public/js/download_<%= buildName %>_min.js': 'public/js/download.js',
             }    
         },
         leafletplugin : {
             files: {
-                '.build/cdn/js/leaflet-plugin_min.js' : '.build/cdn/js/leaflet-plugin.js'
+                '.build/aliyun/public/js/leaflet-plugin_min.js' : '.build/cdn/js/leaflet-plugin.js'
             }
         }
     },
@@ -79,12 +79,12 @@ module.exports = function(grunt) {
     cssmin: {
         cdn :{
             files: {
-                '.build/cdn/css/main_<%= buildName %>_min.css': 'public/css/main.css'
+                '.build/aliyun/public/css/main_<%= buildName %>_min.css': 'public/css/main.css'
             }
         },
          leafletplugin : {
             files:{
-                '.build/cdn/css/leaflet-plugin_min.css': [
+                '.build/aliyun/public/css/leaflet-plugin_min.css': [
                     'public/css/L.Control.Sidebar.css',
                     'public/css/leaflet.draw.css',
                     'public/css/leaflet.fullscreen.css'
@@ -97,14 +97,14 @@ module.exports = function(grunt) {
     // Copy files into their correct locations as part of building assets, or creating release zips
     copy: {
         // 发布到CDN网络的静态内容，js / html / images
-        cdn: {
-            files: [{
-                cwd: 'public/',
-                src: ['*.html', 'css/**', 'js/**', 'fonts/**', 'ico/**', 'images/**', 'favicon.ico', 'bower_components/**', 'blog/**'],
-                dest: '.build/cdn',
-                expand: true
-            }]
-        },
+        // cdn: {
+        //     files: [{
+        //         cwd: 'public/',
+        //         src: ['*.html', 'css/**', 'js/**', 'fonts/**', 'ico/**', 'images/**', 'favicon.ico', 'bower_components/**', 'blog/**'],
+        //         dest: '.build/cdn',
+        //         expand: true
+        //     }]
+        // },
         aliyun: {
             noProcess : 'public',
             files: [{
@@ -129,8 +129,8 @@ module.exports = function(grunt) {
 
   // 默认被执行的任务列表。
   grunt.registerTask('default', [
-    'concat:cdn', 'uglify:cdn', 'cssmin:cdn' , 
-    'copy:cdn', 'copy:aliyun'
+    'copy:aliyun', 'concat:cdn', 'uglify:cdn', 'cssmin:cdn' , 
+    // 'copy:cdn', 'copy:aliyun'
     ]);
   grunt.registerTask('leafletplugin', ['concat:leafletplugin', 'uglify:leafletplugin', 'cssmin:leafletplugin']);
 };

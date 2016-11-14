@@ -418,8 +418,8 @@ var Module = $.extend(new $M(), {
 			paintingId = fileinfo._id,
 			snapindex = Math.floor(x / 30000),
 			x = x - snapindex * 30000,
-			url = "http://supperdetailpainter.u.qiniudn.com/cagstore/"+ paintingId +"/temp_" + zoom + "_" + snapindex + ".jpg?imageMogr2/crop/!"
-				+ width +"x"+ height + "a"+ x +"a"+y;
+			url = _media("/cagstore/"+ paintingId +"/temp_" + zoom + "_" + snapindex + ".jpg?imageMogr2/crop/!"
+				+ width +"x"+ height + "a"+ x +"a"+y);
 
 		return tmpl('commentTmpl', {
 			snapurl : url,

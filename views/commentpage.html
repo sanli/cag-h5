@@ -79,7 +79,7 @@
             height = bounds[3] - bounds[1],
             x = bounds[0],
             y = bounds[1],
-            imgsrc = "http://supperdetailpainter.u.qiniudn.com/cagstore/"+ paintingId +"/temp_" 
+            imgsrc = "<%=conf.cdn_url %>/cagstore/"+ paintingId +"/temp_" 
               + zoom + "_0.jpg?imageMogr2/crop/!" + width +"x"+ height + "a"+ x +"a"+y;
    @>
     <tr data-_id="<@=cell._id @>"> 
@@ -131,22 +131,24 @@
 
 
   <!-- JS文件放在靠近HTML页面尾部的地方可以加快页面显示的速度 -->
+    <script type="text/javascript"> 
+      function _cdn(res){ return "<%=conf.cdn_url %>"+ (res|| "") }
+      function _media(res){ return "<%=conf.media_url %>"+ (res|| "") }
+    </script>
    <% if( target === 'release' ){ %>
-      <script type="text/javascript"> function _cdn(res){ return "http://supperdetailpainter.u.qiniudn.com"+ (res|| "") }</script>
       <script src="http://cdn.staticfile.org/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
       <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
-      <script src="http://supperdetailpainter.u.qiniudn.com/js/cag_<%=stamp %>_min.js" type="text/javascript"></script>
-      <script src="/js/comment.js"></script></script>
-  <% } else { %>
-  <script type="text/javascript"> function _cdn(res){ return res}</script>
-  <script src="js/jquery.js" type="text/javascript"></script>
-  <script src="js/bootstrap.js" type="text/javascript"></script>
-  <!-- cag_xxx_min.js -->
-  <script src="js/jquery.lazyload.js" type="text/javascript"></script>
-  <script src="js/sharepage.base.js"></script>
-  <script src="js/sharepage.js"></script>
-  <!-- main_xxx_min.js -->
-  <script src="js/comment.js"></script><% 
+      <script src="<%=conf.cdn_url %>/js/cag_<%=stamp %>_min.js" type="text/javascript"></script>
+      <script src="<%=conf.cdn_url %>/js/comment.js"></script></script>
+  <% } else { %>      
+      <script src="js/jquery.js" type="text/javascript"></script>
+      <script src="js/bootstrap.js" type="text/javascript"></script>
+      <!-- cag_xxx_min.js -->
+      <script src="js/jquery.lazyload.js" type="text/javascript"></script>
+      <script src="js/sharepage.base.js"></script>
+      <script src="js/sharepage.js"></script>
+      <!-- main_xxx_min.js -->
+      <script src="js/comment.js"></script><% 
      } 
   %>
 
