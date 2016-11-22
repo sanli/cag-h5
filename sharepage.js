@@ -522,3 +522,8 @@ function isAdmin(user){
 	return user && user.role === 'admin';
 }
 exports.isAdmin = isAdmin;
+
+
+// ============== 权限管理相关代码  ================
+
+
