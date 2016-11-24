@@ -100,8 +100,12 @@ var painting_view = new Schema({
     // --- 下载配置 ---
     // 离线包下载路径
     offlineUrl : String,
-    // 原始包下载路径
+    // 原始包下载路径，支持两种来源
+    //  baiduyun://{百度云_URL}|{pass}, 
+    //  http://{url} , 
     originalUrl : String,
+    // 百度云盘路径, 自动匹配，如果匹配不到需要手工匹配
+    baiduyunPath : String,
     
     // 观摩次数
     viewCnt : { type : Number, default : 0 },

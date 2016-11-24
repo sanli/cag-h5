@@ -203,8 +203,11 @@ exports.import = function(req, res){
     
     var cnt = 0, errcnt = 0;
     async.eachSeries(arg.idlist, function(id, callback){
+        id = id.trim();
+        if(id === "") return callback();
+
         var options = {
-          hostname: 'cag.share-net.cn' ,
+          hostname: 'cag.ltfc.net' ,
           port: 80,
           path: '/cagstore/' + id + '/meta.json',
           headers : {
