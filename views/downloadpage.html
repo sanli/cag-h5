@@ -30,9 +30,6 @@
   <!-- 显示模板 -->
   <!-- 数据查询结果表格 -->
   <!-- <div id="cellDiv" class="panel panel-default"></div> -->
-  <div class="alert alert-warning" role="alert">开发团队正在解决百度云失效的链接，暂时停止下载。</div>
-  
-<% if(false){ %>
   <div class="col-sm-12 col-md-3" style="padding-right: 15px; padding-left: 15px;">
     <div class="thumbnail col-sm-12 col-md-12">
       <%if(info.originalUrl){%>
@@ -51,7 +48,6 @@
           <%}else{%>
             <a href="#" class="btn btn-default btn-download" role="button">百度云盘</a>
           <%}%>
-          <a id="donate" class="btn btn-success" href="/donate/" style="color: #fff;">我们需要小额赞助</a>
         </p>
       </div>
     </div>
@@ -72,7 +68,6 @@
     </div>
   </div>
   <% } %>
-<% } %>
 
   <!--
   <div class="col-sm-12 col-md-3" style="padding-right: 15px; padding-left: 15px;">
@@ -120,8 +115,8 @@
   <!-- JS文件放在靠近HTML页面尾部的地方可以加快页面显示的速度 -->
   <% if( target === 'release' ){ %>
       <script type="text/javascript"> function _cdn(res){ return "<%=conf.cdn_url %>"+ (res|| "") }</script>
-      <script src="http://cdn.staticfile.org/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
-      <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+      <script src="https://cdn.staticfile.org/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+      <script src="https://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
       <script src="<%=conf.cdn_url %>/js/cag_<%=stamp %>_min.js" type="text/javascript"></script>
       <script src="<%=conf.cdn_url %>/js/download_<%=stamp %>_min.js"></script></script>
   <% } else { %>

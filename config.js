@@ -17,14 +17,16 @@ var debug_config = {
 	// CDN服务器的URL
 	// cdn_url : 'http://cag.share-net.cn',
 	// 静态文件CDN
-	cdn_url : 'http://cdn.ltfc.net',
+	cdn_url : 'https://cdn.ltfc.net',
 	// 图片文件CDN
 	media_url : 'http://cag.ltfc.net',
 	// 分析服务地址，百度或者是google
 	anailsysService : 'baidu', //  'google' 
 	// 如果配置了redirect，将会把所有的访问重定向到新服务
 	//redirect : "http://ltfc.net"
-	express_log : 'dev'
+	express_log : 'dev',
+	// 客户端测试 key
+	clientkey : 'asdsdafasdfasdfasdsafdawqerqwezxvzx'
 };
 
 /**
@@ -43,15 +45,17 @@ var release_config = {
 	// CDN服务器的URL
 	// cdn_url : 'http://cag.share-net.cn',
 	// 静态文件CDN
-	cdn_url : 'http://cdn.ltfc.net',
+	cdn_url : 'https://cdns.ltfc.net',
 	// 图片文件CDN
-	media_url : 'http://cag.ltfc.net',
+	media_url : 'https://cags.ltfc.net',
 	// 分析服务地址
 	anailsysService : 'baidu', //  'google' 
 	// 如果配置了redirect，将会把所有的访问重定向到新服务
 	//redirect : "http://ltfc.net"
 	// express_log
-	express_log : 'default'
+	express_log : 'default',
+	// 客户端测试 key
+	clientkey : 'this_is_a_release_but_still_is_a_test_key'
 }
 module.exports = debug_config;
 // module.exports = release_config;

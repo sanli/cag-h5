@@ -35,6 +35,8 @@ exports.bindurl=function(app){
     bindurl(app, '/img.html', { outType : 'page', needAuth : false }, exports.img);
     bindurl(app, '/img/:uuid', { outType : 'page', needAuth : false }, exports.img);
     bindurl(app, '/img/:uuid/download', { outType : 'page', authRule : 'tourist' }, exports.download);
+    bindurl(app, '/share/search/:keyword', { outType : 'page', authRule : 'tourist' }, exports.shareSearch);
+    bindurl(app, '/share/:uuid', { outType : 'page', authRule : 'tourist' }, exports.share);
     // imglite.html 是精简版本的图片浏览器，只支持部分功能，用于手持设备浏览器，Android, IOS
     bindurl(app, '/imglite.html', { outType : 'page', needAuth : false }, exports.imglite);
     bindurl(app, '/imglite/:uuid', { outType : 'page', needAuth : false }, exports.imglite);
@@ -90,6 +92,8 @@ var PAGE = {
     key : {name: 'key', key: 'key', optional: true, default: '' } ,
     // 短链接跳转
     target : {name: 'target', key: 'target', optional: true, default: '' } ,
+    // 短链接跳转
+    channel : {name: 'channel', key: 'channel', optional: true, default: '' } ,
 }
 
 exports.broadcast = function(req, res){
@@ -355,11 +359,14 @@ function renderImg(req, res, templopt){
 
     paintdb.findById(arg.uuid
         , { age : 1 , areaSize : 1 , author : 1 , desc : 1 , descUrl : 1 , essenceComment : 1 , 
-            mediaType : 1 , offlineUrl : 1 , originalUrl : 1 , ownerName : 1 , paintingName : 1 , 
+            mediaType : 1 , originalUrl : 1 , ownerName : 1 , paintingName : 1 , 
             pixels : 1, size : 1, maxlevel : 1, minlevel :1, version : 1 }
         , function(err, info){
             if(err) return share.errpage( err.message, req, res );
             if(!info) return share.errpage('出错了，查找的图片不存在。', req, res );
+
+            // if(info.originalUrl)
+            //     info.originalUrl = true                                                                                             
 
             var version = info.version || 'v1';
             var templ = templopt[version];
@@ -473,7 +480,7 @@ exports.essence = function(req, res){
 
 // 查询文件信息列表
 exports.search = function(req, res){
-    var arg = getParam("outline", req, res, [ PAGE.cond, PAGE.page ]);
+    var arg = getParam("outline", req, res, [ PAGE.cond, PAGE.page, PAGE.channel, PAGE.key ]);
     if(!arg.passed)
         return;
 
@@ -482,19 +489,57 @@ exports.search = function(req, res){
         limit : parseInt(arg.page.limit),
     };
 
-    share.searchCondExp(arg.cond);
+    // channel 为''或者是'weixin'
+    var channel = arg.channel;
+    var cond = arg.cond;
+    var key = arg.key;
+    if(key){
+        cond = {
+            $or: [{ author : 'Reg(' + key + ')' }, { paintingName : 'Reg(' + key + ')' }]
+        }
+    }
+
+    share.searchCondExp(cond);
     //var cond = extend({ active : { $ne : false} }, arg.cond );
-    var cond = extend({ active : true }, arg.cond );
+    var cond = extend({ active : true }, cond );
     paintdb.queryfile(cond
         , { files : false }
         , { author : 1, commonSort : -1 }
         , function(err, fileinfos){
             if(err) return share.rt(false, err.message, res);
 
-            fileinfos =  fileinfos.slice(page.skip, page.limit);
-            writejson(res, fileinfos);
+            fileinfos = fileinfos.slice(page.skip, page.limit);
+            if(channel === 'weixin'){
+                fileinfos = fileinfos.map( fileinfo => {
+                    var uuid = fileinfo._id;
+                    var titleArr = [ fileinfo.age, fileinfo.author, fileinfo.paintingName].map( v => v.trim() );
+
+                    if( fileinfo.ownerName )
+                        titleArr.push( fileinfo.ownerName );
+                    return {
+                        title : titleArr.join(' - '),
+                        desc : fileinfo.desc ? fileinfo.desc : titleArr.join(' - '), 
+                        picurl : "http://cag.ltfc.net/cagstore/" + uuid + "/tb.jpg",
+                        url : "http://ltfc.net/imglite/" + uuid
+                    };
+                });
+                // 微信平台最大允许返回10条图文消息
+                if(fileinfos.length > 9)
+                    fileinfos = fileinfos.slice(0,9);
+
+                if(fileinfos.length > 0){
+                    fileinfos.push({
+                        title : '与[' + key + ']相关的图片下载',
+                        desc : '跳转到中华珍宝馆网站，查询与此主题相关的图片下载项', 
+                        picurl : "http://cag.ltfc.net/images/ios-icon.png",
+                        url : "http://ltfc.net/share/search/" + key
+                    });
+                }
+            }
+            writejson(res, fileinfos);    
         });
 }
+
 
 // 查询符合条件的所有文件信息列表
 exports.fileinfo = function(req, res){
@@ -617,3 +662,55 @@ exports.download = function(req, res){
     });
 };
 
+
+
+exports.share = function(req, res){
+    var arg = getParam("share", req, res, [ PAGE.uuid ]);
+    if(!arg.passed)
+        return;
+
+    paintdb.findShareById(arg.uuid, function(err, info){
+        if(err) return share.errpage( err.message, req, res );
+        if(!info) return share.errpage('资料不存在', req, res );
+
+        res.render('sharepage.html', {
+            user : getUser(req),
+            torist : share.getTourist(req),
+            title: getTitle("内容下载"),
+            page : 'share',
+            target : conf.target,
+            stamp : conf.stamp,
+            conf : conf,
+            info : info,
+            opt : {
+                hide_search : true
+            }
+        });
+    });
+}
+
+exports.shareSearch = function(req, res){
+    var arg = getParam("shareSearch", req, res, [ PAGE.key ]);
+    if(!arg.passed)
+        return;
+
+    var cond = {  }
+    paintdb.find({ }, function(err, info){
+        if(err) return share.errpage( err.message, req, res );
+        if(!info) return share.errpage('资料不存在', req, res );
+
+        res.render('sharepage.html', {
+            user : getUser(req),
+            torist : share.getTourist(req),
+            title: getTitle("共享内容"),
+            page : 'share',
+            target : conf.target,
+            stamp : conf.stamp,
+            conf : conf,
+            info : info,
+            opt : {
+                hide_search : true
+            }
+        });
+    });
+}

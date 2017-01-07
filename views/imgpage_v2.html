@@ -11,7 +11,7 @@
     <title><%=title %></title><%
 if( target === 'release' ){ %>
     <!-- Bootstrap core CSS -->
-    <link href="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.staticfile.org/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 <% } else { %>
     <!-- Bootstrap core CSS -->
     <link href="/css/bootstrap.css" rel="stylesheet">
@@ -74,7 +74,6 @@ if( target === 'release' ){ %>
                   <a href="mailto:support@ltfc.net?subject=我需要付费下载图片《<%=info.paintingName %>》" data-trigger="hover" data-placement="left" data-toggle="popover" title="下载说明" data-content="这幅图片暂时没有开放下载，请等待一段时间，或者给我们发邮件，要求提前开放下载。我么的邮箱是: support@ltfc.net" class="pull-right download"><span class="glyphicon glyphicon-lock"></span>申请付费下载</a>
                 <% } %>
               <% } %>
-                <a class="btn btn-primary btn-sm" data-trigger="hover" data-placement="left" data-toggle="popover" title="暂停下载说明" data-content="开发团队正在解决百度云失效的链接，暂时停止下载" class="pull-right download"><span class="glyphicon glyphicon-lock"></span>暂停下载</a>
               </div>
               <h2 id="painting-title"><%=info.paintingName %></h2>
               <div class="comment-block">
@@ -143,8 +142,8 @@ if( target === 'release' ){ %>
 </script>
 <%
 if( target === 'release' ){ %>
-    <script src="http://cdn.staticfile.org/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
-    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="https://cdn.staticfile.org/jquery/1.8.3/jquery.min.js" type="text/javascript"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<%=conf.cdn_url %>/js/openseadragon.min.js" type="text/javascript" ></script>
     <script src="<%=conf.cdn_url %>/js/openseadragon-scalebar.js" type="text/javascript" ></script>
     <script src="<%=conf.cdn_url %>/js/cag_<%=stamp %>_min.js" type="text/javascript"></script>
