@@ -133,15 +133,7 @@ var Module = $.extend(new $M(), {
 				});
         	}
         }
-
-		// load painting data
-    	$('div.main').spin();
-    	$.getJSON(_media("/cagstore/"+ state.uuid + "/meta.json"), function(data){
-    		$('div.main').spin(false);
-    	}).fail(function() {
-		    $('#map').html("<h3>您寻找的艺术品［" + state.uuid + "］不存在，请<a href=\"/main.html\">返回首页</a></h3>");
-		    $('div.main').spin(false);
-		});
+        $('div.main').spin(false);
     },
 
     // 计算图片物理尺寸对应的像素尺寸
@@ -192,10 +184,6 @@ var Module = $.extend(new $M(), {
 		};
 
 		map.addControl(Module.commentctl);
-		// 移动版不自动弹出评论框
-		// setTimeout(function(e){
-		// 	Module.toggleEditState();	
-		// },800);
     },
 
     toggleEditState : function(){
@@ -308,6 +296,7 @@ var Module = $.extend(new $M(), {
 
 
 function init(){
+	$('div.main').spin();
 	OpenSeadragon.supportsFullScreen = false;
 	PG.bind();
 	Module.bind();

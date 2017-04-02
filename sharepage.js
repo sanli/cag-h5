@@ -124,13 +124,11 @@ var getreq = function(msg, req, res, params){
 	};
 
 	var fun = function(param){
-		console.log(msg + " : " + param.key + "=" + req.param(param.key));
-
-		console.log(req.params);
-		console.log(req.body);
-		console.log(req.query);
-		console.log(req.param('data'));
-
+		// console.log(msg + " : " + param.key + "=" + req.param(param.key));
+		// console.log(req.params);
+		// console.log(req.body);
+		// console.log(req.query);
+		// console.log(req.param('data'));
 		if(!param.optional && !req.param(param.key)){
 			throw new Error('need param:'+ param.key +' in request');
 		}
@@ -522,3 +520,8 @@ function isAdmin(user){
 	return user && user.role === 'admin';
 }
 exports.isAdmin = isAdmin;
+
+
+// ============== 权限管理相关代码  ================
+
+

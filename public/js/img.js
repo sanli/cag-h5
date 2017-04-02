@@ -71,15 +71,7 @@ var Module = $.extend(new $M(), {
 				.addAttribution('<a href="/main.html?l=more"><span class="glyphicon glyphicon-share-alt"></span>更多图片</a>');
 		}
 		Module.initMap(map);
-
-		// check existing of painting
-    	$('div.main').spin();
-    	$.getJSON(_media("/cagstore/"+ state.uuid + "/meta.json"), function(data){
-				$('div.main').spin(false);
-  		}).fail(function() {
-		     $('#map').html("<h3>您寻找的艺术品［" + state.uuid + "］不存在，请<a href=\"/main.html\">返回首页</a></h3>");
-		     $('div.main').spin(false);
-		});
+		$('div.main').spin(false);
     },
 
     // 初始化图片，创建控件
@@ -237,10 +229,10 @@ var Module = $.extend(new $M(), {
 
 
 function init(){
+	$('div.main').spin();
 	PG.bind();
 	Module.bind();
 	$(window).trigger('hashchange');
-	
 };
 
 

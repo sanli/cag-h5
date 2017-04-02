@@ -44,11 +44,11 @@ var painting_view = new Schema({
     // 收藏者
     ownerName : String,
     // 最后修改时间
-    updateTime : Date, 
-    
+    updateTime : Date,
+
 
     // ---- 展示配置 ----
-    maxlevel: Number, 
+    maxlevel: Number,
     minlevel: Number,
     size : { width : Number, height : Number },
     snapSize : { width : Number, height : Number },
@@ -100,9 +100,10 @@ var painting_view = new Schema({
     // --- 下载配置 ---
     // 离线包下载路径
     offlineUrl : String,
-    // 原始包下载路径
+    // 原始包下载路径，跳转到百度云或者是下载页
+    //  http://ltfc.net/share/{uuid}
     originalUrl : String,
-    
+
     // 观摩次数
     viewCnt : { type : Number, default : 0 },
     // 描述性文字页面
@@ -138,7 +139,6 @@ painting_view.index({_id : 1})
     .index({tags : 1})
     .index({age : 1})
     .index({belongCollection : 1, collectionSort : 1})
-
     .index({mylove : 1, myloveSort: 1})
     .index({essence:1, essenceSort : 1})
     .index({active:1, activeSort : 1});
@@ -146,9 +146,44 @@ painting_view.index({_id : 1})
 var PaintingView = mongoose.model('painting_view', painting_view);
     exports.PaintingView = PaintingView;
 
-
-
 var Module = PaintingView;
+
+// Painting中记录的是作品的原始信息，是切图程序生成的数据。
+var daidu_file = new Schema({
+    _id : Schema.Types.ObjectId,
+
+    // painting的id信息
+    // paintingId : String,
+
+    // ---- 基本信息 ----
+    // 文件名
+    file_name : String,
+    // 文件名
+    path : String,
+    // 文件大小
+    size : Number,
+    // 文件 md5 checksum
+    md5 : String,
+    // 文件大小
+    share_link : String,
+    // 密码
+    pass : String,
+
+    // 是否已经同步到 ltfc.net 服务器端
+    synced : Boolean,
+
+    // ---- 通用字段 ----
+    // 最后修改时间
+    utime : Date,
+    // 创建时间
+    ctime : Date
+},  { collection: 'daidu_file' });
+daidu_file.index({_id : 1})
+    .index({file_name : 1})
+    .index({path : 1}, { unique : true });
+
+var BaiduFile = mongoose.model('daidu_file', daidu_file);
+exports.BaiduFile = BaiduFile;
 
 // === 基本功能实现函数,一般不用修改 ===
 // 增加某个图片的访问计数
@@ -182,9 +217,9 @@ var ageSort = {
   "晋" : 9,
   "东晋" : 10,
   "西晋" : 20,
-  "五代" : 30,
   "隋" : 40,
   "唐" : 50,
+  "五代" : 55,
   "宋" : 59,
   "北宋" : 60,
   "南宋" : 70,
@@ -203,7 +238,7 @@ var ageSort = {
   "UNKNOWN" : 9999
 }
 // 返回所有作品大纲
-//    { 年代 : { 作者 : ['xxxx', 'xxxx'] } } 
+//    { 年代 : { 作者 : ['xxxx', 'xxxx'] } }
 exports.outline = function(query, fn){
 
     var key = 'outline:all',
@@ -211,7 +246,7 @@ exports.outline = function(query, fn){
     if(outline)
         return fn(null, outline);
 
-    Module.collection.aggregate( 
+    Module.collection.aggregate(
         { $match : query }
         , { $sort : { author : 1, paintingName : 1 } }
         , { $group : { _id: '$author' , paintings : { $push : '$paintingName'} , age : { $first : '$age'} }  }
@@ -232,7 +267,7 @@ exports.outline = function(query, fn){
 }
 
 // 返回所有作品大纲
-//    { 年代 : { 作者 : ['xxxx', 'xxxx'] } } 
+//    { 年代 : { 作者 : ['xxxx', 'xxxx'] } }
 exports.outline_with_id = function(query, fn){
 
     var key = 'outline:all:withid',
@@ -240,7 +275,7 @@ exports.outline_with_id = function(query, fn){
     if(outline)
         return fn(null, outline);
 
-    Module.collection.aggregate( 
+    Module.collection.aggregate(
         { $match : query }
         , { $sort : { author : 1, paintingName : 1 } }
         , { $group : { _id: '$author' , paintings : { $push : { name : '$paintingName', uid : '$_id' } } , age : { $first : '$age'} }  }
@@ -308,7 +343,7 @@ exports.update = function(_id, obj, fn){
 exports.findById = function(_id, project, fn){
   if(typeof project === 'function'){
     fn = project ;
-    project = {}; 
+    project = {};
   }
 
   Module.findOne({ _id : _id }
@@ -316,7 +351,7 @@ exports.findById = function(_id, project, fn){
     , function(err, doc){
       if(err) return fn(err);
       if(!doc) return fn(new Error('图片不存在或者已经下线：' + _id));
-      
+
       fn(err, doc.toObject());
     });
 }
@@ -325,9 +360,9 @@ exports.findByCond = function(cond, fn){
   Module.findOne(cond
     , function(err, doc){
       if(err) return fn(err);
-            
+
       fn(err, doc && doc.toObject());
-    });  
+    });
 }
 
 //删除一张图，只是标记为已删除，不实际删除图片
@@ -366,9 +401,359 @@ exports.judgelevel = function(painting){
 }
 
 
+exports.findShareById = function( _id, fn){
+  BaiduFile.findOne({ _id : _id }, fn);
+}
+
+
+var path = require('path')
+// 导入百度文件下的数据
+// 扫描文件路径: bp l -R -c off /CAG_PIC_LIB/
+// 分享文件: bp S -P ltfc /CAG_PIC_LIB/当代/近现代_张善孖_山水轴_纸本_53.8x120.8.tif
+exports.scan_baidu = function(dir, fn){
+  //var cmd = ['bp', 'l', '-R', 'c', 'off', '/CAG_PIC_LIB/'];
+  var cmd = [ '/Users/lishuangtao/workspace/iScript/pan.baidu.com.py', 'l', '-R', '-c', 'off', dir];
+
+  _run_bp('python', cmd, function(err, lines){
+    if(err) {
+      console.log("scan baidu dir error:", err);
+      return fn(err);
+    }
+
+    async.eachSeries(lines,  function(line, cb){
+      var filearr = line.split(',').map( v => v.trim());
+      if(filearr.length <= 3){
+        var tpath = filearr[2];
+      }else{
+        var tpath = filearr.slice(2, filearr.length).join(',');
+      }
+      file_name = path.basename(path);
+      var file = {
+        size : parseInt(filearr[0]),
+        md5 : filearr[1],
+        path : tpath,
+        file_name : file_name,
+        utime : new Date(),
+      }
+
+      BaiduFile.findOne({ path : file.path }, function(err, baiduFile){
+        if(err) return cb(err);
+        if(baiduFile != null && baiduFile.md5 == file.md5) return cb(null);
+        if(baiduFile == null)
+          file.ctime = new Date();
+
+        console.log("line :%s" , line);
+        console.log("process file:%s", file.path);
+        BaiduFile.update({ path : file.path }
+          , file
+          , { upsert : true }
+          , function(err){
+            if(err) return cb(err);
+            console.log("update baidu file: %s", file.path);
+
+            return cb(null);
+          });
+      })
+    },fn);
+  });
+}
+
+// 分享所有当前没有被分享的文件
+exports.share_new_files = function(fn){
+  BaiduFile.find({
+    share_link : { $exists : false } /* , path : RegExp('/CAG_PIC_LIB/宋.*')*/
+  }, function(err, files){
+    if(err) return fn(err);
+
+    async.eachSeries(files, function(file, cb){
+      var path = file.path;
+      console.log("share file:%s", path);
+      setTimeout(function(){
+        exports.share_file(path, function(err, sharelink){
+          if(err) return cb(err);
+
+          BaiduFile.update({ path : path }, { $set : sharelink }, function(err){
+            if(err) return cb(err);
+
+            console.log("share file:%s success", path);
+            return cb();
+          });
+        })
+      }, Math.floor(Math.random() * 50000));
+    }, fn);
+  });
+}
+
+// 分享文件，加密分享文件，并保存到DB中
+exports.share_file = function(filepath, fn){
+  var cmd = [ '/Users/lishuangtao/workspace/iScript/pan.baidu.com.py', 'S', '-P', 'ltfc', filepath];
+  console.log('python ' + cmd.join(' '));
+  _run_bp('python', cmd, function(err, lines){
+    if(err) return fn(err);
+
+    if(lines.length ===0) return fn(new Error("share error, no result"));
+    var share = lines[0].split(',').map( v => v.trim());
+    if(share.length != 2) return fn(new Error("share error, reuslt:%s", lines[0]));
+
+    var sharelink = {
+      share_link : share[0],
+      pass : share[1]
+    }
+    fn(null, sharelink);
+  });
+}
+
+
+// 运行 bp 工具，抽取屏幕输出中以 '_CAG_>' 开头的输出内容
+const exec = require('child_process').exec;
+const spawn = require('child_process').spawn;
+function _run_bp(cmd, args, fn){
+  // var cmdstr = cmd.join(" ");
+  // console.log("run bp command:[%s]", cmdstr);
+  const python = spawn( cmd, args );
+  var out = [], err = [];
+  python.stdout.on('data', (data) => {
+    out.push(data);
+  });
+
+  python.stderr.on('data', (data) => {
+    err.push(data);
+  });
+
+  python.on('close', (code) => {
+    var outmsg = Buffer.concat(out).toString();
+    var errmsg = Buffer.concat(err).toString();
+    if (code !== 0) {
+      console.log(`grep process exited with code ${code}`);
+      console.log('stderr: %s', err.toString());
+      console.log('stdout: %s', out.toString());
+      return fn(new Error(code));
+    }
+
+    //var stdout = out.join("");
+    var stdout = outmsg;
+    var cagtag = "_CAG_>";
+    var lines = stdout.split('\n')
+      .filter( line => line.startsWith(cagtag))
+      .map( line => line.replace(cagtag, "").trim());
+    return fn(null, lines);
+  });
+}
+
+
+// 更新所有图片的当前下载链接
+function migration_download_link(fn){
+  PaintingView.find({ originalUrl : { $exists : true, $ne : '' } }, function(err, paintings){
+    if(err) return fn(err);
+
+    console.log("total: %s", paintings.length);
+    async.eachSeries(paintings, function(painting, cb){
+      var uuid = painting._id;
+      var file_name = [painting.age, painting.author, painting.paintingName ,painting.mediaType, painting.areaSize, painting.ownerName ].join('_');
+      var share_link = painting.originalUrl;
+      var bdfile = {
+        share_link : share_link,
+        file_name : file_name,
+        path : '/MOCK/' + file_name,
+        pass : ''
+      }
+      BaiduFile.findOneAndUpdate({ share_link : share_link }
+        , { $set : bdfile }
+        , { upsert : true ,  new : true }, function(err, baidufile){
+          if(err) return cb(err);
+
+          var newlink = "/share/" + baidufile._id;
+          PaintingView.update({ _id : uuid }, { $set : { originalUrl : newlink }}, function(err){
+            console.log("update originalUrl: %s -> %s", share_link, newlink);
+            return cb();
+          });
+      })
+    }, fn);
+  });
+}
+
+// 同步所有未同步的数据到远程服务
+function sync_all_baidu_share(fn){
+  BaiduFile.find( { 
+    path : /^\/CAG_PIC_LIB/, 
+    synced : { $ne : true } 
+  }, function(err, unsynced){
+    async.eachSeries(unsynced, function( baiduFile, cb ){
+      console.log(`sync file: ${baiduFile.path}`)
+      send_baidu_sharefile(baiduFile.toObject(), cb);
+    }, function(err){
+      console.log("sync all baidu file finished");
+      fn(err);
+    });
+  });
+}
+
+var clientkey = require('../config.js').clientkey;
+function send_baidu_sharefile(daiduFile, fn){
+  // should not post _id to server
+  delete daiduFile._id;
+  var fileobj = {
+    bddata : JSON.stringify(daiduFile),
+    clientkey : clientkey
+  };
+  _post_baidufile( fileobj, function(err){
+    if(err) return fn(err);
+
+    console.log(`sync file: ${daiduFile.path} success`);
+    BaiduFile.update({ path : daiduFile.path }, { $set : {  synced : true } } , fn);
+  });
+}
+
+var querystring = require('querystring');
+var http = require('http');
+function _post_baidufile( fileobj, fn){
+  var postData =  querystring.stringify(fileobj);
+  var options = {
+    protocal : 'http',
+    hostname: 'www.ltfc.net',
+    port: 80,
+    path: '/paintings/bdsync',
+    method: 'POST',
+    headers: {
+      'Origin' : 'http://ltfc.net',
+      'Referer' : 'http://ltfc.net/paintings.html',
+      'User-Agent' : 'LTFCImporter',
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Content-Length': Buffer.byteLength(postData)
+    }
+  };
+  var out = [];
+  var req = http.request(options, (res) => {
+    //console.log(`STATUS: ${res.statusCode}`);
+    //console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+    res.setEncoding('utf8');
+    res.on('data', (chunk) => {
+      out.push(chunk);
+    });
+    res.on('end', () => {
+      var result = out.join('');
+      if(res.statusCode != 200){
+        return fn(new Error(`request err with code: ${res.statusCode}`), result);
+      }else{
+        var resultobj = JSON.parse(result);
+        fn(null, resultobj);
+      }
+    });
+  });
+  req.on('error', (e) => {
+    console.log(`problem with request: ${e.message}`);
+    fn(e);
+  });
+  // write data to request body
+  // console.log(postData)
+  req.write(postData);
+  req.end();
+}
+
+
+// 纠正所有离线包下载链接, 替换原来的  http://outline.ltfc.net  -> https://outlines.ltfc.net
+function fix_outline_url(fn){
+  PaintingView.find({ offlineUrl : /^http:\/\/outline\.ltfc\.net.*/ }
+    , { offlineUrl : 1 }
+    , function(err, docs){
+      if(err) return fn(err);
+
+      async.eachSeries(docs, function(doc, cb){
+        var newUrl = doc.offlineUrl.replace('http://outline', 'https://outlines');
+        console.log(`update ${doc.offlineUrl} -> ${newUrl}`);
+        PaintingView.update({ _id : doc._id}, { $set : { offlineUrl : newUrl } }, cb);
+      },fn);
+    });
+}
+
+
+// 纠正所有离线包下载链接, 替换原来的  http://outline.ltfc.net  -> https://outlines.ltfc.net
+function refresh_file_name(fn){
+  BaiduFile.find({}
+    , { path : 1, file_name : 1 }
+    , function(err, docs){
+      if(err) return fn(err);
+
+      async.eachSeries(docs, function(doc, cb){
+        var new_file_name = path.basename(doc.path);
+        if( new_file_name == doc.file_name ) 
+          return cb();
+
+        console.log( `${doc.path} -> ${doc.file_name}`);
+        console.log( `update ${doc.file_name} -> ${new_file_name} `);
+        BaiduFile.update({ _id : doc._id }, { $set : { file_name : new_file_name } }, cb);
+      },fn);
+    });
+}
+
 // ============================= 下面是单元测试用的代码 ================================
 var isme = require('../sharepage.js').isme;
 var tester = {
+
+  refresh_file_name : function(){
+    refresh_file_name(() => console.log('refresh finsihed'));
+  },
+
+  sync_all_baidu_share : function(){
+    sync_all_baidu_share(function(err){
+      if(err) console.log(err);
+      console.log('sync all baidu share file finsiehd');
+    });
+  },
+
+  // 测试同步数据
+  sync_baidu_share : function(){
+    var id = '583f032f57ef6700e4918997';
+    BaiduFile.findOne({ _id : id }, function(err, obj){
+      if(err) return console.log(`err:${err.message}`);
+
+      if(!obj) return console.log(`target object not exists: ${id} `)
+      send_baidu_sharefile(obj.toObject(), function(err, result){
+        if(err) return console.log(`send baidu file err: ${err}`);
+        console.log(result);
+      });
+    });
+  },
+
+  fix_outline_url : function(){
+    fix_outline_url(function(err){
+      if(err) return console.log(`fix outline url has err: ${err.message}`);
+
+      console.log("fix outline url finished");
+    });
+  },
+
+  // 扫描百度图片库，输出所有文件
+  scanbaidu : function(){
+    exports.scan_baidu('/CAG_PIC_LIB/', function(err){
+      if(err) console.log(err);
+      console.log(" finished! ");
+    });
+  },
+
+  migration_download_link : function(){
+    migration_download_link( err =>{
+      if(err) console.log('err:%s', err);
+      console.log('migration_download_link finished')
+    });
+  },
+
+  share_new_files : function(){
+    exports.share_new_files(function(err){
+      if(err) console.error(err);
+
+      console.log('share new file finished!');
+    });
+  },
+
+  testsharefile : function(){
+    exports.share_file('/CAG_PIC_LIB/当代/近现代_张善孖_山水轴_纸本_53.8x120.8.tif', function(err){
+      if(err) console.error(err);
+
+      console.log('share finished!');
+    })
+  },
+
   // 读取json文件，并导入
   import: function(){
     fs.readFile('/Users/sanli/Downloads/paintings.json', function (err, data) {
@@ -377,7 +762,7 @@ var tester = {
       console.log("导入藏品数量:%s", paintings.length);
       async.eachSeries(paintings , function(painting, callback){
         Module.create(painting, function(err){
-          if(err) 
+          if(err)
             console.log("导入图片出错:%s, err:%s", painting.paintingName, err );
           else
             console.log("导入图片:%s", painting.paintingName );
@@ -385,13 +770,13 @@ var tester = {
           callback(err);
         });
       }, function(err){
-          if(err) 
+          if(err)
             console.log("导入图片出错, err:%s", err );
           else
             console.log("导入图片完成，共导入图片:%s", paintings.length );
-      
+
       });
-    }); 
+    });
   },
 
   // 刷新评级
@@ -401,7 +786,7 @@ var tester = {
 
       async.eachSeries(paintings, function(painting, cb){
         var overallLevel = exports.judgelevel(painting);
-        Module.update({ _id : painting._id}, 
+        Module.update({ _id : painting._id},
           { $set : { overallLevel : overallLevel } }, cb);
       }, function(err){
         if(err) {
@@ -434,5 +819,3 @@ if(isme(__filename)){
     console.log('paintingsdb.js '+ testcmd.join('|'));
   }
 }
-
-

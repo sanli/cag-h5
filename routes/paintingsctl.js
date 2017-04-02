@@ -40,7 +40,11 @@ var PAGE = {
 //导入文件用到的参数
 var IMP = {
     file : {name: 'file', key: 'file', optional: false},
-    idlist :{name:'idlist', key: 'idlist', optional: false}
+    idlist :{name:'idlist', key: 'idlist', optional: false},
+    // 百度 sync data
+    bddata :{name:'bddata', key: 'bddata', optional: false},
+    // sync key
+    clientkey :{ name:'clientkey', key: 'clientkey', optional: false}
 }
 //CRUP参数
 var CRUD = {
@@ -61,6 +65,7 @@ exports.bindurl=function(app){
     //bindurl(app, '/paintings/_activeall', exports.activeall);
     bindurl(app, '/paintings/jump', { method : 'get' }, exports.jump);
     bindurl(app, '/paintings/export', exports.export);
+    bindurl(app, '/paintings/bdsync', { needAuth : false }, exports.baidu_sync);
 }
 
 exports.page = function(req, res){
@@ -74,19 +79,6 @@ exports.page = function(req, res){
         commons : require('./cagcommonsctl.js')
     });
 };
-
-// 一个私有API，用于一次激活所有的paintings
-// exports.activeall = function(req, res){
-//     paintingsdb.PaintingView.update(
-//         {}
-//         , { $set: { active : true } }
-//         , {multi: true}
-//         , function(err, cnt){
-//             if(err) return rt(false, err.message, res);
-
-//             rt(true, {msg: "激活成功", cnt: cnt}, res);
-//         });
-// }
 
 // 查询对象，并返回列表
 exports.list = function(req, res){
@@ -194,6 +186,31 @@ exports.export = function(req, res){
     });
 };
 
+// 接收客户端发送的百度同步数据
+exports.baidu_sync = function(req, res){
+    var arg = getParam("paintings export", req, res, [IMP.bddata, IMP.clientkey]);
+    if(!arg.passed)
+        return;
+x
+    if(arg.clientkey != conf.clientkey)
+        rt(false, 'client key missed', res);
+
+    var file = JSON.parse(arg.bddata);
+    file.utime = new Date();
+
+    console.log("sync baidu file:%s", file.path);
+    paintingsdb.BaiduFile.update({ path : file.path }
+      , file
+      , { upsert : true }
+      , function(err){
+        if(err) return rt( false, { status : '', err : err }, res);
+
+        console.log("update baidu file: %s", file.path);
+        return rt(true, { status : 'synced'}, res);
+      });
+};
+
+
 //确认导入
 var http = require('http')
 exports.import = function(req, res){
@@ -203,8 +220,11 @@ exports.import = function(req, res){
     
     var cnt = 0, errcnt = 0;
     async.eachSeries(arg.idlist, function(id, callback){
+        id = id.trim();
+        if(id === "") return callback();
+
         var options = {
-          hostname: 'cag.share-net.cn' ,
+          hostname: 'cag.ltfc.net' ,
           port: 80,
           path: '/cagstore/' + id + '/meta.json',
           headers : {
@@ -251,6 +271,8 @@ exports.import = function(req, res){
     });
     
 };
+
+
 
 
 

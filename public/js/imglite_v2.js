@@ -94,15 +94,7 @@ var Module = $.extend(new $M(), {
         // 聚焦到cavas上，才可以通过键盘控制
         document.getElementById('imgview').querySelector('.openseadragon-canvas').focus();
 		Module.initViewer(viewer, fileinfo);
-
-		// load painting data
-    	$('div.main').spin();
-    	$.getJSON(_media("/cagstore/"+ state.uuid + "/meta.json"), function(data){
-    		$('div.main').spin(false);
-    	}).fail(function() {
-		    $('#map').html("<h3>您寻找的艺术品［" + state.uuid + "］不存在，请<a href=\"/main.html\">返回首页</a></h3>");
-		    $('div.main').spin(false);
-		});
+		$('div.main').spin(false);
     },
 
     // 这个函数由
@@ -300,6 +292,7 @@ var Module = $.extend(new $M(), {
 
 
 function init(){
+	$('div.main').spin();
 	PG.bind();
 	Module.bind();
 	$(window).trigger('hashchange');

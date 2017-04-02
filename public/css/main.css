@@ -250,7 +250,7 @@ html, body {
 
 .header-icon {
   position: absolute;
-  z-index: 9;
+  z-index: 9999;
   width: 100%;
   top: 275px;
 }
