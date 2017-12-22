@@ -76,7 +76,9 @@ var Module = $.extend(new $M(), {
             //},
             // 只在网页版显示缩略图
             controlsFadeDelay : 1800,
-            controlsFadeLength : 1600,
+			controlsFadeLength : 1600,
+			showNavigator : false,
+			showNavigationControl : false,
             tileSources:   [{
                 height : height,
                 width : width,
