@@ -249,18 +249,8 @@ var Module = $.extend(new $M(), {
 	// ====================================================================================================================================
 	// 添加一个comment到边栏上
 	pushInfo2Sidebar : function(info){
-		// 多说
 		$('#comment-list a.download').popover();
 		$('#comment-list button').popover();
-
-		  (function() {
-		    var ds = document.createElement('script');
-			    ds.type = 'text/javascript';ds.async = true;
-			    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
-			    ds.charset = 'UTF-8';
-			    (document.getElementsByTagName('head')[0] 
-			     || document.getElementsByTagName('body')[0]).appendChild(ds);
-		  })();
 	},
 
 	isWebview : function(){

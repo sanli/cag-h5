@@ -28,7 +28,6 @@ exports.bindurl=function(app){
     bindurl(app, '/', { outType : 'page', needAuth : false } , exports.main);
     bindurl(app, '/l/:target', { outType : 'page', needAuth : false } , exports.shortlink);
     bindurl(app, '/main.html', { outType : 'page', needAuth : false }, exports.main);
-    bindurl(app, '/comments', { outType : 'page', needAuth : false }, exports.dscomments);
     bindurl(app, '/donate', { outType : 'page', needAuth : false }, exports.donate);
     
     // 看图
@@ -42,16 +41,11 @@ exports.bindurl=function(app){
     bindurl(app, '/imglite/:uuid', { outType : 'page', needAuth : false }, exports.imglite);
     bindurl(app, '/outline/:age/:author/:paintingName', { outType : 'page', needAuth : false }, exports.imgliteOfOutline );
     bindurl(app, '/feedbacklite.html', { outType : 'page', needAuth : false }, exports.feedbacklite);
-
     bindurl(app, '/snapshot/:uuid/:level/:area', { needAuth : false }, exports.snapshot);
 
-    
     // 实验性页面
     bindurl(app, '/datatoys.html', { outType : 'page', needAuth : false }, exports.datatoys);
     bindurl(app, '/message.html', { outType : 'page', needAuth : false }, exports.message);
-    
-    // 公告消息页
-    bindurl(app, '/blog', { outType : 'page', needAuth : false }, exports.blog);
 
     // api
     bindurl(app, '/message.json', { outType : 'page', needAuth : false }, exports.messagejson);
@@ -242,37 +236,6 @@ exports.datatoys = function(req, res){
         conf : conf,
         opt : {
             hide_search : true
-        }
-    });
-};
-
-exports.blog = function(req, res){
-    res.render('blogpage.html', {
-        user: getUser(req),
-        torist : share.getTourist(req),
-        title: getTitle("日志"),
-        target : conf.target,
-        stamp : conf.stamp,
-        conf : conf,
-        opt : {
-            hide_search : true
-        }
-    });
-};
-
-// 多说注释列表
-exports.dscomments = function(req, res){
-    res.render('dscommentpage.html', {
-        user : share.getUser(req),
-        torist : share.getTourist(req),
-        title: "最近评论",
-        page : 'commons',
-        target : conf.target,
-        stamp : conf.stamp,
-        conf : conf,
-        opt : {
-            message : exports.broadcast_message,
-            hide_search : false
         }
     });
 };

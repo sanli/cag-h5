@@ -14,10 +14,9 @@ var debug_config = {
 	mongoURL : "mongodb://localhost/cag",
 	// 使用mongodb session，不在需要skipSignin
 	skipSignin : false,
-	// CDN服务器的URL
-	// cdn_url : 'http://cag.share-net.cn',
 	// 静态文件CDN
 	cdn_url : 'https://cdn.ltfc.net',
+	//cdn_url : 'http://cdn.ltfc.net',
 	// 图片文件CDN
 	media_url : 'http://cag.ltfc.net',
 	// 分析服务地址，百度或者是google
@@ -42,10 +41,9 @@ var release_config = {
 	mongoURL : "mongodb://localhost/cag",
 	// 是否跳过登录检测
 	skipSignin : false ,
-	// CDN服务器的URL
-	// cdn_url : 'http://cag.share-net.cn',
 	// 静态文件CDN
 	cdn_url : 'https://cdns.ltfc.net',
+	//cdn_url : 'http://cdn.ltfc.net',
 	// 图片文件CDN
 	media_url : 'https://cags.ltfc.net',
 	// 分析服务地址
