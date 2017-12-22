@@ -294,7 +294,6 @@ var Module = $.extend(new $M(), {
 	// ====================================================================================================================================
 	// 添加一个comment到边栏上
 	pushInfo2Sidebar : function(info){
-		// 多说
 		$('#comment-list a.download').popover();
 		$('#comment-list button').popover();
 	},
