@@ -193,7 +193,7 @@ exports.incViewCount = function(_id, fn){
 
 // 查询某个艺术品详细信息
 exports.queryfile = function(query, project, sort, fn, page){
-    page = page || { skip : 0, limit : 50 };
+    page = page || { skip : 0, limit : 300 };
     if(typeof(project) === 'function'){
         fn = project;
         sort = {};

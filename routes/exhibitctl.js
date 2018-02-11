@@ -80,7 +80,7 @@ var PAGE = {
 // opt.lable = function(){}
 var _create_exhibit_page = function(opt){
     var opt = extend({
-        page : { skip : 0 , limit : 50 },
+        page : { skip : 0 , limit : 300 },
         view : 'exhibit/exhibitpage.html'
     }, opt);
 
@@ -126,7 +126,7 @@ var _create_exhibit_page = function(opt){
 
 var _create_exhibit_json = function(opt){
     var opt = extend(opt, {
-        page : { skip : 0 , limit : 50 }
+        page : { skip : 0 , limit : 300 }
     });
     return function(req, res){
         var arg = getParam("exhibit-" + opt.title, req, res, opt.param);
@@ -152,7 +152,7 @@ var _create_exhibit_json = function(opt){
 
 function _query_exhibit( opt, arg, fn ){
     var cond = arg.cond || {},
-        page = arg.page || { skip : 0, limit : 100 },
+        page = arg.page || { skip : 0, limit : 300 },
         argcond = us.pick(arg, opt.condPick),
         cond = extend(cond , argcond, opt.baseCond);
 
@@ -198,7 +198,7 @@ var exhibits = {
         baseCond : { active : true , deleted : { $ne : true } },
         sort : { activeSort : -1 },
         // 最近发布的图片
-        page : { skip : 0, limit : 50 },
+        page : { skip : 0, limit : 300 },
         condPick : [],
         title : "新发图",
         desc : "按照内容更新或者是发布的时间，由近到远列出馆藏书画，方便您了解馆内的最新动态"
@@ -209,7 +209,7 @@ var exhibits = {
         baseCond : { active : true , mylove : true, deleted : { $ne : true } },
         sort : { myloveSort : -1 },
         // 最近发布的图片
-        page : { skip : 0, limit : 50 },
+        page : { skip : 0, limit : 300 },
         condPick : [],
         title : "铭心绝品",
         desc : "铭心绝品馆挑选原则，宁缺勿滥，首先要高清的，第二首尾全的，第三真假争议少的，第四艺术历史价值高的，如此方可谓之铭心绝品。"
@@ -232,7 +232,7 @@ var exhibits = {
             return cond;
         },
         // 最近发布的图片
-        page : { skip : 0, limit : 50 },
+        page : { skip : 0, limit : 300 },
         condPick : ['key'],
         title : "搜索",
         desc : "搜索作品名称"

@@ -18,7 +18,7 @@ var debug_config = {
 	cdn_url : 'https://cdn.ltfc.net',
 	//cdn_url : 'http://cdn.ltfc.net',
 	// 图片文件CDN
-	media_url : 'http://cag.ltfc.net',
+	media_url : 'http://cags.ltfc.net',
 	// 分析服务地址，百度或者是google
 	anailsysService : 'baidu', //  'google' 
 	// 如果配置了redirect，将会把所有的访问重定向到新服务
@@ -45,7 +45,7 @@ var release_config = {
 	cdn_url : 'https://cdns.ltfc.net',
 	//cdn_url : 'http://cdn.ltfc.net',
 	// 图片文件CDN
-	media_url : 'https://cags.ltfc.net',
+	media_url : 'http://cag.ltfc.net',
 	// 分析服务地址
 	anailsysService : 'baidu', //  'google' 
 	// 如果配置了redirect，将会把所有的访问重定向到新服务
